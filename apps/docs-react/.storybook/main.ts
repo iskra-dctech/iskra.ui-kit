@@ -11,9 +11,9 @@ const config: StorybookConfig = {
     '../../../packages/react/src/**/*.stories.@(ts|tsx)',
     '../../../packages/dci-react/src/**/*.stories.@(ts|tsx)',
   ],
-  addons: ['@storybook/addon-essentials', '@storybook/addon-a11y'],
+  addons: [getAbsolutePath('@storybook/addon-a11y')],
   framework: {
-    name: '@storybook/react-vite',
+    name: getAbsolutePath('@storybook/react-vite'),
     options: {},
   },
   core: { disableTelemetry: true },
@@ -34,3 +34,7 @@ const config: StorybookConfig = {
 };
 
 export default config;
+
+function getAbsolutePath(value: string): string {
+  return dirname(fileURLToPath(import.meta.resolve(`${value}/package.json`)));
+}

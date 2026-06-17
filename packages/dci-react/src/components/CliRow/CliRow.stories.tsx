@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { CliRow } from './CliRow.js';
 
 const meta: Meta<typeof CliRow> = {

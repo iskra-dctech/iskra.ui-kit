@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 
 // Library mode: ESM + CJS. React and the @iskra-dci/* foundation are externalized

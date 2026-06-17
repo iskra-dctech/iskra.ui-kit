@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { TextField } from './TextField.js';
 import { Icon } from '../Icon/Icon.js';
 

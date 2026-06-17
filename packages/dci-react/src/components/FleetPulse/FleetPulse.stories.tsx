@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { FleetPulse } from './FleetPulse.js';
 
 const meta: Meta<typeof FleetPulse> = {
