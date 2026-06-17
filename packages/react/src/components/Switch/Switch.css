@@ -1,0 +1,89 @@
+/* ИСКРА.DCI — Switch (toggle). Real <input type="checkbox" role="switch">. Track fill uses --accent-safe. */
+.ik-sw {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  font-family: var(--font-ui, 'Inter', system-ui, sans-serif);
+  color: var(--fg1, #f0f6fc);
+  user-select: none;
+  position: relative;
+}
+.ik-sw.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.ik-sw-input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+}
+.ik-sw-track {
+  position: relative;
+  flex-shrink: 0;
+  background: var(--line, #30363d);
+  transition: background 0.15s;
+  margin-top: 1px;
+}
+.ik-sw-knob {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--fg1, #f0f6fc);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
+  transition: transform 0.15s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.ik-sw-m .ik-sw-track {
+  width: 34px;
+  height: 19px;
+  border-radius: 10px;
+}
+.ik-sw-m .ik-sw-knob {
+  width: 15px;
+  height: 15px;
+  top: 2px;
+  left: 2px;
+}
+.ik-sw-m .ik-sw-input:checked + .ik-sw-track .ik-sw-knob {
+  transform: translateX(15px);
+}
+.ik-sw-s .ik-sw-track {
+  width: 30px;
+  height: 17px;
+  border-radius: 9px;
+}
+.ik-sw-s .ik-sw-knob {
+  width: 13px;
+  height: 13px;
+  top: 2px;
+  left: 2px;
+}
+.ik-sw-s .ik-sw-input:checked + .ik-sw-track .ik-sw-knob {
+  transform: translateX(13px);
+}
+.ik-sw-input:checked + .ik-sw-track {
+  background: var(--accent-safe, #00aa85);
+}
+.ik-sw-input:focus-visible + .ik-sw-track {
+  box-shadow:
+    0 0 0 1px var(--bg, #0d1117),
+    0 0 0 2px var(--accent, #00ffc2);
+}
+.ik-sw-textwrap {
+  display: flex;
+  flex-direction: column;
+}
+.ik-sw-text {
+  font-size: 13px;
+  line-height: 1.45;
+}
+.ik-sw-s .ik-sw-text {
+  font-size: 12px;
+}
+.ik-sw-desc {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--fg2, #8b949e);
+  margin-top: 2px;
+}

@@ -1,0 +1,5 @@
+{
+  "$description": "Corner radius — fixed 4px everywhere, 2px for tiny chips/tags.",
+  "radius": { "$type": "dimension", "$value": "4px" },
+  "radius-sm": { "$type": "dimension", "$value": "2px" }
+}

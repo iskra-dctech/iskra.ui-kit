@@ -88,7 +88,9 @@ export function Button({
     fullWidth && 'ik-btn-fw',
     loading && 'ik-btn-loading',
     className,
-  ].filter(Boolean).join(' ');
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <button type={type} className={cls} disabled={disabled || loading} {...rest}>

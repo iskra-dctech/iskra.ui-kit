@@ -1,0 +1,60 @@
+{
+  "name": "@iskra-dci/react",
+  "version": "0.1.0",
+  "description": "Искра.DCI React component library (Hard-Shell Minimal).",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "build": "vite build && tsc --emitDeclarationOnly -p tsconfig.build.json",
+    "dev": "vite build --watch",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "dependencies": {
+    "@iskra-dci/core": "workspace:*",
+    "@iskra-dci/icons": "workspace:*"
+  },
+  "devDependencies": {
+    "@iskra-dci/styles": "workspace:*",
+    "@iskra-dci/tokens": "workspace:*",
+    "@iskra-dci/tsconfig": "workspace:*",
+    "@storybook/react": "catalog:",
+    "@testing-library/jest-dom": "catalog:",
+    "@testing-library/react": "catalog:",
+    "@testing-library/user-event": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
+    "jsdom": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:",
+    "vitest-axe": "catalog:"
+  },
+  "publishConfig": {
+    "access": "restricted",
+    "provenance": true
+  }
+}

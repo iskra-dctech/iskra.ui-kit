@@ -1,1 +1,795 @@
-{"namespace":"DCIDesignSystem_2e8fb0","components":[{"name":"Badge","sourcePath":"components/Badge/Badge.jsx"},{"name":"Tag","sourcePath":"components/Badge/Badge.jsx"},{"name":"Button","sourcePath":"components/Button/Button.jsx"},{"name":"Checkbox","sourcePath":"components/Checkbox/Checkbox.jsx"},{"name":"Icon","sourcePath":"components/Icon/Icon.jsx"},{"name":"ICON_NAMES","sourcePath":"components/Icon/Icon.jsx"},{"name":"Radio","sourcePath":"components/Radio/Radio.jsx"},{"name":"RadioGroup","sourcePath":"components/Radio/Radio.jsx"},{"name":"Sidebar","sourcePath":"components/Sidebar/Sidebar.jsx"},{"name":"Switch","sourcePath":"components/Switch/Switch.jsx"},{"name":"TextField","sourcePath":"components/TextField/TextField.jsx"}],"startingPoints":[{"name":"page-apikeys-admin","path":"preview/page-apikeys-admin.html","previewPath":"preview/page-apikeys-admin.html","kind":"screen","section":"Components","subtitle":"Админ-консоль API-ключей · сводка, фильтры, массовый отзыв, политики","viewport":"1280x860"},{"name":"page-apikeys-user","path":"preview/page-apikeys-user.html","previewPath":"preview/page-apikeys-user.html","kind":"screen","section":"Components","subtitle":"Страница API-ключей оператора · список, создание, ротация, отзыв","viewport":"1100x820"}],"cards":[{"path":"documents/Document Template.html","group":"Brand","viewport":"909x560","subtitle":"6-page A4 doc — paper pages, dark header band, mint accent","name":"A4 document template"},{"path":"logo/Куб + Искра - Логотип.html","group":"Brand","viewport":"1280x880","subtitle":"Искра inside the shell — cube/spark mark concepts & applications","name":"Cube + Spark logo study"},{"path":"preview/brand-logo.html","group":"Brand","viewport":"720x360","subtitle":"Pixel spark with mint glow + flat fallback · ИСКРА lockup","name":"Logo & wordmark"},{"path":"preview/brand-mascot.html","group":"Brand","viewport":"700x160","subtitle":"Pixel ghost · non-critical states","name":"Бит / Bit mascot"},{"path":"preview/doc-elements.html","group":"Brand","viewport":"909x1240","subtitle":"Full catalog — text, accents, lists, cards, tables, diagrams, headers/footers","name":"Document elements"},{"path":"preview/colors-accent.html","group":"Colors","viewport":"700x210","subtitle":"Mint indicator vs AA-safe text","name":"Accent — Cyber Mint"},{"path":"preview/colors-base.html","group":"Colors","viewport":"700x200","subtitle":"Anthracite, graphite, border, text","name":"Base palette"},{"path":"preview/colors-light-themes.html","group":"Colors","viewport":"700x150","subtitle":"Secondary off-white palettes","name":"Light themes — cold & warm"},{"path":"preview/colors-status.html","group":"Colors","viewport":"700x200","subtitle":"Sync / Drift / Error / Off / Info","name":"Status model"},{"path":"components/Badge/index.html","group":"Components","viewport":"760x420","subtitle":"статус-сигналы (dot / icon) · mono-теги · removable chips · s·m","name":"Badge & Tag"},{"path":"components/Button/index.html","group":"Components","viewport":"880x720","subtitle":"primary / outline / secondary / ghost / destructive · s·m·l · иконки · loading","name":"Button"},{"path":"components/Checkbox/index.html","group":"Components","viewport":"760x420","subtitle":"checked · indeterminate · disabled · label + description · s·m","name":"Checkbox"},{"path":"components/Icon/index.html","group":"Components","viewport":"820x560","subtitle":"Единый набор · 16×16 · stroke 1.5 · currentColor · масштаб от текста","name":"Icon"},{"path":"components/Radio/index.html","group":"Components","viewport":"760x440","subtitle":"одиночный выбор · вертикально / горизонтально · описание · disabled · s·m","name":"Radio & RadioGroup"},{"path":"components/Sidebar/index.html","group":"Components","viewport":"980x580","subtitle":"Боковая навигация · широкий / узкий · все темы · operator + admin","name":"Sidebar"},{"path":"components/Switch/index.html","group":"Components","viewport":"720x380","subtitle":"on/off · скользящий ползунок · label + description · disabled · s·m","name":"Switch"},{"path":"components/TextField/index.html","group":"Components","viewport":"820x640","subtitle":"label · hint · error · иконка · clear · s·m·l · тёмная + холодная","name":"TextField"},{"path":"preview/comp-api-key-modal.html","group":"Components","viewport":"800x620","subtitle":"Создание API-ключа · название, срок действия, права доступа","name":"API Key Modal"},{"path":"preview/comp-badges.html","group":"Components","viewport":"700x170","subtitle":"Signal badges + mono tags","name":"Status badges & tags"},{"path":"preview/comp-buttons.html","group":"Components","viewport":"700x270","subtitle":"Primary / Secondary / Destructive · hover · disabled","name":"Buttons"},{"path":"preview/comp-device-card.html","group":"Components","viewport":"700x290","subtitle":"Configurable sparkline metric (per device / user)","name":"Device tile"},{"path":"preview/comp-inputs.html","group":"Components","viewport":"700x470","subtitle":"Field, focus, dropdown, multiselect, date range, toggles","name":"Inputs & controls"},{"path":"preview/comp-pulse-cli.html","group":"Components","viewport":"700x280","subtitle":"Interactive sync ring → expandable problem-device list","name":"Fleet pulse & CLI row"},{"path":"preview/comp-toasts.html","group":"Components","viewport":"700x240","subtitle":"Drift / OK / Error / Info — left status stripe","name":"Toasts"},{"path":"preview/elevation.html","group":"Spacing","viewport":"700x150","subtitle":"Depth via hairline + surface step","name":"Elevation — no shadows"},{"path":"preview/radius.html","group":"Spacing","viewport":"700x150","subtitle":"4px default · 2px chips · dots round","name":"Corner radius — fixed 4px"},{"path":"preview/spacing-scale.html","group":"Spacing","viewport":"700x290","subtitle":"4 → 64px tokens","name":"Spacing scale — 8px base"},{"path":"preview/type-body.html","group":"Type","viewport":"700x140","subtitle":"Inter 14px UI · 12px small","name":"Body & UI type"},{"path":"preview/type-display.html","group":"Type","viewport":"700x150","subtitle":"H1/H2/H3 · Inter 600 · tight tracking","name":"Display type — Inter"},{"path":"preview/type-labels.html","group":"Type","viewport":"700x150","subtitle":"Uppercase mono, .12em tracking","name":"Mono labels / eyebrows"},{"path":"preview/type-mono.html","group":"Type","viewport":"700x180","subtitle":"IP, IDs, CLI, YAML at 13px","name":"Mono data — JetBrains Mono"}],"templates":[],"globalCssPaths":["colors_and_type.css"],"tokens":[{"name":"--bg","value":"#0D1117","kind":"color","definedIn":"colors_and_type.css"},{"name":"--panel","value":"#161B22","kind":"color","definedIn":"colors_and_type.css"},{"name":"--panel-soft","value":"#1D2530","kind":"color","definedIn":"colors_and_type.css"},{"name":"--panel-muted","value":"#202A35","kind":"color","definedIn":"colors_and_type.css"},{"name":"--line","value":"#30363D","kind":"color","definedIn":"colors_and_type.css"},{"name":"--line-soft","value":"rgba(48,54,61,.5)","kind":"color","definedIn":"colors_and_type.css"},{"name":"--fg1","value":"#F0F6FC","kind":"color","definedIn":"colors_and_type.css"},{"name":"--fg2","value":"#8B949E","kind":"color","definedIn":"colors_and_type.css"},{"name":"--fg3","value":"#6E7681","kind":"color","definedIn":"colors_and_type.css"},{"name":"--accent","value":"#00FFC2","kind":"color","definedIn":"colors_and_type.css"},{"name":"--accent-hover","value":"#00CC9A","kind":"color","definedIn":"colors_and_type.css"},{"name":"--accent-safe","value":"#00AA85","kind":"color","definedIn":"colors_and_type.css"},{"name":"--accent-soft","value":"rgba(0,170,133,.14)","kind":"color","definedIn":"colors_and_type.css"},{"name":"--accent-line","value":"rgba(0,170,133,.32)","kind":"color","definedIn":"colors_and_type.css"},{"name":"--status-ok","value":"#00FFC2","kind":"color","definedIn":"colors_and_type.css"},{"name":"--status-warn","value":"#F97316","kind":"color","definedIn":"colors_and_type.css"},{"name":"--status-err","value":"#F85149","kind":"color","definedIn":"colors_and_type.css"},{"name":"--status-off","value":"#6E7681","kind":"color","definedIn":"colors_and_type.css"},{"name":"--status-info","value":"#58A6FF","kind":"color","definedIn":"colors_and_type.css"},{"name":"--font-ui","value":"'Inter', system-ui, -apple-system, sans-serif","kind":"font","definedIn":"colors_and_type.css"},{"name":"--font-display","value":"'Inter', system-ui, -apple-system, sans-serif","kind":"font","definedIn":"colors_and_type.css"},{"name":"--font-mono","value":"'JetBrains Mono', ui-monospace, 'SF Mono', monospace","kind":"font","definedIn":"colors_and_type.css"},{"name":"--text-h1","value":"24px","kind":"font","definedIn":"colors_and_type.css"},{"name":"--lh-h1","value":"1.2","kind":"font","definedIn":"colors_and_type.css","annotation":"font"},{"name":"--wt-h1","value":"600","kind":"font","definedIn":"colors_and_type.css","annotation":"font"},{"name":"--text-h2","value":"20px","kind":"font","definedIn":"colors_and_type.css"},{"name":"--lh-h2","value":"1.2","kind":"font","definedIn":"colors_and_type.css","annotation":"font"},{"name":"--wt-h2","value":"600","kind":"font","definedIn":"colors_and_type.css","annotation":"font"},{"name":"--text-h3","value":"18px","kind":"font","definedIn":"colors_and_type.css"},{"name":"--lh-h3","value":"1.2","kind":"font","definedIn":"colors_and_type.css","annotation":"font"},{"name":"--wt-h3","value":"600","kind":"font","definedIn":"colors_and_type.css","annotation":"font"},{"name":"--text-ui","value":"14px","kind":"font","definedIn":"colors_and_type.css"},{"name":"--lh-ui","value":"1.4","kind":"font","definedIn":"colors_and_type.css","annotation":"font"},{"name":"--wt-ui","value":"400","kind":"font","definedIn":"colors_and_type.css","annotation":"font"},{"name":"--text-ui-med","value":"14px","kind":"font","definedIn":"colors_and_type.css"},{"name":"--wt-ui-med","value":"500","kind":"font","definedIn":"colors_and_type.css","annotation":"font"},{"name":"--text-small","value":"12px","kind":"font","definedIn":"colors_and_type.css"},{"name":"--lh-sm","value":"1.4","kind":"font","definedIn":"colors_and_type.css","annotation":"font"},{"name":"--text-mono","value":"13px","kind":"font","definedIn":"colors_and_type.css"},{"name":"--lh-mono","value":"1.45","kind":"font","definedIn":"colors_and_type.css","annotation":"font"},{"name":"--text-label","value":"11px","kind":"font","definedIn":"colors_and_type.css"},{"name":"--s1","value":"4px","kind":"spacing","definedIn":"colors_and_type.css"},{"name":"--s2","value":"8px","kind":"spacing","definedIn":"colors_and_type.css"},{"name":"--s3","value":"12px","kind":"spacing","definedIn":"colors_and_type.css"},{"name":"--s4","value":"16px","kind":"spacing","definedIn":"colors_and_type.css"},{"name":"--s5","value":"24px","kind":"spacing","definedIn":"colors_and_type.css"},{"name":"--s6","value":"32px","kind":"spacing","definedIn":"colors_and_type.css"},{"name":"--s7","value":"48px","kind":"spacing","definedIn":"colors_and_type.css"},{"name":"--s8","value":"64px","kind":"spacing","definedIn":"colors_and_type.css"},{"name":"--radius","value":"4px","kind":"radius","definedIn":"colors_and_type.css"},{"name":"--radius-sm","value":"2px","kind":"radius","definedIn":"colors_and_type.css"},{"name":"--border","value":"1px solid var(--line)","kind":"color","definedIn":"colors_and_type.css"},{"name":"--focus-ring","value":"0 0 0 1px var(--accent)","kind":"color","definedIn":"colors_and_type.css"},{"name":"--ease","value":"cubic-bezier(.2,.6,.2,1)","kind":"other","definedIn":"colors_and_type.css","annotation":"other"},{"name":"--dur","value":".15s","kind":"other","definedIn":"colors_and_type.css","annotation":"other"},{"name":"--control-h","value":"32px","kind":"spacing","definedIn":"colors_and_type.css"},{"name":"--control-h-lg","value":"36px","kind":"spacing","definedIn":"colors_and_type.css"},{"name":"--bg","value":"#EEF2F7","kind":"color","definedIn":"colors_and_type.css","scope":".theme-cold"},{"name":"--panel","value":"#E2E8F0","kind":"color","definedIn":"colors_and_type.css","scope":".theme-cold"},{"name":"--panel-soft","value":"#E9EEF4","kind":"color","definedIn":"colors_and_type.css","scope":".theme-cold"},{"name":"--panel-muted","value":"#DCE3EC","kind":"color","definedIn":"colors_and_type.css","scope":".theme-cold"},{"name":"--line","value":"#CDD5E0","kind":"color","definedIn":"colors_and_type.css","scope":".theme-cold"},{"name":"--line-soft","value":"rgba(205,213,224,.6)","kind":"color","definedIn":"colors_and_type.css","scope":".theme-cold"},{"name":"--fg1","value":"#1C2128","kind":"color","definedIn":"colors_and_type.css","scope":".theme-cold"},{"name":"--fg2","value":"#57606A","kind":"color","definedIn":"colors_and_type.css","scope":".theme-cold"},{"name":"--fg3","value":"#8B949E","kind":"color","definedIn":"colors_and_type.css","scope":".theme-cold"},{"name":"--accent","value":"#00AA85","kind":"color","definedIn":"colors_and_type.css","scope":".theme-cold"},{"name":"--accent-hover","value":"#009478","kind":"color","definedIn":"colors_and_type.css","scope":".theme-cold"},{"name":"--accent-safe","value":"#008268","kind":"color","definedIn":"colors_and_type.css","scope":".theme-cold"},{"name":"--accent-soft","value":"#E6F7F2","kind":"color","definedIn":"colors_and_type.css","scope":".theme-cold"},{"name":"--accent-line","value":"rgba(0,170,133,.32)","kind":"color","definedIn":"colors_and_type.css","scope":".theme-cold"},{"name":"--status-ok","value":"#00AA85","kind":"color","definedIn":"colors_and_type.css","scope":".theme-cold"},{"name":"--status-warn","value":"#D0610A","kind":"color","definedIn":"colors_and_type.css","scope":".theme-cold"},{"name":"--status-err","value":"#D0302A","kind":"color","definedIn":"colors_and_type.css","scope":".theme-cold"},{"name":"--status-off","value":"#6E7681","kind":"color","definedIn":"colors_and_type.css","scope":".theme-cold"},{"name":"--status-info","value":"#2E6DA4","kind":"color","definedIn":"colors_and_type.css","scope":".theme-cold"},{"name":"--bg","value":"#F5F0E8","kind":"color","definedIn":"colors_and_type.css","scope":".theme-warm"},{"name":"--panel","value":"#EDE8DF","kind":"color","definedIn":"colors_and_type.css","scope":".theme-warm"},{"name":"--panel-soft","value":"#F0EBE3","kind":"color","definedIn":"colors_and_type.css","scope":".theme-warm"},{"name":"--panel-muted","value":"#E4DED3","kind":"color","definedIn":"colors_and_type.css","scope":".theme-warm"},{"name":"--line","value":"#D8D2C8","kind":"color","definedIn":"colors_and_type.css","scope":".theme-warm"},{"name":"--line-soft","value":"rgba(216,210,200,.6)","kind":"color","definedIn":"colors_and_type.css","scope":".theme-warm"},{"name":"--fg1","value":"#1C1A17","kind":"color","definedIn":"colors_and_type.css","scope":".theme-warm"},{"name":"--fg2","value":"#6B6560","kind":"color","definedIn":"colors_and_type.css","scope":".theme-warm"},{"name":"--fg3","value":"#9A948C","kind":"color","definedIn":"colors_and_type.css","scope":".theme-warm"},{"name":"--accent","value":"#009B78","kind":"color","definedIn":"colors_and_type.css","scope":".theme-warm"},{"name":"--accent-hover","value":"#008268","kind":"color","definedIn":"colors_and_type.css","scope":".theme-warm"},{"name":"--accent-safe","value":"#00795D","kind":"color","definedIn":"colors_and_type.css","scope":".theme-warm"},{"name":"--accent-soft","value":"#E8F5F0","kind":"color","definedIn":"colors_and_type.css","scope":".theme-warm"},{"name":"--accent-line","value":"rgba(0,155,120,.32)","kind":"color","definedIn":"colors_and_type.css","scope":".theme-warm"},{"name":"--status-ok","value":"#009B78","kind":"color","definedIn":"colors_and_type.css","scope":".theme-warm"},{"name":"--status-warn","value":"#C2620A","kind":"color","definedIn":"colors_and_type.css","scope":".theme-warm"},{"name":"--status-err","value":"#C23B36","kind":"color","definedIn":"colors_and_type.css","scope":".theme-warm"},{"name":"--status-off","value":"#7A756E","kind":"color","definedIn":"colors_and_type.css","scope":".theme-warm"},{"name":"--status-info","value":"#3A6FA8","kind":"color","definedIn":"colors_and_type.css","scope":".theme-warm"}],"themes":[{"selector":".theme-cold","label":"Cold"},{"selector":".theme-warm","label":"Warm"}],"fonts":[{"family":"Inter","weight":"100 900","style":"normal","cssPath":"colors_and_type.css","files":["fonts/Inter-VariableFont_opsz_wght.ttf"]},{"family":"JetBrains Mono","weight":"100 800","style":"normal","cssPath":"colors_and_type.css","files":["fonts/JetBrainsMono_wght_.ttf"]}],"brandFonts":[{"family":"Inter","status":"ok","tokens":["--font-ui","--font-display"],"path":"colors_and_type.css"},{"family":"JetBrains Mono","status":"ok","tokens":["--font-mono"],"path":"colors_and_type.css"}],"source":"spa"}
+{
+  "namespace": "DCIDesignSystem_2e8fb0",
+  "components": [
+    { "name": "Badge", "sourcePath": "components/Badge/Badge.jsx" },
+    { "name": "Tag", "sourcePath": "components/Badge/Badge.jsx" },
+    { "name": "Button", "sourcePath": "components/Button/Button.jsx" },
+    { "name": "Checkbox", "sourcePath": "components/Checkbox/Checkbox.jsx" },
+    { "name": "Icon", "sourcePath": "components/Icon/Icon.jsx" },
+    { "name": "ICON_NAMES", "sourcePath": "components/Icon/Icon.jsx" },
+    { "name": "Radio", "sourcePath": "components/Radio/Radio.jsx" },
+    { "name": "RadioGroup", "sourcePath": "components/Radio/Radio.jsx" },
+    { "name": "Sidebar", "sourcePath": "components/Sidebar/Sidebar.jsx" },
+    { "name": "Switch", "sourcePath": "components/Switch/Switch.jsx" },
+    { "name": "TextField", "sourcePath": "components/TextField/TextField.jsx" }
+  ],
+  "startingPoints": [
+    {
+      "name": "page-apikeys-admin",
+      "path": "preview/page-apikeys-admin.html",
+      "previewPath": "preview/page-apikeys-admin.html",
+      "kind": "screen",
+      "section": "Components",
+      "subtitle": "Админ-консоль API-ключей · сводка, фильтры, массовый отзыв, политики",
+      "viewport": "1280x860"
+    },
+    {
+      "name": "page-apikeys-user",
+      "path": "preview/page-apikeys-user.html",
+      "previewPath": "preview/page-apikeys-user.html",
+      "kind": "screen",
+      "section": "Components",
+      "subtitle": "Страница API-ключей оператора · список, создание, ротация, отзыв",
+      "viewport": "1100x820"
+    }
+  ],
+  "cards": [
+    {
+      "path": "documents/Document Template.html",
+      "group": "Brand",
+      "viewport": "909x560",
+      "subtitle": "6-page A4 doc — paper pages, dark header band, mint accent",
+      "name": "A4 document template"
+    },
+    {
+      "path": "logo/Куб + Искра - Логотип.html",
+      "group": "Brand",
+      "viewport": "1280x880",
+      "subtitle": "Искра inside the shell — cube/spark mark concepts & applications",
+      "name": "Cube + Spark logo study"
+    },
+    {
+      "path": "preview/brand-logo.html",
+      "group": "Brand",
+      "viewport": "720x360",
+      "subtitle": "Pixel spark with mint glow + flat fallback · ИСКРА lockup",
+      "name": "Logo & wordmark"
+    },
+    {
+      "path": "preview/brand-mascot.html",
+      "group": "Brand",
+      "viewport": "700x160",
+      "subtitle": "Pixel ghost · non-critical states",
+      "name": "Бит / Bit mascot"
+    },
+    {
+      "path": "preview/doc-elements.html",
+      "group": "Brand",
+      "viewport": "909x1240",
+      "subtitle": "Full catalog — text, accents, lists, cards, tables, diagrams, headers/footers",
+      "name": "Document elements"
+    },
+    {
+      "path": "preview/colors-accent.html",
+      "group": "Colors",
+      "viewport": "700x210",
+      "subtitle": "Mint indicator vs AA-safe text",
+      "name": "Accent — Cyber Mint"
+    },
+    {
+      "path": "preview/colors-base.html",
+      "group": "Colors",
+      "viewport": "700x200",
+      "subtitle": "Anthracite, graphite, border, text",
+      "name": "Base palette"
+    },
+    {
+      "path": "preview/colors-light-themes.html",
+      "group": "Colors",
+      "viewport": "700x150",
+      "subtitle": "Secondary off-white palettes",
+      "name": "Light themes — cold & warm"
+    },
+    {
+      "path": "preview/colors-status.html",
+      "group": "Colors",
+      "viewport": "700x200",
+      "subtitle": "Sync / Drift / Error / Off / Info",
+      "name": "Status model"
+    },
+    {
+      "path": "components/Badge/index.html",
+      "group": "Components",
+      "viewport": "760x420",
+      "subtitle": "статус-сигналы (dot / icon) · mono-теги · removable chips · s·m",
+      "name": "Badge & Tag"
+    },
+    {
+      "path": "components/Button/index.html",
+      "group": "Components",
+      "viewport": "880x720",
+      "subtitle": "primary / outline / secondary / ghost / destructive · s·m·l · иконки · loading",
+      "name": "Button"
+    },
+    {
+      "path": "components/Checkbox/index.html",
+      "group": "Components",
+      "viewport": "760x420",
+      "subtitle": "checked · indeterminate · disabled · label + description · s·m",
+      "name": "Checkbox"
+    },
+    {
+      "path": "components/Icon/index.html",
+      "group": "Components",
+      "viewport": "820x560",
+      "subtitle": "Единый набор · 16×16 · stroke 1.5 · currentColor · масштаб от текста",
+      "name": "Icon"
+    },
+    {
+      "path": "components/Radio/index.html",
+      "group": "Components",
+      "viewport": "760x440",
+      "subtitle": "одиночный выбор · вертикально / горизонтально · описание · disabled · s·m",
+      "name": "Radio & RadioGroup"
+    },
+    {
+      "path": "components/Sidebar/index.html",
+      "group": "Components",
+      "viewport": "980x580",
+      "subtitle": "Боковая навигация · широкий / узкий · все темы · operator + admin",
+      "name": "Sidebar"
+    },
+    {
+      "path": "components/Switch/index.html",
+      "group": "Components",
+      "viewport": "720x380",
+      "subtitle": "on/off · скользящий ползунок · label + description · disabled · s·m",
+      "name": "Switch"
+    },
+    {
+      "path": "components/TextField/index.html",
+      "group": "Components",
+      "viewport": "820x640",
+      "subtitle": "label · hint · error · иконка · clear · s·m·l · тёмная + холодная",
+      "name": "TextField"
+    },
+    {
+      "path": "preview/comp-api-key-modal.html",
+      "group": "Components",
+      "viewport": "800x620",
+      "subtitle": "Создание API-ключа · название, срок действия, права доступа",
+      "name": "API Key Modal"
+    },
+    {
+      "path": "preview/comp-badges.html",
+      "group": "Components",
+      "viewport": "700x170",
+      "subtitle": "Signal badges + mono tags",
+      "name": "Status badges & tags"
+    },
+    {
+      "path": "preview/comp-buttons.html",
+      "group": "Components",
+      "viewport": "700x270",
+      "subtitle": "Primary / Secondary / Destructive · hover · disabled",
+      "name": "Buttons"
+    },
+    {
+      "path": "preview/comp-device-card.html",
+      "group": "Components",
+      "viewport": "700x290",
+      "subtitle": "Configurable sparkline metric (per device / user)",
+      "name": "Device tile"
+    },
+    {
+      "path": "preview/comp-inputs.html",
+      "group": "Components",
+      "viewport": "700x470",
+      "subtitle": "Field, focus, dropdown, multiselect, date range, toggles",
+      "name": "Inputs & controls"
+    },
+    {
+      "path": "preview/comp-pulse-cli.html",
+      "group": "Components",
+      "viewport": "700x280",
+      "subtitle": "Interactive sync ring → expandable problem-device list",
+      "name": "Fleet pulse & CLI row"
+    },
+    {
+      "path": "preview/comp-toasts.html",
+      "group": "Components",
+      "viewport": "700x240",
+      "subtitle": "Drift / OK / Error / Info — left status stripe",
+      "name": "Toasts"
+    },
+    {
+      "path": "preview/elevation.html",
+      "group": "Spacing",
+      "viewport": "700x150",
+      "subtitle": "Depth via hairline + surface step",
+      "name": "Elevation — no shadows"
+    },
+    {
+      "path": "preview/radius.html",
+      "group": "Spacing",
+      "viewport": "700x150",
+      "subtitle": "4px default · 2px chips · dots round",
+      "name": "Corner radius — fixed 4px"
+    },
+    {
+      "path": "preview/spacing-scale.html",
+      "group": "Spacing",
+      "viewport": "700x290",
+      "subtitle": "4 → 64px tokens",
+      "name": "Spacing scale — 8px base"
+    },
+    {
+      "path": "preview/type-body.html",
+      "group": "Type",
+      "viewport": "700x140",
+      "subtitle": "Inter 14px UI · 12px small",
+      "name": "Body & UI type"
+    },
+    {
+      "path": "preview/type-display.html",
+      "group": "Type",
+      "viewport": "700x150",
+      "subtitle": "H1/H2/H3 · Inter 600 · tight tracking",
+      "name": "Display type — Inter"
+    },
+    {
+      "path": "preview/type-labels.html",
+      "group": "Type",
+      "viewport": "700x150",
+      "subtitle": "Uppercase mono, .12em tracking",
+      "name": "Mono labels / eyebrows"
+    },
+    {
+      "path": "preview/type-mono.html",
+      "group": "Type",
+      "viewport": "700x180",
+      "subtitle": "IP, IDs, CLI, YAML at 13px",
+      "name": "Mono data — JetBrains Mono"
+    }
+  ],
+  "templates": [],
+  "globalCssPaths": ["colors_and_type.css"],
+  "tokens": [
+    { "name": "--bg", "value": "#0D1117", "kind": "color", "definedIn": "colors_and_type.css" },
+    { "name": "--panel", "value": "#161B22", "kind": "color", "definedIn": "colors_and_type.css" },
+    {
+      "name": "--panel-soft",
+      "value": "#1D2530",
+      "kind": "color",
+      "definedIn": "colors_and_type.css"
+    },
+    {
+      "name": "--panel-muted",
+      "value": "#202A35",
+      "kind": "color",
+      "definedIn": "colors_and_type.css"
+    },
+    { "name": "--line", "value": "#30363D", "kind": "color", "definedIn": "colors_and_type.css" },
+    {
+      "name": "--line-soft",
+      "value": "rgba(48,54,61,.5)",
+      "kind": "color",
+      "definedIn": "colors_and_type.css"
+    },
+    { "name": "--fg1", "value": "#F0F6FC", "kind": "color", "definedIn": "colors_and_type.css" },
+    { "name": "--fg2", "value": "#8B949E", "kind": "color", "definedIn": "colors_and_type.css" },
+    { "name": "--fg3", "value": "#6E7681", "kind": "color", "definedIn": "colors_and_type.css" },
+    { "name": "--accent", "value": "#00FFC2", "kind": "color", "definedIn": "colors_and_type.css" },
+    {
+      "name": "--accent-hover",
+      "value": "#00CC9A",
+      "kind": "color",
+      "definedIn": "colors_and_type.css"
+    },
+    {
+      "name": "--accent-safe",
+      "value": "#00AA85",
+      "kind": "color",
+      "definedIn": "colors_and_type.css"
+    },
+    {
+      "name": "--accent-soft",
+      "value": "rgba(0,170,133,.14)",
+      "kind": "color",
+      "definedIn": "colors_and_type.css"
+    },
+    {
+      "name": "--accent-line",
+      "value": "rgba(0,170,133,.32)",
+      "kind": "color",
+      "definedIn": "colors_and_type.css"
+    },
+    {
+      "name": "--status-ok",
+      "value": "#00FFC2",
+      "kind": "color",
+      "definedIn": "colors_and_type.css"
+    },
+    {
+      "name": "--status-warn",
+      "value": "#F97316",
+      "kind": "color",
+      "definedIn": "colors_and_type.css"
+    },
+    {
+      "name": "--status-err",
+      "value": "#F85149",
+      "kind": "color",
+      "definedIn": "colors_and_type.css"
+    },
+    {
+      "name": "--status-off",
+      "value": "#6E7681",
+      "kind": "color",
+      "definedIn": "colors_and_type.css"
+    },
+    {
+      "name": "--status-info",
+      "value": "#58A6FF",
+      "kind": "color",
+      "definedIn": "colors_and_type.css"
+    },
+    {
+      "name": "--font-ui",
+      "value": "'Inter', system-ui, -apple-system, sans-serif",
+      "kind": "font",
+      "definedIn": "colors_and_type.css"
+    },
+    {
+      "name": "--font-display",
+      "value": "'Inter', system-ui, -apple-system, sans-serif",
+      "kind": "font",
+      "definedIn": "colors_and_type.css"
+    },
+    {
+      "name": "--font-mono",
+      "value": "'JetBrains Mono', ui-monospace, 'SF Mono', monospace",
+      "kind": "font",
+      "definedIn": "colors_and_type.css"
+    },
+    { "name": "--text-h1", "value": "24px", "kind": "font", "definedIn": "colors_and_type.css" },
+    {
+      "name": "--lh-h1",
+      "value": "1.2",
+      "kind": "font",
+      "definedIn": "colors_and_type.css",
+      "annotation": "font"
+    },
+    {
+      "name": "--wt-h1",
+      "value": "600",
+      "kind": "font",
+      "definedIn": "colors_and_type.css",
+      "annotation": "font"
+    },
+    { "name": "--text-h2", "value": "20px", "kind": "font", "definedIn": "colors_and_type.css" },
+    {
+      "name": "--lh-h2",
+      "value": "1.2",
+      "kind": "font",
+      "definedIn": "colors_and_type.css",
+      "annotation": "font"
+    },
+    {
+      "name": "--wt-h2",
+      "value": "600",
+      "kind": "font",
+      "definedIn": "colors_and_type.css",
+      "annotation": "font"
+    },
+    { "name": "--text-h3", "value": "18px", "kind": "font", "definedIn": "colors_and_type.css" },
+    {
+      "name": "--lh-h3",
+      "value": "1.2",
+      "kind": "font",
+      "definedIn": "colors_and_type.css",
+      "annotation": "font"
+    },
+    {
+      "name": "--wt-h3",
+      "value": "600",
+      "kind": "font",
+      "definedIn": "colors_and_type.css",
+      "annotation": "font"
+    },
+    { "name": "--text-ui", "value": "14px", "kind": "font", "definedIn": "colors_and_type.css" },
+    {
+      "name": "--lh-ui",
+      "value": "1.4",
+      "kind": "font",
+      "definedIn": "colors_and_type.css",
+      "annotation": "font"
+    },
+    {
+      "name": "--wt-ui",
+      "value": "400",
+      "kind": "font",
+      "definedIn": "colors_and_type.css",
+      "annotation": "font"
+    },
+    {
+      "name": "--text-ui-med",
+      "value": "14px",
+      "kind": "font",
+      "definedIn": "colors_and_type.css"
+    },
+    {
+      "name": "--wt-ui-med",
+      "value": "500",
+      "kind": "font",
+      "definedIn": "colors_and_type.css",
+      "annotation": "font"
+    },
+    { "name": "--text-small", "value": "12px", "kind": "font", "definedIn": "colors_and_type.css" },
+    {
+      "name": "--lh-sm",
+      "value": "1.4",
+      "kind": "font",
+      "definedIn": "colors_and_type.css",
+      "annotation": "font"
+    },
+    { "name": "--text-mono", "value": "13px", "kind": "font", "definedIn": "colors_and_type.css" },
+    {
+      "name": "--lh-mono",
+      "value": "1.45",
+      "kind": "font",
+      "definedIn": "colors_and_type.css",
+      "annotation": "font"
+    },
+    { "name": "--text-label", "value": "11px", "kind": "font", "definedIn": "colors_and_type.css" },
+    { "name": "--s1", "value": "4px", "kind": "spacing", "definedIn": "colors_and_type.css" },
+    { "name": "--s2", "value": "8px", "kind": "spacing", "definedIn": "colors_and_type.css" },
+    { "name": "--s3", "value": "12px", "kind": "spacing", "definedIn": "colors_and_type.css" },
+    { "name": "--s4", "value": "16px", "kind": "spacing", "definedIn": "colors_and_type.css" },
+    { "name": "--s5", "value": "24px", "kind": "spacing", "definedIn": "colors_and_type.css" },
+    { "name": "--s6", "value": "32px", "kind": "spacing", "definedIn": "colors_and_type.css" },
+    { "name": "--s7", "value": "48px", "kind": "spacing", "definedIn": "colors_and_type.css" },
+    { "name": "--s8", "value": "64px", "kind": "spacing", "definedIn": "colors_and_type.css" },
+    { "name": "--radius", "value": "4px", "kind": "radius", "definedIn": "colors_and_type.css" },
+    { "name": "--radius-sm", "value": "2px", "kind": "radius", "definedIn": "colors_and_type.css" },
+    {
+      "name": "--border",
+      "value": "1px solid var(--line)",
+      "kind": "color",
+      "definedIn": "colors_and_type.css"
+    },
+    {
+      "name": "--focus-ring",
+      "value": "0 0 0 1px var(--accent)",
+      "kind": "color",
+      "definedIn": "colors_and_type.css"
+    },
+    {
+      "name": "--ease",
+      "value": "cubic-bezier(.2,.6,.2,1)",
+      "kind": "other",
+      "definedIn": "colors_and_type.css",
+      "annotation": "other"
+    },
+    {
+      "name": "--dur",
+      "value": ".15s",
+      "kind": "other",
+      "definedIn": "colors_and_type.css",
+      "annotation": "other"
+    },
+    {
+      "name": "--control-h",
+      "value": "32px",
+      "kind": "spacing",
+      "definedIn": "colors_and_type.css"
+    },
+    {
+      "name": "--control-h-lg",
+      "value": "36px",
+      "kind": "spacing",
+      "definedIn": "colors_and_type.css"
+    },
+    {
+      "name": "--bg",
+      "value": "#EEF2F7",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-cold"
+    },
+    {
+      "name": "--panel",
+      "value": "#E2E8F0",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-cold"
+    },
+    {
+      "name": "--panel-soft",
+      "value": "#E9EEF4",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-cold"
+    },
+    {
+      "name": "--panel-muted",
+      "value": "#DCE3EC",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-cold"
+    },
+    {
+      "name": "--line",
+      "value": "#CDD5E0",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-cold"
+    },
+    {
+      "name": "--line-soft",
+      "value": "rgba(205,213,224,.6)",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-cold"
+    },
+    {
+      "name": "--fg1",
+      "value": "#1C2128",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-cold"
+    },
+    {
+      "name": "--fg2",
+      "value": "#57606A",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-cold"
+    },
+    {
+      "name": "--fg3",
+      "value": "#8B949E",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-cold"
+    },
+    {
+      "name": "--accent",
+      "value": "#00AA85",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-cold"
+    },
+    {
+      "name": "--accent-hover",
+      "value": "#009478",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-cold"
+    },
+    {
+      "name": "--accent-safe",
+      "value": "#008268",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-cold"
+    },
+    {
+      "name": "--accent-soft",
+      "value": "#E6F7F2",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-cold"
+    },
+    {
+      "name": "--accent-line",
+      "value": "rgba(0,170,133,.32)",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-cold"
+    },
+    {
+      "name": "--status-ok",
+      "value": "#00AA85",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-cold"
+    },
+    {
+      "name": "--status-warn",
+      "value": "#D0610A",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-cold"
+    },
+    {
+      "name": "--status-err",
+      "value": "#D0302A",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-cold"
+    },
+    {
+      "name": "--status-off",
+      "value": "#6E7681",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-cold"
+    },
+    {
+      "name": "--status-info",
+      "value": "#2E6DA4",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-cold"
+    },
+    {
+      "name": "--bg",
+      "value": "#F5F0E8",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-warm"
+    },
+    {
+      "name": "--panel",
+      "value": "#EDE8DF",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-warm"
+    },
+    {
+      "name": "--panel-soft",
+      "value": "#F0EBE3",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-warm"
+    },
+    {
+      "name": "--panel-muted",
+      "value": "#E4DED3",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-warm"
+    },
+    {
+      "name": "--line",
+      "value": "#D8D2C8",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-warm"
+    },
+    {
+      "name": "--line-soft",
+      "value": "rgba(216,210,200,.6)",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-warm"
+    },
+    {
+      "name": "--fg1",
+      "value": "#1C1A17",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-warm"
+    },
+    {
+      "name": "--fg2",
+      "value": "#6B6560",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-warm"
+    },
+    {
+      "name": "--fg3",
+      "value": "#9A948C",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-warm"
+    },
+    {
+      "name": "--accent",
+      "value": "#009B78",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-warm"
+    },
+    {
+      "name": "--accent-hover",
+      "value": "#008268",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-warm"
+    },
+    {
+      "name": "--accent-safe",
+      "value": "#00795D",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-warm"
+    },
+    {
+      "name": "--accent-soft",
+      "value": "#E8F5F0",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-warm"
+    },
+    {
+      "name": "--accent-line",
+      "value": "rgba(0,155,120,.32)",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-warm"
+    },
+    {
+      "name": "--status-ok",
+      "value": "#009B78",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-warm"
+    },
+    {
+      "name": "--status-warn",
+      "value": "#C2620A",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-warm"
+    },
+    {
+      "name": "--status-err",
+      "value": "#C23B36",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-warm"
+    },
+    {
+      "name": "--status-off",
+      "value": "#7A756E",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-warm"
+    },
+    {
+      "name": "--status-info",
+      "value": "#3A6FA8",
+      "kind": "color",
+      "definedIn": "colors_and_type.css",
+      "scope": ".theme-warm"
+    }
+  ],
+  "themes": [
+    { "selector": ".theme-cold", "label": "Cold" },
+    { "selector": ".theme-warm", "label": "Warm" }
+  ],
+  "fonts": [
+    {
+      "family": "Inter",
+      "weight": "100 900",
+      "style": "normal",
+      "cssPath": "colors_and_type.css",
+      "files": ["fonts/Inter-VariableFont_opsz_wght.ttf"]
+    },
+    {
+      "family": "JetBrains Mono",
+      "weight": "100 800",
+      "style": "normal",
+      "cssPath": "colors_and_type.css",
+      "files": ["fonts/JetBrainsMono_wght_.ttf"]
+    }
+  ],
+  "brandFonts": [
+    {
+      "family": "Inter",
+      "status": "ok",
+      "tokens": ["--font-ui", "--font-display"],
+      "path": "colors_and_type.css"
+    },
+    {
+      "family": "JetBrains Mono",
+      "status": "ok",
+      "tokens": ["--font-mono"],
+      "path": "colors_and_type.css"
+    }
+  ],
+  "source": "spa"
+}

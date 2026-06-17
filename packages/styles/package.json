@@ -1,0 +1,26 @@
+{
+  "name": "@iskra-dci/styles",
+  "version": "0.1.0",
+  "description": "Искра.DCI global stylesheet — tokens + self-hosted fonts + reset + element classes.",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./index.css": "./dist/index.css",
+    "./tokens.css": "./dist/tokens.css",
+    "./fonts.css": "./dist/fonts.css",
+    "./reset.css": "./dist/reset.css",
+    "./elements.css": "./dist/elements.css"
+  },
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "@iskra-dci/tokens": "workspace:*"
+  },
+  "publishConfig": {
+    "access": "restricted",
+    "provenance": true
+  }
+}

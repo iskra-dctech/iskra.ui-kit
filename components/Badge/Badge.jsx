@@ -54,7 +54,8 @@ export function Badge({
 }) {
   _injectBdgCSS();
   const cls = ['ik-bdg', 'ik-bdg-' + size, 'ik-bdg-' + variant, className]
-    .filter(Boolean).join(' ');
+    .filter(Boolean)
+    .join(' ');
   return (
     <span className={cls} {...rest}>
       {dot && <span className="ik-bdg-dot" aria-hidden="true" />}
@@ -82,9 +83,18 @@ export function Tag({
       {children}
       {onRemove && (
         <button type="button" className="ik-tag-x" onClick={onRemove} aria-label={removeLabel}>
-          <svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="currentColor"
-            strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-            <line x1="4" y1="4" x2="12" y2="12" /><line x1="12" y1="4" x2="4" y2="12" />
+          <svg
+            width="9"
+            height="9"
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            aria-hidden="true"
+          >
+            <line x1="4" y1="4" x2="12" y2="12" />
+            <line x1="12" y1="4" x2="4" y2="12" />
           </svg>
         </button>
       )}

@@ -1,0 +1,85 @@
+{
+  "$description": "Semantic color tokens — canonical Искра.DCI CSS variables (dark theme / default). Keys map 1:1 to existing --var names to preserve compatibility.",
+  "bg": {
+    "$type": "color",
+    "$value": "{palette.anthracite.deep}",
+    "$description": "Global page background"
+  },
+  "panel": {
+    "$type": "color",
+    "$value": "{palette.graphite.100}",
+    "$description": "Elevated graphite — cards, modals"
+  },
+  "panel-soft": { "$type": "color", "$value": "{palette.graphite.200}" },
+  "panel-muted": { "$type": "color", "$value": "{palette.graphite.300}" },
+  "line": { "$type": "color", "$value": "{palette.slate.line}" },
+  "line-soft": { "$type": "color", "$value": "rgba(48,54,61,.5)" },
+
+  "fg1": { "$type": "color", "$value": "{palette.ink.primary}", "$description": "Primary text" },
+  "fg2": {
+    "$type": "color",
+    "$value": "{palette.ink.secondary}",
+    "$description": "Secondary text, placeholders"
+  },
+  "fg3": {
+    "$type": "color",
+    "$value": "{palette.ink.tertiary}",
+    "$description": "Tertiary / disabled"
+  },
+
+  "accent": {
+    "$type": "color",
+    "$value": "{palette.mint.bright}",
+    "$description": "Indicators, borders, focus ONLY — never accent text on dark"
+  },
+  "accent-hover": { "$type": "color", "$value": "{palette.mint.mid}" },
+  "accent-safe": {
+    "$type": "color",
+    "$value": "{palette.mint.safe}",
+    "$description": "AA-safe accent for text/fills"
+  },
+  "accent-soft": { "$type": "color", "$value": "rgba(0,170,133,.14)" },
+  "accent-line": { "$type": "color", "$value": "rgba(0,170,133,.32)" },
+
+  "fg-on-accent": {
+    "$type": "color",
+    "$value": "{palette.anthracite.deep}",
+    "$description": "Dark text/icons on bright accent fills (accent stays bright across themes — stable)"
+  },
+  "fg-on-status": {
+    "$type": "color",
+    "$value": "{palette.base.white}",
+    "$description": "White text on saturated status fills (stable across themes)"
+  },
+  "scrim": {
+    "$type": "color",
+    "$value": "{palette.anthracite.deep}",
+    "$description": "Modal/overlay scrim base — always dark"
+  },
+
+  "status-ok": {
+    "$type": "color",
+    "$value": "{palette.mint.bright}",
+    "$description": "Sync / Online"
+  },
+  "status-warn": {
+    "$type": "color",
+    "$value": "{palette.status.orange}",
+    "$description": "Drift / Warning"
+  },
+  "status-err": {
+    "$type": "color",
+    "$value": "{palette.status.red}",
+    "$description": "Error / Critical"
+  },
+  "status-off": {
+    "$type": "color",
+    "$value": "{palette.ink.tertiary}",
+    "$description": "Maintenance / Inactive"
+  },
+  "status-info": {
+    "$type": "color",
+    "$value": "{palette.status.blue}",
+    "$description": "Info / Neutral (used minimally)"
+  }
+}

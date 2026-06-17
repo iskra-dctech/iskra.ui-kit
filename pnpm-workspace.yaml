@@ -1,0 +1,53 @@
+packages:
+  - "packages/*"
+  - "apps/*"
+
+# Catalog: single source of truth for shared dependency versions across the
+# whole workspace. Reference with "catalog:" in any package.json.
+catalog:
+  # React
+  react: ^18.3.1
+  react-dom: ^18.3.1
+  "@types/react": ^18.3.12
+  "@types/react-dom": ^18.3.1
+
+  # Vue
+  vue: ^3.5.13
+  vue-tsc: ^2.1.10
+
+  # Build / toolchain
+  "@types/node": ^20.17.10
+  typescript: ^5.6.3
+  vite: ^5.4.11
+  "@vitejs/plugin-react": ^4.3.4
+  "@vitejs/plugin-vue": ^5.2.1
+  vite-plugin-dts: ^4.3.0
+  style-dictionary: ^4.2.0
+
+  # Test
+  vitest: ^2.1.8
+  jsdom: ^25.0.1
+  "@testing-library/react": ^16.0.1
+  "@testing-library/user-event": ^14.5.2
+  "@testing-library/jest-dom": ^6.6.3
+  "@vue/test-utils": ^2.4.6
+  vitest-axe: ^0.1.0
+
+  # Storybook
+  storybook: ^8.4.7
+  "@storybook/react": ^8.4.7
+  "@storybook/react-vite": ^8.4.7
+  "@storybook/addon-essentials": ^8.4.7
+  "@storybook/addon-a11y": ^8.4.7
+
+  # Visual regression
+  "@playwright/test": ^1.49.1
+
+  # Lint / format
+  eslint: ^9.17.0
+  "@eslint/js": ^9.17.0
+  typescript-eslint: ^8.18.1
+  eslint-plugin-vue: ^9.32.0
+  eslint-plugin-react-hooks: ^5.1.0
+  globals: ^15.13.0
+  prettier: ^3.4.2

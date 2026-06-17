@@ -1,0 +1,10 @@
+{
+  "extends": "@iskra-dci/tsconfig/base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "composite": false,
+    "allowJs": true,
+    "checkJs": false
+  },
+  "include": ["build.mjs"]
+}

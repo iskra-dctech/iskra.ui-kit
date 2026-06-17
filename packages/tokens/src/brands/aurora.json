@@ -1,0 +1,9 @@
+{
+  "$description": "White-label brand pack «Aurora» — re-tints the accent hue only. Applied via .brand-aurora and composes on top of any theme (dark/cold/warm).",
+  "accent": { "$type": "color", "$value": "#7C5CFF" },
+  "accent-hover": { "$type": "color", "$value": "#6A47F5" },
+  "accent-safe": { "$type": "color", "$value": "#6A47F5" },
+  "accent-soft": { "$type": "color", "$value": "rgba(124,92,255,.14)" },
+  "accent-line": { "$type": "color", "$value": "rgba(124,92,255,.32)" },
+  "status-ok": { "$type": "color", "$value": "#7C5CFF" }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "@iskra-dci/tsconfig",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shared TypeScript base configs for the Искра.DCI design system.",
+  "files": [
+    "base.json",
+    "react-lib.json",
+    "vue-lib.json"
+  ],
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

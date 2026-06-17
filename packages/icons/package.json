@@ -1,0 +1,30 @@
+{
+  "name": "@iskra-dci/icons",
+  "version": "0.1.0",
+  "description": "Искра.DCI icon set — framework-agnostic 16×16 / 1.5px outline glyphs.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b tsconfig.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@iskra-dci/tsconfig": "workspace:*",
+    "typescript": "catalog:"
+  },
+  "publishConfig": {
+    "access": "restricted",
+    "provenance": true
+  }
+}

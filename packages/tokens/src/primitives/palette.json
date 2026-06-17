@@ -1,0 +1,41 @@
+{
+  "palette": {
+    "$type": "color",
+    "$description": "Primitive brand palette. Physical values only — referenced by semantic tokens, base layer for white-label brand packs.",
+    "mint": {
+      "bright": {
+        "$value": "#00FFC2",
+        "$description": "Cyber Mint — signal/indicator/border/focus only"
+      },
+      "mid": { "$value": "#00CC9A", "$description": "Mint hover / pressed accent" },
+      "safe": { "$value": "#00AA85", "$description": "AA-safe mint for accent TEXT on dark" }
+    },
+    "anthracite": {
+      "deep": { "$value": "#0D1117", "$description": "Global page background" }
+    },
+    "base": {
+      "white": {
+        "$value": "#FFFFFF",
+        "$description": "Pure white — text on saturated status fills"
+      }
+    },
+    "graphite": {
+      "100": { "$value": "#161B22", "$description": "Elevated panels, cards, modals" },
+      "200": { "$value": "#1D2530", "$description": "Slightly raised insets" },
+      "300": { "$value": "#202A35", "$description": "Table headers, hover fills" }
+    },
+    "slate": {
+      "line": { "$value": "#30363D", "$description": "Hairline borders / dividers" }
+    },
+    "ink": {
+      "primary": { "$value": "#F0F6FC" },
+      "secondary": { "$value": "#8B949E" },
+      "tertiary": { "$value": "#6E7681" }
+    },
+    "status": {
+      "orange": { "$value": "#F97316" },
+      "red": { "$value": "#F85149" },
+      "blue": { "$value": "#58A6FF" }
+    }
+  }
+}

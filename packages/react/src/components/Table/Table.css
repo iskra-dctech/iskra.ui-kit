@@ -1,0 +1,73 @@
+/* ИСКРА.DCI — Table foundation. Mono-ish data grid, 1px hairlines, no zebra by default. */
+.ik-table-wrap {
+  width: 100%;
+  overflow: auto;
+  border: 1px solid var(--line, #30363d);
+  border-radius: var(--radius, 4px);
+}
+.ik-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-ui, 'Inter', system-ui, sans-serif);
+  font-size: 13px;
+  color: var(--fg1, #f0f6fc);
+}
+.ik-table caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.ik-table th {
+  text-align: left;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--fg3, #6e7681);
+  background: var(--panel-muted, #202a35);
+  border-bottom: 1px solid var(--line, #30363d);
+  white-space: nowrap;
+}
+.ik-table td {
+  border-bottom: 1px solid var(--line-soft, rgba(48, 54, 61, 0.5));
+  color: var(--fg1, #f0f6fc);
+  vertical-align: middle;
+}
+.ik-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.ik-table-regular th,
+.ik-table-regular td {
+  padding: 10px 14px;
+}
+.ik-table-compact th,
+.ik-table-compact td {
+  padding: 6px 10px;
+}
+.ik-table-sticky thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.ik-table-align-right {
+  text-align: right;
+}
+.ik-table-align-center {
+  text-align: center;
+}
+.ik-table-row-clickable {
+  cursor: pointer;
+}
+.ik-table-row-clickable:hover td {
+  background: var(--panel-muted, #202a35);
+}
+.ik-table-row-selected td {
+  background: var(--accent-soft, rgba(0, 170, 133, 0.14));
+}
+.ik-table-state {
+  padding: 0;
+}

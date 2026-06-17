@@ -1,0 +1,28 @@
+/* ИСКРА.DCI — EmptyState. Centered placeholder for empty lists / zero results. */
+.ik-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  padding: 48px 24px;
+  font-family: var(--font-ui, 'Inter', system-ui, sans-serif);
+  color: var(--fg2, #8b949e);
+}
+.ik-empty-ico {
+  color: var(--fg3, #6e7681);
+  margin-bottom: 4px;
+}
+.ik-empty-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--fg1, #f0f6fc);
+}
+.ik-empty-desc {
+  font-size: 13px;
+  line-height: 1.5;
+  max-width: 360px;
+}
+.ik-empty-action {
+  margin-top: 8px;
+}

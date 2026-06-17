@@ -1,0 +1,9 @@
+{
+  "$description": "Stacking order for overlay layers.",
+  "z-dropdown": { "$type": "number", "$value": 1000 },
+  "z-sticky": { "$type": "number", "$value": 1100 },
+  "z-overlay": { "$type": "number", "$value": 1200 },
+  "z-modal": { "$type": "number", "$value": 1300 },
+  "z-toast": { "$type": "number", "$value": 1400 },
+  "z-tooltip": { "$type": "number", "$value": 1500 }
+}

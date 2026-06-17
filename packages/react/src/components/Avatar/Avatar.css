@@ -1,0 +1,67 @@
+/* ИСКРА.DCI — Avatar. Initials fallback, optional image, status dot. */
+.ik-av {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  background: var(--panel-muted, #202a35);
+  color: var(--fg2, #8b949e);
+  border: 1px solid var(--line, #30363d);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-weight: 600;
+  text-transform: uppercase;
+  overflow: hidden;
+  user-select: none;
+}
+.ik-av-circle {
+  border-radius: 50%;
+}
+.ik-av-square {
+  border-radius: var(--radius, 4px);
+}
+.ik-av-sm {
+  width: 24px;
+  height: 24px;
+  font-size: 10px;
+}
+.ik-av-md {
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+}
+.ik-av-lg {
+  width: 48px;
+  height: 48px;
+  font-size: 16px;
+}
+.ik-av-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.ik-av-status {
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  width: 30%;
+  height: 30%;
+  min-width: 7px;
+  min-height: 7px;
+  border-radius: 50%;
+  border: 2px solid var(--panel, #161b22);
+  box-sizing: border-box;
+}
+.ik-av-status-online {
+  background: var(--status-ok, #00ffc2);
+}
+.ik-av-status-warn {
+  background: var(--status-warn, #f97316);
+}
+.ik-av-status-off {
+  background: var(--status-off, #6e7681);
+}
+.ik-av-status-error {
+  background: var(--status-err, #f85149);
+}

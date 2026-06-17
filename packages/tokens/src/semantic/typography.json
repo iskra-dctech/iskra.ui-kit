@@ -1,0 +1,34 @@
+{
+  "$description": "Type families + scale. Sizes are px on an intentional 14px root (data-dense product).",
+  "font-ui": { "$type": "fontFamily", "$value": "'Inter', system-ui, -apple-system, sans-serif" },
+  "font-display": {
+    "$type": "fontFamily",
+    "$value": "'Inter', system-ui, -apple-system, sans-serif"
+  },
+  "font-mono": {
+    "$type": "fontFamily",
+    "$value": "'JetBrains Mono', ui-monospace, 'SF Mono', monospace"
+  },
+
+  "text-h1": { "$type": "dimension", "$value": "24px" },
+  "lh-h1": { "$type": "number", "$value": 1.2 },
+  "wt-h1": { "$type": "number", "$value": 600 },
+  "text-h2": { "$type": "dimension", "$value": "20px" },
+  "lh-h2": { "$type": "number", "$value": 1.2 },
+  "wt-h2": { "$type": "number", "$value": 600 },
+  "text-h3": { "$type": "dimension", "$value": "18px" },
+  "lh-h3": { "$type": "number", "$value": 1.2 },
+  "wt-h3": { "$type": "number", "$value": 600 },
+
+  "text-ui": { "$type": "dimension", "$value": "14px" },
+  "lh-ui": { "$type": "number", "$value": 1.4 },
+  "wt-ui": { "$type": "number", "$value": 400 },
+  "text-ui-med": { "$type": "dimension", "$value": "14px" },
+  "wt-ui-med": { "$type": "number", "$value": 500 },
+
+  "text-small": { "$type": "dimension", "$value": "12px" },
+  "lh-sm": { "$type": "number", "$value": 1.4 },
+  "text-mono": { "$type": "dimension", "$value": "13px" },
+  "lh-mono": { "$type": "number", "$value": 1.45 },
+  "text-label": { "$type": "dimension", "$value": "11px" }
+}

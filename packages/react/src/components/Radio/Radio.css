@@ -1,0 +1,101 @@
+/* ИСКРА.DCI — Radio + RadioGroup. Outline ring with a mint dot (indicator → bright --accent ok). */
+.ik-rdg {
+  display: flex;
+  font-family: var(--font-ui, 'Inter', system-ui, sans-serif);
+}
+.ik-rdg-vertical {
+  flex-direction: column;
+  gap: 14px;
+}
+.ik-rdg-horizontal {
+  flex-direction: row;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.ik-rd {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 9px;
+  cursor: pointer;
+  color: var(--fg1, #f0f6fc);
+  user-select: none;
+  position: relative;
+}
+.ik-rd.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.ik-rd-input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+}
+.ik-rd-circle {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 1px solid var(--line, #30363d);
+  border-radius: 50%;
+  background: var(--bg, #0d1117);
+  transition:
+    border-color 0.12s,
+    box-shadow 0.12s;
+  margin-top: 1px;
+}
+.ik-rd-s .ik-rd-circle {
+  width: 14px;
+  height: 14px;
+}
+.ik-rd-m .ik-rd-circle {
+  width: 16px;
+  height: 16px;
+}
+.ik-rd:not(.is-disabled):hover .ik-rd-circle {
+  border-color: var(--accent, #00ffc2);
+}
+.ik-rd-dot {
+  border-radius: 50%;
+  background: var(--accent, #00ffc2);
+  transform: scale(0);
+  transition: transform 0.12s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.ik-rd-s .ik-rd-dot {
+  width: 6px;
+  height: 6px;
+}
+.ik-rd-m .ik-rd-dot {
+  width: 8px;
+  height: 8px;
+}
+.ik-rd-input:checked + .ik-rd-circle {
+  border-color: var(--accent, #00ffc2);
+}
+.ik-rd-input:checked + .ik-rd-circle .ik-rd-dot {
+  transform: scale(1);
+}
+.ik-rd-input:focus-visible + .ik-rd-circle {
+  box-shadow:
+    0 0 0 1px var(--bg, #0d1117),
+    0 0 0 2px var(--accent, #00ffc2);
+}
+.ik-rd-textwrap {
+  display: flex;
+  flex-direction: column;
+}
+.ik-rd-text {
+  font-size: 13px;
+  line-height: 1.45;
+}
+.ik-rd-s .ik-rd-text {
+  font-size: 12px;
+}
+.ik-rd-desc {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--fg2, #8b949e);
+  margin-top: 2px;
+}

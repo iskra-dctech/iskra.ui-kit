@@ -1,0 +1,11 @@
+{
+  "$description": "Spacing scale — strict 8px grid (4px allowed for micro-detail).",
+  "s1": { "$type": "dimension", "$value": "4px" },
+  "s2": { "$type": "dimension", "$value": "8px" },
+  "s3": { "$type": "dimension", "$value": "12px" },
+  "s4": { "$type": "dimension", "$value": "16px" },
+  "s5": { "$type": "dimension", "$value": "24px" },
+  "s6": { "$type": "dimension", "$value": "32px" },
+  "s7": { "$type": "dimension", "$value": "48px" },
+  "s8": { "$type": "dimension", "$value": "64px" }
+}

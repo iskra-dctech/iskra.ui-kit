@@ -1,0 +1,14 @@
+{
+  "$description": "Control heights, icon and avatar sizes. Control sizes s·m·l map to 28·32·36px.",
+  "control-h": { "$type": "dimension", "$value": "32px" },
+  "control-h-lg": { "$type": "dimension", "$value": "36px" },
+  "control-s": { "$type": "dimension", "$value": "28px" },
+  "control-m": { "$type": "dimension", "$value": "32px" },
+  "control-l": { "$type": "dimension", "$value": "36px" },
+  "icon-sm": { "$type": "dimension", "$value": "16px" },
+  "icon-md": { "$type": "dimension", "$value": "20px" },
+  "avatar-sm": { "$type": "dimension", "$value": "24px" },
+  "avatar-md": { "$type": "dimension", "$value": "32px" },
+  "avatar-lg": { "$type": "dimension", "$value": "48px" },
+  "min-target": { "$type": "dimension", "$value": "24px" }
+}

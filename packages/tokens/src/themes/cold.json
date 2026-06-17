@@ -1,0 +1,22 @@
+{
+  "$description": "Cold light theme (off-white, neutral) — redefines the same semantic color tokens. Applied via .theme-cold.",
+  "bg": { "$type": "color", "$value": "#EEF2F7" },
+  "panel": { "$type": "color", "$value": "#E2E8F0" },
+  "panel-soft": { "$type": "color", "$value": "#E9EEF4" },
+  "panel-muted": { "$type": "color", "$value": "#DCE3EC" },
+  "line": { "$type": "color", "$value": "#CDD5E0" },
+  "line-soft": { "$type": "color", "$value": "rgba(205,213,224,.6)" },
+  "fg1": { "$type": "color", "$value": "#1C2128" },
+  "fg2": { "$type": "color", "$value": "#57606A" },
+  "fg3": { "$type": "color", "$value": "#8B949E" },
+  "accent": { "$type": "color", "$value": "#00AA85" },
+  "accent-hover": { "$type": "color", "$value": "#009478" },
+  "accent-safe": { "$type": "color", "$value": "#008268" },
+  "accent-soft": { "$type": "color", "$value": "#E6F7F2" },
+  "accent-line": { "$type": "color", "$value": "rgba(0,170,133,.32)" },
+  "status-ok": { "$type": "color", "$value": "#00AA85" },
+  "status-warn": { "$type": "color", "$value": "#D0610A" },
+  "status-err": { "$type": "color", "$value": "#D0302A" },
+  "status-off": { "$type": "color", "$value": "#6E7681" },
+  "status-info": { "$type": "color", "$value": "#2E6DA4" }
+}
