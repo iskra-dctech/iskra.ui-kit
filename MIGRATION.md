@@ -5,14 +5,14 @@
 Этот артефакт **снят с поддержки**. Содержимое перенесено в версионируемые
 publishable-пакеты:
 
-| Legacy-источник                                                     | Новый пакет                                         |
-| ------------------------------------------------------------------- | --------------------------------------------------- |
-| `_ds_bundle.js`, `components/<Name>/<Name>.jsx`                     | `@iskra-ui/react`                                  |
+| Legacy-источник                                                     | Новый пакет                                       |
+| ------------------------------------------------------------------- | ------------------------------------------------- |
+| `_ds_bundle.js`, `components/<Name>/<Name>.jsx`                     | `@iskra-ui/react`                                 |
 | `colors_and_type.css`                                               | `@iskra-ui/styles` (`@iskra-ui/styles/index.css`) |
-| разметка иконок внутри `Icon.jsx`                                   | `@iskra-ui/icons`                                  |
-| (новое) Vue-порт                                                    | `@iskra-ui/vue`                                    |
-| (новое) headless state machines                                     | `@iskra-ui/core`                                   |
-| (новое) DeviceCard / FleetPulse / DriftToast / CliRow / ApiKeyModal | `@iskra-ui/dci-react`                              |
+| разметка иконок внутри `Icon.jsx`                                   | `@iskra-ui/icons`                                 |
+| (новое) Vue-порт                                                    | `@iskra-ui/vue`                                   |
+| (новое) headless state machines                                     | `@iskra-ui/core`                                  |
+| (новое) DeviceCard / FleetPulse / DriftToast / CliRow / ApiKeyModal | `@iskra-ui/dci-react`                             |
 
 ## Почему миграция безопасна
 
