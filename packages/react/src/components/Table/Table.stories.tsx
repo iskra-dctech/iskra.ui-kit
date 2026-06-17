@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Table, type TableColumn } from './Table.js';
 import { Badge } from '../Badge/Badge.js';
 import { EmptyState } from '../EmptyState/EmptyState.js';

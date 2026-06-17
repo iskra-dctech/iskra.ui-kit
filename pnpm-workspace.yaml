@@ -2,52 +2,55 @@ packages:
   - "packages/*"
   - "apps/*"
 
+allowBuilds:
+  esbuild: true
+
 # Catalog: single source of truth for shared dependency versions across the
 # whole workspace. Reference with "catalog:" in any package.json.
 catalog:
-  # React
-  react: ^18.3.1
-  react-dom: ^18.3.1
-  "@types/react": ^18.3.12
-  "@types/react-dom": ^18.3.1
+  # React 19
+  react: ^19.2.0
+  react-dom: ^19.2.0
+  "@types/react": ^19.2.0
+  "@types/react-dom": ^19.2.0
 
   # Vue
   vue: ^3.5.13
-  vue-tsc: ^2.1.10
+  vue-tsc: ^3.3.0
 
   # Build / toolchain
-  "@types/node": ^20.17.10
-  typescript: ^5.6.3
-  vite: ^5.4.11
-  "@vitejs/plugin-react": ^4.3.4
-  "@vitejs/plugin-vue": ^5.2.1
+  "@types/node": ^22.0.0
+  typescript: ^6.0.0
+  vite: ^8.0.0
+  "@vitejs/plugin-react": ^6.0.0
+  "@vitejs/plugin-vue": ^6.0.0
   vite-plugin-dts: ^4.3.0
-  style-dictionary: ^4.2.0
+  style-dictionary: ^5.4.0
 
   # Test
-  vitest: ^2.1.8
-  jsdom: ^25.0.1
-  "@testing-library/react": ^16.0.1
-  "@testing-library/user-event": ^14.5.2
-  "@testing-library/jest-dom": ^6.6.3
+  vitest: ^4.1.0
+  jsdom: ^29.0.0
+  "@testing-library/react": ^16.0.0
+  "@testing-library/user-event": ^14.6.0
+  "@testing-library/jest-dom": ^6.9.0
   "@vue/test-utils": ^2.4.6
   vitest-axe: ^0.1.0
 
-  # Storybook
-  storybook: ^8.4.7
-  "@storybook/react": ^8.4.7
-  "@storybook/react-vite": ^8.4.7
-  "@storybook/addon-essentials": ^8.4.7
-  "@storybook/addon-a11y": ^8.4.7
+  # Storybook 10
+  storybook: ^10.4.0
+  "@storybook/react": ^10.4.0
+  "@storybook/react-vite": ^10.4.0
+  "@storybook/addon-a11y": ^10.4.0
+  eslint-plugin-storybook: ^10.4.0
 
   # Visual regression
-  "@playwright/test": ^1.49.1
+  "@playwright/test": ^1.61.0
 
   # Lint / format
-  eslint: ^9.17.0
-  "@eslint/js": ^9.17.0
-  typescript-eslint: ^8.18.1
-  eslint-plugin-vue: ^9.32.0
-  eslint-plugin-react-hooks: ^5.1.0
-  globals: ^15.13.0
-  prettier: ^3.4.2
+  eslint: ^10.0.0
+  "@eslint/js": ^10.0.0
+  typescript-eslint: ^8.61.0
+  eslint-plugin-vue: ^10.0.0
+  eslint-plugin-react-hooks: ^7.0.0
+  globals: ^17.0.0
+  prettier: ^3.8.0

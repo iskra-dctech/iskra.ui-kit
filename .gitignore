@@ -11,8 +11,3 @@ test-results/
 playwright-report/
 blob-report/
 .playwright/
-.env
-.nvmrc
-.pnpm-lock.yaml
-.pnpm-workspace.yaml
-.pnpm-workspace.yaml

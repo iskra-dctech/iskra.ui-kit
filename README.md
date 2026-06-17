@@ -8,14 +8,14 @@
 
 ## Пакеты
 
-| Пакет | Назначение |
-| ----- | ---------- |
-| [`@iskra-dci/tokens`](docs/PACKAGES.md#iskra-dcitokens) | DTCG-токены → CSS-переменные + TypeScript |
-| [`@iskra-dci/styles`](docs/PACKAGES.md#iskra-dcistyles) | Глобальные стили, шрифты, reset |
-| [`@iskra-dci/icons`](docs/PACKAGES.md#iskra-dciicons) | Иконки 16×16, stroke 1.5px |
-| [`@iskra-dci/core`](docs/PACKAGES.md#iskra-dcicore) | Headless-логика (React + Vue) |
-| [`@iskra-dci/react`](docs/PACKAGES.md#iskra-dcireact) | React-компоненты |
-| [`@iskra-dci/vue`](docs/PACKAGES.md#iskra-dcivue) | Vue 3-компоненты |
+| Пакет                                                         | Назначение                                                                   |
+| ------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [`@iskra-dci/tokens`](docs/PACKAGES.md#iskra-dcitokens)       | DTCG-токены → CSS-переменные + TypeScript                                    |
+| [`@iskra-dci/styles`](docs/PACKAGES.md#iskra-dcistyles)       | Глобальные стили, шрифты, reset                                              |
+| [`@iskra-dci/icons`](docs/PACKAGES.md#iskra-dciicons)         | Иконки 16×16, stroke 1.5px                                                   |
+| [`@iskra-dci/core`](docs/PACKAGES.md#iskra-dcicore)           | Headless-логика (React + Vue)                                                |
+| [`@iskra-dci/react`](docs/PACKAGES.md#iskra-dcireact)         | React-компоненты                                                             |
+| [`@iskra-dci/vue`](docs/PACKAGES.md#iskra-dcivue)             | Vue 3-компоненты                                                             |
 | [`@iskra-dci/dci-react`](docs/PACKAGES.md#iskra-dcidci-react) | Доменные компоненты: DeviceCard, FleetPulse, CliRow, DriftToast, ApiKeyModal |
 
 Подробное описание каждого пакета — в [docs/PACKAGES.md](docs/PACKAGES.md).
@@ -55,9 +55,9 @@ pnpm add @iskra-dci/react @iskra-dci/styles
 ### Подключение (React)
 
 ```ts
-import '@iskra-dci/styles/index.css'
-import '@iskra-dci/react/styles.css'
-import { Button, TextField, Badge, Icon } from '@iskra-dci/react'
+import '@iskra-dci/styles/index.css';
+import '@iskra-dci/react/styles.css';
+import { Button, TextField, Badge, Icon } from '@iskra-dci/react';
 ```
 
 ```tsx
@@ -81,7 +81,7 @@ White-label: `brand-aurora` (и другие бренды в `packages/tokens/sr
 
 ## Разработка в монорепозитории
 
-**Требования:** Node ≥20, pnpm 9.15 (Corepack).
+**Требования:** Node ≥22, pnpm 11.7 (Corepack).
 
 ```bash
 pnpm install
@@ -105,14 +105,14 @@ docs/         # FOUNDATIONS.md, PACKAGES.md
 
 ## Документация
 
-| Документ | Содержание |
-| -------- | ---------- |
-| [docs/FOUNDATIONS.md](docs/FOUNDATIONS.md) | Продукт, контент, визуальные основы, иконография |
-| [docs/PACKAGES.md](docs/PACKAGES.md) | Пакеты, API, примеры |
-| [MIGRATION.md](MIGRATION.md) | Миграция с legacy `_ds_bundle.js` |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | CI, changesets, добавление компонентов |
-| [LICENCE.md](LICENCE.md) | Лицензии на код и сторонние компоненты |
-| [packages/react/COMPONENT_CHECKLIST.md](packages/react/COMPONENT_CHECKLIST.md) | Definition of Done для React-компонентов |
+| Документ                                                                       | Содержание                                       |
+| ------------------------------------------------------------------------------ | ------------------------------------------------ |
+| [docs/FOUNDATIONS.md](docs/FOUNDATIONS.md)                                     | Продукт, контент, визуальные основы, иконография |
+| [docs/PACKAGES.md](docs/PACKAGES.md)                                           | Пакеты, API, примеры                             |
+| [MIGRATION.md](MIGRATION.md)                                                   | Миграция с legacy `_ds_bundle.js`                |
+| [CONTRIBUTING.md](CONTRIBUTING.md)                                             | CI, changesets, добавление компонентов           |
+| [LICENCE.md](LICENCE.md)                                                       | Лицензии на код и сторонние компоненты           |
+| [packages/react/COMPONENT_CHECKLIST.md](packages/react/COMPONENT_CHECKLIST.md) | Definition of Done для React-компонентов         |
 
 **Storybook** — интерактивная документация компонентов: `pnpm storybook`.
 

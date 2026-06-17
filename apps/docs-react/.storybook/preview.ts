@@ -1,4 +1,4 @@
-import type { Preview } from '@storybook/react';
+import type { Preview } from '@storybook/react-vite';
 // Full token + reset + font stylesheet; component CSS is bundled per-story by Vite.
 import '@iskra-dci/styles/index.css';
 
@@ -12,7 +12,7 @@ const preview: Preview = {
   parameters: {
     controls: { matchers: { color: /(background|color)$/i, date: /Date$/i } },
     a11y: { test: 'error' },
-    backgrounds: { disable: true },
+    backgrounds: { disabled: true },
   },
   globalTypes: {
     theme: {

@@ -258,11 +258,16 @@ export function Sidebar({
 }: SidebarProps) {
   const [tip, setTip] = useState<{ lbl: string; top: number } | null>(null);
   const [tipRdy, setTipRdy] = useState(false);
+  const [prevCollapsed, setPrevCollapsed] = useState(collapsed);
   const sbRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
+  if (collapsed !== prevCollapsed) {
+    setPrevCollapsed(collapsed);
     setTipRdy(false);
     setTip(null);
+  }
+
+  useEffect(() => {
     if (!collapsed) return;
     const t = setTimeout(() => setTipRdy(true), 210);
     return () => clearTimeout(t);

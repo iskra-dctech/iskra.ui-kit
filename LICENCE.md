@@ -6,15 +6,15 @@
 
 ## Пакеты `@iskra-dci/*`
 
-| Пакет | Статус |
-| ----- | ------ |
-| `@iskra-dci/tokens` | Проприетарное ПО |
-| `@iskra-dci/styles` | Проприетарное ПО + сторонние шрифты (см. ниже) |
-| `@iskra-dci/icons` | Проприетарное ПО |
-| `@iskra-dci/core` | Проприетарное ПО |
-| `@iskra-dci/react` | Проприетарное ПО |
-| `@iskra-dci/vue` | Проприетарное ПО |
-| `@iskra-dci/dci-react` | Проприетарное ПО |
+| Пакет                  | Статус                                         |
+| ---------------------- | ---------------------------------------------- |
+| `@iskra-dci/tokens`    | Проприетарное ПО                               |
+| `@iskra-dci/styles`    | Проприетарное ПО + сторонние шрифты (см. ниже) |
+| `@iskra-dci/icons`     | Проприетарное ПО                               |
+| `@iskra-dci/core`      | Проприетарное ПО                               |
+| `@iskra-dci/react`     | Проприетарное ПО                               |
+| `@iskra-dci/vue`       | Проприетарное ПО                               |
+| `@iskra-dci/dci-react` | Проприетарное ПО                               |
 
 Исходный код, дизайн-токены, компоненты, документация и торговые обозначения **Искра.DCI** / **ИСКРА.DCI** принадлежат правообладателю платформы. Все права защищены.
 
@@ -30,10 +30,10 @@
 
 В бандл `@iskra-dci/styles` встроены variable-шрифты (self-hosted, без CDN):
 
-| Шрифт | Файл | Лицензия |
-| ----- | ---- | -------- |
-| [Inter](https://rsms.me/inter/) | `Inter-VariableFont_opsz_wght.ttf` | [SIL Open Font License 1.1](https://openfontlicense.org/) |
-| [JetBrains Mono](https://www.jetbrains.com/lp/mono/) | `JetBrainsMono_wght_.ttf` | [SIL Open Font License 1.1](https://openfontlicense.org/) |
+| Шрифт                                                | Файл                               | Лицензия                                                  |
+| ---------------------------------------------------- | ---------------------------------- | --------------------------------------------------------- |
+| [Inter](https://rsms.me/inter/)                      | `Inter-VariableFont_opsz_wght.ttf` | [SIL Open Font License 1.1](https://openfontlicense.org/) |
+| [JetBrains Mono](https://www.jetbrains.com/lp/mono/) | `JetBrainsMono_wght_.ttf`          | [SIL Open Font License 1.1](https://openfontlicense.org/) |
 
 Шрифты копируются в `packages/styles/dist/fonts/` при сборке пакета. При распространении производных продуктов необходимо сохранять уведомления OFL для этих файлов.
 
@@ -45,10 +45,10 @@
 
 Геометрия согласована со стилем:
 
-| Источник | Лицензия | Примечание |
-| -------- | -------- | ---------- |
-| [Feather Icons](https://feathericons.com/) | MIT | Референс по stroke и сетке; глифы в репозитории не копируются дословно |
-| [Heroicons](https://heroicons.com/) (outline) | MIT | Допустимый заменитель при отсутствии глифа в наборе |
+| Источник                                      | Лицензия | Примечание                                                             |
+| --------------------------------------------- | -------- | ---------------------------------------------------------------------- |
+| [Feather Icons](https://feathericons.com/)    | MIT      | Референс по stroke и сетке; глифы в репозитории не копируются дословно |
+| [Heroicons](https://heroicons.com/) (outline) | MIT      | Допустимый заменитель при отсутствии глифа в наборе                    |
 
 MIT-лицензии Feather Icons и Heroicons **не распространяются** на код `@iskra-dci/icons`, но указаны как происхождение визуального языка. При публикации открытых форков или выноса иконок в отдельный OSS-пакет — сверьтесь с юридической службой правообладателя.
 

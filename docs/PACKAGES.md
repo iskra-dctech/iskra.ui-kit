@@ -30,12 +30,12 @@ flowchart LR
 
 **Entry points**
 
-| Импорт | Содержимое |
-| ------ | ---------- |
-| `@iskra-dci/tokens` | TS API (`dist/index.js`) |
-| `@iskra-dci/tokens/tokens.css` | Только CSS-переменные |
-| `@iskra-dci/tokens/tokens.json` | Плоский JSON токенов |
-| `@iskra-dci/tokens/src/*` | Исходники DTCG JSON |
+| Импорт                          | Содержимое               |
+| ------------------------------- | ------------------------ |
+| `@iskra-dci/tokens`             | TS API (`dist/index.js`) |
+| `@iskra-dci/tokens/tokens.css`  | Только CSS-переменные    |
+| `@iskra-dci/tokens/tokens.json` | Плоский JSON токенов     |
+| `@iskra-dci/tokens/src/*`       | Исходники DTCG JSON      |
 
 **Исходники:** `packages/tokens/src/` — `primitives/`, `semantic/`, `themes/` (cold, warm), `brands/` (например `aurora.json`).
 
@@ -50,7 +50,7 @@ pnpm --filter @iskra-dci/tokens build
 **Пример**
 
 ```ts
-import tokens from '@iskra-dci/tokens/tokens.json'
+import tokens from '@iskra-dci/tokens/tokens.json';
 ```
 
 Обычно токены потребляются через `@iskra-dci/styles`, а не напрямую.
@@ -63,13 +63,13 @@ import tokens from '@iskra-dci/tokens/tokens.json'
 
 **Entry points**
 
-| Импорт | Содержимое |
-| ------ | ---------- |
-| `@iskra-dci/styles/index.css` | Полный бандл (рекомендуется) |
-| `@iskra-dci/styles/tokens.css` | Только переменные |
-| `@iskra-dci/styles/fonts.css` | `@font-face` |
-| `@iskra-dci/styles/reset.css` | Reset |
-| `@iskra-dci/styles/elements.css` | Базовые element-классы |
+| Импорт                           | Содержимое                   |
+| -------------------------------- | ---------------------------- |
+| `@iskra-dci/styles/index.css`    | Полный бандл (рекомендуется) |
+| `@iskra-dci/styles/tokens.css`   | Только переменные            |
+| `@iskra-dci/styles/fonts.css`    | `@font-face`                 |
+| `@iskra-dci/styles/reset.css`    | Reset                        |
+| `@iskra-dci/styles/elements.css` | Базовые element-классы       |
 
 **Зависимости:** `@iskra-dci/tokens`.
 
@@ -82,7 +82,7 @@ pnpm --filter @iskra-dci/styles build
 **Пример**
 
 ```ts
-import '@iskra-dci/styles/index.css'
+import '@iskra-dci/styles/index.css';
 ```
 
 Подключайте **один раз** в entry приложения, до компонентных стилей.
@@ -108,9 +108,9 @@ pnpm --filter @iskra-dci/icons build
 **Пример**
 
 ```ts
-import { iconSvg, type IconName } from '@iskra-dci/icons'
+import { iconSvg, type IconName } from '@iskra-dci/icons';
 
-const svg = iconSvg('search', { size: 16 })
+const svg = iconSvg('search', { size: 16 });
 ```
 
 В React/Vue предпочтительнее компонент `Icon` из UI-библиотеки.
@@ -144,9 +144,9 @@ pnpm --filter @iskra-dci/core test
 
 **Entry points**
 
-| Импорт | Содержимое |
-| ------ | ---------- |
-| `@iskra-dci/react` | Компоненты и утилиты |
+| Импорт                        | Содержимое             |
+| ----------------------------- | ---------------------- |
+| `@iskra-dci/react`            | Компоненты и утилиты   |
 | `@iskra-dci/react/styles.css` | Стили всех компонентов |
 
 **Peer dependencies:** `react`, `react-dom` ≥18.
@@ -167,9 +167,9 @@ pnpm add @iskra-dci/react @iskra-dci/styles
 ```
 
 ```tsx
-import '@iskra-dci/styles/index.css'
-import '@iskra-dci/react/styles.css'
-import { Button, TextField, Badge, Icon } from '@iskra-dci/react'
+import '@iskra-dci/styles/index.css';
+import '@iskra-dci/react/styles.css';
+import { Button, TextField, Badge, Icon } from '@iskra-dci/react';
 
 export function Example() {
   return (
@@ -182,18 +182,18 @@ export function Example() {
         Drift
       </Badge>
     </>
-  )
+  );
 }
 ```
 
 ### Компоненты по категориям
 
-| Категория | Компоненты |
-| --------- | ---------- |
-| Foundations | `Icon` |
-| Primitives | `Button`, `IconButton`, `TextField`, `Textarea`, `Checkbox`, `Radio`, `RadioGroup`, `Switch`, `Badge`, `Tag`, `Avatar`, `Card`, `Skeleton`, `Spinner` |
-| Patterns | `FormField`, `Alert`, `EmptyState`, `Modal`, `Tabs`, `Table`, `Toast`, `Sidebar` |
-| Utilities | `cx` |
+| Категория   | Компоненты                                                                                                                                            |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Foundations | `Icon`                                                                                                                                                |
+| Primitives  | `Button`, `IconButton`, `TextField`, `Textarea`, `Checkbox`, `Radio`, `RadioGroup`, `Switch`, `Badge`, `Tag`, `Avatar`, `Card`, `Skeleton`, `Spinner` |
+| Patterns    | `FormField`, `Alert`, `EmptyState`, `Modal`, `Tabs`, `Table`, `Toast`, `Sidebar`                                                                      |
+| Utilities   | `cx`                                                                                                                                                  |
 
 Детали props, варианты и a11y — в Storybook (`pnpm storybook`) и JSDoc на компонентах.
 
@@ -209,9 +209,9 @@ export function Example() {
 
 **Entry points**
 
-| Импорт | Содержимое |
-| ------ | ---------- |
-| `@iskra-dci/vue` | Vue SFC-компоненты |
+| Импорт                      | Содержимое                                |
+| --------------------------- | ----------------------------------------- |
+| `@iskra-dci/vue`            | Vue SFC-компоненты                        |
 | `@iskra-dci/vue/styles.css` | Re-export стилей React (`ik-*` идентичны) |
 
 **Peer dependencies:** `vue` ≥3.4.
@@ -233,9 +233,9 @@ pnpm add @iskra-dci/vue @iskra-dci/styles
 
 ```vue
 <script setup lang="ts">
-import '@iskra-dci/styles/index.css'
-import '@iskra-dci/vue/styles.css'
-import { Button, TextField, Badge } from '@iskra-dci/vue'
+import '@iskra-dci/styles/index.css';
+import '@iskra-dci/vue/styles.css';
+import { Button, TextField, Badge } from '@iskra-dci/vue';
 </script>
 
 <template>
@@ -259,9 +259,9 @@ import { Button, TextField, Badge } from '@iskra-dci/vue'
 
 **Entry points**
 
-| Импорт | Содержимое |
-| ------ | ---------- |
-| `@iskra-dci/dci-react` | Доменные компоненты |
+| Импорт                            | Содержимое           |
+| --------------------------------- | -------------------- |
+| `@iskra-dci/dci-react`            | Доменные компоненты  |
 | `@iskra-dci/dci-react/styles.css` | Дополнительные стили |
 
 **Peer dependencies:** `react`, `react-dom` ≥18.
@@ -277,13 +277,13 @@ pnpm --filter @iskra-dci/dci-react test
 
 ### Компоненты
 
-| Компонент | Назначение |
-| --------- | ---------- |
-| `DeviceCard` | Карточка устройства в Inventory |
-| `FleetPulse` | Сводка состояния флота (Fleet Intelligence) |
-| `CliRow` | Строка CLI/curl с копированием |
-| `DriftToast` | Toast обнаруженного drift |
-| `ApiKeyModal` | Модалка создания/управления API-ключами |
+| Компонент     | Назначение                                  |
+| ------------- | ------------------------------------------- |
+| `DeviceCard`  | Карточка устройства в Inventory             |
+| `FleetPulse`  | Сводка состояния флота (Fleet Intelligence) |
+| `CliRow`      | Строка CLI/curl с копированием              |
+| `DriftToast`  | Toast обнаруженного drift                   |
+| `ApiKeyModal` | Модалка создания/управления API-ключами     |
 
 ### Пример
 
@@ -292,10 +292,10 @@ pnpm add @iskra-dci/dci-react @iskra-dci/react @iskra-dci/styles
 ```
 
 ```tsx
-import '@iskra-dci/styles/index.css'
-import '@iskra-dci/react/styles.css'
-import '@iskra-dci/dci-react/styles.css'
-import { DeviceCard, DriftToast } from '@iskra-dci/dci-react'
+import '@iskra-dci/styles/index.css';
+import '@iskra-dci/react/styles.css';
+import '@iskra-dci/dci-react/styles.css';
+import { DeviceCard, DriftToast } from '@iskra-dci/dci-react';
 
 export function FleetView() {
   return (
@@ -314,7 +314,7 @@ export function FleetView() {
         variant="drift"
       />
     </>
-  )
+  );
 }
 ```
 
@@ -322,10 +322,10 @@ export function FleetView() {
 
 ## Приватные пакеты (не публикуются)
 
-| Пакет | Назначение |
-| ----- | ---------- |
-| `@iskra-dci/eslint-config` | Общий ESLint flat config |
-| `@iskra-dci/tsconfig` | Базовые `tsconfig` для библиотек |
+| Пакет                      | Назначение                       |
+| -------------------------- | -------------------------------- |
+| `@iskra-dci/eslint-config` | Общий ESLint flat config         |
+| `@iskra-dci/tsconfig`      | Базовые `tsconfig` для библиотек |
 
 ---
 
@@ -334,12 +334,12 @@ export function FleetView() {
 ```html
 <!-- Светлая холодная тема -->
 <body class="theme-cold">
-
-<!-- Светлая тёплая тема -->
-<body class="theme-warm">
-
-<!-- White-label бренд поверх любой темы -->
-<body class="brand-aurora">
+  <!-- Светлая тёплая тема -->
+  <body class="theme-warm">
+    <!-- White-label бренд поверх любой темы -->
+    <body class="brand-aurora"></body>
+  </body>
+</body>
 ```
 
 Новые бренды добавляются в `packages/tokens/src/brands/<name>.json` и пересобираются через `pnpm build:tokens`.
