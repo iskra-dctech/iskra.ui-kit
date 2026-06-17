@@ -1,11 +1,6 @@
 {
-<<<<<<< HEAD
   "name": "@iskra-ui/icons",
   "version": "0.1.0",
-=======
-  "name": "@iskra-dci/icons",
-  "version": "0.2.0",
->>>>>>> origin/master
   "description": "Искра.DCI icon set — framework-agnostic 16×16 / 1.5px outline glyphs.",
   "type": "module",
   "main": "./dist/index.js",

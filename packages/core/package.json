@@ -1,11 +1,6 @@
 {
-<<<<<<< HEAD
   "name": "@iskra-ui/core",
   "version": "0.1.0",
-=======
-  "name": "@iskra-dci/core",
-  "version": "0.2.0",
->>>>>>> origin/master
   "description": "Искра.DCI headless core — framework-agnostic state machines, ARIA prop getters and keyboard helpers shared by the React and Vue packages.",
   "type": "module",
   "main": "./dist/index.js",
