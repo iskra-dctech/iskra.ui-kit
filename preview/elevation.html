@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Spacing" name="Elevation — no shadows" subtitle="Depth via hairline + surface step" viewport="700x150" --><html lang="ru"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:'Inter';src:url('../fonts/Inter-VariableFont_opsz_wght.ttf') format('truetype');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url('../fonts/JetBrainsMono_wght_.ttf') format('truetype');font-weight:100 800;font-style:normal;font-display:swap}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0D1117;font-family:'Inter',sans-serif;padding:24px;color:#F0F6FC}
+.note{font-family:'JetBrains Mono',monospace;font-size:11px;color:#6E7681;margin-bottom:16px;letter-spacing:.04em}
+.stack{display:flex;align-items:center;gap:0}
+.layer{padding:18px 22px;border:1px solid #30363D;border-radius:4px}
+.l0{background:#0D1117}
+.l1{background:#161B22;margin-left:-1px}
+.l2{background:#1D2530;margin-left:-1px}
+.l3{background:#202A35;margin-left:-1px}
+.nm{font-size:12px;font-weight:600}
+.hx{font-family:'JetBrains Mono',monospace;font-size:10px;color:#8B949E;margin-top:4px}
+</style></head><body>
+<div class="note">// NO SHADOWS — depth = 1px #30363D hairline + surface step</div>
+<div class="stack">
+  <div class="layer l0"><div class="nm">Page</div><div class="hx">#0D1117</div></div>
+  <div class="layer l1"><div class="nm">Card</div><div class="hx">#161B22</div></div>
+  <div class="layer l2"><div class="nm">Raised</div><div class="hx">#1D2530</div></div>
+  <div class="layer l3"><div class="nm">Header</div><div class="hx">#202A35</div></div>
+</div>
+</body></html>

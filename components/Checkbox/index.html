@@ -1,0 +1,106 @@
+<!-- @dsCard group="Components" name="Checkbox" subtitle="checked · indeterminate · disabled · label + description · s·m" viewport="760x420" -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<style>
+@font-face{font-family:'Inter';src:url('../../fonts/Inter-VariableFont_opsz_wght.ttf') format('truetype');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url('../../fonts/JetBrainsMono_wght_.ttf') format('truetype');font-weight:100 800;font-style:normal;font-display:swap}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0D1117;--panel:#161B22;--line:#30363D;--fg1:#F0F6FC;--fg2:#8B949E;--fg3:#6E7681;--accent:#00FFC2;--accent-safe:#00AA85;--font-ui:'Inter',system-ui,sans-serif;--font-mono:'JetBrains Mono',monospace;}
+.theme-cold{--bg:#EEF2F7;--panel:#E2E8F0;--line:#CDD5E0;--fg1:#1C2128;--fg2:#57606A;--fg3:#8B949E;--accent:#00AA85;--accent-safe:#008268;}
+body{background:var(--bg);font-family:var(--font-ui);color:var(--fg1);padding:24px;}
+.lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg3);margin:0 0 14px;}
+.cols{display:flex;gap:48px;flex-wrap:wrap;}
+.col{display:flex;flex-direction:column;gap:16px;}
+.coldwrap{background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:16px;}
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const _CB_CSS=`
+.ik-cb{display:inline-flex;align-items:flex-start;gap:9px;cursor:pointer;font-family:var(--font-ui,'Inter',sans-serif);color:var(--fg1,#F0F6FC);user-select:none;position:relative;}
+.ik-cb.is-disabled{cursor:not-allowed;opacity:.5;}
+.ik-cb-input{position:absolute;opacity:0;width:1px;height:1px;margin:0;}
+.ik-cb-box{flex-shrink:0;display:flex;align-items:center;justify-content:center;box-sizing:border-box;border:1px solid var(--line,#30363D);border-radius:3px;background:var(--bg,#0D1117);color:#0D1117;transition:background .12s,border-color .12s,box-shadow .12s;margin-top:1px;}
+.ik-cb-s .ik-cb-box{width:14px;height:14px;}
+.ik-cb-m .ik-cb-box{width:16px;height:16px;}
+.ik-cb:not(.is-disabled):hover .ik-cb-box{border-color:var(--accent,#00FFC2);}
+.ik-cb-check,.ik-cb-dash{display:none;}
+.ik-cb-input:checked + .ik-cb-box,.ik-cb-input:indeterminate + .ik-cb-box{background:var(--accent-safe,#00AA85);border-color:var(--accent-safe,#00AA85);}
+.ik-cb-input:checked + .ik-cb-box .ik-cb-check{display:block;}
+.ik-cb-input:indeterminate + .ik-cb-box .ik-cb-check{display:none;}
+.ik-cb-input:indeterminate + .ik-cb-box .ik-cb-dash{display:block;}
+.ik-cb-input:focus-visible + .ik-cb-box{box-shadow:0 0 0 1px var(--bg,#0D1117),0 0 0 2px var(--accent,#00FFC2);}
+.ik-cb-textwrap{display:flex;flex-direction:column;}
+.ik-cb-text{font-size:13px;line-height:1.45;}
+.ik-cb-s .ik-cb-text{font-size:12px;}
+.ik-cb-desc{font-size:11px;line-height:1.4;color:var(--fg2,#8B949E);margin-top:2px;}
+`;
+(function(){const e=document.createElement('style');e.textContent=_CB_CSS;document.head.appendChild(e);})();
+let _id=0;
+function Checkbox({checked,defaultChecked,indeterminate=false,disabled=false,size='m',label,description,onChange,id,className='',...rest}){
+  const ref=React.useRef(null);
+  const reactId=React.useMemo(()=>id||`ik-cb-${++_id}`,[id]);
+  React.useEffect(()=>{if(ref.current)ref.current.indeterminate=indeterminate;},[indeterminate,checked]);
+  const cls=['ik-cb','ik-cb-'+size,disabled&&'is-disabled',className].filter(Boolean).join(' ');
+  return (
+    <label className={cls} htmlFor={reactId}>
+      <input ref={ref} id={reactId} type="checkbox" className="ik-cb-input" checked={checked} defaultChecked={defaultChecked} disabled={disabled} onChange={onChange} {...rest}/>
+      <span className="ik-cb-box" aria-hidden="true">
+        <svg className="ik-cb-check" width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3.5,8.5 6.5,11.5 12.5,4.5"/></svg>
+        <svg className="ik-cb-dash" width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><line x1="3.5" y1="8" x2="12.5" y2="8"/></svg>
+      </span>
+      {(label||description)&&<span className="ik-cb-textwrap">{label&&<span className="ik-cb-text">{label}</span>}{description&&<span className="ik-cb-desc">{description}</span>}</span>}
+    </label>
+  );
+}
+
+function App(){
+  const [g,setG]=React.useState({a:true,b:false});
+  const all=g.a&&g.b, none=!g.a&&!g.b;
+  return (
+    <div>
+      <p className="lbl">Состояния</p>
+      <div className="cols">
+        <div className="col">
+          <Checkbox label="Выключен" />
+          <Checkbox label="Включён" defaultChecked />
+          <Checkbox label="Неопределён" indeterminate />
+          <Checkbox label="Заблокирован" disabled />
+          <Checkbox label="Заблокирован · вкл" defaultChecked disabled />
+        </div>
+        <div className="col">
+          <Checkbox label="Авто-reconcile при drift" description="Применять эталон автоматически" defaultChecked />
+          <Checkbox label="Уведомлять в Telegram" description="При ошибках синхронизации" />
+          <Checkbox size="s" label="Компактный · 14px" defaultChecked />
+          <Checkbox size="s" label="Компактный · выкл" />
+        </div>
+        <div className="col">
+          <Checkbox label="Все сайты" checked={all} indeterminate={!all&&!none} onChange={e=>setG({a:e.target.checked,b:e.target.checked})}/>
+          <div style={{display:'flex',flexDirection:'column',gap:12,paddingLeft:24}}>
+            <Checkbox label="MSK-DC1" checked={g.a} onChange={e=>setG(s=>({...s,a:e.target.checked}))}/>
+            <Checkbox label="SPB-DC2" checked={g.b} onChange={e=>setG(s=>({...s,b:e.target.checked}))}/>
+          </div>
+        </div>
+      </div>
+
+      <p className="lbl" style={{marginTop:28}}>Холодная тема</p>
+      <div className="theme-cold" style={{display:'inline-block'}}>
+        <div className="coldwrap">
+          <Checkbox label="Включён" defaultChecked />
+          <Checkbox label="Неопределён" indeterminate />
+          <Checkbox label="Выключен" />
+        </div>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>

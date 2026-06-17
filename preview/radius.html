@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Spacing" name="Corner radius — fixed 4px" subtitle="4px default · 2px chips · dots round" viewport="700x150" --><html lang="ru"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:'Inter';src:url('../fonts/Inter-VariableFont_opsz_wght.ttf') format('truetype');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url('../fonts/JetBrainsMono_wght_.ttf') format('truetype');font-weight:100 800;font-style:normal;font-display:swap}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0D1117;font-family:'Inter',sans-serif;padding:24px;display:flex;gap:28px;align-items:flex-end}
+.col{display:flex;flex-direction:column;align-items:center;gap:10px}
+.box{width:88px;height:64px;background:#161B22;border:1px solid #30363D}
+.r4{border-radius:4px}.r2{border-radius:2px}.r0{border-radius:0}
+.cap{font-family:'JetBrains Mono',monospace;font-size:11px;color:#8B949E}
+.cap b{color:#F0F6FC;font-weight:600}
+.note{font-size:12px;color:#6E7681;max-width:200px;line-height:1.5}
+</style></head><body>
+<div class="col"><div class="box r4"></div><div class="cap"><b>4px</b> · default</div></div>
+<div class="col"><div class="box r2"></div><div class="cap"><b>2px</b> · chips/tags</div></div>
+<div class="col"><div class="box r0" style="border-radius:50%;width:14px;height:14px;background:#00FFC2;border:none"></div><div class="cap"><b>50%</b> · status dot</div></div>
+<div class="note">Fixed radius across the system — buttons, cards, inputs, modals. Strict right angles; never pill-shaped.</div>
+</body></html>

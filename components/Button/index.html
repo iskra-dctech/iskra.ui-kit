@@ -1,0 +1,164 @@
+<!-- @dsCard group="Components" name="Button" subtitle="primary / outline / secondary / ghost / destructive · s·m·l · иконки · loading" viewport="880x720" -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<style>
+@font-face{font-family:'Inter';src:url('../../fonts/Inter-VariableFont_opsz_wght.ttf') format('truetype');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url('../../fonts/JetBrainsMono_wght_.ttf') format('truetype');font-weight:100 800;font-style:normal;font-display:swap}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0D1117;--panel:#161B22;--panel-muted:#202A35;--line:#30363D;
+  --fg1:#F0F6FC;--fg2:#8B949E;--fg3:#6E7681;
+  --accent:#00FFC2;--accent-hover:#00CC9A;--accent-safe:#00AA85;
+  --accent-soft:rgba(0,170,133,.14);--accent-line:rgba(0,170,133,.32);
+  --status-err:#F85149;--radius:4px;
+  --font-ui:'Inter',system-ui,sans-serif;--font-mono:'JetBrains Mono',monospace;
+}
+.theme-cold{--bg:#EEF2F7;--panel:#E2E8F0;--panel-muted:#DCE3EC;--line:#CDD5E0;
+  --fg1:#1C2128;--fg2:#57606A;--fg3:#8B949E;--accent:#00AA85;--accent-hover:#009478;
+  --accent-safe:#008268;--accent-soft:#E6F7F2;--accent-line:rgba(0,170,133,.32);--status-err:#D0302A;}
+body{background:var(--bg);font-family:var(--font-ui);color:var(--fg1);padding:24px;}
+.lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg3);margin:0 0 12px;}
+.sec{margin-bottom:26px;}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.note{font-family:var(--font-mono);font-size:10px;color:var(--fg2);margin-left:6px;}
+.choice{border:1px solid var(--line);border-radius:4px;padding:16px;display:flex;gap:32px;flex-wrap:wrap;}
+.choice .pick{display:flex;flex-direction:column;gap:10px;}
+.choice .tag{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-safe);}
+.coldwrap{background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:18px;}
+hr.div{border:none;border-top:1px solid var(--line);margin:0 0 24px;}
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+/* ── inline Icon (subset) ── */
+const ICONS={
+  'refresh':'<path d="M2.5 8a5.5 5.5 0 0 1 9.4-3.9L13.5 5.5"/><polyline points="13.5,2.5 13.5,5.5 10.5,5.5"/><path d="M13.5 8a5.5 5.5 0 0 1-9.4 3.9L2.5 10.5"/><polyline points="2.5,13.5 2.5,10.5 5.5,10.5"/>',
+  'plus':'<line x1="8" y1="3" x2="8" y2="13"/><line x1="3" y1="8" x2="13" y2="8"/>',
+  'trash':'<polyline points="3,4.5 13,4.5"/><path d="M5.5 4.5V3.2a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1V4.5"/><path d="M4.3 4.5 5 13a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1l.7-8.5"/>',
+  'chevron-down':'<polyline points="4,6 8,10 12,6"/>',
+  'download':'<line x1="8" y1="2.5" x2="8" y2="10"/><polyline points="5,7 8,10 11,7"/><path d="M3 11.5v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1"/>',
+  'settings':'<circle cx="8" cy="8" r="2.2"/><path d="M8 1.5v1.8M8 12.7v1.8M14.5 8h-1.8M3.3 8H1.5M12.6 3.4l-1.3 1.3M4.7 11.3l-1.3 1.3M12.6 12.6l-1.3-1.3M4.7 4.7 3.4 3.4"/>',
+  'check':'<polyline points="3.5,8.5 6.5,11.5 12.5,4.5"/>',
+};
+function Icon({name,size='1em'}){const i=ICONS[name];if(!i)return null;const px=typeof size==='number'?size+'px':size;
+  return <svg width={px} height={px} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{display:'inline-block',flexShrink:0,verticalAlign:'middle'}} dangerouslySetInnerHTML={{__html:i}}/>;}
+
+/* ── inline Button (mirrors Button.jsx) ── */
+const _BTN_CSS=`
+.ik-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-family:var(--font-ui,'Inter',sans-serif);font-weight:500;border:1px solid transparent;border-radius:var(--radius,4px);background:transparent;cursor:pointer;white-space:nowrap;text-decoration:none;box-sizing:border-box;position:relative;user-select:none;transition:background .12s,border-color .12s,color .12s,opacity .12s;}
+.ik-btn-s{height:28px;padding:0 12px;font-size:12px;}
+.ik-btn-m{height:32px;padding:0 16px;font-size:13px;}
+.ik-btn-l{height:36px;padding:0 18px;font-size:14px;}
+.ik-btn-io.ik-btn-s{width:28px;padding:0;}
+.ik-btn-io.ik-btn-m{width:32px;padding:0;}
+.ik-btn-io.ik-btn-l{width:36px;padding:0;}
+.ik-btn-fw{width:100%;}
+.ik-btn-primary{background:var(--accent-safe,#00AA85);color:#0D1117;border-color:var(--accent-safe,#00AA85);font-weight:600;}
+.ik-btn-primary:not(:disabled):hover{background:var(--accent-hover,#00CC9A);border-color:var(--accent-hover,#00CC9A);}
+.ik-btn-primary:not(:disabled):active{background:var(--accent,#00FFC2);border-color:var(--accent,#00FFC2);}
+.ik-btn-outline{border-color:var(--accent,#00FFC2);color:var(--accent-safe,#00AA85);}
+.ik-btn-outline:not(:disabled):hover{background:var(--accent-soft,rgba(0,170,133,.14));}
+.ik-btn-secondary{border-color:var(--line,#30363D);color:var(--fg1,#F0F6FC);}
+.ik-btn-secondary:not(:disabled):hover{border-color:var(--accent,#00FFC2);color:var(--accent-safe,#00AA85);}
+.ik-btn-ghost{color:var(--fg2,#8B949E);}
+.ik-btn-ghost:not(:disabled):hover{background:var(--panel-muted,#202A35);color:var(--fg1,#F0F6FC);}
+.ik-btn-destructive{border-color:var(--status-err,#F85149);color:var(--status-err,#F85149);}
+.ik-btn-destructive:not(:disabled):hover{background:rgba(248,81,73,.12);}
+.ik-btn:focus-visible{outline:none;box-shadow:0 0 0 1px var(--bg,#0D1117),0 0 0 2px var(--accent,#00FFC2);}
+.ik-btn:disabled{cursor:not-allowed;opacity:.45;}
+.ik-btn-content{display:inline-flex;align-items:center;justify-content:center;gap:inherit;}
+.ik-btn-loading .ik-btn-content{opacity:0;}
+.ik-btn-spinner{position:absolute;width:1em;height:1em;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:ik-btn-spin .6s linear infinite;}
+@keyframes ik-btn-spin{to{transform:rotate(360deg);}}
+`;
+(function(){const e=document.createElement('style');e.textContent=_BTN_CSS;document.head.appendChild(e);})();
+function Button({variant='primary',size='m',iconBefore,iconAfter,iconOnly=false,loading=false,disabled=false,fullWidth=false,type='button',className='',children,...rest}){
+  const cls=['ik-btn','ik-btn-'+variant,'ik-btn-'+size,iconOnly&&'ik-btn-io',fullWidth&&'ik-btn-fw',loading&&'ik-btn-loading',className].filter(Boolean).join(' ');
+  return <button type={type} className={cls} disabled={disabled||loading} {...rest}>
+    {loading&&<span className="ik-btn-spinner" aria-hidden="true"/>}
+    <span className="ik-btn-content">{iconBefore}{!iconOnly&&children!=null&&<span>{children}</span>}{iconOnly&&children}{iconAfter}</span>
+  </button>;
+}
+
+function App(){
+  return (
+    <div>
+      <div className="sec">
+        <p className="lbl">Варианты · size m</p>
+        <div className="row">
+          <Button variant="primary">Сохранить</Button>
+          <Button variant="outline">Синхронизировать</Button>
+          <Button variant="secondary">Детали</Button>
+          <Button variant="ghost">Отмена</Button>
+          <Button variant="destructive">Отозвать</Button>
+        </div>
+      </div>
+
+      <div className="sec">
+        <p className="lbl">Размеры · s · m · l</p>
+        <div className="row">
+          <Button variant="outline" size="s">Small · 28</Button>
+          <Button variant="outline" size="m">Medium · 32</Button>
+          <Button variant="outline" size="l">Large · 36</Button>
+          <span style={{width:16}}/>
+          <Button size="s" iconOnly aria-label="Настройки"><Icon name="settings"/></Button>
+          <Button size="m" iconOnly aria-label="Настройки"><Icon name="settings"/></Button>
+          <Button size="l" iconOnly aria-label="Настройки"><Icon name="settings"/></Button>
+        </div>
+      </div>
+
+      <div className="sec">
+        <p className="lbl">Иконки и состояния</p>
+        <div className="row">
+          <Button variant="primary" iconBefore={<Icon name="plus"/>}>Новый ключ</Button>
+          <Button variant="outline" iconBefore={<Icon name="refresh"/>}>Force Sync</Button>
+          <Button variant="secondary" iconAfter={<Icon name="chevron-down"/>}>Статус</Button>
+          <Button variant="primary" loading>Отправка</Button>
+          <Button variant="outline" disabled iconBefore={<Icon name="download"/>}>Экспорт</Button>
+          <Button variant="destructive" disabled iconBefore={<Icon name="trash"/>}>Удалить</Button>
+        </div>
+      </div>
+
+      <hr className="div"/>
+
+      <div className="sec">
+        <p className="lbl">⚑ На утверждение · трактовка основной кнопки</p>
+        <div className="choice">
+          <div className="pick">
+            <span className="tag">Вариант A · заливка mint</span>
+            <Button variant="primary" iconBefore={<Icon name="check"/>}>Подтвердить</Button>
+            <span className="note">Сильная CTA, привычно. Один яркий акцент на экран.</span>
+          </div>
+          <div className="pick">
+            <span className="tag">Вариант B · контур mint</span>
+            <Button variant="outline" iconBefore={<Icon name="check"/>}>Подтвердить</Button>
+            <span className="note">Строже к Hard-Shell Minimal, как в Sidebar/витринах.</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="sec theme-cold">
+        <p className="lbl" style={{color:'#8B949E'}}>Холодная тема</p>
+        <div className="coldwrap">
+          <div className="row">
+            <Button variant="primary">Сохранить</Button>
+            <Button variant="outline" iconBefore={<Icon name="refresh"/>}>Sync</Button>
+            <Button variant="secondary">Детали</Button>
+            <Button variant="ghost">Отмена</Button>
+            <Button variant="destructive">Отозвать</Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>

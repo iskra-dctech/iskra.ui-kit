@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Inputs & controls" subtitle="Field, focus, dropdown, multiselect, date range, toggles" viewport="700x470" --><html lang="ru"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:'Inter';src:url('../fonts/Inter-VariableFont_opsz_wght.ttf') format('truetype');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url('../fonts/JetBrainsMono_wght_.ttf') format('truetype');font-weight:100 800;font-style:normal;font-display:swap}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0D1117;font-family:'Inter',sans-serif;padding:22px;color:#F0F6FC;
+  display:grid;grid-template-columns:1fr 1fr;gap:22px 28px;align-items:start}
+.lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#6E7681;margin-bottom:6px}
+.field{height:32px;background:#0D1117;border:1px solid #30363D;border-radius:4px;padding:0 10px;font-family:'JetBrains Mono';font-size:12px;color:#F0F6FC;display:flex;align-items:center;gap:8px;width:100%}
+.field.focus{border-color:#00FFC2;box-shadow:0 0 0 1px #00FFC2}
+.field .ph{color:#6E7681}
+.field .ico{color:#6E7681;font-size:13px}
+.sel{justify-content:space-between}
+.caret{color:#8B949E;font-size:11px}
+
+/* toggle + checkbox + radio */
+.tr{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.toggle{width:34px;height:19px;border-radius:10px;background:#30363D;position:relative;flex-shrink:0}
+.toggle.on{background:#00AA85}
+.knob{position:absolute;top:2px;left:2px;width:15px;height:15px;border-radius:50%;background:#F0F6FC}
+.toggle.on .knob{left:17px}
+.box{width:16px;height:16px;border-radius:3px;border:1px solid #30363D;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.box.on{background:#00AA85;border-color:#00AA85;color:#0D1117;font-size:11px;font-weight:700}
+.radio{width:16px;height:16px;border-radius:50%;border:1px solid #30363D;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.radio.on{border-color:#00FFC2}
+.radio.on::after{content:'';width:7px;height:7px;border-radius:50%;background:#00FFC2}
+.ctl-txt{font-size:13px}
+
+/* open dropdown */
+.menu{border:1px solid #30363D;border-radius:4px;background:#161B22;overflow:hidden;box-shadow:none}
+.opt{display:flex;align-items:center;gap:8px;padding:7px 10px;font-size:13px;color:#F0F6FC;border-bottom:1px solid #21262D;cursor:pointer}
+.opt:last-child{border-bottom:none}
+.opt .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.opt.sel{background:rgba(0,170,133,.10);color:#00FFC2}
+.opt .chk{margin-left:auto;color:#00FFC2;font-size:11px}
+.opt.hov{background:#1D2530}
+
+/* multiselect chips */
+.multi{min-height:32px;background:#0D1117;border:1px solid #30363D;border-radius:4px;padding:5px 8px;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:5px;background:rgba(0,170,133,.12);border:1px solid rgba(0,170,133,.32);color:#00FFC2;border-radius:3px;padding:2px 6px;font-family:'JetBrains Mono';font-size:10px}
+.chip .x{color:#00AA85;cursor:pointer}
+.multi .ph{color:#6E7681;font-size:12px}
+
+/* date range */
+.cal{border:1px solid #30363D;border-radius:4px;background:#161B22;padding:10px;width:fit-content}
+.calhd{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.calhd .m{font-family:'JetBrains Mono';font-size:11px;color:#F0F6FC;font-weight:600}
+.calhd .nav{color:#8B949E;font-size:12px;cursor:pointer}
+.cgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.cd{width:24px;height:22px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono';font-size:10px;color:#8B949E;border-radius:3px}
+.cd.dow{color:#6E7681;font-size:9px;height:16px}
+.cd.rng{background:rgba(0,170,133,.10);color:#F0F6FC;border-radius:0}
+.cd.end{background:#00AA85;color:#0D1117;border-radius:3px;font-weight:600}
+.cd.mut{color:#3a4150}
+</style></head><body>
+
+<!-- LEFT COLUMN -->
+<div>
+  <div style="margin-bottom:18px"><div class="lbl">Поле · default</div><div class="field"><span class="ico">⌕</span><span class="ph">192.168.1.0/24 или hostname…</span></div></div>
+  <div style="margin-bottom:18px"><div class="lbl">Поле · focus (mint ring)</div><div class="field focus">leaf-07.msk</div></div>
+  <div style="margin-bottom:18px"><div class="lbl">Селект (закрыт)</div><div class="field sel"><span>Статус: Drift</span><span class="caret">▾</span></div></div>
+  <div class="lbl">Переключатели</div>
+  <div class="tr"><div class="toggle on"><div class="knob"></div></div><span class="ctl-txt">Показывать Бит</span></div>
+  <div class="tr"><div class="box on">✓</div><span class="ctl-txt">Авто-reconcile при drift</span></div>
+  <div class="tr"><div class="box"></div><span class="ctl-txt">Уведомлять в Telegram</span></div>
+  <div class="tr"><div class="radio on"></div><span class="ctl-txt">Все сайты</span><div class="radio" style="margin-left:8px"></div><span class="ctl-txt">Только MSK-DC1</span></div>
+</div>
+
+<!-- RIGHT COLUMN -->
+<div>
+  <div style="margin-bottom:18px">
+    <div class="lbl">Дропдаун (открыт)</div>
+    <div class="field sel" style="border-color:#00FFC2;box-shadow:0 0 0 1px #00FFC2;margin-bottom:4px"><span>Роль устройства</span><span class="caret">▴</span></div>
+    <div class="menu">
+      <div class="opt sel"><span class="dot" style="background:#00FFC2"></span>Spine<span class="chk">✓</span></div>
+      <div class="opt hov"><span class="dot" style="background:#58A6FF"></span>Leaf</div>
+      <div class="opt"><span class="dot" style="background:#F97316"></span>Border</div>
+      <div class="opt"><span class="dot" style="background:#8B949E"></span>Storage</div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:18px">
+    <div class="lbl">Мультиселект · выбранные теги</div>
+    <div class="multi">
+      <span class="chip">prod <span class="x">✕</span></span>
+      <span class="chip">leaf <span class="x">✕</span></span>
+      <span class="chip">drift <span class="x">✕</span></span>
+      <span class="ph">+ добавить…</span>
+    </div>
+  </div>
+
+  <div>
+    <div class="lbl">Пикер даты · диапазон</div>
+    <div class="cal">
+      <div class="calhd"><span class="nav">‹</span><span class="m">Июнь 2026</span><span class="nav">›</span></div>
+      <div class="cgrid">
+        <span class="cd dow">П</span><span class="cd dow">В</span><span class="cd dow">С</span><span class="cd dow">Ч</span><span class="cd dow">П</span><span class="cd dow">С</span><span class="cd dow">В</span>
+        <span class="cd mut">26</span><span class="cd mut">27</span><span class="cd mut">28</span><span class="cd mut">29</span><span class="cd mut">30</span><span class="cd mut">31</span><span class="cd">1</span>
+        <span class="cd">2</span><span class="cd end">3</span><span class="cd rng">4</span><span class="cd rng">5</span><span class="cd rng">6</span><span class="cd rng">7</span><span class="cd rng">8</span>
+        <span class="cd end">9</span><span class="cd">10</span><span class="cd">11</span><span class="cd">12</span><span class="cd">13</span><span class="cd">14</span><span class="cd">15</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body></html>

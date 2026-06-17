@@ -1,0 +1,121 @@
+/* ============================================================
+   ИСКРА.DCI — Design Tokens · Colors & Type
+   Hard-Shell Minimal · technical minimalism, single accent hue
+   Root font-size is INTENTIONALLY 14px (data-dense product).
+   Load Inter + JetBrains Mono before this file.
+   ============================================================ */
+
+@font-face{font-family:'Inter';src:url('fonts/Inter-VariableFont_opsz_wght.ttf') format('truetype');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url('fonts/JetBrainsMono_wght_.ttf') format('truetype');font-weight:100 800;font-style:normal;font-display:swap}
+
+:root {
+  /* ---- DARK THEME (primary / default) ------------------- */
+  --bg:            #0D1117;  /* Anthracite Deep — global page bg   */
+  --panel:         #161B22;  /* Elevated Graphite — cards, modals  */
+  --panel-soft:    #1D2530;  /* slightly raised insets             */
+  --panel-muted:   #202A35;  /* table headers, hover fills         */
+  --line:          #30363D;  /* borders, dividers (1px everywhere) */
+  --line-soft:     rgba(48,54,61,.5);
+
+  --fg1:           #F0F6FC;  /* primary text                       */
+  --fg2:           #8B949E;  /* secondary text, placeholders       */
+  --fg3:           #6E7681;  /* tertiary / disabled                */
+
+  /* ---- ACCENT · Cyber Mint ------------------------------ */
+  --accent:        #00FFC2;  /* indicators, borders, focus ONLY    */
+  --accent-hover:  #00CC9A;  /* hover for icons/borders            */
+  --accent-safe:   #00AA85;  /* AA-safe accent for TEXT on dark    */
+  --accent-soft:   rgba(0,170,133,.14);
+  --accent-line:   rgba(0,170,133,.32);
+
+  /* ---- STATUS MODEL (signal only, never decorative) ----- */
+  --status-ok:     #00FFC2;  /* Sync / Online                      */
+  --status-warn:   #F97316;  /* Drift / Warning                    */
+  --status-err:    #F85149;  /* Error / Critical                   */
+  --status-off:    #6E7681;  /* Maintenance / Inactive             */
+  --status-info:   #58A6FF;  /* Info / Neutral (used minimally)    */
+
+  /* ---- TYPE FAMILIES ------------------------------------ */
+  --font-ui:       'Inter', system-ui, -apple-system, sans-serif;
+  --font-display:  'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:     'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* ---- TYPE SCALE (px on a 14px root) ------------------- */
+  --text-h1:       24px;   --lh-h1: 1.2; /* @kind font */  --wt-h1: 600; /* @kind font */
+  --text-h2:       20px;   --lh-h2: 1.2; /* @kind font */  --wt-h2: 600; /* @kind font */
+  --text-h3:       18px;   --lh-h3: 1.2; /* @kind font */  --wt-h3: 600; /* @kind font */
+  --text-ui:       14px;   --lh-ui: 1.4; /* @kind font */  --wt-ui: 400; /* @kind font */
+  --text-ui-med:   14px;                   --wt-ui-med: 500; /* @kind font */
+  --text-small:    12px;   --lh-sm: 1.4; /* @kind font */
+  --text-mono:     13px;   --lh-mono: 1.45; /* @kind font */
+  --text-label:    11px;   /* mono uppercase eyebrows         */
+
+  /* ---- SPACING · 8px base (4px for micro) --------------- */
+  --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px;
+  --s5: 24px; --s6: 32px; --s7: 48px; --s8: 64px;
+
+  /* ---- RADIUS · fixed 4px everywhere -------------------- */
+  --radius: 4px;
+  --radius-sm: 2px;
+
+  /* ---- BORDERS / ELEVATION ------------------------------ */
+  /* No shadows. Layers separated by a single 1px border.   */
+  --border: 1px solid var(--line);
+  --focus-ring: 0 0 0 1px var(--accent);
+
+  /* ---- MOTION ------------------------------------------- */
+  --ease: cubic-bezier(.2,.6,.2,1); /* @kind other */
+  --dur: .15s; /* @kind other */
+
+  /* ---- CONTROL SIZES ------------------------------------ */
+  --control-h: 32px;
+  --control-h-lg: 36px;
+}
+
+/* ============================================================
+   COLD LIGHT THEME  (off-white, neutral) — apply .theme-cold
+   ============================================================ */
+.theme-cold {
+  --bg:#EEF2F7; --panel:#E2E8F0; --panel-soft:#E9EEF4; --panel-muted:#DCE3EC;
+  --line:#CDD5E0; --line-soft:rgba(205,213,224,.6);
+  --fg1:#1C2128; --fg2:#57606A; --fg3:#8B949E;
+  --accent:#00AA85; --accent-hover:#009478; --accent-safe:#008268;
+  --accent-soft:#E6F7F2; --accent-line:rgba(0,170,133,.32);
+  --status-ok:#00AA85; --status-warn:#D0610A; --status-err:#D0302A;
+  --status-off:#6E7681; --status-info:#2E6DA4;
+}
+
+/* ============================================================
+   WARM LIGHT THEME  (paper / sand) — apply .theme-warm
+   ============================================================ */
+.theme-warm {
+  --bg:#F5F0E8; --panel:#EDE8DF; --panel-soft:#F0EBE3; --panel-muted:#E4DED3;
+  --line:#D8D2C8; --line-soft:rgba(216,210,200,.6);
+  --fg1:#1C1A17; --fg2:#6B6560; --fg3:#9A948C;
+  --accent:#009B78; --accent-hover:#008268; --accent-safe:#00795D;
+  --accent-soft:#E8F5F0; --accent-line:rgba(0,155,120,.32);
+  --status-ok:#009B78; --status-warn:#C2620A; --status-err:#C23B36;
+  --status-off:#7A756E; --status-info:#3A6FA8;
+}
+
+/* ============================================================
+   SEMANTIC ELEMENT STYLES
+   ============================================================ */
+.iskra-scope { font-size:14px; }          /* enforce 14px root      */
+
+.h1 { font-family:var(--font-display); font-size:var(--text-h1); line-height:var(--lh-h1); font-weight:var(--wt-h1); letter-spacing:-.02em; color:var(--fg1); }
+.h2 { font-family:var(--font-display); font-size:var(--text-h2); line-height:var(--lh-h2); font-weight:var(--wt-h2); letter-spacing:-.02em; color:var(--fg1); }
+.h3 { font-family:var(--font-display); font-size:var(--text-h3); line-height:var(--lh-h3); font-weight:var(--wt-h3); letter-spacing:-.01em; color:var(--fg1); }
+.p  { font-family:var(--font-ui); font-size:var(--text-ui); line-height:var(--lh-ui); color:var(--fg1); }
+.small { font-size:var(--text-small); line-height:var(--lh-sm); color:var(--fg2); }
+.mono { font-family:var(--font-mono); font-size:var(--text-mono); line-height:var(--lh-mono); color:var(--fg1); }
+.code { font-family:var(--font-mono); font-size:var(--text-mono); color:var(--accent-safe); }
+
+/* mono uppercase eyebrow / section label */
+.label {
+  font-family:var(--font-mono);
+  font-size:var(--text-label);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--fg2);
+}
