@@ -12,9 +12,9 @@ pnpm add @iskra-ui/vue @iskra-ui/styles
 
 ```vue
 <script setup lang="ts">
-import '@iskra-ui/styles/index.css'
-import '@iskra-ui/vue/styles.css'
-import { Button, TextField, Badge } from '@iskra-ui/vue'
+import '@iskra-ui/styles/index.css';
+import '@iskra-ui/vue/styles.css';
+import { Button, TextField, Badge } from '@iskra-ui/vue';
 </script>
 
 <template>

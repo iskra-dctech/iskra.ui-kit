@@ -13,7 +13,7 @@ pnpm add @iskra-ui/styles
 Import once at your app entry, before component styles:
 
 ```ts
-import '@iskra-ui/styles/index.css'
+import '@iskra-ui/styles/index.css';
 ```
 
 Granular entry points: `tokens.css`, `fonts.css`, `reset.css`, `elements.css`.

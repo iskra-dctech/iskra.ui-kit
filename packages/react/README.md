@@ -11,9 +11,9 @@ pnpm add @iskra-ui/react @iskra-ui/styles
 ## Usage
 
 ```tsx
-import '@iskra-ui/styles/index.css'
-import '@iskra-ui/react/styles.css'
-import { Button, TextField, Badge, Icon } from '@iskra-ui/react'
+import '@iskra-ui/styles/index.css';
+import '@iskra-ui/react/styles.css';
+import { Button, TextField, Badge, Icon } from '@iskra-ui/react';
 
 export function Example() {
   return (
@@ -26,7 +26,7 @@ export function Example() {
         Drift
       </Badge>
     </>
-  )
+  );
 }
 ```
 

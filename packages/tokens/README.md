@@ -13,7 +13,7 @@ Usually consumed through `@iskra-ui/styles` rather than directly.
 ## Usage
 
 ```ts
-import tokens from '@iskra-ui/tokens/tokens.json'
+import tokens from '@iskra-ui/tokens/tokens.json';
 ```
 
 Entry points: `@iskra-ui/tokens`, `@iskra-ui/tokens/tokens.css`, `@iskra-ui/tokens/tokens.json`, `@iskra-ui/tokens/src/*`.

@@ -13,7 +13,7 @@ Usually imported indirectly through `@iskra-ui/react` or `@iskra-ui/vue`. Use di
 ## Usage
 
 ```ts
-import { createId, createTabsIds, getNextTabValue } from '@iskra-ui/core'
+import { createId, createTabsIds, getNextTabValue } from '@iskra-ui/core';
 ```
 
 ## Docs
