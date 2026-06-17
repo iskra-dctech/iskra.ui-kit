@@ -1,13 +1,34 @@
 {
   "name": "@iskra-ui/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Искра.DCI headless core — framework-agnostic state machines, ARIA prop getters and keyboard helpers shared by the React and Vue packages.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iskra-dctech/iskra.ui-kit.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/iskra-dctech/iskra.ui-kit#readme",
+  "bugs": {
+    "url": "https://github.com/iskra-dctech/iskra.ui-kit/issues"
+  },
+  "keywords": [
+    "iskra",
+    "design-system",
+    "datacenter",
+    "ui-kit",
+    "headless",
+    "a11y",
+    "accessibility"
+  ],
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "exports": {
     ".": {

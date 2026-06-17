@@ -1,15 +1,25 @@
-# @iskra-dci/dci-react
+# @iskra-ui/dci-react
 
-## 0.2.0
+## 0.1.1
+
+### Patch Changes
+
+- Add npm package metadata (repository, homepage, bugs, keywords), per-package README, Apache-2.0 license, and fix changelog scope/version alignment for `@iskra-ui/*`.
+- Updated dependencies
+  - @iskra-ui/icons@0.1.1
+  - @iskra-ui/core@0.1.1
+  - @iskra-ui/react@0.1.1
+
+## 0.1.0
 
 ### Minor Changes
 
 - 4cc6b90: Domain layer + white-label:
 
-  - `@iskra-dci/dci-react` — Искра.DCI domain components built on the foundation:
+  - `@iskra-ui/dci-react` — Искра.DCI domain components built on the foundation:
     `DeviceCard`, `FleetPulse`, `CliRow`, `DriftToast`, `ApiKeyModal`. Stories + tests
     included.
-  - `@iskra-dci/tokens` — white-label brand packs: drop a
+  - `@iskra-ui/tokens` — white-label brand packs: drop a
     `src/brands/<name>.json` accent override and it compiles to a `.brand-<name>`
     selector (composes on top of any theme) plus a typed `brands` map. Ships an
     example `brand-aurora`.
@@ -20,6 +30,6 @@
 
 - Updated dependencies [4cc6b90]
 - Updated dependencies [4cc6b90]
-  - @iskra-dci/core@0.2.0
-  - @iskra-dci/react@0.2.0
-  - @iskra-dci/icons@0.2.0
+  - @iskra-ui/core@0.1.0
+  - @iskra-ui/react@0.1.0
+  - @iskra-ui/icons@0.1.0
