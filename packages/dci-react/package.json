@@ -1,6 +1,6 @@
 {
   "name": "@iskra-dci/dci-react",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Искра.DCI domain components for React — DeviceCard, FleetPulse, CliRow, DriftToast, ApiKeyModal — built on @iskra-dci/react.",
   "type": "module",
   "main": "./dist/index.cjs",
