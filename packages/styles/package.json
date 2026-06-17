@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
   "name": "@iskra-ui/styles",
   "version": "0.1.0",
+=======
+  "name": "@iskra-dci/styles",
+  "version": "0.2.0",
+>>>>>>> origin/master
   "description": "Искра.DCI global stylesheet — tokens + self-hosted fonts + reset + element classes.",
   "type": "module",
   "files": [

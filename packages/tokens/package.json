@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
   "name": "@iskra-ui/tokens",
   "version": "0.1.0",
+=======
+  "name": "@iskra-dci/tokens",
+  "version": "0.2.0",
+>>>>>>> origin/master
   "description": "Искра.DCI design tokens (DTCG) → CSS variables + typed TS map via Style Dictionary.",
   "type": "module",
   "main": "./dist/index.js",

@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
   "name": "@iskra-ui/react",
   "version": "0.1.0",
+=======
+  "name": "@iskra-dci/react",
+  "version": "0.2.0",
+>>>>>>> origin/master
   "description": "Искра.DCI React component library (Hard-Shell Minimal).",
   "type": "module",
   "main": "./dist/index.cjs",
