@@ -2,8 +2,8 @@ import { test, expect } from '@playwright/test';
 
 // Representative stories for pixel-level visual regression. Add an entry here
 // when a component's visual contract should be locked. Run with:
-//   pnpm --filter @iskra-dci/docs-react test:visual:update   # write baselines
-//   pnpm --filter @iskra-dci/docs-react test:visual          # compare
+//   pnpm --filter @iskra-ui/docs-react test:visual:update   # write baselines
+//   pnpm --filter @iskra-ui/docs-react test:visual          # compare
 const STORIES = [
   'foundations-icon--all',
   'primitives-button--sizes',

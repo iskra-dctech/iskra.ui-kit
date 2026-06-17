@@ -1,5 +1,5 @@
 {
-  "extends": "@iskra-dci/tsconfig/vue-lib.json",
+  "extends": "@iskra-ui/tsconfig/vue-lib.json",
   "compilerOptions": {
     "composite": false,
     "outDir": "dist",

@@ -1,4 +1,4 @@
-// @iskra-dci/eslint-config — shared flat config.
+// @iskra-ui/eslint-config — shared flat config.
 // Composes ESLint recommended + typescript-eslint + react-hooks + eslint-plugin-vue.
 // Formatting is delegated to Prettier (this config is semantic-only).
 // eslint-plugin-vue is appended last so it owns the parser for .vue files.

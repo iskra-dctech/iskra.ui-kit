@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Button } from '@iskra-dci/react';
+import { Button } from '@iskra-ui/react';
 import { ApiKeyModal } from './ApiKeyModal.js';
 
 const meta: Meta<typeof ApiKeyModal> = {

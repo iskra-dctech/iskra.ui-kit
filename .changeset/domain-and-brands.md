@@ -1,14 +1,14 @@
 ---
-'@iskra-dci/dci-react': minor
-'@iskra-dci/tokens': minor
+'@iskra-ui/dci-react': minor
+'@iskra-ui/tokens': minor
 ---
 
 Domain layer + white-label:
 
-- `@iskra-dci/dci-react` — Искра.DCI domain components built on the foundation:
+- `@iskra-ui/dci-react` — Искра.DCI domain components built on the foundation:
   `DeviceCard`, `FleetPulse`, `CliRow`, `DriftToast`, `ApiKeyModal`. Stories + tests
   included.
-- `@iskra-dci/tokens` — white-label brand packs: drop a
+- `@iskra-ui/tokens` — white-label brand packs: drop a
   `src/brands/<name>.json` accent override and it compiles to a `.brand-<name>`
   selector (composes on top of any theme) plus a typed `brands` map. Ships an
   example `brand-aurora`.

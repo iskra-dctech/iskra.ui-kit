@@ -1,5 +1,5 @@
 import { useId, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
-import { createTabsIds, firstEnabledValue, getNextTabValue } from '@iskra-dci/core';
+import { createTabsIds, firstEnabledValue, getNextTabValue } from '@iskra-ui/core';
 import { cx } from '../../utils/cx.js';
 import './Tabs.css';
 

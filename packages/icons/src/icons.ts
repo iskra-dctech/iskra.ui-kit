@@ -1,4 +1,4 @@
-// @iskra-dci/icons — canonical Искра.DCI icon set.
+// @iskra-ui/icons — canonical Искра.DCI icon set.
 // Linear (outline) icons on a 16×16 grid, 1.5px stroke, round caps, `currentColor`.
 // Drawn to match the Feather Icons / Heroicons (outline) geometry the brand uses.
 // Each value is the raw inner SVG markup for a `<svg viewBox="0 0 16 16">`.

@@ -1,5 +1,5 @@
 {
-  "extends": "@iskra-dci/tsconfig/base.json",
+  "extends": "@iskra-ui/tsconfig/base.json",
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "src",

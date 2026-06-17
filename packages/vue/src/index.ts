@@ -1,6 +1,6 @@
 // Shared design-system stylesheet (tokens + component CSS) — single source of
-// truth lives in @iskra-dci/react; Vue reuses the identical `ik-*` class names.
-import '@iskra-dci/react/styles.css';
+// truth lives in @iskra-ui/react; Vue reuses the identical `ik-*` class names.
+import '@iskra-ui/react/styles.css';
 
 export { default as Icon } from './components/Icon.vue';
 export { default as Button, type ButtonVariant, type ButtonSize } from './components/Button.vue';

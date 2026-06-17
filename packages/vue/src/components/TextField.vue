@@ -4,7 +4,7 @@ export type TextFieldSize = 's' | 'm' | 'l';
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { createId } from '@iskra-dci/core';
+import { createId } from '@iskra-ui/core';
 import { cx } from '../utils/cx.js';
 
 const props = withDefaults(

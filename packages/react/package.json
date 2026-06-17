@@ -1,5 +1,5 @@
 {
-  "name": "@iskra-dci/react",
+  "name": "@iskra-ui/react",
   "version": "0.1.0",
   "description": "Искра.DCI React component library (Hard-Shell Minimal).",
   "type": "module",
@@ -31,13 +31,13 @@
     "react-dom": ">=18"
   },
   "dependencies": {
-    "@iskra-dci/core": "workspace:*",
-    "@iskra-dci/icons": "workspace:*"
+    "@iskra-ui/core": "workspace:*",
+    "@iskra-ui/icons": "workspace:*"
   },
   "devDependencies": {
-    "@iskra-dci/styles": "workspace:*",
-    "@iskra-dci/tokens": "workspace:*",
-    "@iskra-dci/tsconfig": "workspace:*",
+    "@iskra-ui/styles": "workspace:*",
+    "@iskra-ui/tokens": "workspace:*",
+    "@iskra-ui/tsconfig": "workspace:*",
     "@storybook/react-vite": "catalog:",
     "@testing-library/jest-dom": "catalog:",
     "@testing-library/react": "catalog:",
@@ -54,7 +54,7 @@
     "vitest-axe": "catalog:"
   },
   "publishConfig": {
-    "access": "restricted",
+    "access": "public",
     "provenance": true
   }
 }

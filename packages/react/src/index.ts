@@ -1,4 +1,4 @@
-// @iskra-dci/react — public surface.
+// @iskra-ui/react — public surface.
 // Foundations
 export * from './components/Icon/index.js';
 // Primitives

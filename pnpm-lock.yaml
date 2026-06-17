@@ -107,10 +107,10 @@ importers:
       '@changesets/cli':
         specifier: ^2.31.0
         version: 2.31.0(@types/node@22.19.21)
-      '@iskra-dci/eslint-config':
+      '@iskra-ui/eslint-config':
         specifier: workspace:*
         version: link:packages/eslint-config
-      '@iskra-dci/tsconfig':
+      '@iskra-ui/tsconfig':
         specifier: workspace:*
         version: link:packages/tsconfig
       eslint:
@@ -131,19 +131,19 @@ importers:
 
   apps/docs-react:
     dependencies:
-      '@iskra-dci/core':
+      '@iskra-ui/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@iskra-dci/dci-react':
+      '@iskra-ui/dci-react':
         specifier: workspace:*
         version: link:../../packages/dci-react
-      '@iskra-dci/icons':
+      '@iskra-ui/icons':
         specifier: workspace:*
         version: link:../../packages/icons
-      '@iskra-dci/react':
+      '@iskra-ui/react':
         specifier: workspace:*
         version: link:../../packages/react
-      '@iskra-dci/styles':
+      '@iskra-ui/styles':
         specifier: workspace:*
         version: link:../../packages/styles
       react:
@@ -177,7 +177,7 @@ importers:
 
   packages/core:
     devDependencies:
-      '@iskra-dci/tsconfig':
+      '@iskra-ui/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       typescript:
@@ -189,17 +189,17 @@ importers:
 
   packages/dci-react:
     dependencies:
-      '@iskra-dci/core':
+      '@iskra-ui/core':
         specifier: workspace:*
         version: link:../core
-      '@iskra-dci/icons':
+      '@iskra-ui/icons':
         specifier: workspace:*
         version: link:../icons
-      '@iskra-dci/react':
+      '@iskra-ui/react':
         specifier: workspace:*
         version: link:../react
     devDependencies:
-      '@iskra-dci/tsconfig':
+      '@iskra-ui/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       '@storybook/react-vite':
@@ -265,7 +265,7 @@ importers:
 
   packages/icons:
     devDependencies:
-      '@iskra-dci/tsconfig':
+      '@iskra-ui/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       typescript:
@@ -274,20 +274,20 @@ importers:
 
   packages/react:
     dependencies:
-      '@iskra-dci/core':
+      '@iskra-ui/core':
         specifier: workspace:*
         version: link:../core
-      '@iskra-dci/icons':
+      '@iskra-ui/icons':
         specifier: workspace:*
         version: link:../icons
     devDependencies:
-      '@iskra-dci/styles':
+      '@iskra-ui/styles':
         specifier: workspace:*
         version: link:../styles
-      '@iskra-dci/tokens':
+      '@iskra-ui/tokens':
         specifier: workspace:*
         version: link:../tokens
-      '@iskra-dci/tsconfig':
+      '@iskra-ui/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       '@storybook/react-vite':
@@ -335,13 +335,13 @@ importers:
 
   packages/styles:
     dependencies:
-      '@iskra-dci/tokens':
+      '@iskra-ui/tokens':
         specifier: workspace:*
         version: link:../tokens
 
   packages/tokens:
     devDependencies:
-      '@iskra-dci/tsconfig':
+      '@iskra-ui/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       style-dictionary:
@@ -355,23 +355,23 @@ importers:
 
   packages/vue:
     dependencies:
-      '@iskra-dci/core':
+      '@iskra-ui/core':
         specifier: workspace:*
         version: link:../core
-      '@iskra-dci/icons':
+      '@iskra-ui/icons':
         specifier: workspace:*
         version: link:../icons
     devDependencies:
-      '@iskra-dci/react':
+      '@iskra-ui/react':
         specifier: workspace:*
         version: link:../react
-      '@iskra-dci/styles':
+      '@iskra-ui/styles':
         specifier: workspace:*
         version: link:../styles
-      '@iskra-dci/tokens':
+      '@iskra-ui/tokens':
         specifier: workspace:*
         version: link:../tokens
-      '@iskra-dci/tsconfig':
+      '@iskra-ui/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       '@types/node':

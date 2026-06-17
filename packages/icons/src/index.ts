@@ -1,4 +1,4 @@
-// @iskra-dci/icons — framework-agnostic icon data + a tiny SVG-string helper.
+// @iskra-ui/icons — framework-agnostic icon data + a tiny SVG-string helper.
 // Framework wrappers (React `<Icon>`, Vue `<Icon>`) consume `icons[name]`.
 import { icons, type IconName } from './icons.js';
 

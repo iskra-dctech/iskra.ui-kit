@@ -1,8 +1,8 @@
 {
-  "name": "iskra-dci-ui",
-  "version": "0.0.0",
-  "private": true,
-  "description": "Искра.DCI Design System — monorepo (tokens, styles, icons, core, react, vue, domain).",
+  "name": "iskra-ui",
+  "version": "0.2.0",
+  "private": false,
+  "description": "UI Design System for Iskra",
   "packageManager": "pnpm@11.7.0",
   "engines": {
     "node": ">=22"
@@ -10,7 +10,7 @@
   "type": "module",
   "scripts": {
     "build": "turbo run build",
-    "build:tokens": "pnpm --filter @iskra-dci/tokens build",
+    "build:tokens": "pnpm --filter @iskra-ui/tokens build",
     "dev": "turbo run dev --parallel",
     "typecheck": "turbo run typecheck",
     "lint": "eslint .",
@@ -18,16 +18,16 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,vue,json,css,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,vue,json,css,md}\"",
     "test": "turbo run test",
-    "storybook": "pnpm --filter @iskra-dci/docs-react dev",
-    "build-storybook": "pnpm --filter @iskra-dci/docs-react build",
+    "storybook": "pnpm --filter @iskra-ui/docs-react dev",
+    "build-storybook": "pnpm --filter @iskra-ui/docs-react build",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "turbo run build --filter=./packages/* && changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",
-    "@iskra-dci/eslint-config": "workspace:*",
-    "@iskra-dci/tsconfig": "workspace:*",
+    "@iskra-ui/eslint-config": "workspace:*",
+    "@iskra-ui/tsconfig": "workspace:*",
     "eslint": "catalog:",
     "eslint-plugin-storybook": "catalog:",
     "prettier": "catalog:",

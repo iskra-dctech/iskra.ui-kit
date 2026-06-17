@@ -1,5 +1,5 @@
 {
-  "name": "@iskra-dci/core",
+  "name": "@iskra-ui/core",
   "version": "0.1.0",
   "description": "Искра.DCI headless core — framework-agnostic state machines, ARIA prop getters and keyboard helpers shared by the React and Vue packages.",
   "type": "module",
@@ -21,12 +21,12 @@
     "test": "vitest run"
   },
   "devDependencies": {
-    "@iskra-dci/tsconfig": "workspace:*",
+    "@iskra-ui/tsconfig": "workspace:*",
     "typescript": "catalog:",
     "vitest": "catalog:"
   },
   "publishConfig": {
-    "access": "restricted",
+    "access": "public",
     "provenance": true
   }
 }

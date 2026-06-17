@@ -1,5 +1,5 @@
 import { useId, useState } from 'react';
-import { Badge, Button, Icon } from '@iskra-dci/react';
+import { Badge, Button, Icon } from '@iskra-ui/react';
 import './FleetPulse.css';
 
 export type IssueSeverity = 'error' | 'drift';

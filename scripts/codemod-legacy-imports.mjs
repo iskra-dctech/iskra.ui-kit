@@ -22,10 +22,10 @@ if (!TARGET) {
 // Rewrite rules applied to the *module specifier* of each import.
 const SPECIFIER_RULES = [
   // The old all-in-one bundle and loose component paths → the react package.
-  [/^(.*\/)?_ds_bundle(\.js)?$/, '@iskra-dci/react'],
-  [/^(\.{1,2}\/)+components\/[A-Za-z]+(\/[A-Za-z]+(\.jsx?)?)?$/, '@iskra-dci/react'],
+  [/^(.*\/)?_ds_bundle(\.js)?$/, '@iskra-ui/react'],
+  [/^(\.{1,2}\/)+components\/[A-Za-z]+(\/[A-Za-z]+(\.jsx?)?)?$/, '@iskra-ui/react'],
   // Legacy token stylesheet → the styles bundle.
-  [/^(.*\/)?colors_and_type\.css$/, '@iskra-dci/styles/index.css'],
+  [/^(.*\/)?colors_and_type\.css$/, '@iskra-ui/styles/index.css'],
 ];
 
 const importRe = /(\bfrom\s+|\bimport\s+)(['"])([^'"]+)\2/g;

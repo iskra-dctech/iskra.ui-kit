@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { icons, type IconName } from '@iskra-dci/icons';
+import { icons, type IconName } from '@iskra-ui/icons';
 
 const props = withDefaults(
   defineProps<{

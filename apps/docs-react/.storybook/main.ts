@@ -24,10 +24,10 @@ const config: StorybookConfig = {
     config.resolve ??= {};
     config.resolve.alias = {
       ...(config.resolve.alias as Record<string, string> | undefined),
-      '@iskra-dci/react': pkg('react/src/index.ts'),
-      '@iskra-dci/dci-react': pkg('dci-react/src/index.ts'),
-      '@iskra-dci/core': pkg('core/src/index.ts'),
-      '@iskra-dci/icons': pkg('icons/src/index.ts'),
+      '@iskra-ui/react': pkg('react/src/index.ts'),
+      '@iskra-ui/dci-react': pkg('dci-react/src/index.ts'),
+      '@iskra-ui/core': pkg('core/src/index.ts'),
+      '@iskra-ui/icons': pkg('icons/src/index.ts'),
     };
     return config;
   },

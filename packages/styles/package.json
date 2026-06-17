@@ -1,5 +1,5 @@
 {
-  "name": "@iskra-dci/styles",
+  "name": "@iskra-ui/styles",
   "version": "0.1.0",
   "description": "Искра.DCI global stylesheet — tokens + self-hosted fonts + reset + element classes.",
   "type": "module",
@@ -17,10 +17,10 @@
     "build": "node build.mjs"
   },
   "dependencies": {
-    "@iskra-dci/tokens": "workspace:*"
+    "@iskra-ui/tokens": "workspace:*"
   },
   "publishConfig": {
-    "access": "restricted",
+    "access": "public",
     "provenance": true
   }
 }
