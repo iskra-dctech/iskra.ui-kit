@@ -58,3 +58,6 @@ catalog:
   eslint-plugin-react-hooks: ^7.0.0
   globals: ^17.0.0
   prettier: ^3.8.0
+
+patchedDependencies:
+  read-yaml-file@1.1.0: patches/read-yaml-file@1.1.0.patch
