@@ -2,8 +2,10 @@ import * as React from 'react';
 
 export type SwitchSize = 's' | 'm';
 
-export interface SwitchProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'type'> {
+export interface SwitchProps extends Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  'size' | 'type'
+> {
   /** Controlled on/off state. */
   checked?: boolean;
   /** Uncontrolled initial state. */

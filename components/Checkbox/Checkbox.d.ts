@@ -2,8 +2,10 @@ import * as React from 'react';
 
 export type CheckboxSize = 's' | 'm';
 
-export interface CheckboxProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'type'> {
+export interface CheckboxProps extends Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  'size' | 'type'
+> {
   /** Controlled checked state. */
   checked?: boolean;
 

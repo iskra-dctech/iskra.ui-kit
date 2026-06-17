@@ -1,0 +1,25 @@
+.dci-cli {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  background: var(--bg, #0d1117);
+  border: 1px solid var(--line, #30363d);
+  border-radius: var(--radius, 4px);
+}
+.dci-cli-icon {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  color: var(--accent-safe, #00aa85);
+  font-size: 12px;
+  flex-shrink: 0;
+}
+.dci-cli-text {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  color: var(--fg2, #8b949e);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+}

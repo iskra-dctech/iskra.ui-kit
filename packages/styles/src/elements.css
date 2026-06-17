@@ -1,0 +1,58 @@
+/* Искра.DCI — semantic element/utility classes built on design tokens. */
+.iskra-scope {
+  font-size: 14px;
+} /* enforce intentional 14px root */
+
+.h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-h1);
+  line-height: var(--lh-h1);
+  font-weight: var(--wt-h1);
+  letter-spacing: -0.02em;
+  color: var(--fg1);
+}
+.h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  line-height: var(--lh-h2);
+  font-weight: var(--wt-h2);
+  letter-spacing: -0.02em;
+  color: var(--fg1);
+}
+.h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  line-height: var(--lh-h3);
+  font-weight: var(--wt-h3);
+  letter-spacing: -0.01em;
+  color: var(--fg1);
+}
+.p {
+  font-family: var(--font-ui);
+  font-size: var(--text-ui);
+  line-height: var(--lh-ui);
+  color: var(--fg1);
+}
+.small {
+  font-size: var(--text-small);
+  line-height: var(--lh-sm);
+  color: var(--fg2);
+}
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  line-height: var(--lh-mono);
+  color: var(--fg1);
+}
+.code {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  color: var(--accent-safe);
+}
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg2);
+}

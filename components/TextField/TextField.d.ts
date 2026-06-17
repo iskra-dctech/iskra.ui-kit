@@ -2,8 +2,7 @@ import * as React from 'react';
 
 export type TextFieldSize = 's' | 'm' | 'l';
 
-export interface TextFieldProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+export interface TextFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   /** Control height: `s` 28px · `m` 32px · `l` 36px. @default 'm' */
   size?: TextFieldSize;
 

@@ -1,0 +1,8 @@
+{
+  "$description": "Motion — minimal and functional (~150ms color/border transitions).",
+  "ease": { "$type": "cubicBezier", "$value": "cubic-bezier(.2,.6,.2,1)" },
+  "dur": { "$type": "duration", "$value": ".15s" },
+  "dur-fast": { "$type": "duration", "$value": "100ms" },
+  "dur-normal": { "$type": "duration", "$value": "150ms" },
+  "dur-slow": { "$type": "duration", "$value": "250ms" }
+}

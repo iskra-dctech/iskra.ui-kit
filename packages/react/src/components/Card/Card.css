@@ -1,0 +1,63 @@
+/* ИСКРА.DCI — Card. Depth via 1px border + surface step, never shadow. */
+.ik-card {
+  display: block;
+  box-sizing: border-box;
+  background: var(--panel, #161b22);
+  border: 1px solid var(--line, #30363d);
+  border-radius: var(--radius, 4px);
+  color: var(--fg1, #f0f6fc);
+  font-family: var(--font-ui, 'Inter', system-ui, sans-serif);
+}
+.ik-card-pad-none {
+  padding: 0;
+}
+.ik-card-pad-s {
+  padding: 12px;
+}
+.ik-card-pad-m {
+  padding: 16px;
+}
+.ik-card-pad-l {
+  padding: 24px;
+}
+.ik-card-elevated {
+  background: var(--panel-soft, #1d2530);
+}
+.ik-card-interactive {
+  cursor: pointer;
+  transition:
+    border-color 0.12s,
+    background 0.12s;
+}
+.ik-card-interactive:hover {
+  border-color: var(--accent, #00ffc2);
+}
+.ik-card-interactive:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 1px var(--bg, #0d1117),
+    0 0 0 2px var(--accent, #00ffc2);
+}
+.ik-card-selected {
+  border-color: var(--accent, #00ffc2);
+  background: var(--accent-soft, rgba(0, 170, 133, 0.14));
+}
+.ik-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line, #30363d);
+  font-weight: 600;
+}
+.ik-card-body {
+  padding: 16px;
+}
+.ik-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--line, #30363d);
+}

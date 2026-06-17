@@ -1,0 +1,22 @@
+{
+  "$description": "Warm light theme (paper / sand) — redefines the same semantic color tokens. Applied via .theme-warm.",
+  "bg": { "$type": "color", "$value": "#F5F0E8" },
+  "panel": { "$type": "color", "$value": "#EDE8DF" },
+  "panel-soft": { "$type": "color", "$value": "#F0EBE3" },
+  "panel-muted": { "$type": "color", "$value": "#E4DED3" },
+  "line": { "$type": "color", "$value": "#D8D2C8" },
+  "line-soft": { "$type": "color", "$value": "rgba(216,210,200,.6)" },
+  "fg1": { "$type": "color", "$value": "#1C1A17" },
+  "fg2": { "$type": "color", "$value": "#6B6560" },
+  "fg3": { "$type": "color", "$value": "#9A948C" },
+  "accent": { "$type": "color", "$value": "#009B78" },
+  "accent-hover": { "$type": "color", "$value": "#008268" },
+  "accent-safe": { "$type": "color", "$value": "#00795D" },
+  "accent-soft": { "$type": "color", "$value": "#E8F5F0" },
+  "accent-line": { "$type": "color", "$value": "rgba(0,155,120,.32)" },
+  "status-ok": { "$type": "color", "$value": "#009B78" },
+  "status-warn": { "$type": "color", "$value": "#C2620A" },
+  "status-err": { "$type": "color", "$value": "#C23B36" },
+  "status-off": { "$type": "color", "$value": "#7A756E" },
+  "status-info": { "$type": "color", "$value": "#3A6FA8" }
+}

@@ -1,0 +1,55 @@
+{
+  "name": "@iskra-dci/vue",
+  "version": "0.1.0",
+  "description": "Искра.DCI Vue 3 component library — API parity with @iskra-dci/react over a shared headless core and token layer.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "build": "vite build && vue-tsc -p tsconfig.build.json --emitDeclarationOnly",
+    "dev": "vite build --watch",
+    "typecheck": "vue-tsc --noEmit -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "vue": ">=3.4"
+  },
+  "dependencies": {
+    "@iskra-dci/core": "workspace:*",
+    "@iskra-dci/icons": "workspace:*"
+  },
+  "devDependencies": {
+    "@iskra-dci/react": "workspace:*",
+    "@iskra-dci/styles": "workspace:*",
+    "@iskra-dci/tokens": "workspace:*",
+    "@iskra-dci/tsconfig": "workspace:*",
+    "@types/node": "catalog:",
+    "@vitejs/plugin-vue": "catalog:",
+    "@vue/test-utils": "catalog:",
+    "jsdom": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:",
+    "vue": "catalog:",
+    "vue-tsc": "catalog:"
+  },
+  "publishConfig": {
+    "access": "restricted",
+    "provenance": true
+  }
+}

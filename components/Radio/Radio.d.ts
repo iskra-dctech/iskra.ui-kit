@@ -2,8 +2,10 @@ import * as React from 'react';
 
 export type RadioSize = 's' | 'm';
 
-export interface RadioProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'type'> {
+export interface RadioProps extends Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  'size' | 'type'
+> {
   /** Value submitted / reported when this radio is selected. */
   value: string;
   /** Circle size: `s` 14px · `m` 16px. @default 'm' */

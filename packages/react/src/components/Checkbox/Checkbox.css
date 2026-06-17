@@ -1,0 +1,89 @@
+/* ИСКРА.DCI — Checkbox. Built on a real <input type="checkbox">. Fill uses --accent-safe. */
+.ik-cb {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 9px;
+  cursor: pointer;
+  font-family: var(--font-ui, 'Inter', system-ui, sans-serif);
+  color: var(--fg1, #f0f6fc);
+  user-select: none;
+  position: relative;
+}
+.ik-cb.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.ik-cb-input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+}
+.ik-cb-box {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 1px solid var(--line, #30363d);
+  border-radius: 3px;
+  background: var(--bg, #0d1117);
+  color: var(--fg-on-accent, #0d1117);
+  transition:
+    background 0.12s,
+    border-color 0.12s,
+    box-shadow 0.12s;
+  margin-top: 1px;
+}
+.ik-cb-s .ik-cb-box {
+  width: 14px;
+  height: 14px;
+}
+.ik-cb-m .ik-cb-box {
+  width: 16px;
+  height: 16px;
+}
+.ik-cb:not(.is-disabled):hover .ik-cb-box {
+  border-color: var(--accent, #00ffc2);
+}
+.ik-cb-check,
+.ik-cb-dash {
+  display: none;
+}
+.ik-cb-input:checked + .ik-cb-box,
+.ik-cb-input:indeterminate + .ik-cb-box {
+  background: var(--accent-safe, #00aa85);
+  border-color: var(--accent-safe, #00aa85);
+}
+.ik-cb-input:checked + .ik-cb-box .ik-cb-check {
+  display: block;
+}
+.ik-cb-input:indeterminate + .ik-cb-box .ik-cb-check {
+  display: none;
+}
+.ik-cb-input:indeterminate + .ik-cb-box .ik-cb-dash {
+  display: block;
+}
+.ik-cb-input:focus-visible + .ik-cb-box {
+  box-shadow:
+    0 0 0 1px var(--bg, #0d1117),
+    0 0 0 2px var(--accent, #00ffc2);
+}
+.ik-cb-textwrap {
+  display: flex;
+  flex-direction: column;
+}
+.ik-cb-text {
+  font-size: 13px;
+  line-height: 1.45;
+}
+.ik-cb-s .ik-cb-text {
+  font-size: 12px;
+}
+.ik-cb-desc {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--fg2, #8b949e);
+  margin-top: 2px;
+}

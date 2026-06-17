@@ -1,0 +1,7 @@
+{
+  "$description": "Opacity aliases for state.",
+  "opacity-disabled": { "$type": "number", "$value": 0.45 },
+  "opacity-muted": { "$type": "number", "$value": 0.7 },
+  "opacity-overlay": { "$type": "number", "$value": 0.6 },
+  "opacity-pressed": { "$type": "number", "$value": 0.85 }
+}

@@ -1,0 +1,54 @@
+/* ИСКРА.DCI — Tabs. Underline indicator in mint; 1px baseline. */
+.ik-tabs {
+  font-family: var(--font-ui, 'Inter', system-ui, sans-serif);
+}
+.ik-tabs-list {
+  display: flex;
+  gap: 2px;
+  border-bottom: 1px solid var(--line, #30363d);
+}
+.ik-tabs-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 12px;
+  border: none;
+  background: transparent;
+  color: var(--fg2, #8b949e);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition:
+    color 0.12s,
+    border-color 0.12s;
+}
+.ik-tabs-tab:hover:not(:disabled) {
+  color: var(--fg1, #f0f6fc);
+}
+.ik-tabs-tab[aria-selected='true'] {
+  color: var(--accent-safe, #00aa85);
+  border-bottom-color: var(--accent, #00ffc2);
+}
+.ik-tabs-tab:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.ik-tabs-tab:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 1px var(--accent, #00ffc2);
+  border-radius: 3px;
+}
+.ik-tabs-panel {
+  padding: 16px 0;
+  color: var(--fg1, #f0f6fc);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.ik-tabs-panel:focus-visible {
+  outline: none;
+}

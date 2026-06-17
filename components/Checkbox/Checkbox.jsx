@@ -66,7 +66,8 @@ export function Checkbox({
   }, [indeterminate, checked]);
 
   const cls = ['ik-cb', 'ik-cb-' + size, disabled && 'is-disabled', className]
-    .filter(Boolean).join(' ');
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <label className={cls} htmlFor={reactId}>
@@ -82,12 +83,29 @@ export function Checkbox({
         {...rest}
       />
       <span className="ik-cb-box" aria-hidden="true">
-        <svg className="ik-cb-check" width="11" height="11" viewBox="0 0 16 16" fill="none"
-          stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <svg
+          className="ik-cb-check"
+          width="11"
+          height="11"
+          viewBox="0 0 16 16"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
           <polyline points="3.5,8.5 6.5,11.5 12.5,4.5" />
         </svg>
-        <svg className="ik-cb-dash" width="11" height="11" viewBox="0 0 16 16" fill="none"
-          stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+        <svg
+          className="ik-cb-dash"
+          width="11"
+          height="11"
+          viewBox="0 0 16 16"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+        >
           <line x1="3.5" y1="8" x2="12.5" y2="8" />
         </svg>
       </span>

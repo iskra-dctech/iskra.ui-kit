@@ -1,0 +1,40 @@
+.dci-apikey-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.dci-apikey-scopes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.dci-apikey-scopes-legend {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--fg1, #f0f6fc);
+  margin-bottom: 2px;
+  padding: 0;
+}
+.dci-apikey-scope {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--line, #30363d);
+  border-radius: var(--radius, 4px);
+  background: var(--panel-soft, #1d2530);
+}
+.dci-apikey-scope-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.dci-apikey-scope-name {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 12px;
+  color: var(--fg1, #f0f6fc);
+}
+.dci-apikey-scope-desc {
+  font-size: 11px;
+  color: var(--fg2, #8b949e);
+}

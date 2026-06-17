@@ -1,0 +1,25 @@
+/* ИСКРА.DCI — FormField. Layout + a11y wiring for a single control. */
+.ik-ff {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  font-family: var(--font-ui, 'Inter', system-ui, sans-serif);
+}
+.ik-ff-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--fg2, #8b949e);
+}
+.ik-ff-req {
+  color: var(--status-err, #f85149);
+  margin-left: 2px;
+}
+.ik-ff-msg {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--fg3, #6e7681);
+}
+.ik-ff-msg.is-error {
+  color: var(--status-err, #f85149);
+}

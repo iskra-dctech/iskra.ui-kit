@@ -1,0 +1,8 @@
+{
+  "$description": "Borders & elevation. No shadows — depth is a 1px hairline + a surface-color step.",
+  "border": { "$type": "string", "$value": "1px solid var(--line)" },
+  "focus-ring": { "$type": "string", "$value": "0 0 0 1px var(--accent)" },
+  "border-width-thin": { "$type": "dimension", "$value": "1px" },
+  "border-width-regular": { "$type": "dimension", "$value": "1px" },
+  "border-width-strong": { "$type": "dimension", "$value": "2px" }
+}

@@ -63,7 +63,8 @@ export function Radio({
   _injectRdCSS();
   const reactId = React.useMemo(() => id || `ik-rd-${++_rdId}`, [id]);
   const cls = ['ik-rd', 'ik-rd-' + size, disabled && 'is-disabled', className]
-    .filter(Boolean).join(' ');
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <label className={cls} htmlFor={reactId}>
@@ -79,7 +80,9 @@ export function Radio({
         onChange={onChange}
         {...rest}
       />
-      <span className="ik-rd-circle" aria-hidden="true"><span className="ik-rd-dot" /></span>
+      <span className="ik-rd-circle" aria-hidden="true">
+        <span className="ik-rd-dot" />
+      </span>
       {(label || description) && (
         <span className="ik-rd-textwrap">
           {label && <span className="ik-rd-text">{label}</span>}

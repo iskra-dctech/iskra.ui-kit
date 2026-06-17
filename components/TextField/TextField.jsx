@@ -51,9 +51,18 @@ function _injectTfCSS() {
 /* tiny built-in clear glyph (no Icon dependency) */
 function _ClearGlyph() {
   return (
-    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor"
-      strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
-      <line x1="4" y1="4" x2="12" y2="12" /><line x1="12" y1="4" x2="4" y2="12" />
+    <svg
+      width="13"
+      height="13"
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      aria-hidden="true"
+    >
+      <line x1="4" y1="4" x2="12" y2="12" />
+      <line x1="12" y1="4" x2="4" y2="12" />
     </svg>
   );
 }
@@ -87,7 +96,7 @@ export function TextField({
   const inputRef = React.useRef(null);
   const reactId = React.useMemo(() => id || `ik-tf-${++_tfId}`, [id]);
   const [hasVal, setHasVal] = React.useState(
-    value != null ? String(value).length > 0 : String(defaultValue ?? '').length > 0
+    value != null ? String(value).length > 0 : String(defaultValue ?? '').length > 0,
   );
 
   const controlled = value != null;
@@ -101,7 +110,10 @@ export function TextField({
   const handleClear = () => {
     const el = inputRef.current;
     if (el) {
-      const setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+      const setter = Object.getOwnPropertyDescriptor(
+        window.HTMLInputElement.prototype,
+        'value',
+      ).set;
       setter.call(el, '');
       el.dispatchEvent(new Event('input', { bubbles: true }));
       el.focus();
@@ -114,15 +126,25 @@ export function TextField({
   const isError = !!error;
 
   const fieldCls = [
-    'ik-tf-field', 'ik-tf-' + size,
-    isError && 'is-error', disabled && 'is-disabled', className,
-  ].filter(Boolean).join(' ');
+    'ik-tf-field',
+    'ik-tf-' + size,
+    isError && 'is-error',
+    disabled && 'is-disabled',
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <div className={('ik-tf-wrap ' + wrapClassName).trim()}>
       {label && (
         <label className="ik-tf-label" htmlFor={reactId}>
-          {label}{required && <span className="ik-tf-req" aria-hidden="true">*</span>}
+          {label}
+          {required && (
+            <span className="ik-tf-req" aria-hidden="true">
+              *
+            </span>
+          )}
         </label>
       )}
       <div className={fieldCls}>
@@ -136,11 +158,16 @@ export function TextField({
           defaultValue={defaultValue}
           onChange={handleChange}
           aria-invalid={isError || undefined}
-          aria-describedby={(errText || hint) ? reactId + '-msg' : undefined}
+          aria-describedby={errText || hint ? reactId + '-msg' : undefined}
           {...rest}
         />
         {showClear && (
-          <button type="button" className="ik-tf-clear" onClick={handleClear} aria-label={clearLabel}>
+          <button
+            type="button"
+            className="ik-tf-clear"
+            onClick={handleClear}
+            aria-label={clearLabel}
+          >
             <_ClearGlyph />
           </button>
         )}

@@ -1,0 +1,38 @@
+{
+  "name": "@iskra-dci/tokens",
+  "version": "0.1.0",
+  "description": "Искра.DCI design tokens (DTCG) → CSS variables + typed TS map via Style Dictionary.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./tokens.css": "./dist/tokens.css",
+    "./tokens.json": "./dist/tokens.json",
+    "./src/*": "./src/*"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@iskra-dci/tsconfig": "workspace:*",
+    "style-dictionary": "catalog:",
+    "typescript": "catalog:"
+  },
+  "publishConfig": {
+    "access": "restricted",
+    "provenance": true
+  }
+}

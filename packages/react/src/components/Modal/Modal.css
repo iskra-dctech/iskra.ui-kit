@@ -1,0 +1,88 @@
+/* ИСКРА.DCI — Modal / Dialog. Centered panel over a dimmed overlay. */
+.ik-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal, 1300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: color-mix(in srgb, var(--scrim, #0d1117) var(--ik-overlay, 60%), transparent);
+}
+.ik-modal {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: calc(100vh - 48px);
+  box-sizing: border-box;
+  background: var(--panel, #161b22);
+  border: 1px solid var(--line, #30363d);
+  border-radius: var(--radius, 4px);
+  color: var(--fg1, #f0f6fc);
+  font-family: var(--font-ui, 'Inter', system-ui, sans-serif);
+  outline: none;
+}
+.ik-modal-s {
+  max-width: 360px;
+}
+.ik-modal-m {
+  max-width: 480px;
+}
+.ik-modal-l {
+  max-width: 720px;
+}
+.ik-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 16px 0;
+}
+.ik-modal-titles {
+  min-width: 0;
+}
+.ik-modal-title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.ik-modal-desc {
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--fg2, #8b949e);
+}
+.ik-modal-close {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--line, #30363d);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--fg3, #6e7681);
+  cursor: pointer;
+}
+.ik-modal-close:hover {
+  color: var(--fg1, #f0f6fc);
+  border-color: var(--accent, #00ffc2);
+}
+.ik-modal-close:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 1px var(--accent, #00ffc2);
+}
+.ik-modal-body {
+  padding: 16px;
+  overflow-y: auto;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.ik-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 0 16px 16px;
+}

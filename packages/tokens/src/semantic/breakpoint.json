@@ -1,0 +1,7 @@
+{
+  "$description": "Responsive breakpoints and container widths.",
+  "bp-sm": { "$type": "dimension", "$value": "640px" },
+  "bp-md": { "$type": "dimension", "$value": "768px" },
+  "bp-lg": { "$type": "dimension", "$value": "1024px" },
+  "bp-xl": { "$type": "dimension", "$value": "1280px" }
+}

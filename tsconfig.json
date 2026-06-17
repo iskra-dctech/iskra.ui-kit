@@ -1,0 +1,9 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./packages/icons" },
+    { "path": "./packages/tokens" },
+    { "path": "./packages/core" },
+    { "path": "./packages/react" }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "extends": "@iskra-dci/tsconfig/react-lib.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "tsBuildInfoFile": "dist/.tsbuildinfo"
+  },
+  "include": ["src"]
+}

@@ -1,0 +1,65 @@
+/* ИСКРА.DCI — Alert. Inline message; tint from status color via color-mix. */
+.ik-alert {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid;
+  border-radius: var(--radius, 4px);
+  border-color: color-mix(in srgb, currentColor 38%, transparent);
+  background: color-mix(in srgb, currentColor 10%, transparent);
+  font-family: var(--font-ui, 'Inter', system-ui, sans-serif);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.ik-alert-info {
+  color: var(--status-info, #58a6ff);
+}
+.ik-alert-success {
+  color: var(--status-ok, #00ffc2);
+}
+.ik-alert-warning {
+  color: var(--status-warn, #f97316);
+}
+.ik-alert-error {
+  color: var(--status-err, #f85149);
+}
+.ik-alert-ico {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.ik-alert-body {
+  flex: 1;
+  min-width: 0;
+  color: var(--fg1, #f0f6fc);
+}
+.ik-alert-title {
+  font-weight: 600;
+  color: inherit;
+  margin-bottom: 2px;
+}
+.ik-alert-title.has-color {
+  color: var(--fg1, #f0f6fc);
+}
+.ik-alert-close {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--fg3, #6e7681);
+  cursor: pointer;
+  padding: 2px;
+  margin: -2px -4px -2px 0;
+  border-radius: 2px;
+}
+.ik-alert-close:hover {
+  color: var(--fg1, #f0f6fc);
+}
+.ik-alert-close:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 1px var(--accent, #00ffc2);
+  color: var(--fg1, #f0f6fc);
+}

@@ -1,0 +1,36 @@
+/* ИСКРА.DCI — Spinner. Functional loading indicator. */
+.ik-spinner {
+  display: inline-block;
+  box-sizing: border-box;
+  border: 2px solid var(--line, #30363d);
+  border-top-color: var(--accent, #00ffc2);
+  border-radius: 50%;
+  animation: ik-spinner-spin 0.6s linear infinite;
+  vertical-align: middle;
+}
+.ik-spinner-s {
+  width: 14px;
+  height: 14px;
+}
+.ik-spinner-m {
+  width: 18px;
+  height: 18px;
+}
+.ik-spinner-l {
+  width: 24px;
+  height: 24px;
+  border-width: 3px;
+}
+.ik-spinner-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+@keyframes ik-spinner-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "@iskra-dci/docs-react",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Storybook documentation for @iskra-dci/react.",
+  "type": "module",
+  "scripts": {
+    "dev": "storybook dev -p 6006 --no-open",
+    "build": "storybook build",
+    "test:visual": "playwright test",
+    "test:visual:update": "playwright test --update-snapshots"
+  },
+  "dependencies": {
+    "@iskra-dci/core": "workspace:*",
+    "@iskra-dci/dci-react": "workspace:*",
+    "@iskra-dci/icons": "workspace:*",
+    "@iskra-dci/react": "workspace:*",
+    "@iskra-dci/styles": "workspace:*",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@playwright/test": "catalog:",
+    "@storybook/addon-a11y": "catalog:",
+    "@storybook/addon-essentials": "catalog:",
+    "@storybook/react": "catalog:",
+    "@storybook/react-vite": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
+    "storybook": "catalog:",
+    "vite": "catalog:"
+  }
+}

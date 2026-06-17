@@ -1,0 +1,114 @@
+/* ИСКРА.DCI — TextField. Sizes s·m·l. Mint focus ring; error uses status-err. */
+.ik-tf-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  font-family: var(--font-ui, 'Inter', system-ui, sans-serif);
+}
+.ik-tf-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--fg2, #8b949e);
+}
+.ik-tf-label .ik-tf-req {
+  color: var(--status-err, #f85149);
+  margin-left: 2px;
+}
+.ik-tf-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+  background: var(--bg, #0d1117);
+  border: 1px solid var(--line, #30363d);
+  border-radius: var(--radius, 4px);
+  padding: 0 10px;
+  color: var(--fg1, #f0f6fc);
+  transition:
+    border-color 0.12s,
+    box-shadow 0.12s;
+}
+.ik-tf-s {
+  height: 28px;
+  font-size: 12px;
+}
+.ik-tf-m {
+  height: 32px;
+  font-size: 13px;
+}
+.ik-tf-l {
+  height: 36px;
+  font-size: 14px;
+}
+.ik-tf-field:focus-within {
+  border-color: var(--accent, #00ffc2);
+  box-shadow: 0 0 0 1px var(--accent, #00ffc2);
+}
+.ik-tf-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  outline: none;
+  color: var(--fg1, #f0f6fc);
+  font: inherit;
+  padding: 0;
+  height: 100%;
+}
+.ik-tf-input::placeholder {
+  color: var(--fg3, #6e7681);
+}
+.ik-tf-input:-webkit-autofill {
+  -webkit-text-fill-color: var(--fg1, #f0f6fc);
+  transition: background-color 5000s;
+}
+.ik-tf-ico {
+  display: flex;
+  align-items: center;
+  color: var(--fg3, #6e7681);
+  flex-shrink: 0;
+}
+.ik-tf-clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  color: var(--fg3, #6e7681);
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 2px;
+  transition: color 0.12s;
+}
+.ik-tf-clear:hover {
+  color: var(--fg1, #f0f6fc);
+}
+.ik-tf-clear:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 1px var(--accent, #00ffc2);
+  color: var(--fg1, #f0f6fc);
+}
+.ik-tf-field.is-error {
+  border-color: var(--status-err, #f85149);
+}
+.ik-tf-field.is-error:focus-within {
+  border-color: var(--status-err, #f85149);
+  box-shadow: 0 0 0 1px var(--status-err, #f85149);
+}
+.ik-tf-field.is-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.ik-tf-field.is-disabled .ik-tf-input {
+  cursor: not-allowed;
+}
+.ik-tf-msg {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--fg3, #6e7681);
+}
+.ik-tf-msg.is-error {
+  color: var(--status-err, #f85149);
+}

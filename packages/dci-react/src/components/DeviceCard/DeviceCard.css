@@ -1,0 +1,114 @@
+.dci-device {
+  position: relative;
+  cursor: default;
+}
+.dci-device.is-clickable {
+  cursor: pointer;
+}
+.dci-device-top {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 3px;
+}
+.dci-device-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.dci-device-dot.s-sync {
+  background: var(--status-ok, #00ffc2);
+}
+.dci-device-dot.s-drift {
+  background: var(--status-warn, #f97316);
+}
+.dci-device-dot.s-error {
+  background: var(--status-err, #f85149);
+}
+.dci-device-dot.s-offline {
+  background: var(--status-off, #6e7681);
+}
+.dci-device-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fg1, #f0f6fc);
+}
+.dci-device-status {
+  margin-left: auto;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.dci-device-status.s-sync {
+  color: var(--accent-safe, #00aa85);
+}
+.dci-device-status.s-drift {
+  color: var(--status-warn, #f97316);
+}
+.dci-device-status.s-error {
+  color: var(--status-err, #f85149);
+}
+.dci-device-status.s-offline {
+  color: var(--status-off, #6e7681);
+}
+.dci-device-ip {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  color: var(--fg2, #8b949e);
+  margin-bottom: 10px;
+}
+.dci-device-metahd {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 3px;
+  gap: 8px;
+}
+.dci-device-metric-label {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg2, #8b949e);
+}
+.dci-device-metric-value {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--fg1, #f0f6fc);
+  white-space: nowrap;
+}
+.dci-device-metric-value.is-alert {
+  color: var(--status-warn, #f97316);
+}
+.dci-device-spark {
+  height: 26px;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  margin-bottom: 8px;
+}
+.dci-device-bar {
+  flex: 1;
+  border-radius: 1px;
+  background: var(--accent-safe, #00aa85);
+  min-height: 2px;
+}
+.dci-device-bar.is-alert {
+  background: var(--status-warn, #f97316);
+}
+.dci-device-tags {
+  display: flex;
+  gap: 4px;
+}
+.dci-device-tag {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 9px;
+  color: var(--fg2, #8b949e);
+  background: var(--bg, #0d1117);
+  border: 1px solid var(--line, #30363d);
+  border-radius: 2px;
+  padding: 1px 5px;
+}

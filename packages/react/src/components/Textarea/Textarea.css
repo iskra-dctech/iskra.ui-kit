@@ -1,0 +1,76 @@
+/* ИСКРА.DCI — Textarea. Multi-line input matching TextField visuals. */
+.ik-ta-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  font-family: var(--font-ui, 'Inter', system-ui, sans-serif);
+}
+.ik-ta-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--fg2, #8b949e);
+}
+.ik-ta-label .ik-ta-req {
+  color: var(--status-err, #f85149);
+  margin-left: 2px;
+}
+.ik-ta-field {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--bg, #0d1117);
+  border: 1px solid var(--line, #30363d);
+  border-radius: var(--radius, 4px);
+  padding: 8px 10px;
+  color: var(--fg1, #f0f6fc);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.45;
+  outline: none;
+  transition:
+    border-color 0.12s,
+    box-shadow 0.12s;
+}
+.ik-ta-field::placeholder {
+  color: var(--fg3, #6e7681);
+}
+.ik-ta-field:focus {
+  border-color: var(--accent, #00ffc2);
+  box-shadow: 0 0 0 1px var(--accent, #00ffc2);
+}
+.ik-ta-resize-none {
+  resize: none;
+}
+.ik-ta-resize-vertical {
+  resize: vertical;
+}
+.ik-ta-field.is-error {
+  border-color: var(--status-err, #f85149);
+}
+.ik-ta-field.is-error:focus {
+  box-shadow: 0 0 0 1px var(--status-err, #f85149);
+}
+.ik-ta-field:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.ik-ta-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.ik-ta-msg {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--fg3, #6e7681);
+}
+.ik-ta-msg.is-error {
+  color: var(--status-err, #f85149);
+}
+.ik-ta-count {
+  font-size: 11px;
+  color: var(--fg3, #6e7681);
+  font-family: var(--font-mono, monospace);
+  margin-left: auto;
+}

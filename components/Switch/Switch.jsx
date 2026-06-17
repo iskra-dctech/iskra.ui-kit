@@ -60,7 +60,8 @@ export function Switch({
   _injectSwCSS();
   const reactId = React.useMemo(() => id || `ik-sw-${++_swId}`, [id]);
   const cls = ['ik-sw', 'ik-sw-' + size, disabled && 'is-disabled', className]
-    .filter(Boolean).join(' ');
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <label className={cls} htmlFor={reactId}>
@@ -75,7 +76,9 @@ export function Switch({
         onChange={onChange}
         {...rest}
       />
-      <span className="ik-sw-track" aria-hidden="true"><span className="ik-sw-knob" /></span>
+      <span className="ik-sw-track" aria-hidden="true">
+        <span className="ik-sw-knob" />
+      </span>
       {(label || description) && (
         <span className="ik-sw-textwrap">
           {label && <span className="ik-sw-text">{label}</span>}
