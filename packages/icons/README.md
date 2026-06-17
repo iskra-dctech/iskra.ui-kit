@@ -11,9 +11,9 @@ pnpm add @iskra-ui/icons
 ## Usage
 
 ```ts
-import { iconSvg, type IconName } from '@iskra-ui/icons'
+import { iconSvg, type IconName } from '@iskra-ui/icons';
 
-const svg = iconSvg('search', { size: 16 })
+const svg = iconSvg('search', { size: 16 });
 ```
 
 In React/Vue prefer the `Icon` component from `@iskra-ui/react` or `@iskra-ui/vue`.

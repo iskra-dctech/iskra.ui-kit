@@ -6,15 +6,15 @@
 
 ## Пакеты `@iskra-ui/*`
 
-| Пакет                 | Статус                                         |
-| --------------------- | ---------------------------------------------- |
-| `@iskra-ui/tokens`    | [Apache License 2.0](LICENSE)                  |
-| `@iskra-ui/styles`    | Apache-2.0 + сторонние шрифты (см. ниже)       |
-| `@iskra-ui/icons`     | Apache License 2.0                             |
-| `@iskra-ui/core`      | Apache License 2.0                             |
-| `@iskra-ui/react`     | Apache License 2.0                             |
-| `@iskra-ui/vue`       | Apache License 2.0                             |
-| `@iskra-ui/dci-react` | Apache License 2.0                             |
+| Пакет                 | Статус                                   |
+| --------------------- | ---------------------------------------- |
+| `@iskra-ui/tokens`    | [Apache License 2.0](LICENSE)            |
+| `@iskra-ui/styles`    | Apache-2.0 + сторонние шрифты (см. ниже) |
+| `@iskra-ui/icons`     | Apache License 2.0                       |
+| `@iskra-ui/core`      | Apache License 2.0                       |
+| `@iskra-ui/react`     | Apache License 2.0                       |
+| `@iskra-ui/vue`       | Apache License 2.0                       |
+| `@iskra-ui/dci-react` | Apache License 2.0                       |
 
 Исходный код, дизайн-токены и компоненты распространяются под [Apache License 2.0](LICENSE). Полный текст лицензии — в файле [`LICENSE`](LICENSE) в корне репозитория и в каждом publishable-пакете.
 
