@@ -1,7 +1,7 @@
 {
-  "name": "@iskra-dci/dci-react",
-  "version": "0.2.0",
-  "description": "Искра.DCI domain components for React — DeviceCard, FleetPulse, CliRow, DriftToast, ApiKeyModal — built on @iskra-dci/react.",
+  "name": "@iskra-ui/dci-react",
+  "version": "0.1.0",
+  "description": "Искра.DCI domain components for React — DeviceCard, FleetPulse, CliRow, DriftToast, ApiKeyModal — built on @iskra-ui/react.",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -31,12 +31,12 @@
     "react-dom": ">=18"
   },
   "dependencies": {
-    "@iskra-dci/core": "workspace:*",
-    "@iskra-dci/icons": "workspace:*",
-    "@iskra-dci/react": "workspace:*"
+    "@iskra-ui/core": "workspace:*",
+    "@iskra-ui/icons": "workspace:*",
+    "@iskra-ui/react": "workspace:*"
   },
   "devDependencies": {
-    "@iskra-dci/tsconfig": "workspace:*",
+    "@iskra-ui/tsconfig": "workspace:*",
     "@storybook/react-vite": "catalog:",
     "@testing-library/jest-dom": "catalog:",
     "@testing-library/react": "catalog:",
@@ -52,7 +52,7 @@
     "vitest": "catalog:"
   },
   "publishConfig": {
-    "access": "restricted",
+    "access": "public",
     "provenance": true
   }
 }

@@ -4,7 +4,7 @@ export type SwitchSize = 's' | 'm';
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { createId } from '@iskra-dci/core';
+import { createId } from '@iskra-ui/core';
 import { cx } from '../utils/cx.js';
 
 const props = withDefaults(

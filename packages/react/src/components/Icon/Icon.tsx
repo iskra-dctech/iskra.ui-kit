@@ -1,5 +1,5 @@
 import { type CSSProperties, type SVGProps } from 'react';
-import { icons, iconNames, type IconName } from '@iskra-dci/icons';
+import { icons, iconNames, type IconName } from '@iskra-ui/icons';
 
 export type { IconName };
 /** All registered icon names — handy for tooling / showcases. */

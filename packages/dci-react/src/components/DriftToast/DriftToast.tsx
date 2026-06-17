@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import { IconButton, Icon, type IconName } from '@iskra-dci/react';
+import { IconButton, Icon, type IconName } from '@iskra-ui/react';
 import './DriftToast.css';
 
 export type DriftToastVariant = 'drift' | 'ok' | 'error' | 'info';

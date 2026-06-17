@@ -1,8 +1,8 @@
 {
-  "name": "@iskra-dci/docs-react",
+  "name": "@iskra-ui/docs-react",
   "version": "0.0.0",
   "private": true,
-  "description": "Storybook documentation for @iskra-dci/react.",
+  "description": "Storybook documentation for @iskra-ui/react.",
   "type": "module",
   "scripts": {
     "dev": "storybook dev -p 6006 --no-open",
@@ -11,11 +11,11 @@
     "test:visual:update": "playwright test --update-snapshots"
   },
   "dependencies": {
-    "@iskra-dci/core": "workspace:*",
-    "@iskra-dci/dci-react": "workspace:*",
-    "@iskra-dci/icons": "workspace:*",
-    "@iskra-dci/react": "workspace:*",
-    "@iskra-dci/styles": "workspace:*",
+    "@iskra-ui/core": "workspace:*",
+    "@iskra-ui/dci-react": "workspace:*",
+    "@iskra-ui/icons": "workspace:*",
+    "@iskra-ui/react": "workspace:*",
+    "@iskra-ui/styles": "workspace:*",
     "react": "catalog:",
     "react-dom": "catalog:"
   },

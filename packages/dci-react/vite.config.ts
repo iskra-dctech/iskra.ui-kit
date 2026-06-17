@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 
-// Library mode: ESM + CJS. React and the @iskra-dci/* foundation are externalized
+// Library mode: ESM + CJS. React and the @iskra-ui/* foundation are externalized
 // so consumers dedupe a single copy; domain CSS bundles into dist/styles.css.
 export default defineConfig({
   plugins: [react()],
@@ -17,9 +17,9 @@ export default defineConfig({
         'react',
         'react-dom',
         'react/jsx-runtime',
-        '@iskra-dci/react',
-        '@iskra-dci/icons',
-        '@iskra-dci/core',
+        '@iskra-ui/react',
+        '@iskra-ui/icons',
+        '@iskra-ui/core',
       ],
       output: {
         globals: { react: 'React', 'react-dom': 'ReactDOM' },

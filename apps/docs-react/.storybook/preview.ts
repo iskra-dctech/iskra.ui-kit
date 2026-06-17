@@ -1,6 +1,6 @@
 import type { Preview } from '@storybook/react-vite';
 // Full token + reset + font stylesheet; component CSS is bundled per-story by Vite.
-import '@iskra-dci/styles/index.css';
+import '@iskra-ui/styles/index.css';
 
 const THEMES: Record<string, string> = {
   dark: '',

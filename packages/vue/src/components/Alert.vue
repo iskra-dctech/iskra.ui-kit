@@ -11,7 +11,7 @@ const DEFAULT_ICON: Record<AlertVariant, string> = {
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { type IconName } from '@iskra-dci/icons';
+import { type IconName } from '@iskra-ui/icons';
 import { cx } from '../utils/cx.js';
 import Icon from './Icon.vue';
 

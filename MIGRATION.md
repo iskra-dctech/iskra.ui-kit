@@ -1,18 +1,18 @@
-# Миграция — с legacy-артефакта на `@iskra-dci/*`
+# Миграция — с legacy-артефакта на `@iskra-ui/*`
 
 Исходная дизайн-система Искра.DCI поставлялась как единый self-injecting бандл
 (`_ds_bundle.js`) вместе с файлами `components/*` и таблицей стилей `colors_and_type.css`.
 Этот артефакт **снят с поддержки**. Содержимое перенесено в версионируемые
 publishable-пакеты:
 
-| Legacy-источник                                                     | Новый пакет                                         |
-| ------------------------------------------------------------------- | --------------------------------------------------- |
-| `_ds_bundle.js`, `components/<Name>/<Name>.jsx`                     | `@iskra-dci/react`                                  |
-| `colors_and_type.css`                                               | `@iskra-dci/styles` (`@iskra-dci/styles/index.css`) |
-| разметка иконок внутри `Icon.jsx`                                   | `@iskra-dci/icons`                                  |
-| (новое) Vue-порт                                                    | `@iskra-dci/vue`                                    |
-| (новое) headless state machines                                     | `@iskra-dci/core`                                   |
-| (новое) DeviceCard / FleetPulse / DriftToast / CliRow / ApiKeyModal | `@iskra-dci/dci-react`                              |
+| Legacy-источник                                                     | Новый пакет                                       |
+| ------------------------------------------------------------------- | ------------------------------------------------- |
+| `_ds_bundle.js`, `components/<Name>/<Name>.jsx`                     | `@iskra-ui/react`                                 |
+| `colors_and_type.css`                                               | `@iskra-ui/styles` (`@iskra-ui/styles/index.css`) |
+| разметка иконок внутри `Icon.jsx`                                   | `@iskra-ui/icons`                                 |
+| (новое) Vue-порт                                                    | `@iskra-ui/vue`                                   |
+| (новое) headless state machines                                     | `@iskra-ui/core`                                  |
+| (новое) DeviceCard / FleetPulse / DriftToast / CliRow / ApiKeyModal | `@iskra-ui/dci-react`                             |
 
 ## Почему миграция безопасна
 
@@ -28,16 +28,16 @@ publishable-пакеты:
 1. Установите нужные пакеты:
 
 ```bash
-pnpm add @iskra-dci/react @iskra-dci/styles
-# опционально: @iskra-dci/vue @iskra-dci/dci-react
+pnpm add @iskra-ui/react @iskra-ui/styles
+# опционально: @iskra-ui/vue @iskra-ui/dci-react
 ```
 
 2. Подключите стили один раз в entry приложения (заменяет `colors_and_type.css`
    и self-injected стили компонентов):
 
 ```ts
-import '@iskra-dci/styles/index.css';
-import '@iskra-dci/react/styles.css';
+import '@iskra-ui/styles/index.css';
+import '@iskra-ui/react/styles.css';
 ```
 
 3. Запустите codemod импортов (сначала dry-run, затем `--write`):
@@ -47,8 +47,8 @@ node scripts/codemod-legacy-imports.mjs ./src
 node scripts/codemod-legacy-imports.mjs ./src --write
 ```
 
-Codemod переписывает импорты `_ds_bundle` / `components/*` на `@iskra-dci/react`,
-а `colors_and_type.css` — на `@iskra-dci/styles/index.css`.
+Codemod переписывает импорты `_ds_bundle` / `components/*` на `@iskra-ui/react`,
+а `colors_and_type.css` — на `@iskra-ui/styles/index.css`.
 
 ## Темы и white-label
 

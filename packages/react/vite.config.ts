@@ -2,7 +2,7 @@ import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 
 // Library mode: ESM + CJS, React externalized, all component CSS bundled into a
-// single dist/styles.css (consumers import '@iskra-dci/react/styles.css').
+// single dist/styles.css (consumers import '@iskra-ui/react/styles.css').
 export default defineConfig({
   plugins: [react()],
   build: {

@@ -1,6 +1,6 @@
 # Искра.DCI Design System
 
-Монорепозиторий дизайн-системы **Искра.DCI** — UI-библиотеки для платформы управления инфраструктурой центров обработки данных (_Data Center Interface_). Пакеты `@iskra-dci/*` поставляют токены, стили, иконки, headless-логику и компоненты для **React** и **Vue 3**.
+Монорепозиторий дизайн-системы **Искра.DCI** — UI-библиотеки для платформы управления инфраструктурой центров обработки данных (_Data Center Interface_). Пакеты `@iskra-ui/*` поставляют токены, стили, иконки, headless-логику и компоненты для **React** и **Vue 3**.
 
 Стиль системы — **Hard-Shell Minimal**: тёмный индустриальный интерфейс, один акцентный оттенок, информационная плотность. Принципы дизайна и контента — в [docs/FOUNDATIONS.md](docs/FOUNDATIONS.md).
 
@@ -8,15 +8,15 @@
 
 ## Пакеты
 
-| Пакет                                                         | Назначение                                                                   |
-| ------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [`@iskra-dci/tokens`](docs/PACKAGES.md#iskra-dcitokens)       | DTCG-токены → CSS-переменные + TypeScript                                    |
-| [`@iskra-dci/styles`](docs/PACKAGES.md#iskra-dcistyles)       | Глобальные стили, шрифты, reset                                              |
-| [`@iskra-dci/icons`](docs/PACKAGES.md#iskra-dciicons)         | Иконки 16×16, stroke 1.5px                                                   |
-| [`@iskra-dci/core`](docs/PACKAGES.md#iskra-dcicore)           | Headless-логика (React + Vue)                                                |
-| [`@iskra-dci/react`](docs/PACKAGES.md#iskra-dcireact)         | React-компоненты                                                             |
-| [`@iskra-dci/vue`](docs/PACKAGES.md#iskra-dcivue)             | Vue 3-компоненты                                                             |
-| [`@iskra-dci/dci-react`](docs/PACKAGES.md#iskra-dcidci-react) | Доменные компоненты: DeviceCard, FleetPulse, CliRow, DriftToast, ApiKeyModal |
+| Пакет                                                       | Назначение                                                                   |
+| ----------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [`@iskra-ui/tokens`](docs/PACKAGES.md#iskra-uitokens)       | DTCG-токены → CSS-переменные + TypeScript                                    |
+| [`@iskra-ui/styles`](docs/PACKAGES.md#iskra-uistyles)       | Глобальные стили, шрифты, reset                                              |
+| [`@iskra-ui/icons`](docs/PACKAGES.md#iskra-uiicons)         | Иконки 16×16, stroke 1.5px                                                   |
+| [`@iskra-ui/core`](docs/PACKAGES.md#iskra-uicore)           | Headless-логика (React + Vue)                                                |
+| [`@iskra-ui/react`](docs/PACKAGES.md#iskra-uireact)         | React-компоненты                                                             |
+| [`@iskra-ui/vue`](docs/PACKAGES.md#iskra-uivue)             | Vue 3-компоненты                                                             |
+| [`@iskra-ui/dci-react`](docs/PACKAGES.md#iskra-uidci-react) | Доменные компоненты: DeviceCard, FleetPulse, CliRow, DriftToast, ApiKeyModal |
 
 Подробное описание каждого пакета — в [docs/PACKAGES.md](docs/PACKAGES.md).
 
@@ -47,17 +47,17 @@ flowchart LR
 ### Установка
 
 ```bash
-pnpm add @iskra-dci/react @iskra-dci/styles
+pnpm add @iskra-ui/react @iskra-ui/styles
 ```
 
-Опционально: `@iskra-dci/vue`, `@iskra-dci/dci-react`.
+Опционально: `@iskra-ui/vue`, `@iskra-ui/dci-react`.
 
 ### Подключение (React)
 
 ```ts
-import '@iskra-dci/styles/index.css';
-import '@iskra-dci/react/styles.css';
-import { Button, TextField, Badge, Icon } from '@iskra-dci/react';
+import '@iskra-ui/styles/index.css';
+import '@iskra-ui/react/styles.css';
+import { Button, TextField, Badge, Icon } from '@iskra-ui/react';
 ```
 
 ```tsx
@@ -95,7 +95,7 @@ pnpm test         # Vitest
 ### Структура репозитория
 
 ```
-packages/     # @iskra-dci/* — publishable-библиотеки
+packages/     # @iskra-ui/* — publishable-библиотеки
 apps/         # docs-react — Storybook + visual tests
 scripts/      # lint:tokens, codemod legacy-импортов
 docs/         # FOUNDATIONS.md, PACKAGES.md

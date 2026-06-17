@@ -1,5 +1,5 @@
 {
-  "extends": "@iskra-dci/tsconfig/react-lib.json",
+  "extends": "@iskra-ui/tsconfig/react-lib.json",
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "src",

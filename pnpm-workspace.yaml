@@ -5,6 +5,10 @@ packages:
 allowBuilds:
   esbuild: true
 
+overrides:
+  esbuild: ^0.28.1
+  js-yaml: ^4.2.0
+
 # Catalog: single source of truth for shared dependency versions across the
 # whole workspace. Reference with "catalog:" in any package.json.
 catalog:

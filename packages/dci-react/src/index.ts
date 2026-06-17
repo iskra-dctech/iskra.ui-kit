@@ -1,4 +1,4 @@
-// @iskra-dci/dci-react — Искра.DCI domain components (built on @iskra-dci/react).
+// @iskra-ui/dci-react — Искра.DCI domain components (built on @iskra-ui/react).
 export {
   DeviceCard,
   type DeviceCardProps,

@@ -1,5 +1,5 @@
 import { type KeyboardEvent } from 'react';
-import { Card, type CardProps } from '@iskra-dci/react';
+import { Card, type CardProps } from '@iskra-ui/react';
 import './DeviceCard.css';
 
 export type DeviceStatus = 'sync' | 'drift' | 'error' | 'offline';

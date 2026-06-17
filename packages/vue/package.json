@@ -1,7 +1,7 @@
 {
-  "name": "@iskra-dci/vue",
-  "version": "0.2.0",
-  "description": "Искра.DCI Vue 3 component library — API parity with @iskra-dci/react over a shared headless core and token layer.",
+  "name": "@iskra-ui/vue",
+  "version": "0.1.0",
+  "description": "Искра.DCI Vue 3 component library — API parity with @iskra-ui/react over a shared headless core and token layer.",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -30,14 +30,14 @@
     "vue": ">=3.4"
   },
   "dependencies": {
-    "@iskra-dci/core": "workspace:*",
-    "@iskra-dci/icons": "workspace:*"
+    "@iskra-ui/core": "workspace:*",
+    "@iskra-ui/icons": "workspace:*"
   },
   "devDependencies": {
-    "@iskra-dci/react": "workspace:*",
-    "@iskra-dci/styles": "workspace:*",
-    "@iskra-dci/tokens": "workspace:*",
-    "@iskra-dci/tsconfig": "workspace:*",
+    "@iskra-ui/react": "workspace:*",
+    "@iskra-ui/styles": "workspace:*",
+    "@iskra-ui/tokens": "workspace:*",
+    "@iskra-ui/tsconfig": "workspace:*",
     "@types/node": "catalog:",
     "@vitejs/plugin-vue": "catalog:",
     "@vue/test-utils": "catalog:",
@@ -49,7 +49,7 @@
     "vue-tsc": "catalog:"
   },
   "publishConfig": {
-    "access": "restricted",
+    "access": "public",
     "provenance": true
   }
 }

@@ -9,7 +9,7 @@ export interface TabItem {
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
-import { createId, createTabsIds, firstEnabledValue, getNextTabValue } from '@iskra-dci/core';
+import { createId, createTabsIds, firstEnabledValue, getNextTabValue } from '@iskra-ui/core';
 
 const props = withDefaults(
   defineProps<{

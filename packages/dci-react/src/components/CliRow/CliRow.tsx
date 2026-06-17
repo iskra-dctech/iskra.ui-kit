@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Icon } from '@iskra-dci/react';
+import { Button, Icon } from '@iskra-ui/react';
 import './CliRow.css';
 
 export interface CliRowProps {

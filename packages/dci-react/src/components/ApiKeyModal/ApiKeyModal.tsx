@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Button, Checkbox, Modal, TextField } from '@iskra-dci/react';
+import { Button, Checkbox, Modal, TextField } from '@iskra-ui/react';
 import './ApiKeyModal.css';
 
 export interface ApiKeyScope {
