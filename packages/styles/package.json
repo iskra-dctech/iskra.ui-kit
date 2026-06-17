@@ -1,10 +1,31 @@
 {
   "name": "@iskra-ui/styles",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Искра.DCI global stylesheet — tokens + self-hosted fonts + reset + element classes.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iskra-dctech/iskra.ui-kit.git",
+    "directory": "packages/styles"
+  },
+  "homepage": "https://github.com/iskra-dctech/iskra.ui-kit#readme",
+  "bugs": {
+    "url": "https://github.com/iskra-dctech/iskra.ui-kit/issues"
+  },
+  "keywords": [
+    "iskra",
+    "design-system",
+    "datacenter",
+    "ui-kit",
+    "styles",
+    "css",
+    "fonts"
+  ],
   "type": "module",
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "exports": {
     "./index.css": "./dist/index.css",

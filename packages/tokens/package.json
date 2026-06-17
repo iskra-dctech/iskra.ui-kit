@@ -1,7 +1,26 @@
 {
   "name": "@iskra-ui/tokens",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Искра.DCI design tokens (DTCG) → CSS variables + typed TS map via Style Dictionary.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iskra-dctech/iskra.ui-kit.git",
+    "directory": "packages/tokens"
+  },
+  "homepage": "https://github.com/iskra-dctech/iskra.ui-kit#readme",
+  "bugs": {
+    "url": "https://github.com/iskra-dctech/iskra.ui-kit/issues"
+  },
+  "keywords": [
+    "iskra",
+    "design-system",
+    "datacenter",
+    "ui-kit",
+    "tokens",
+    "dtcg",
+    "css-variables"
+  ],
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -11,7 +30,9 @@
   ],
   "files": [
     "dist",
-    "src"
+    "src",
+    "README.md",
+    "LICENSE"
   ],
   "exports": {
     ".": {

@@ -1,13 +1,34 @@
 {
   "name": "@iskra-ui/vue",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Искра.DCI Vue 3 component library — API parity with @iskra-ui/react over a shared headless core and token layer.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iskra-dctech/iskra.ui-kit.git",
+    "directory": "packages/vue"
+  },
+  "homepage": "https://github.com/iskra-dctech/iskra.ui-kit#readme",
+  "bugs": {
+    "url": "https://github.com/iskra-dctech/iskra.ui-kit/issues"
+  },
+  "keywords": [
+    "iskra",
+    "design-system",
+    "datacenter",
+    "ui-kit",
+    "vue",
+    "vue3",
+    "components"
+  ],
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "exports": {
     ".": {
