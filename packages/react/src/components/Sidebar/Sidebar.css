@@ -29,6 +29,22 @@
   border-bottom: 1px solid var(--line, #30363d);
   overflow: hidden;
 }
+.isb-brand {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+}
+.isb-head {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--line-soft, rgba(48, 54, 61, 0.45));
+}
+.isb-item-wrap {
+  width: 100%;
+}
 .isb-spark {
   flex-shrink: 0;
   width: 20px;

@@ -1,292 +1,239 @@
-import { useCallback, useEffect, useRef, useState, type MouseEvent } from 'react';
-import { cx } from '../../utils/cx.js';
-import './Sidebar.css';
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type MouseEvent,
+  type ReactNode,
+} from 'react'
+import { Icon } from '../Icon/Icon.js'
+import { cx } from '../../utils/cx.js'
+import type { IconName } from '@iskra-ui/icons'
+import {
+  resolveSidebarGroups,
+  type SidebarNavGroup,
+  type SidebarNavItem,
+  type SidebarVariant,
+} from '@iskra-ui/core'
+import './Sidebar.css'
 
-export type SidebarVariant = 'operator' | 'admin';
-export type SidebarTheme = '' | 'theme-cold' | 'theme-warm';
+export type SidebarTheme = '' | 'theme-cold' | 'theme-warm'
+
+export type { SidebarNavGroup, SidebarNavItem, SidebarVariant }
+export {
+  DCI_OPERATOR_NAV,
+  DCI_ADMIN_NAV,
+  DCI_FOOTER_NAV,
+  NOTIFIER_NAV,
+  resolveSidebarGroups,
+} from './presets.js'
+
+export interface SidebarItemRenderContext {
+  active: boolean
+  collapsed: boolean
+  badge?: number
+}
 
 export interface SidebarProps {
-  /** Icon-only narrow mode (52px). */
-  collapsed?: boolean;
-  /** Flip `collapsed` in host state. */
-  onToggle?: () => void;
-  /** Highlights item + sets aria-current. */
-  activeItem?: string;
-  /** Called on item click. */
-  onNavigate?: (id: string) => void;
-  /** Admin adds Пользователи / Аудит / Система. */
-  variant?: SidebarVariant;
-  /** Theme scope class (dark by default). */
-  theme?: SidebarTheme;
-  /** Numeric badges keyed by nav item id, e.g. { alerts: 3 }. */
-  badges?: Record<string, number>;
-  className?: string;
+  /** Navigation tree. Omit when using `children` for a fully custom body. */
+  groups?: SidebarNavGroup[]
+  /** Declarative footer items (rendered as nav buttons). */
+  footerItems?: SidebarNavItem[]
+  /** Brand block in the top bar (logo, product name). No default — pass explicitly. */
+  brand?: ReactNode
+  /** Optional content below the brand bar, above scrollable nav. */
+  header?: ReactNode
+  /** Custom footer slot — overrides `footerItems` when set. */
+  footer?: ReactNode
+  /** Replaces the default groups renderer in the scroll area. */
+  children?: ReactNode
+  collapsed?: boolean
+  /** Show collapse control when `onToggle` is provided. Default: true. */
+  collapsible?: boolean
+  onToggle?: () => void
+  activeItem?: string
+  onNavigate?: (id: string) => void
+  onItemClick?: (item: SidebarNavItem) => void
+  /** Convenience preset when `groups` is omitted. Prefer explicit `groups` in products. */
+  variant?: SidebarVariant
+  theme?: SidebarTheme
+  badges?: Record<string, number>
+  ariaLabel?: string
+  renderItem?: (item: SidebarNavItem, ctx: SidebarItemRenderContext) => ReactNode
+  className?: string
 }
-
-type IconId =
-  | 'overview'
-  | 'devices'
-  | 'topology'
-  | 'alerts'
-  | 'apikeys'
-  | 'log'
-  | 'settings'
-  | 'users'
-  | 'audit'
-  | 'system'
-  | 'logout';
-
-interface NavItem {
-  id: string;
-  lbl: string;
-  ico: IconId;
-}
-interface NavGroup {
-  id: string;
-  lbl: string;
-  items: NavItem[];
-}
-
-const ICON_PROPS = {
-  fill: 'none',
-  stroke: 'currentColor',
-  strokeWidth: 1.5,
-  strokeLinecap: 'round' as const,
-  strokeLinejoin: 'round' as const,
-  viewBox: '0 0 16 16',
-  width: 16,
-  height: 16,
-  'aria-hidden': true,
-};
-
-function NavIcon({ id }: { id: IconId }) {
-  const p = ICON_PROPS;
-  switch (id) {
-    case 'overview':
-      return (
-        <svg {...p}>
-          <rect x="2" y="2" width="5" height="5" rx="1" />
-          <rect x="9" y="2" width="5" height="5" rx="1" />
-          <rect x="2" y="9" width="5" height="5" rx="1" />
-          <rect x="9" y="9" width="5" height="5" rx="1" />
-        </svg>
-      );
-    case 'devices':
-      return (
-        <svg {...p}>
-          <rect x="1.5" y="3" width="13" height="4" rx="1" />
-          <rect x="1.5" y="9" width="13" height="4" rx="1" />
-          <circle cx="12.5" cy="5" r=".85" fill="currentColor" stroke="none" />
-          <circle cx="12.5" cy="11" r=".85" fill="currentColor" stroke="none" />
-        </svg>
-      );
-    case 'topology':
-      return (
-        <svg {...p}>
-          <circle cx="8" cy="3" r="1.5" />
-          <circle cx="2.5" cy="12.5" r="1.5" />
-          <circle cx="13.5" cy="12.5" r="1.5" />
-          <line x1="8" y1="4.5" x2="3.3" y2="11.2" />
-          <line x1="8" y1="4.5" x2="12.7" y2="11.2" />
-          <line x1="4" y1="12.5" x2="12" y2="12.5" />
-        </svg>
-      );
-    case 'alerts':
-      return (
-        <svg {...p}>
-          <path d="M8 2a4 4 0 0 1 4 4c0 2.5 1 3.5 1 3.5H3S4 9.5 4 6a4 4 0 0 1 4-4z" />
-          <path d="M6.5 9.5a1.5 1.5 0 0 0 3 0" />
-        </svg>
-      );
-    case 'apikeys':
-      return (
-        <svg {...p}>
-          <circle cx="5.5" cy="8" r="3" />
-          <path d="M8.5 8h5.5m-2.5-1.5v3" />
-        </svg>
-      );
-    case 'log':
-      return (
-        <svg {...p}>
-          <line x1="3" y1="4.5" x2="13" y2="4.5" />
-          <line x1="3" y1="8" x2="13" y2="8" />
-          <line x1="3" y1="11.5" x2="9" y2="11.5" />
-        </svg>
-      );
-    case 'settings':
-      return (
-        <svg {...p}>
-          <line x1="3" y1="4" x2="13" y2="4" />
-          <line x1="3" y1="8" x2="13" y2="8" />
-          <line x1="3" y1="12" x2="13" y2="12" />
-          <circle cx="6" cy="4" r="1.5" fill="currentColor" />
-          <circle cx="10" cy="8" r="1.5" fill="currentColor" />
-          <circle cx="7" cy="12" r="1.5" fill="currentColor" />
-        </svg>
-      );
-    case 'users':
-      return (
-        <svg {...p}>
-          <circle cx="6" cy="6" r="2.5" />
-          <path d="M1 14c0-3 2.5-4.5 5-4.5s5 1.5 5 4.5" />
-          <path d="M11 4.5a2 2 0 0 1 0 3.5" />
-          <path d="M13.5 14c0-2-1.2-3.5-2.5-4" />
-        </svg>
-      );
-    case 'audit':
-      return (
-        <svg {...p}>
-          <path d="M8 1.5 13.5 3.5V8c0 3.5-2.5 5.5-5.5 6.5-3-1-5.5-3-5.5-6.5V3.5Z" />
-          <polyline points="5.5,8 7,9.5 10.5,6" />
-        </svg>
-      );
-    case 'system':
-      return (
-        <svg {...p}>
-          <rect x="1.5" y="2.5" width="13" height="11" rx="1.5" />
-          <polyline points="4.5,6.5 7,9 4.5,11.5" />
-          <line x1="8.5" y1="11.5" x2="11.5" y2="11.5" />
-        </svg>
-      );
-    case 'logout':
-      return (
-        <svg {...p}>
-          <path d="M6 3H3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h3" />
-          <polyline points="10,5.5 13.5,8 10,10.5" />
-          <line x1="6" y1="8" x2="13.5" y2="8" />
-        </svg>
-      );
-    default:
-      return (
-        <svg {...p}>
-          <circle cx="8" cy="8" r="5" />
-        </svg>
-      );
-  }
-}
-
-function Spark() {
-  return (
-    <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" width="20" height="20">
-      <path d="M10 1 12.6 7.8 19.5 9.8 12.6 11.9 10 18.7 7.4 11.9.5 9.8 7.4 7.8Z" />
-    </svg>
-  );
-}
-
-const OPERATOR_NAV: NavGroup[] = [
-  {
-    id: 'monitoring',
-    lbl: 'Мониторинг',
-    items: [
-      { id: 'overview', lbl: 'Обзор', ico: 'overview' },
-      { id: 'devices', lbl: 'Устройства', ico: 'devices' },
-      { id: 'topology', lbl: 'Топология', ico: 'topology' },
-    ],
-  },
-  {
-    id: 'management',
-    lbl: 'Управление',
-    items: [
-      { id: 'alerts', lbl: 'Оповещения', ico: 'alerts' },
-      { id: 'apikeys', lbl: 'API-ключи', ico: 'apikeys' },
-      { id: 'log', lbl: 'Журнал', ico: 'log' },
-    ],
-  },
-];
-
-const ADMIN_NAV: NavGroup[] = [
-  ...OPERATOR_NAV,
-  {
-    id: 'admin',
-    lbl: 'Администрирование',
-    items: [
-      { id: 'users', lbl: 'Пользователи', ico: 'users' },
-      { id: 'audit', lbl: 'Аудит', ico: 'audit' },
-      { id: 'system', lbl: 'Система', ico: 'system' },
-    ],
-  },
-];
-
-const FOOTER_NAV: NavItem[] = [
-  { id: 'settings', lbl: 'Настройки', ico: 'settings' },
-  { id: 'logout', lbl: 'Выход', ico: 'logout' },
-];
 
 interface ItemProps {
-  item: NavItem;
-  active: boolean;
-  badge?: number;
-  onHover?: (e: MouseEvent<HTMLButtonElement>, lbl: string) => void;
-  onLeave?: () => void;
-  onClick?: () => void;
+  item: SidebarNavItem
+  active: boolean
+  collapsed: boolean
+  badge?: number
+  onHover?: (e: MouseEvent<HTMLButtonElement>, lbl: string) => void
+  onLeave?: () => void
+  onClick?: () => void
+  renderItem?: SidebarProps['renderItem']
 }
 
-function Item({ item, active, badge, onHover, onLeave, onClick }: ItemProps) {
+function DefaultItemButton({
+  item,
+  active,
+  badge,
+  onHover,
+  onLeave,
+  onClick,
+}: Omit<ItemProps, 'collapsed' | 'renderItem'>) {
   return (
     <button
       className={cx('isb-item', active && 'isb-on')}
-      title={item.lbl}
-      onMouseEnter={onHover ? (e) => onHover(e, item.lbl) : undefined}
+      title={item.label}
+      onMouseEnter={onHover ? (e) => onHover(e, item.label) : undefined}
       onMouseLeave={onLeave}
       onClick={onClick}
       type="button"
+      disabled={item.disabled}
       aria-current={active ? 'page' : undefined}
     >
       <span className="isb-ico">
-        <NavIcon id={item.ico} />
+        {item.icon ? <Icon name={item.icon as IconName} size={16} /> : null}
       </span>
-      <span className="isb-lbl">{item.lbl}</span>
+      <span className="isb-lbl">{item.label}</span>
       {badge != null && badge > 0 && (
-        <span className="isb-bdg" aria-label={`${item.lbl}: ${badge} уведомлений`}>
+        <span className="isb-bdg" aria-label={`${item.label}: ${badge}`}>
           {badge}
         </span>
       )}
     </button>
-  );
+  )
 }
 
-/** Sidebar — shared navigation for operator and admin frontends. */
+function Item(props: ItemProps) {
+  const { renderItem, item, active, collapsed, badge, onClick, onHover, onLeave } = props
+  if (renderItem) {
+    return (
+      <div className="isb-item-wrap" onClick={onClick}>
+        {renderItem(item, { active, collapsed, badge })}
+      </div>
+    )
+  }
+  return (
+    <DefaultItemButton
+      item={item}
+      active={active}
+      badge={badge}
+      onClick={onClick}
+      onHover={onHover}
+      onLeave={onLeave}
+    />
+  )
+}
+
+function NavGroups({
+  groups,
+  activeItem,
+  collapsed,
+  badges,
+  onItemActivate,
+  hover,
+  renderItem,
+}: {
+  groups: SidebarNavGroup[]
+  activeItem?: string
+  collapsed: boolean
+  badges: Record<string, number>
+  onItemActivate: (item: SidebarNavItem) => void
+  hover: { onHover?: ItemProps['onHover']; onLeave?: ItemProps['onLeave'] }
+  renderItem?: SidebarProps['renderItem']
+}) {
+  return (
+    <>
+      {groups.map(({ id, label, items }) => (
+        <div key={id} className="isb-grp">
+          {label && (
+            <div className="isb-sec" aria-hidden="true">
+              {label}
+            </div>
+          )}
+          {items.map((item) => (
+            <Item
+              key={item.id}
+              item={item}
+              active={activeItem === item.id}
+              collapsed={collapsed}
+              badge={badges[item.id] ?? item.badge}
+              onClick={() => onItemActivate(item)}
+              renderItem={renderItem}
+              {...hover}
+            />
+          ))}
+        </div>
+      ))}
+    </>
+  )
+}
+
+/**
+ * Sidebar — universal app navigation shell. Supply `groups` + `brand` per product,
+ * or pass `children` for a fully custom body. Presets (`NOTIFIER_NAV`, …) live in
+ * `@iskra-ui/core` for convenience only.
+ */
 export function Sidebar({
+  groups: groupsProp,
+  footerItems = [],
+  brand,
+  header,
+  footer,
+  children,
   collapsed = false,
+  collapsible = true,
   onToggle,
-  activeItem = 'overview',
+  activeItem,
   onNavigate,
+  onItemClick,
   variant = 'operator',
   theme = '',
   badges = {},
+  ariaLabel = 'Навигация',
+  renderItem,
   className = '',
 }: SidebarProps) {
-  const [tip, setTip] = useState<{ lbl: string; top: number } | null>(null);
-  const [tipRdy, setTipRdy] = useState(false);
-  const [prevCollapsed, setPrevCollapsed] = useState(collapsed);
-  const sbRef = useRef<HTMLElement>(null);
+  const [tip, setTip] = useState<{ lbl: string; top: number } | null>(null)
+  const [tipRdy, setTipRdy] = useState(false)
+  const [prevCollapsed, setPrevCollapsed] = useState(collapsed)
+  const sbRef = useRef<HTMLElement>(null)
+
+  const groups = groupsProp ?? (children ? [] : resolveSidebarGroups(variant))
+  const showCollapser = collapsible && typeof onToggle === 'function'
 
   if (collapsed !== prevCollapsed) {
-    setPrevCollapsed(collapsed);
-    setTipRdy(false);
-    setTip(null);
+    setPrevCollapsed(collapsed)
+    setTipRdy(false)
+    setTip(null)
   }
 
   useEffect(() => {
-    if (!collapsed) return;
-    const t = setTimeout(() => setTipRdy(true), 210);
-    return () => clearTimeout(t);
-  }, [collapsed]);
+    if (!collapsed) return
+    const t = setTimeout(() => setTipRdy(true), 210)
+    return () => clearTimeout(t)
+  }, [collapsed])
 
   const showTip = useCallback(
     (e: MouseEvent<HTMLButtonElement>, lbl: string) => {
-      if (!tipRdy || !sbRef.current) return;
-      const ir = e.currentTarget.getBoundingClientRect();
-      const sr = sbRef.current.getBoundingClientRect();
-      setTip({ lbl, top: ir.top - sr.top + ir.height / 2 });
+      if (!tipRdy || !sbRef.current) return
+      const ir = e.currentTarget.getBoundingClientRect()
+      const sr = sbRef.current.getBoundingClientRect()
+      setTip({ lbl, top: ir.top - sr.top + ir.height / 2 })
     },
     [tipRdy],
-  );
+  )
 
-  const hideTip = useCallback(() => setTip(null), []);
+  const hideTip = useCallback(() => setTip(null), [])
 
-  const sections = variant === 'admin' ? ADMIN_NAV : OPERATOR_NAV;
-  const hover = collapsed ? { onHover: showTip, onLeave: hideTip } : {};
+  const hover = collapsed ? { onHover: showTip, onLeave: hideTip } : {}
+
+  const handleItem = (item: SidebarNavItem) => {
+    onItemClick?.(item)
+    onNavigate?.(item.id)
+  }
 
   return (
     <aside
@@ -299,66 +246,69 @@ export function Sidebar({
       )}
       ref={sbRef}
       role="navigation"
-      aria-label="Навигация платформы"
+      aria-label={ariaLabel}
     >
-      <div className="isb-logo">
-        <span className="isb-spark">
-          <Spark />
-        </span>
-        <span className="isb-wmark">ИСКРА.DCI</span>
-        <button
-          className="isb-collapser"
-          type="button"
-          onClick={onToggle}
-          aria-expanded={!collapsed}
-          aria-label={collapsed ? 'Развернуть боковую панель' : 'Свернуть боковую панель'}
-        >
-          <svg
-            viewBox="0 0 10 10"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-          >
-            <polyline points="7,2 4,5 7,8" />
-          </svg>
-        </button>
-      </div>
+      {(brand != null || showCollapser) && (
+        <div className="isb-logo">
+          {brand != null && <div className="isb-brand">{brand}</div>}
+          {showCollapser && (
+            <button
+              className="isb-collapser"
+              type="button"
+              onClick={onToggle}
+              aria-expanded={!collapsed}
+              aria-label={collapsed ? 'Развернуть боковую панель' : 'Свернуть боковую панель'}
+            >
+              <svg
+                viewBox="0 0 10 10"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <polyline points="7,2 4,5 7,8" />
+              </svg>
+            </button>
+          )}
+        </div>
+      )}
+
+      {header != null && <div className="isb-head">{header}</div>}
 
       <div className="isb-scroll">
-        {sections.map(({ id, lbl, items }) => (
-          <div key={id} className="isb-grp">
-            <div className="isb-sec" aria-hidden="true">
-              {lbl}
-            </div>
-            {items.map((item) => (
-              <Item
-                key={item.id}
-                item={item}
-                active={activeItem === item.id}
-                badge={badges[item.id]}
-                onClick={() => onNavigate?.(item.id)}
-                {...hover}
-              />
-            ))}
-          </div>
-        ))}
+        {children ?? (
+          <NavGroups
+            groups={groups}
+            activeItem={activeItem}
+            collapsed={collapsed}
+            badges={badges}
+            onItemActivate={handleItem}
+            hover={hover}
+            renderItem={renderItem}
+          />
+        )}
       </div>
 
-      <div className="isb-foot">
-        {FOOTER_NAV.map((item) => (
-          <Item
-            key={item.id}
-            item={item}
-            active={activeItem === item.id}
-            badge={badges[item.id]}
-            onClick={() => onNavigate?.(item.id)}
-            {...hover}
-          />
-        ))}
-      </div>
+      {footer != null ? (
+        <div className="isb-foot">{footer}</div>
+      ) : footerItems.length > 0 ? (
+        <div className="isb-foot">
+          {footerItems.map((item) => (
+            <Item
+              key={item.id}
+              item={item}
+              active={activeItem === item.id}
+              collapsed={collapsed}
+              badge={badges[item.id] ?? item.badge}
+              onClick={() => handleItem(item)}
+              renderItem={renderItem}
+              {...hover}
+            />
+          ))}
+        </div>
+      ) : null}
 
       {tip && (
         <div className="isb-floatip" style={{ top: tip.top }}>
@@ -366,5 +316,5 @@ export function Sidebar({
         </div>
       )}
     </aside>
-  );
+  )
 }

@@ -74,7 +74,7 @@ packages/           # publishable @iskra-ui/*
   tsconfig/         # private
 apps/
   docs-react/       # Storybook + Playwright visual tests
-scripts/            # adherence check, legacy codemod
+scripts/            # token adherence check
 docs/               # FOUNDATIONS.md, PACKAGES.md
 ```
 
@@ -94,6 +94,10 @@ docs/               # FOUNDATIONS.md, PACKAGES.md
 4. Typecheck — `pnpm typecheck`
 5. Тесты — `pnpm test` (unit + a11y через vitest-axe)
 6. Сборка — `pnpm build` (включая Storybook static)
+
+При **push в `master`** после успешных проверок Storybook автоматически публикуется на [GitHub Pages](https://iskra-dctech.github.io/iskra.ui-kit/).
+
+**Первичная настройка (один раз):** в Settings → Pages репозитория выберите **Source: GitHub Actions**.
 
 Убедитесь, что все шаги проходят локально перед отправкой PR.
 
@@ -176,6 +180,5 @@ pnpm release            # build + publish (в CI)
 ## См. также
 
 - [README.md](README.md) — обзор и быстрый старт
-- [MIGRATION.md](MIGRATION.md) — миграция потребителей с legacy
 - [LICENCE.md](LICENCE.md) — лицензии и сторонние компоненты
 - [docs/FOUNDATIONS.md](docs/FOUNDATIONS.md) — дизайн-основы

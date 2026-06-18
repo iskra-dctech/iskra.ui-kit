@@ -18,7 +18,7 @@ const config: StorybookConfig = {
   },
   core: { disableTelemetry: true },
   typescript: { reactDocgen: 'react-docgen-typescript' },
-  async viteFinal(config) {
+  async viteFinal(config, { configType }) {
     // Resolve workspace packages to their source so component CSS is bundled and
     // no pre-build of the libraries is required to run Storybook.
     config.resolve ??= {};
@@ -29,6 +29,12 @@ const config: StorybookConfig = {
       '@iskra-ui/core': pkg('core/src/index.ts'),
       '@iskra-ui/icons': pkg('icons/src/index.ts'),
     };
+
+    if (configType === 'PRODUCTION') {
+      const raw = process.env.STORYBOOK_BASE_PATH?.trim();
+      config.base = raw ? (raw.endsWith('/') ? raw : `${raw}/`) : '/';
+    }
+
     return config;
   },
 };

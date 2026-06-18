@@ -14,13 +14,6 @@ export const ignores = {
     '**/storybook-static/**',
     '**/coverage/**',
     '**/*.tsbuildinfo',
-    '_ds_bundle.js',
-    'design-canvas.jsx',
-    // Legacy skill artifact kept as migration/preview reference only (Phase 7 domain layer).
-    'components/**',
-    'ui_kits/**',
-    'preview/**',
-    '*.jsx',
   ],
 };
 

@@ -71,3 +71,43 @@
 .ik-table-state {
   padding: 0;
 }
+.ik-table-th-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.ik-table-th-label {
+  display: inline-flex;
+  align-items: center;
+}
+.ik-table-sort-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+.ik-table-sort-btn:hover {
+  color: var(--fg1, #f0f6fc);
+}
+.ik-table-sort-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 1px var(--accent, #00ffc2);
+  border-radius: 2px;
+}
+.ik-table-sort-icons {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0;
+  line-height: 0;
+}
+.ik-table-th-filter {
+  display: inline-flex;
+  align-items: center;
+}

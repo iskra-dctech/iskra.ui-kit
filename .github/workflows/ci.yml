@@ -10,6 +10,11 @@ concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   verify:
     name: lint · typecheck · test · build
@@ -45,6 +50,8 @@ jobs:
 
       - name: Build packages + Storybook
         run: pnpm build
+        env:
+          STORYBOOK_BASE_PATH: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && format('/{0}/', github.event.repository.name) || '' }}
 
       - name: Upload Storybook static
         uses: actions/upload-artifact@v4
@@ -53,3 +60,24 @@ jobs:
           path: apps/docs-react/storybook-static
           if-no-files-found: error
           retention-days: 7
+
+  deploy-storybook:
+    name: deploy Storybook → GitHub Pages
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs: verify
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: storybook-static
+          path: storybook-static
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: storybook-static
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

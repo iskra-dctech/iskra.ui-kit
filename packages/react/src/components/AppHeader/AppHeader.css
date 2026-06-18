@@ -1,0 +1,126 @@
+/* ИСКРА.DCI — AppHeader shell bar (product-agnostic layout). */
+:root {
+  --app-header-height: 48px;
+}
+.ik-app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: var(--app-header-height);
+  min-height: var(--app-header-height);
+  padding: 0 24px;
+  border-bottom: 1px solid var(--line, #30363d);
+  background: var(--bg, #0d1117);
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+.ik-app-header-leading,
+.ik-app-header-center,
+.ik-app-header-trailing,
+.ik-app-header-start,
+.ik-app-header-end {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.ik-app-header-leading,
+.ik-app-header-start {
+  flex-shrink: 0;
+}
+.ik-app-header-center {
+  flex: 1;
+  justify-content: center;
+}
+.ik-app-header-trailing,
+.ik-app-header-end {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+.ik-app-header-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  font-size: 13px;
+  color: var(--fg2, #8b949e);
+}
+.ik-app-header-nav-sep {
+  color: var(--fg3, #6e7681);
+  user-select: none;
+}
+.ik-app-header-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.ik-app-header-nav-link:hover {
+  color: var(--fg1, #f0f6fc);
+}
+.ik-app-header-nav-link.is-current {
+  color: var(--fg1, #f0f6fc);
+  font-weight: 500;
+}
+.ik-app-header-nav-link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 1px var(--accent, #00ffc2);
+  border-radius: 2px;
+}
+.ik-app-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.ik-app-header-indicator,
+.ik-app-header-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--fg2, #8b949e);
+  white-space: nowrap;
+}
+.ik-app-header-indicator-dot,
+.ik-app-header-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.ik-app-header-indicator-dot.is-ok,
+.ik-app-header-status-dot.is-ok {
+  background: var(--status-ok, #00ffc2);
+}
+.ik-app-header-indicator-dot.is-warn,
+.ik-app-header-status-dot.is-warn {
+  background: var(--status-warn, #f97316);
+}
+.ik-app-header-indicator-dot.is-error,
+.ik-app-header-status-dot.is-error {
+  background: var(--status-err, #f85149);
+}
+.ik-app-header-indicator-dot.is-off,
+.ik-app-header-status-dot.is-off {
+  background: var(--status-off, #6e7681);
+}
+.ik-app-header-text,
+.ik-app-header-meta {
+  font-size: 12px;
+  color: var(--fg2, #8b949e);
+  white-space: nowrap;
+}
+.ik-app-header-text-mono,
+.ik-app-header-status-mono,
+.ik-app-header-meta-mono {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+}

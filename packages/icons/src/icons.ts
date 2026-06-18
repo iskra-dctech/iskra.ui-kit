@@ -133,6 +133,28 @@ export const icons = {
   message:
     '<path d="M2.5 4a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H6l-3 2.5V11H3.5a1 1 0 0 1-1-1Z"/>',
 
+  /* devices & infrastructure */
+  storage:
+    '<rect x="2.5" y="2.5" width="11" height="11" rx="1"/><line x1="2.5" y1="5.5" x2="13.5" y2="5.5"/><line x1="2.5" y1="8.5" x2="13.5" y2="8.5"/><circle cx="5" cy="4" r=".7" fill="currentColor" stroke="none"/><circle cx="5" cy="7" r=".7" fill="currentColor" stroke="none"/><circle cx="5" cy="10" r=".7" fill="currentColor" stroke="none"/>',
+  'switch-device':
+    '<rect x="2" y="5" width="12" height="6" rx="1"/><line x1="4" y1="8" x2="6" y2="8"/><line x1="7" y1="8" x2="9" y2="8"/><line x1="10" y1="8" x2="12" y2="8"/><polyline points="5,3 8,5.5 11,3"/><polyline points="5,13 8,10.5 11,13"/>',
+  hsm: '<rect x="3" y="3.5" width="10" height="9" rx="1"/><circle cx="6" cy="8" r="1.8"/><line x1="8.2" y1="8" x2="12" y2="8"/><line x1="10.5" y1="6.5" x2="10.5" y2="9.5"/>',
+  pdu: '<rect x="5.5" y="2" width="5" height="12" rx="1"/><line x1="6.5" y1="4.5" x2="9.5" y2="4.5"/><line x1="6.5" y1="7" x2="9.5" y2="7"/><line x1="6.5" y1="9.5" x2="9.5" y2="9.5"/><line x1="6.5" y1="12" x2="9.5" y2="12"/>',
+  laptop:
+    '<rect x="3" y="4" width="10" height="7" rx="1"/><path d="M2 12.5h12l-1.2-1.5H3.2Z"/>',
+  desktop:
+    '<rect x="3" y="3" width="10" height="7" rx="1"/><line x1="8" y1="10" x2="8" y2="12"/><line x1="5.5" y1="12" x2="10.5" y2="12"/>',
+
+  /* messengers (monochrome brand glyphs) */
+  telegram:
+    '<path d="M3.5 8 12.5 3.5 10.5 13 7.5 9.5 5.5 11.5 4.5 8.5 7 7.5 11 5.5"/>',
+  vk: '<path d="M3 5.5h1.8c.4 2.8 1.4 4.2 2.3 4.4V5.5H8.5v2.5c1-.1 2.1-1.3 2.5-3.5H12.5c-.3 2.1-1.6 3.7-2.5 4.2 1 .4 2.5 1.6 3 4.3H11c-.7-2.2-2.5-2.2-2.8-2.2v2.2H5.5c-.1-3.5 0-7.5 0-7.5Z"/>',
+  max: '<path d="M3.5 5.5h2l1.5 4.5L8.5 5.5h2l-2.5 7h-2L3.5 5.5Z"/><path d="M11 5.5h2v7h-2V5.5Z"/>',
+
+  /* documentation */
+  'book-marked':
+    '<path d="M3 2.5h4.5a1 1 0 0 1 1 1V13L5.5 11 3 13V2.5Z"/><path d="M8.5 2.5H13a1 1 0 0 1 1 1V13l-2.5-2-2.5 2V3.5a1 1 0 0 1 1-1Z"/><line x1="10.5" y1="2" x2="10.5" y2="6"/>',
+
   /* theme / power */
   sun: '<circle cx="8" cy="8" r="3"/><path d="M8 1v1.6M8 13.4V15M15 8h-1.6M2.6 8H1M12.95 3.05l-1.13 1.13M4.18 11.82l-1.13 1.13M12.95 12.95l-1.13-1.13M4.18 4.18 3.05 3.05"/>',
   moon: '<path d="M13 9.2A5.5 5.5 0 0 1 6.8 3 5.5 5.5 0 1 0 13 9.2Z"/>',

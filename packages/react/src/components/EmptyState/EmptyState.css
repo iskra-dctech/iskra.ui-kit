@@ -1,4 +1,4 @@
-/* ИСКРА.DCI — EmptyState. Centered placeholder for empty lists / zero results. */
+/* ИСКРА.DCI — EmptyState. Centered placeholder for empty lists / platform 404. */
 .ik-empty {
   display: flex;
   flex-direction: column;
@@ -9,20 +9,54 @@
   font-family: var(--font-ui, 'Inter', system-ui, sans-serif);
   color: var(--fg2, #8b949e);
 }
+.ik-empty-full-page {
+  min-height: 100vh;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.ik-empty-code {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--fg3, #6e7681);
+  margin-bottom: 4px;
+}
+.ik-empty-not-found .ik-empty-code {
+  color: var(--accent-safe, #00aa85);
+}
 .ik-empty-ico {
   color: var(--fg3, #6e7681);
   margin-bottom: 4px;
+}
+.ik-empty-not-found .ik-empty-ico {
+  color: var(--accent-safe, #00aa85);
 }
 .ik-empty-title {
   font-size: 15px;
   font-weight: 600;
   color: var(--fg1, #f0f6fc);
 }
+.ik-empty-not-found .ik-empty-title {
+  font-size: 20px;
+}
 .ik-empty-desc {
   font-size: 13px;
   line-height: 1.5;
-  max-width: 360px;
+  max-width: 420px;
+}
+.ik-empty-not-found .ik-empty-desc {
+  max-width: 480px;
+}
+.ik-empty-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
 }
 .ik-empty-action {
-  margin-top: 8px;
+  flex-shrink: 0;
 }

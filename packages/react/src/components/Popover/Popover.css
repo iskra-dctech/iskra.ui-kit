@@ -1,0 +1,19 @@
+/* ИСКРА.DCI — Popover floating panel. */
+.ik-popover-panel {
+  position: fixed;
+  z-index: var(--z-popover, 1200);
+  min-width: 240px;
+  max-width: min(400px, calc(100vw - 16px));
+  box-sizing: border-box;
+  background: var(--panel, #161b22);
+  border: 1px solid var(--line, #30363d);
+  border-radius: var(--radius, 4px);
+  color: var(--fg1, #f0f6fc);
+  font-family: var(--font-ui, 'Inter', system-ui, sans-serif);
+  font-size: 13px;
+  line-height: 1.45;
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--scrim, #0d1117) 40%, transparent);
+}
+.ik-popover-panel:focus {
+  outline: none;
+}

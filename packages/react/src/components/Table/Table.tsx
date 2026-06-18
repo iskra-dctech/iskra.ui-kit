@@ -1,43 +1,101 @@
-import { type ReactNode } from 'react';
-import { Skeleton } from '../Skeleton/Skeleton.js';
-import { cx } from '../../utils/cx.js';
-import './Table.css';
+import { type ReactNode } from 'react'
+import { Icon } from '../Icon/Icon.js'
+import { Skeleton } from '../Skeleton/Skeleton.js'
+import { cx } from '../../utils/cx.js'
+import './Table.css'
 
-export type TableDensity = 'regular' | 'compact';
-export type TableAlign = 'left' | 'right' | 'center';
+export type TableDensity = 'regular' | 'compact'
+export type TableAlign = 'left' | 'right' | 'center'
+export type SortDirection = 'asc' | 'desc'
+
+export interface TableSort {
+  key: string
+  direction: SortDirection
+}
 
 export interface TableColumn<T> {
-  /** Unique column key; also used to read `row[key]` when no `render` is given. */
-  key: string;
-  header: ReactNode;
-  render?: (row: T, index: number) => ReactNode;
-  align?: TableAlign;
-  width?: number | string;
+  key: string
+  header: ReactNode
+  render?: (row: T, index: number) => ReactNode
+  align?: TableAlign
+  width?: number | string
+  sortable?: boolean
+  sortKey?: string
+  filter?: ReactNode
 }
 
 export interface TableProps<T> {
-  columns: TableColumn<T>[];
-  data: T[];
-  /** Stable row id; defaults to the row index. */
-  getRowId?: (row: T, index: number) => string | number;
-  density?: TableDensity;
-  stickyHeader?: boolean;
-  loading?: boolean;
-  /** Number of skeleton rows while loading. */
-  loadingRows?: number;
-  /** Shown when `data` is empty and not loading. */
-  empty?: ReactNode;
-  onRowClick?: (row: T, index: number) => void;
-  selectedRowId?: string | number;
-  /** Visually-hidden caption for screen readers. */
-  caption?: string;
-  className?: string;
+  columns: TableColumn<T>[]
+  data: T[]
+  getRowId?: (row: T, index: number) => string | number
+  density?: TableDensity
+  stickyHeader?: boolean
+  loading?: boolean
+  loadingRows?: number
+  empty?: ReactNode
+  onRowClick?: (row: T, index: number) => void
+  selectedRowId?: string | number
+  caption?: string
+  sort?: TableSort | null
+  onSortChange?: (sort: TableSort | null) => void
+  className?: string
 }
 
 const alignClass = (a?: TableAlign) =>
-  a === 'right' ? 'ik-table-align-right' : a === 'center' ? 'ik-table-align-center' : undefined;
+  a === 'right' ? 'ik-table-align-right' : a === 'center' ? 'ik-table-align-center' : undefined
 
-/** Table — foundational data table. Not a virtualized data-grid; see roadmap. */
+function HeaderCell<T>({
+  col,
+  sort,
+  onSortChange,
+}: {
+  col: TableColumn<T>
+  sort?: TableSort | null
+  onSortChange?: (sort: TableSort | null) => void
+}) {
+  const sk = col.sortKey ?? col.key
+  const isActive = sort?.key === sk
+
+  const handleSort = () => {
+    if (!col.sortable || !onSortChange) return
+    if (!isActive) onSortChange({ key: sk, direction: 'asc' })
+    else if (sort!.direction === 'asc') onSortChange({ key: sk, direction: 'desc' })
+    else onSortChange(null)
+  }
+
+  const content = (
+    <span className="ik-table-th-inner">
+      <span className="ik-table-th-label">{col.header}</span>
+      {col.sortable && (
+        <span className="ik-table-sort-icons" aria-hidden="true">
+          <Icon
+            name="chevron-up"
+            size={10}
+            style={{ opacity: isActive && sort?.direction === 'asc' ? 1 : 0.35 }}
+          />
+          <Icon
+            name="chevron-down"
+            size={10}
+            style={{ opacity: isActive && sort?.direction === 'desc' ? 1 : 0.35 }}
+          />
+        </span>
+      )}
+      {col.filter && <span className="ik-table-th-filter">{col.filter}</span>}
+    </span>
+  )
+
+  if (col.sortable) {
+    return (
+      <button type="button" className="ik-table-sort-btn" onClick={handleSort}>
+        {content}
+      </button>
+    )
+  }
+
+  return content
+}
+
+/** Table — foundational data table with optional column sort and filter slots. */
 export function Table<T>({
   columns,
   data,
@@ -50,10 +108,12 @@ export function Table<T>({
   onRowClick,
   selectedRowId,
   caption,
+  sort,
+  onSortChange,
   className,
 }: TableProps<T>) {
-  const colCount = columns.length;
-  const rowId = (row: T, i: number) => getRowId?.(row, i) ?? i;
+  const colCount = columns.length
+  const rowId = (row: T, i: number) => getRowId?.(row, i) ?? i
 
   return (
     <div className="ik-table-wrap">
@@ -74,8 +134,17 @@ export function Table<T>({
                 scope="col"
                 className={alignClass(c.align)}
                 style={{ width: c.width }}
+                aria-sort={
+                  c.sortable
+                    ? sort?.key === (c.sortKey ?? c.key)
+                      ? sort.direction === 'asc'
+                        ? 'ascending'
+                        : 'descending'
+                      : 'none'
+                    : undefined
+                }
               >
-                {c.header}
+                <HeaderCell col={c} sort={sort} onSortChange={onSortChange} />
               </th>
             ))}
           </tr>
@@ -99,7 +168,7 @@ export function Table<T>({
             </tr>
           ) : (
             data.map((row, i) => {
-              const id = rowId(row, i);
+              const id = rowId(row, i)
               return (
                 <tr
                   key={id}
@@ -118,11 +187,11 @@ export function Table<T>({
                     </td>
                   ))}
                 </tr>
-              );
+              )
             })
           )}
         </tbody>
       </table>
     </div>
-  );
+  )
 }

@@ -14,6 +14,9 @@ export * from './components/Avatar/index.js';
 export * from './components/Card/index.js';
 export * from './components/Skeleton/index.js';
 export * from './components/Spinner/index.js';
+export * from './components/SearchField/index.js';
+export * from './components/Popover/index.js';
+export * from './components/AppHeader/index.js';
 // Patterns
 export * from './components/FormField/index.js';
 export * from './components/Alert/index.js';

@@ -140,7 +140,7 @@ pnpm --filter @iskra-ui/core test
 
 ## `@iskra-ui/react`
 
-**Назначение:** React 18+ UI-библиотека в стиле Hard-Shell Minimal. Классы `ik-*` сохранены с legacy-бандла.
+**Назначение:** React 18+ UI-библиотека в стиле Hard-Shell Minimal. Классы `ik-*` стабильны между релизами.
 
 **Entry points**
 
@@ -349,7 +349,6 @@ export function FleetView() {
 ## См. также
 
 - [FOUNDATIONS.md](./FOUNDATIONS.md) — дизайн и контент
-- [MIGRATION.md](../MIGRATION.md) — миграция с `_ds_bundle.js`
 - [CONTRIBUTING.md](../CONTRIBUTING.md) — разработка в монорепо
 - [LICENCE.md](../LICENCE.md) — лицензии
 - [COMPONENT_CHECKLIST.md](../packages/react/COMPONENT_CHECKLIST.md) — DoD для React-компонентов
