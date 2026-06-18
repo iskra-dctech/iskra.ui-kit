@@ -10,5 +10,6 @@
   "avatar-sm": { "$type": "dimension", "$value": "24px" },
   "avatar-md": { "$type": "dimension", "$value": "32px" },
   "avatar-lg": { "$type": "dimension", "$value": "48px" },
-  "min-target": { "$type": "dimension", "$value": "24px" }
+  "min-target": { "$type": "dimension", "$value": "24px" },
+  "touch-min": { "$type": "dimension", "$value": "44px", "$description": "WCAG 2.5.5 minimum touch target on compact viewports." }
 }
