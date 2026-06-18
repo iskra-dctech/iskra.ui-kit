@@ -21,8 +21,8 @@ export function computeAnchorPosition(
 ): AnchorPosition {
   const vw = typeof window !== 'undefined' ? window.innerWidth : 0;
   const vh = typeof window !== 'undefined' ? window.innerHeight : 0;
-  let top = 0;
-  let left = 0;
+  let top: number;
+  let left: number;
 
   switch (placement) {
     case 'bottom':
@@ -73,7 +73,6 @@ export function useAnchorPosition(
 
   useLayoutEffect(() => {
     if (!open) {
-      setPos(null);
       return;
     }
 
@@ -95,5 +94,5 @@ export function useAnchorPosition(
     };
   }, [open, anchorRef, panelRef, placement, offset]);
 
-  return pos;
+  return open ? pos : null;
 }

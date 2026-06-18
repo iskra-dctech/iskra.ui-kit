@@ -1,5 +1,14 @@
 # @iskra-ui/dci-react
 
+## 0.1.2
+
+### Patch Changes
+
+- Updated dependencies [7e62780]
+  - @iskra-ui/icons@0.1.2
+  - @iskra-ui/core@0.1.2
+  - @iskra-ui/react@0.1.2
+
 ## 0.1.1
 
 ### Patch Changes
