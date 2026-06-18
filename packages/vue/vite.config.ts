@@ -2,6 +2,8 @@ import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 
+// Library mode: ESM + CJS, Vue externalized, all component CSS bundled into a
+// single dist/styles.css (consumers import '@iskra-ui/vue/styles.css').
 export default defineConfig({
   plugins: [vue()],
   build: {
@@ -13,7 +15,7 @@ export default defineConfig({
     rollupOptions: {
       external: ['vue'],
       output: {
-        assetFileNames: (asset) => (asset.name === 'style.css' ? 'styles.css' : asset.name!),
+        assetFileNames: 'styles.css',
         globals: { vue: 'Vue' },
       },
     },

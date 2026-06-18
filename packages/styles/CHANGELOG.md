@@ -1,5 +1,12 @@
 # @iskra-ui/styles
 
+## 0.1.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @iskra-ui/tokens@0.1.2
+
 ## 0.1.1
 
 ### Patch Changes

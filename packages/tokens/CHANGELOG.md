@@ -1,5 +1,11 @@
 # @iskra-ui/tokens
 
+## 0.1.2
+
+### Patch Changes
+
+- Adjust cold/warm theme token values.
+
 ## 0.1.1
 
 ### Patch Changes

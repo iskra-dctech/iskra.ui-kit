@@ -24,33 +24,27 @@ const meta = {
   title: 'Patterns/Popover',
   component: Popover,
   parameters: { layout: 'centered' },
+  args: {
+    trigger: <BellTrigger />,
+    children: notificationPanel,
+  },
 } satisfies Meta<typeof Popover>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  render: () => <Popover trigger={<BellTrigger />}>{notificationPanel}</Popover>,
-};
+export const Default: Story = {};
 
 export const Controlled: Story = {
-  render: () => {
+  render: (args) => {
     const [open, setOpen] = useState(false);
-    return (
-      <Popover open={open} onOpenChange={setOpen} trigger={<BellTrigger />}>
-        {notificationPanel}
-      </Popover>
-    );
+    return <Popover {...args} open={open} onOpenChange={setOpen} />;
   },
 };
 
 export const Notifications: Story = {
-  render: () => {
+  render: (args) => {
     const [open, setOpen] = useState(false);
-    return (
-      <Popover open={open} onOpenChange={setOpen} trigger={<BellTrigger />}>
-        {notificationPanel}
-      </Popover>
-    );
+    return <Popover {...args} open={open} onOpenChange={setOpen} />;
   },
 };

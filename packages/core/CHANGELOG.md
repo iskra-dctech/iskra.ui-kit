@@ -1,5 +1,11 @@
 # @iskra-ui/core
 
+## 0.1.2
+
+### Patch Changes
+
+- 7e62780: Add Notifier shell components: AppHeader, SearchField, Popover; composable Sidebar with NOTIFIER_NAV preset; Table column sort/filter; Avatar status ring; domain icons for devices and messengers.
+
 ## 0.1.1
 
 ### Patch Changes

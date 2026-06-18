@@ -58,21 +58,14 @@ export const Empty: Story = {
 };
 
 export const Sortable: Story = {
-  render: () => {
+  args: { columns, data, getRowId: (r) => r.id },
+  render: (args) => {
     const [sort, setSort] = useState<TableSort | null>(null);
-    const sorted = [...data].sort((a, b) => {
+    const sorted = [...args.data].sort((a, b) => {
       if (!sort) return 0;
       const cmp = a.host.localeCompare(b.host);
       return sort.direction === 'asc' ? cmp : -cmp;
     });
-    return (
-      <Table
-        columns={columns}
-        data={sorted}
-        getRowId={(r) => r.id}
-        sort={sort}
-        onSortChange={setSort}
-      />
-    );
+    return <Table {...args} data={sorted} sort={sort} onSortChange={setSort} />;
   },
 };
