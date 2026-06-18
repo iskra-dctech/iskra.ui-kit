@@ -1,77 +1,70 @@
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type MouseEvent,
-  type ReactNode,
-} from 'react'
-import { Icon } from '../Icon/Icon.js'
-import { cx } from '../../utils/cx.js'
-import type { IconName } from '@iskra-ui/icons'
+import { useCallback, useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react';
+import { Icon } from '../Icon/Icon.js';
+import { cx } from '../../utils/cx.js';
+import type { IconName } from '@iskra-ui/icons';
 import {
   resolveSidebarGroups,
   type SidebarNavGroup,
   type SidebarNavItem,
   type SidebarVariant,
-} from '@iskra-ui/core'
-import './Sidebar.css'
+} from '@iskra-ui/core';
+import './Sidebar.css';
 
-export type SidebarTheme = '' | 'theme-cold' | 'theme-warm'
+export type SidebarTheme = '' | 'theme-cold' | 'theme-warm';
 
-export type { SidebarNavGroup, SidebarNavItem, SidebarVariant }
+export type { SidebarNavGroup, SidebarNavItem, SidebarVariant };
 export {
   DCI_OPERATOR_NAV,
   DCI_ADMIN_NAV,
   DCI_FOOTER_NAV,
   NOTIFIER_NAV,
   resolveSidebarGroups,
-} from './presets.js'
+} from './presets.js';
 
 export interface SidebarItemRenderContext {
-  active: boolean
-  collapsed: boolean
-  badge?: number
+  active: boolean;
+  collapsed: boolean;
+  badge?: number;
 }
 
 export interface SidebarProps {
   /** Navigation tree. Omit when using `children` for a fully custom body. */
-  groups?: SidebarNavGroup[]
+  groups?: SidebarNavGroup[];
   /** Declarative footer items (rendered as nav buttons). */
-  footerItems?: SidebarNavItem[]
+  footerItems?: SidebarNavItem[];
   /** Brand block in the top bar (logo, product name). No default — pass explicitly. */
-  brand?: ReactNode
+  brand?: ReactNode;
   /** Optional content below the brand bar, above scrollable nav. */
-  header?: ReactNode
+  header?: ReactNode;
   /** Custom footer slot — overrides `footerItems` when set. */
-  footer?: ReactNode
+  footer?: ReactNode;
   /** Replaces the default groups renderer in the scroll area. */
-  children?: ReactNode
-  collapsed?: boolean
+  children?: ReactNode;
+  collapsed?: boolean;
   /** Show collapse control when `onToggle` is provided. Default: true. */
-  collapsible?: boolean
-  onToggle?: () => void
-  activeItem?: string
-  onNavigate?: (id: string) => void
-  onItemClick?: (item: SidebarNavItem) => void
+  collapsible?: boolean;
+  onToggle?: () => void;
+  activeItem?: string;
+  onNavigate?: (id: string) => void;
+  onItemClick?: (item: SidebarNavItem) => void;
   /** Convenience preset when `groups` is omitted. Prefer explicit `groups` in products. */
-  variant?: SidebarVariant
-  theme?: SidebarTheme
-  badges?: Record<string, number>
-  ariaLabel?: string
-  renderItem?: (item: SidebarNavItem, ctx: SidebarItemRenderContext) => ReactNode
-  className?: string
+  variant?: SidebarVariant;
+  theme?: SidebarTheme;
+  badges?: Record<string, number>;
+  ariaLabel?: string;
+  renderItem?: (item: SidebarNavItem, ctx: SidebarItemRenderContext) => ReactNode;
+  className?: string;
 }
 
 interface ItemProps {
-  item: SidebarNavItem
-  active: boolean
-  collapsed: boolean
-  badge?: number
-  onHover?: (e: MouseEvent<HTMLButtonElement>, lbl: string) => void
-  onLeave?: () => void
-  onClick?: () => void
-  renderItem?: SidebarProps['renderItem']
+  item: SidebarNavItem;
+  active: boolean;
+  collapsed: boolean;
+  badge?: number;
+  onHover?: (e: MouseEvent<HTMLButtonElement>, lbl: string) => void;
+  onLeave?: () => void;
+  onClick?: () => void;
+  renderItem?: SidebarProps['renderItem'];
 }
 
 function DefaultItemButton({
@@ -103,17 +96,17 @@ function DefaultItemButton({
         </span>
       )}
     </button>
-  )
+  );
 }
 
 function Item(props: ItemProps) {
-  const { renderItem, item, active, collapsed, badge, onClick, onHover, onLeave } = props
+  const { renderItem, item, active, collapsed, badge, onClick, onHover, onLeave } = props;
   if (renderItem) {
     return (
       <div className="isb-item-wrap" onClick={onClick}>
         {renderItem(item, { active, collapsed, badge })}
       </div>
-    )
+    );
   }
   return (
     <DefaultItemButton
@@ -124,7 +117,7 @@ function Item(props: ItemProps) {
       onHover={onHover}
       onLeave={onLeave}
     />
-  )
+  );
 }
 
 function NavGroups({
@@ -136,13 +129,13 @@ function NavGroups({
   hover,
   renderItem,
 }: {
-  groups: SidebarNavGroup[]
-  activeItem?: string
-  collapsed: boolean
-  badges: Record<string, number>
-  onItemActivate: (item: SidebarNavItem) => void
-  hover: { onHover?: ItemProps['onHover']; onLeave?: ItemProps['onLeave'] }
-  renderItem?: SidebarProps['renderItem']
+  groups: SidebarNavGroup[];
+  activeItem?: string;
+  collapsed: boolean;
+  badges: Record<string, number>;
+  onItemActivate: (item: SidebarNavItem) => void;
+  hover: { onHover?: ItemProps['onHover']; onLeave?: ItemProps['onLeave'] };
+  renderItem?: SidebarProps['renderItem'];
 }) {
   return (
     <>
@@ -168,7 +161,7 @@ function NavGroups({
         </div>
       ))}
     </>
-  )
+  );
 }
 
 /**
@@ -196,44 +189,44 @@ export function Sidebar({
   renderItem,
   className = '',
 }: SidebarProps) {
-  const [tip, setTip] = useState<{ lbl: string; top: number } | null>(null)
-  const [tipRdy, setTipRdy] = useState(false)
-  const [prevCollapsed, setPrevCollapsed] = useState(collapsed)
-  const sbRef = useRef<HTMLElement>(null)
+  const [tip, setTip] = useState<{ lbl: string; top: number } | null>(null);
+  const [tipRdy, setTipRdy] = useState(false);
+  const [prevCollapsed, setPrevCollapsed] = useState(collapsed);
+  const sbRef = useRef<HTMLElement>(null);
 
-  const groups = groupsProp ?? (children ? [] : resolveSidebarGroups(variant))
-  const showCollapser = collapsible && typeof onToggle === 'function'
+  const groups = groupsProp ?? (children ? [] : resolveSidebarGroups(variant));
+  const showCollapser = collapsible && typeof onToggle === 'function';
 
   if (collapsed !== prevCollapsed) {
-    setPrevCollapsed(collapsed)
-    setTipRdy(false)
-    setTip(null)
+    setPrevCollapsed(collapsed);
+    setTipRdy(false);
+    setTip(null);
   }
 
   useEffect(() => {
-    if (!collapsed) return
-    const t = setTimeout(() => setTipRdy(true), 210)
-    return () => clearTimeout(t)
-  }, [collapsed])
+    if (!collapsed) return;
+    const t = setTimeout(() => setTipRdy(true), 210);
+    return () => clearTimeout(t);
+  }, [collapsed]);
 
   const showTip = useCallback(
     (e: MouseEvent<HTMLButtonElement>, lbl: string) => {
-      if (!tipRdy || !sbRef.current) return
-      const ir = e.currentTarget.getBoundingClientRect()
-      const sr = sbRef.current.getBoundingClientRect()
-      setTip({ lbl, top: ir.top - sr.top + ir.height / 2 })
+      if (!tipRdy || !sbRef.current) return;
+      const ir = e.currentTarget.getBoundingClientRect();
+      const sr = sbRef.current.getBoundingClientRect();
+      setTip({ lbl, top: ir.top - sr.top + ir.height / 2 });
     },
     [tipRdy],
-  )
+  );
 
-  const hideTip = useCallback(() => setTip(null), [])
+  const hideTip = useCallback(() => setTip(null), []);
 
-  const hover = collapsed ? { onHover: showTip, onLeave: hideTip } : {}
+  const hover = collapsed ? { onHover: showTip, onLeave: hideTip } : {};
 
   const handleItem = (item: SidebarNavItem) => {
-    onItemClick?.(item)
-    onNavigate?.(item.id)
-  }
+    onItemClick?.(item);
+    onNavigate?.(item.id);
+  };
 
   return (
     <aside
@@ -316,5 +309,5 @@ export function Sidebar({
         </div>
       )}
     </aside>
-  )
+  );
 }

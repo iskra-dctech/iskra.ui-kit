@@ -15,9 +15,11 @@ describe('IconButton', () => {
       <IconButton aria-label="Уведомления">
         <Icon name="bell" />
       </IconButton>,
-    )
-    expect(screen.getByRole('button', { name: 'Уведомления' }).querySelector('.iskra-icon')).toBeTruthy()
-  })
+    );
+    expect(
+      screen.getByRole('button', { name: 'Уведомления' }).querySelector('.iskra-icon'),
+    ).toBeTruthy();
+  });
 
   it('has no a11y violations', async () => {
     const { container } = render(<IconButton icon={<Icon name="close" />} aria-label="Закрыть" />);

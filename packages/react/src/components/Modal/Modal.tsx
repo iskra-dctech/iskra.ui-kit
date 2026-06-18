@@ -1,26 +1,26 @@
-import { useEffect, useRef, type MouseEvent, type ReactNode } from 'react'
-import { createPortal } from 'react-dom'
-import { useFocusTrap } from '../../utils/useFocusTrap.js'
-import { cx } from '../../utils/cx.js'
-import './Modal.css'
+import { useEffect, useRef, type MouseEvent, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
+import { useFocusTrap } from '../../utils/useFocusTrap.js';
+import { cx } from '../../utils/cx.js';
+import './Modal.css';
 
-export type ModalSize = 's' | 'm' | 'l'
+export type ModalSize = 's' | 'm' | 'l';
 
 export interface ModalProps {
-  open: boolean
-  onClose: () => void
-  title?: ReactNode
-  description?: ReactNode
-  children?: ReactNode
-  footer?: ReactNode
-  size?: ModalSize
-  closeOnEsc?: boolean
-  closeOnOverlayClick?: boolean
-  showClose?: boolean
-  closeLabel?: string
-  className?: string
+  open: boolean;
+  onClose: () => void;
+  title?: ReactNode;
+  description?: ReactNode;
+  children?: ReactNode;
+  footer?: ReactNode;
+  size?: ModalSize;
+  closeOnEsc?: boolean;
+  closeOnOverlayClick?: boolean;
+  showClose?: boolean;
+  closeLabel?: string;
+  className?: string;
   /** Element to restore focus to on close. Defaults to previously focused element. */
-  returnFocusRef?: React.RefObject<HTMLElement | null>
+  returnFocusRef?: React.RefObject<HTMLElement | null>;
 }
 
 /**
@@ -43,18 +43,18 @@ export function Modal({
   className,
   returnFocusRef,
 }: ModalProps) {
-  const dialogRef = useRef<HTMLDivElement>(null)
-  const prevFocusRef = useRef<HTMLElement | null>(null)
-  useFocusTrap(dialogRef, open)
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const prevFocusRef = useRef<HTMLElement | null>(null);
+  useFocusTrap(dialogRef, open);
 
   useEffect(() => {
     if (open) {
-      prevFocusRef.current = document.activeElement as HTMLElement | null
-      return
+      prevFocusRef.current = document.activeElement as HTMLElement | null;
+      return;
     }
-    const target = returnFocusRef?.current ?? prevFocusRef.current
-    target?.focus()
-  }, [open, returnFocusRef])
+    const target = returnFocusRef?.current ?? prevFocusRef.current;
+    target?.focus();
+  }, [open, returnFocusRef]);
 
   useEffect(() => {
     if (!open || !closeOnEsc) return;

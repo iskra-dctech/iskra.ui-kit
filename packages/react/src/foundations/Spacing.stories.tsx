@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { DocsNote, TokenRow } from './_docs.js'
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { DocsNote, TokenRow } from './_docs.js';
 
 const meta = {
   title: 'Foundations/Spacing',
   parameters: { layout: 'padded' },
-} satisfies Meta
+} satisfies Meta;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const SPACING_SCALE = [
   { token: '--s1', px: '4px', width: '4px' },
@@ -18,7 +18,7 @@ const SPACING_SCALE = [
   { token: '--s6', px: '32px', width: '32px' },
   { token: '--s7', px: '48px', width: '48px' },
   { token: '--s8', px: '64px', width: '64px' },
-] as const
+] as const;
 
 export const Scale: Story = {
   render: () => (
@@ -29,14 +29,14 @@ export const Scale: Story = {
       <DocsNote>8px base · 4px allowed for micro-detail · all sizes multiples of 8</DocsNote>
     </div>
   ),
-}
+};
 
 const ELEVATION_LAYERS = [
   { name: 'Page', token: '--bg' },
   { name: 'Card', token: '--panel' },
   { name: 'Raised', token: '--panel-soft' },
   { name: 'Header', token: '--panel-muted' },
-] as const
+] as const;
 
 export const Elevation: Story = {
   render: () => (
@@ -70,4 +70,4 @@ export const Elevation: Story = {
       </div>
     </div>
   ),
-}
+};

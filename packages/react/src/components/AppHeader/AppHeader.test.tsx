@@ -1,7 +1,7 @@
-import { describe, it, expect, vi } from 'vitest'
-import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { AppHeader } from './AppHeader.js'
+import { describe, it, expect, vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { AppHeader } from './AppHeader.js';
 
 describe('AppHeader', () => {
   it('renders leading, center and trailing zones from props', () => {
@@ -11,11 +11,11 @@ describe('AppHeader', () => {
         center={<span>Search</span>}
         trailing={<span>Actions</span>}
       />,
-    )
-    expect(screen.getByText('Nav')).toBeInTheDocument()
-    expect(screen.getByText('Search')).toBeInTheDocument()
-    expect(screen.getByText('Actions')).toBeInTheDocument()
-  })
+    );
+    expect(screen.getByText('Nav')).toBeInTheDocument();
+    expect(screen.getByText('Search')).toBeInTheDocument();
+    expect(screen.getByText('Actions')).toBeInTheDocument();
+  });
 
   it('renders platform nav with current item', () => {
     render(
@@ -25,12 +25,12 @@ describe('AppHeader', () => {
           { id: 'b', label: 'Space', current: true },
         ]}
       />,
-    )
-    expect(screen.getByRole('button', { name: 'Space' })).toHaveAttribute('aria-current', 'page')
-  })
+    );
+    expect(screen.getByRole('button', { name: 'Space' })).toHaveAttribute('aria-current', 'page');
+  });
 
   it('calls onNavigate from nav buttons', async () => {
-    const onNavigate = vi.fn()
+    const onNavigate = vi.fn();
     render(
       <AppHeader.Nav
         items={[
@@ -39,8 +39,8 @@ describe('AppHeader', () => {
         ]}
         onNavigate={onNavigate}
       />,
-    )
-    await userEvent.click(screen.getByRole('button', { name: 'Settings' }))
-    expect(onNavigate).toHaveBeenCalledWith('settings')
-  })
-})
+    );
+    await userEvent.click(screen.getByRole('button', { name: 'Settings' }));
+    expect(onNavigate).toHaveBeenCalledWith('settings');
+  });
+});

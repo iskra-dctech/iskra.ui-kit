@@ -1,15 +1,15 @@
 export interface SidebarNavItem {
-  id: string
-  label: string
-  icon?: string
-  badge?: number
-  disabled?: boolean
+  id: string;
+  label: string;
+  icon?: string;
+  badge?: number;
+  disabled?: boolean;
 }
 
 export interface SidebarNavGroup {
-  id: string
-  label?: string
-  items: SidebarNavItem[]
+  id: string;
+  label?: string;
+  items: SidebarNavItem[];
 }
 
 export const DCI_OPERATOR_NAV: SidebarNavGroup[] = [
@@ -31,7 +31,7 @@ export const DCI_OPERATOR_NAV: SidebarNavGroup[] = [
       { id: 'log', label: 'Журнал', icon: 'list' },
     ],
   },
-]
+];
 
 export const DCI_ADMIN_EXTRA: SidebarNavGroup = {
   id: 'admin',
@@ -41,14 +41,14 @@ export const DCI_ADMIN_EXTRA: SidebarNavGroup = {
     { id: 'audit', label: 'Аудит', icon: 'shield-check' },
     { id: 'system', label: 'Система', icon: 'terminal' },
   ],
-}
+};
 
-export const DCI_ADMIN_NAV: SidebarNavGroup[] = [...DCI_OPERATOR_NAV, DCI_ADMIN_EXTRA]
+export const DCI_ADMIN_NAV: SidebarNavGroup[] = [...DCI_OPERATOR_NAV, DCI_ADMIN_EXTRA];
 
 export const DCI_FOOTER_NAV: SidebarNavItem[] = [
   { id: 'settings', label: 'Настройки', icon: 'settings' },
   { id: 'logout', label: 'Выход', icon: 'log-out' },
-]
+];
 
 export const NOTIFIER_NAV: SidebarNavGroup[] = [
   {
@@ -68,10 +68,10 @@ export const NOTIFIER_NAV: SidebarNavGroup[] = [
       { id: 'admin', label: 'Администрирование', icon: 'settings' },
     ],
   },
-]
+];
 
-export type SidebarVariant = 'operator' | 'admin'
+export type SidebarVariant = 'operator' | 'admin';
 
 export function resolveSidebarGroups(variant: SidebarVariant): SidebarNavGroup[] {
-  return variant === 'admin' ? DCI_ADMIN_NAV : DCI_OPERATOR_NAV
+  return variant === 'admin' ? DCI_ADMIN_NAV : DCI_OPERATOR_NAV;
 }

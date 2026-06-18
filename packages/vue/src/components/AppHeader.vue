@@ -1,15 +1,15 @@
 <script lang="ts">
-export type AppHeaderIndicatorDot = 'ok' | 'warn' | 'error' | 'off'
+export type AppHeaderIndicatorDot = 'ok' | 'warn' | 'error' | 'off';
 /** @deprecated Use AppHeaderIndicatorDot */
-export type AppHeaderStatusDot = AppHeaderIndicatorDot
+export type AppHeaderStatusDot = AppHeaderIndicatorDot;
 </script>
 
 <script setup lang="ts">
-import { cx } from '../utils/cx.js'
+import { cx } from '../utils/cx.js';
 
 defineProps<{
-  class?: string
-}>()
+  class?: string;
+}>();
 </script>
 
 <template>

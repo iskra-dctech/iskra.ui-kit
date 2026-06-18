@@ -1,30 +1,30 @@
-import { useEffect, useId, useRef, useState, type InputHTMLAttributes } from 'react'
-import { Icon } from '../Icon/Icon.js'
-import { cx } from '../../utils/cx.js'
-import './SearchField.css'
+import { useEffect, useId, useRef, useState, type InputHTMLAttributes } from 'react';
+import { Icon } from '../Icon/Icon.js';
+import { cx } from '../../utils/cx.js';
+import './SearchField.css';
 
-export type SearchFieldSize = 's' | 'm'
-export type SearchFieldVariant = 'default' | 'inline'
+export type SearchFieldSize = 's' | 'm';
+export type SearchFieldVariant = 'default' | 'inline';
 
 export interface SearchFieldProps extends Omit<
   InputHTMLAttributes<HTMLInputElement>,
   'size' | 'type'
 > {
-  size?: SearchFieldSize
-  variant?: SearchFieldVariant
-  clearable?: boolean
-  onClear?: () => void
-  clearLabel?: string
+  size?: SearchFieldSize;
+  variant?: SearchFieldVariant;
+  clearable?: boolean;
+  onClear?: () => void;
+  clearLabel?: string;
   /** Keyboard shortcut hint shown on the right, e.g. "⌘K". */
-  shortcut?: string
+  shortcut?: string;
   /** When true, registers a global shortcut listener (Ctrl/Cmd+K). */
-  enableShortcut?: boolean
-  onShortcut?: () => void
-  wrapClassName?: string
+  enableShortcut?: boolean;
+  onShortcut?: () => void;
+  wrapClassName?: string;
 }
 
 function isModKey(e: KeyboardEvent) {
-  return e.metaKey || e.ctrlKey
+  return e.metaKey || e.ctrlKey;
 }
 
 /** SearchField — compact search input for headers and filter panels. */
@@ -48,48 +48,48 @@ export function SearchField({
   placeholder = 'Поиск…',
   ...rest
 }: SearchFieldProps) {
-  const autoId = useId()
-  const inputId = id ?? `ik-sf-${autoId}`
-  const inputRef = useRef<HTMLInputElement>(null)
+  const autoId = useId();
+  const inputId = id ?? `ik-sf-${autoId}`;
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const controlled = value != null
+  const controlled = value != null;
   const [hasVal, setHasVal] = useState(
     controlled ? String(value).length > 0 : String(defaultValue ?? '').length > 0,
-  )
-  const showClear = clearable && !disabled && (controlled ? String(value).length > 0 : hasVal)
+  );
+  const showClear = clearable && !disabled && (controlled ? String(value).length > 0 : hasVal);
 
   useEffect(() => {
-    if (!enableShortcut) return
+    if (!enableShortcut) return;
     const onKey = (e: KeyboardEvent) => {
       if (isModKey(e) && e.key.toLowerCase() === 'k') {
-        e.preventDefault()
-        inputRef.current?.focus()
-        onShortcut?.()
+        e.preventDefault();
+        inputRef.current?.focus();
+        onShortcut?.();
       }
-    }
-    document.addEventListener('keydown', onKey)
-    return () => document.removeEventListener('keydown', onKey)
-  }, [enableShortcut, onShortcut])
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [enableShortcut, onShortcut]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!controlled) setHasVal(e.target.value.length > 0)
-    onChange?.(e)
-  }
+    if (!controlled) setHasVal(e.target.value.length > 0);
+    onChange?.(e);
+  };
 
   const handleClear = () => {
-    const el = inputRef.current
+    const el = inputRef.current;
     if (el) {
       const setter = Object.getOwnPropertyDescriptor(
         window.HTMLInputElement.prototype,
         'value',
-      )?.set
-      setter?.call(el, '')
-      el.dispatchEvent(new Event('input', { bubbles: true }))
-      el.focus()
+      )?.set;
+      setter?.call(el, '');
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+      el.focus();
     }
-    if (!controlled) setHasVal(false)
-    onClear?.()
-  }
+    if (!controlled) setHasVal(false);
+    onClear?.();
+  };
 
   return (
     <div className={cx('ik-sf-wrap', wrapClassName)}>
@@ -136,5 +136,5 @@ export function SearchField({
         )}
       </div>
     </div>
-  )
+  );
 }

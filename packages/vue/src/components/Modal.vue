@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref, watch } from 'vue'
-import { createFocusTrap } from '@iskra-ui/core'
-import { cx } from '../utils/cx.js'
+import { onMounted, onUnmounted, ref, watch } from 'vue';
+import { createFocusTrap } from '@iskra-ui/core';
+import { cx } from '../utils/cx.js';
 
-export type ModalSize = 's' | 'm' | 'l'
+export type ModalSize = 's' | 'm' | 'l';
 
 const props = withDefaults(
   defineProps<{
-    open: boolean
-    title?: string
-    description?: string
-    size?: ModalSize
-    closeOnEsc?: boolean
-    closeOnClickOutside?: boolean
-    showClose?: boolean
-    closeLabel?: string
+    open: boolean;
+    title?: string;
+    description?: string;
+    size?: ModalSize;
+    closeOnEsc?: boolean;
+    closeOnClickOutside?: boolean;
+    showClose?: boolean;
+    closeLabel?: string;
   }>(),
   {
     size: 'm',
@@ -23,47 +23,47 @@ const props = withDefaults(
     showClose: true,
     closeLabel: 'Закрыть',
   },
-)
+);
 
-const emit = defineEmits<{ close: [] }>()
+const emit = defineEmits<{ close: [] }>();
 
-const dialogRef = ref<HTMLDivElement | null>(null)
-const prevFocus = ref<HTMLElement | null>(null)
-let trap: ReturnType<typeof createFocusTrap> | null = null
+const dialogRef = ref<HTMLDivElement | null>(null);
+const prevFocus = ref<HTMLElement | null>(null);
+let trap: ReturnType<typeof createFocusTrap> | null = null;
 
 watch(
   () => props.open,
   (open) => {
     if (open) {
-      prevFocus.value = document.activeElement as HTMLElement | null
-      document.body.style.overflow = 'hidden'
+      prevFocus.value = document.activeElement as HTMLElement | null;
+      document.body.style.overflow = 'hidden';
       requestAnimationFrame(() => {
-        if (dialogRef.value) trap = createFocusTrap(dialogRef.value)
-        trap?.activate()
-      })
-      return
+        if (dialogRef.value) trap = createFocusTrap(dialogRef.value);
+        trap?.activate();
+      });
+      return;
     }
-    trap?.deactivate()
-    trap = null
-    document.body.style.overflow = ''
-    prevFocus.value?.focus()
+    trap?.deactivate();
+    trap = null;
+    document.body.style.overflow = '';
+    prevFocus.value?.focus();
   },
-)
+);
 
 function onKey(e: KeyboardEvent) {
-  if (props.closeOnEsc && props.open && e.key === 'Escape') emit('close')
+  if (props.closeOnEsc && props.open && e.key === 'Escape') emit('close');
 }
 
 function onOverlayMouseDown(e: MouseEvent) {
-  if (props.closeOnClickOutside && e.target === e.currentTarget) emit('close')
+  if (props.closeOnClickOutside && e.target === e.currentTarget) emit('close');
 }
 
-onMounted(() => document.addEventListener('keydown', onKey))
+onMounted(() => document.addEventListener('keydown', onKey));
 onUnmounted(() => {
-  document.removeEventListener('keydown', onKey)
-  trap?.deactivate()
-  document.body.style.overflow = ''
-})
+  document.removeEventListener('keydown', onKey);
+  trap?.deactivate();
+  document.body.style.overflow = '';
+});
 </script>
 
 <template>
@@ -90,7 +90,15 @@ onUnmounted(() => {
             :aria-label="closeLabel"
             @click="emit('close')"
           >
-            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              aria-hidden="true"
+            >
               <line x1="4" y1="4" x2="12" y2="12" />
               <line x1="12" y1="4" x2="4" y2="12" />
             </svg>

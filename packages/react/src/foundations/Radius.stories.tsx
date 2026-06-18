@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Foundations/Radius',
   parameters: { layout: 'padded' },
-} satisfies Meta
+} satisfies Meta;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Scale: Story = {
   render: () => (
@@ -58,4 +58,4 @@ export const Scale: Story = {
       </p>
     </div>
   ),
-}
+};

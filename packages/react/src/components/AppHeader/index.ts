@@ -7,4 +7,4 @@ export {
   type AppHeaderTextProps,
   type AppHeaderIndicatorDot,
   type AppHeaderStatusDot,
-} from './AppHeader.js'
+} from './AppHeader.js';

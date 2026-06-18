@@ -6,9 +6,9 @@ export interface IconButtonProps extends Omit<
   'iconOnly' | 'iconBefore' | 'iconAfter'
 > {
   /** The icon to render. `children` is accepted as a fallback alias. */
-  icon?: ReactNode
+  icon?: ReactNode;
   /** Accessible name — required because there is no visible text. */
-  'aria-label': string
+  'aria-label': string;
 }
 
 /** IconButton — square, icon-only button. Always requires an accessible name. */
@@ -20,5 +20,5 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(functio
     <Button ref={ref} iconOnly {...rest}>
       {icon ?? children}
     </Button>
-  )
-})
+  );
+});

@@ -1,67 +1,67 @@
-import { type ReactNode } from 'react'
-import { Icon } from '../Icon/Icon.js'
-import { Skeleton } from '../Skeleton/Skeleton.js'
-import { cx } from '../../utils/cx.js'
-import './Table.css'
+import { type ReactNode } from 'react';
+import { Icon } from '../Icon/Icon.js';
+import { Skeleton } from '../Skeleton/Skeleton.js';
+import { cx } from '../../utils/cx.js';
+import './Table.css';
 
-export type TableDensity = 'regular' | 'compact'
-export type TableAlign = 'left' | 'right' | 'center'
-export type SortDirection = 'asc' | 'desc'
+export type TableDensity = 'regular' | 'compact';
+export type TableAlign = 'left' | 'right' | 'center';
+export type SortDirection = 'asc' | 'desc';
 
 export interface TableSort {
-  key: string
-  direction: SortDirection
+  key: string;
+  direction: SortDirection;
 }
 
 export interface TableColumn<T> {
-  key: string
-  header: ReactNode
-  render?: (row: T, index: number) => ReactNode
-  align?: TableAlign
-  width?: number | string
-  sortable?: boolean
-  sortKey?: string
-  filter?: ReactNode
+  key: string;
+  header: ReactNode;
+  render?: (row: T, index: number) => ReactNode;
+  align?: TableAlign;
+  width?: number | string;
+  sortable?: boolean;
+  sortKey?: string;
+  filter?: ReactNode;
 }
 
 export interface TableProps<T> {
-  columns: TableColumn<T>[]
-  data: T[]
-  getRowId?: (row: T, index: number) => string | number
-  density?: TableDensity
-  stickyHeader?: boolean
-  loading?: boolean
-  loadingRows?: number
-  empty?: ReactNode
-  onRowClick?: (row: T, index: number) => void
-  selectedRowId?: string | number
-  caption?: string
-  sort?: TableSort | null
-  onSortChange?: (sort: TableSort | null) => void
-  className?: string
+  columns: TableColumn<T>[];
+  data: T[];
+  getRowId?: (row: T, index: number) => string | number;
+  density?: TableDensity;
+  stickyHeader?: boolean;
+  loading?: boolean;
+  loadingRows?: number;
+  empty?: ReactNode;
+  onRowClick?: (row: T, index: number) => void;
+  selectedRowId?: string | number;
+  caption?: string;
+  sort?: TableSort | null;
+  onSortChange?: (sort: TableSort | null) => void;
+  className?: string;
 }
 
 const alignClass = (a?: TableAlign) =>
-  a === 'right' ? 'ik-table-align-right' : a === 'center' ? 'ik-table-align-center' : undefined
+  a === 'right' ? 'ik-table-align-right' : a === 'center' ? 'ik-table-align-center' : undefined;
 
 function HeaderCell<T>({
   col,
   sort,
   onSortChange,
 }: {
-  col: TableColumn<T>
-  sort?: TableSort | null
-  onSortChange?: (sort: TableSort | null) => void
+  col: TableColumn<T>;
+  sort?: TableSort | null;
+  onSortChange?: (sort: TableSort | null) => void;
 }) {
-  const sk = col.sortKey ?? col.key
-  const isActive = sort?.key === sk
+  const sk = col.sortKey ?? col.key;
+  const isActive = sort?.key === sk;
 
   const handleSort = () => {
-    if (!col.sortable || !onSortChange) return
-    if (!isActive) onSortChange({ key: sk, direction: 'asc' })
-    else if (sort!.direction === 'asc') onSortChange({ key: sk, direction: 'desc' })
-    else onSortChange(null)
-  }
+    if (!col.sortable || !onSortChange) return;
+    if (!isActive) onSortChange({ key: sk, direction: 'asc' });
+    else if (sort!.direction === 'asc') onSortChange({ key: sk, direction: 'desc' });
+    else onSortChange(null);
+  };
 
   const content = (
     <span className="ik-table-th-inner">
@@ -82,17 +82,17 @@ function HeaderCell<T>({
       )}
       {col.filter && <span className="ik-table-th-filter">{col.filter}</span>}
     </span>
-  )
+  );
 
   if (col.sortable) {
     return (
       <button type="button" className="ik-table-sort-btn" onClick={handleSort}>
         {content}
       </button>
-    )
+    );
   }
 
-  return content
+  return content;
 }
 
 /** Table — foundational data table with optional column sort and filter slots. */
@@ -112,8 +112,8 @@ export function Table<T>({
   onSortChange,
   className,
 }: TableProps<T>) {
-  const colCount = columns.length
-  const rowId = (row: T, i: number) => getRowId?.(row, i) ?? i
+  const colCount = columns.length;
+  const rowId = (row: T, i: number) => getRowId?.(row, i) ?? i;
 
   return (
     <div className="ik-table-wrap">
@@ -168,7 +168,7 @@ export function Table<T>({
             </tr>
           ) : (
             data.map((row, i) => {
-              const id = rowId(row, i)
+              const id = rowId(row, i);
               return (
                 <tr
                   key={id}
@@ -187,11 +187,11 @@ export function Table<T>({
                     </td>
                   ))}
                 </tr>
-              )
+              );
             })
           )}
         </tbody>
       </table>
     </div>
-  )
+  );
 }

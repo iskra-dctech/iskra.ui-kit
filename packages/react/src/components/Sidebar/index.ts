@@ -1,15 +1,15 @@
-export { Sidebar } from './Sidebar.js'
+export { Sidebar } from './Sidebar.js';
 export type {
   SidebarProps,
   SidebarTheme,
   SidebarNavGroup,
   SidebarNavItem,
   SidebarVariant,
-} from './Sidebar.js'
+} from './Sidebar.js';
 export {
   DCI_OPERATOR_NAV,
   DCI_ADMIN_NAV,
   DCI_FOOTER_NAV,
   NOTIFIER_NAV,
   resolveSidebarGroups,
-} from './presets.js'
+} from './presets.js';

@@ -9,12 +9,12 @@ describe('Avatar', () => {
   });
 
   it('applies status ring class when status is set', () => {
-    const { container } = render(<Avatar name="test" status="online" />)
-    expect(container.querySelector('.ik-av-ring-online')).toBeInTheDocument()
-  })
+    const { container } = render(<Avatar name="test" status="online" />);
+    expect(container.querySelector('.ik-av-ring-online')).toBeInTheDocument();
+  });
 
   it('exposes the name as an accessible label', () => {
-    render(<Avatar name="leaf-07" />)
-    expect(screen.getByRole('img', { name: 'leaf-07' })).toBeInTheDocument()
-  })
-})
+    render(<Avatar name="leaf-07" />);
+    expect(screen.getByRole('img', { name: 'leaf-07' })).toBeInTheDocument();
+  });
+});

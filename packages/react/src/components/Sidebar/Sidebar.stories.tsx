@@ -1,12 +1,12 @@
-import { useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react-vite'
+import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   Sidebar,
   DCI_OPERATOR_NAV,
   DCI_ADMIN_NAV,
   DCI_FOOTER_NAV,
   NOTIFIER_NAV,
-} from './Sidebar.js'
+} from './Sidebar.js';
 
 const DciBrand = () => (
   <>
@@ -17,7 +17,7 @@ const DciBrand = () => (
     </span>
     <span className="isb-wmark">ИСКРА.DCI</span>
   </>
-)
+);
 
 const meta = {
   title: 'Patterns/Sidebar',
@@ -31,15 +31,15 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof Sidebar>
+} satisfies Meta<typeof Sidebar>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const DciOperator: Story = {
   render: () => {
-    const [collapsed, setCollapsed] = useState(false)
-    const [page, setPage] = useState('overview')
+    const [collapsed, setCollapsed] = useState(false);
+    const [page, setPage] = useState('overview');
     return (
       <div style={{ height: 520, display: 'flex', background: 'var(--bg)' }}>
         <Sidebar
@@ -53,14 +53,14 @@ export const DciOperator: Story = {
           badges={{ alerts: 3 }}
         />
       </div>
-    )
+    );
   },
-}
+};
 
 export const Collapsed: Story = {
   render: () => {
-    const [collapsed, setCollapsed] = useState(true)
-    const [page, setPage] = useState('devices')
+    const [collapsed, setCollapsed] = useState(true);
+    const [page, setPage] = useState('devices');
     return (
       <div style={{ height: 520, display: 'flex', background: 'var(--bg)' }}>
         <Sidebar
@@ -74,13 +74,13 @@ export const Collapsed: Story = {
           badges={{ alerts: 3 }}
         />
       </div>
-    )
+    );
   },
-}
+};
 
 export const ExpandedVsCollapsed: Story = {
   render: () => {
-    const [page, setPage] = useState('overview')
+    const [page, setPage] = useState('overview');
     return (
       <div style={{ height: 520, display: 'flex', gap: 24, padding: 24, background: 'var(--bg)' }}>
         <Sidebar
@@ -104,14 +104,14 @@ export const ExpandedVsCollapsed: Story = {
           badges={{ alerts: 3 }}
         />
       </div>
-    )
+    );
   },
-}
+};
 
 export const DciAdmin: Story = {
   render: () => {
-    const [collapsed, setCollapsed] = useState(false)
-    const [page, setPage] = useState('users')
+    const [collapsed, setCollapsed] = useState(false);
+    const [page, setPage] = useState('users');
     return (
       <div style={{ height: 520, display: 'flex', background: 'var(--bg)' }}>
         <Sidebar
@@ -124,14 +124,14 @@ export const DciAdmin: Story = {
           onNavigate={setPage}
         />
       </div>
-    )
+    );
   },
-}
+};
 
 export const NotifierPreset: Story = {
   render: () => {
-    const [collapsed, setCollapsed] = useState(false)
-    const [page, setPage] = useState('dashboard')
+    const [collapsed, setCollapsed] = useState(false);
+    const [page, setPage] = useState('dashboard');
     return (
       <div style={{ height: 600, display: 'flex', background: 'var(--bg)' }}>
         <Sidebar
@@ -148,9 +148,9 @@ export const NotifierPreset: Story = {
           ariaLabel="Навигация Notifier"
         />
       </div>
-    )
+    );
   },
-}
+};
 
 export const CustomBody: Story = {
   render: () => (
@@ -162,4 +162,4 @@ export const CustomBody: Story = {
       </Sidebar>
     </div>
   ),
-}
+};

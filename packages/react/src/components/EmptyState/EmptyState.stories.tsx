@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { EmptyState } from './EmptyState.js'
-import { Icon } from '../Icon/Icon.js'
-import { Button } from '../Button/Button.js'
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { EmptyState } from './EmptyState.js';
+import { Icon } from '../Icon/Icon.js';
+import { Button } from '../Button/Button.js';
 
 const meta = {
   title: 'Patterns/EmptyState',
   component: EmptyState,
-} satisfies Meta<typeof EmptyState>
+} satisfies Meta<typeof EmptyState>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const NoDevices: Story = {
   args: {
@@ -18,7 +18,7 @@ export const NoDevices: Story = {
     description: 'Добавьте первое устройство в инвентарь, чтобы начать мониторинг.',
     action: <Button size="s">Добавить устройство</Button>,
   },
-}
+};
 
 export const Platform404: Story = {
   parameters: { layout: 'fullscreen' },
@@ -28,4 +28,4 @@ export const Platform404: Story = {
     onHome: () => undefined,
     onBack: () => undefined,
   },
-}
+};

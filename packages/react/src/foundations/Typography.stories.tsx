@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { DocsNote, TypeRow } from './_docs.js'
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { DocsNote, TypeRow } from './_docs.js';
 
 const meta = {
   title: 'Foundations/Typography',
   parameters: { layout: 'padded' },
-} satisfies Meta
+} satisfies Meta;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Display: Story = {
   render: () => (
@@ -51,7 +51,7 @@ export const Display: Story = {
       </TypeRow>
     </div>
   ),
-}
+};
 
 export const Body: Story = {
   render: () => (
@@ -94,14 +94,9 @@ export const Body: Story = {
       </TypeRow>
     </div>
   ),
-}
+};
 
-const MONO_LABELS = [
-  'Fleet in Sync',
-  'Inventory',
-  'Reconciler',
-  'Control & Monitoring',
-] as const
+const MONO_LABELS = ['Fleet in Sync', 'Inventory', 'Reconciler', 'Control & Monitoring'] as const;
 
 export const Labels: Story = {
   render: () => (
@@ -151,7 +146,7 @@ export const Labels: Story = {
       </DocsNote>
     </div>
   ),
-}
+};
 
 export const Mono: Story = {
   render: () => (
@@ -172,7 +167,8 @@ export const Mono: Story = {
         spec="CLI"
         style={{ fontSize: 'var(--text-mono)', lineHeight: 'var(--lh-mono)', color: 'var(--fg1)' }}
       >
-        <span style={{ color: 'var(--accent-safe)' }}>curl</span> -X POST .../devices/leaf-07/actions/sync
+        <span style={{ color: 'var(--accent-safe)' }}>curl</span> -X POST
+        .../devices/leaf-07/actions/sync
       </TypeRow>
       <TypeRow
         spec="YAML"
@@ -187,4 +183,4 @@ export const Mono: Story = {
       </TypeRow>
     </div>
   ),
-}
+};

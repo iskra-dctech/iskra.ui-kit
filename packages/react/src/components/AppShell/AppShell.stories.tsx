@@ -1,16 +1,16 @@
-import { useMemo, useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { AppHeader } from '../AppHeader/AppHeader.js'
-import { Avatar } from '../Avatar/Avatar.js'
-import { Badge } from '../Badge/Badge.js'
-import { Button } from '../Button/Button.js'
-import { Icon } from '../Icon/Icon.js'
-import { IconButton } from '../IconButton/IconButton.js'
-import { Modal } from '../Modal/Modal.js'
-import { Popover } from '../Popover/Popover.js'
-import { SearchField } from '../SearchField/SearchField.js'
-import { Sidebar, NOTIFIER_NAV } from '../Sidebar/Sidebar.js'
-import { Table, type TableColumn, type TableSort } from '../Table/Table.js'
+import { useMemo, useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { AppHeader } from '../AppHeader/AppHeader.js';
+import { Avatar } from '../Avatar/Avatar.js';
+import { Badge } from '../Badge/Badge.js';
+import { Button } from '../Button/Button.js';
+import { Icon } from '../Icon/Icon.js';
+import { IconButton } from '../IconButton/IconButton.js';
+import { Modal } from '../Modal/Modal.js';
+import { Popover } from '../Popover/Popover.js';
+import { SearchField } from '../SearchField/SearchField.js';
+import { Sidebar, NOTIFIER_NAV } from '../Sidebar/Sidebar.js';
+import { Table, type TableColumn, type TableSort } from '../Table/Table.js';
 
 const meta = {
   title: 'Patterns/AppShell',
@@ -23,16 +23,16 @@ const meta = {
       },
     },
   },
-} satisfies Meta
+} satisfies Meta;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 interface Incident {
-  id: string
-  severity: string
-  service: string
-  status: string
+  id: string;
+  severity: string;
+  service: string;
+  status: string;
 }
 
 const incidentColumns: TableColumn<Incident>[] = [
@@ -48,12 +48,22 @@ const incidentColumns: TableColumn<Incident>[] = [
   { key: 'id', header: 'ID инцидента', sortable: true },
   { key: 'service', header: 'Услуга / система', sortable: true },
   { key: 'status', header: 'Статус' },
-]
+];
 
 const incidents: Incident[] = [
-  { id: 'INC-2026-001245', severity: 'critical', service: 'Сбой резервного хранилища', status: 'Ожидает ACK' },
-  { id: 'INC-2026-001242', severity: 'warning', service: 'Рост задержки API-шлюза', status: 'Отправлено' },
-]
+  {
+    id: 'INC-2026-001245',
+    severity: 'critical',
+    service: 'Сбой резервного хранилища',
+    status: 'Ожидает ACK',
+  },
+  {
+    id: 'INC-2026-001242',
+    severity: 'warning',
+    service: 'Рост задержки API-шлюза',
+    status: 'Отправлено',
+  },
+];
 
 export const NotifierShell: Story = {
   parameters: {
@@ -65,20 +75,20 @@ export const NotifierShell: Story = {
     },
   },
   render: () => {
-    const [page, setPage] = useState('incidents')
-    const [modalOpen, setModalOpen] = useState(false)
-    const [sort, setSort] = useState<TableSort | null>(null)
-    const [notifOpen, setNotifOpen] = useState(false)
+    const [page, setPage] = useState('incidents');
+    const [modalOpen, setModalOpen] = useState(false);
+    const [sort, setSort] = useState<TableSort | null>(null);
+    const [notifOpen, setNotifOpen] = useState(false);
 
     const sorted = useMemo(() => {
-      if (!sort) return incidents
+      if (!sort) return incidents;
       return [...incidents].sort((a, b) => {
-        const av = String(a[sort.key as keyof Incident] ?? '')
-        const bv = String(b[sort.key as keyof Incident] ?? '')
-        const cmp = av.localeCompare(bv)
-        return sort.direction === 'asc' ? cmp : -cmp
-      })
-    }, [sort])
+        const av = String(a[sort.key as keyof Incident] ?? '');
+        const bv = String(b[sort.key as keyof Incident] ?? '');
+        const cmp = av.localeCompare(bv);
+        return sort.direction === 'asc' ? cmp : -cmp;
+      });
+    }, [sort]);
 
     return (
       <div style={{ display: 'flex', height: '100vh', background: 'var(--bg)' }}>
@@ -134,12 +144,28 @@ export const NotifierShell: Story = {
                       />
                     }
                   >
-                    <div style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 8, minWidth: 300 }}>
-                      <div style={{ fontWeight: 600, fontSize: 11, color: 'var(--fg3)', letterSpacing: '0.08em' }}>
+                    <div
+                      style={{
+                        padding: 12,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: 8,
+                        minWidth: 300,
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontWeight: 600,
+                          fontSize: 11,
+                          color: 'var(--fg3)',
+                          letterSpacing: '0.08em',
+                        }}
+                      >
                         УВЕДОМЛЕНИЯ
                       </div>
                       <div style={{ fontSize: 12 }}>
-                        <span style={{ color: 'var(--status-err)' }}>[Ошибка]</span> Ошибка доставки в Telegram
+                        <span style={{ color: 'var(--status-err)' }}>[Ошибка]</span> Ошибка доставки
+                        в Telegram
                       </div>
                     </div>
                   </Popover>
@@ -154,7 +180,14 @@ export const NotifierShell: Story = {
             }
           />
           <main style={{ flex: 1, padding: 24, overflow: 'auto' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginBottom: 16,
+              }}
+            >
               <h1 style={{ fontSize: 24, fontWeight: 600 }}>Реестр инцидентов</h1>
               <Button onClick={() => setModalOpen(true)}>+ Ручной инцидент</Button>
             </div>
@@ -184,6 +217,6 @@ export const NotifierShell: Story = {
           Укажите услугу, критичность и описание проблемы.
         </Modal>
       </div>
-    )
+    );
   },
-}
+};

@@ -1,28 +1,28 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, useAttrs, watch } from 'vue'
-import Icon from './Icon.vue'
-import { cx } from '../utils/cx.js'
-import type { IconName } from '@iskra-ui/icons'
+import { computed, onMounted, ref, useAttrs, watch } from 'vue';
+import Icon from './Icon.vue';
+import { cx } from '../utils/cx.js';
+import type { IconName } from '@iskra-ui/icons';
 import {
   resolveSidebarGroups,
   type SidebarNavGroup,
   type SidebarNavItem,
   type SidebarVariant,
-} from '@iskra-ui/core'
+} from '@iskra-ui/core';
 
-export type SidebarTheme = '' | 'theme-cold' | 'theme-warm'
+export type SidebarTheme = '' | 'theme-cold' | 'theme-warm';
 
 const props = withDefaults(
   defineProps<{
-    groups?: SidebarNavGroup[]
-    footerItems?: SidebarNavItem[]
-    collapsed?: boolean
-    collapsible?: boolean
-    activeItem?: string
-    variant?: SidebarVariant
-    theme?: SidebarTheme
-    badges?: Record<string, number>
-    ariaLabel?: string
+    groups?: SidebarNavGroup[];
+    footerItems?: SidebarNavItem[];
+    collapsed?: boolean;
+    collapsible?: boolean;
+    activeItem?: string;
+    variant?: SidebarVariant;
+    theme?: SidebarTheme;
+    badges?: Record<string, number>;
+    ariaLabel?: string;
   }>(),
   {
     footerItems: () => [],
@@ -33,18 +33,22 @@ const props = withDefaults(
     badges: () => ({}),
     ariaLabel: 'Навигация',
   },
-)
+);
 
-const emit = defineEmits<{ navigate: [id: string]; itemClick: [item: SidebarNavItem]; toggle: [] }>()
+const emit = defineEmits<{
+  navigate: [id: string];
+  itemClick: [item: SidebarNavItem];
+  toggle: [];
+}>();
 
-const sbRef = ref<HTMLElement | null>(null)
-const tip = ref<{ lbl: string; top: number } | null>(null)
-const tipRdy = ref(false)
+const sbRef = ref<HTMLElement | null>(null);
+const tip = ref<{ lbl: string; top: number } | null>(null);
+const tipRdy = ref(false);
 
-const attrs = useAttrs()
+const attrs = useAttrs();
 
-const groups = computed(() => props.groups ?? resolveSidebarGroups(props.variant))
-const showCollapser = computed(() => props.collapsible && typeof attrs.onToggle !== 'undefined')
+const groups = computed(() => props.groups ?? resolveSidebarGroups(props.variant));
+const showCollapser = computed(() => props.collapsible && typeof attrs.onToggle !== 'undefined');
 
 const sbCls = computed(() =>
   cx(
@@ -53,44 +57,50 @@ const sbCls = computed(() =>
     props.collapsed && tipRdy.value && 'isb-tip-rdy',
     props.theme,
   ),
-)
+);
 
 function iconName(item: SidebarNavItem): IconName | undefined {
-  return item.icon as IconName | undefined
+  return item.icon as IconName | undefined;
 }
 
 function badgeFor(item: SidebarNavItem) {
-  return props.badges[item.id] ?? item.badge
+  return props.badges[item.id] ?? item.badge;
 }
 
 function onItemClick(item: SidebarNavItem) {
-  emit('itemClick', item)
-  emit('navigate', item.id)
+  emit('itemClick', item);
+  emit('navigate', item.id);
 }
 
 function showTip(e: MouseEvent, lbl: string) {
-  if (!tipRdy.value || !sbRef.value) return
-  const ir = (e.currentTarget as HTMLElement).getBoundingClientRect()
-  const sr = sbRef.value.getBoundingClientRect()
-  tip.value = { lbl, top: ir.top - sr.top + ir.height / 2 }
+  if (!tipRdy.value || !sbRef.value) return;
+  const ir = (e.currentTarget as HTMLElement).getBoundingClientRect();
+  const sr = sbRef.value.getBoundingClientRect();
+  tip.value = { lbl, top: ir.top - sr.top + ir.height / 2 };
 }
 
 function hideTip() {
-  tip.value = null
+  tip.value = null;
 }
 
 watch(
   () => props.collapsed,
   (c) => {
-    tipRdy.value = false
-    tip.value = null
-    if (c) setTimeout(() => { tipRdy.value = true }, 210)
+    tipRdy.value = false;
+    tip.value = null;
+    if (c)
+      setTimeout(() => {
+        tipRdy.value = true;
+      }, 210);
   },
-)
+);
 
 onMounted(() => {
-  if (props.collapsed) setTimeout(() => { tipRdy.value = true }, 210)
-})
+  if (props.collapsed)
+    setTimeout(() => {
+      tipRdy.value = true;
+    }, 210);
+});
 </script>
 
 <template>
@@ -107,7 +117,13 @@ onMounted(() => {
         :aria-label="collapsed ? 'Развернуть боковую панель' : 'Свернуть боковую панель'"
         @click="emit('toggle')"
       >
-        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <svg
+          viewBox="0 0 10 10"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          aria-hidden="true"
+        >
           <polyline points="7,2 4,5 7,8" />
         </svg>
       </button>

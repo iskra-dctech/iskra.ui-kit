@@ -1,20 +1,20 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { useState } from 'react'
-import { AppHeader } from './AppHeader.js'
-import { Avatar } from '../Avatar/Avatar.js'
-import { Icon } from '../Icon/Icon.js'
-import { IconButton } from '../IconButton/IconButton.js'
-import { Popover } from '../Popover/Popover.js'
-import { SearchField } from '../SearchField/SearchField.js'
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useState } from 'react';
+import { AppHeader } from './AppHeader.js';
+import { Avatar } from '../Avatar/Avatar.js';
+import { Icon } from '../Icon/Icon.js';
+import { IconButton } from '../IconButton/IconButton.js';
+import { Popover } from '../Popover/Popover.js';
+import { SearchField } from '../SearchField/SearchField.js';
 
 const meta = {
   title: 'Patterns/AppHeader',
   component: AppHeader,
   parameters: { layout: 'fullscreen' },
-} satisfies Meta<typeof AppHeader>
+} satisfies Meta<typeof AppHeader>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Composable: Story = {
   render: () => (
@@ -29,12 +29,7 @@ export const Composable: Story = {
       }
       trailing={
         <>
-          <SearchField
-            placeholder="Поиск…"
-            shortcut="⌘K"
-            enableShortcut
-            style={{ width: 240 }}
-          />
+          <SearchField placeholder="Поиск…" shortcut="⌘K" enableShortcut style={{ width: 240 }} />
           <AppHeader.Actions>
             <Popover
               trigger={
@@ -58,11 +53,11 @@ export const Composable: Story = {
       }
     />
   ),
-}
+};
 
 export const SlotApi: Story = {
   render: () => {
-    const [notifOpen, setNotifOpen] = useState(false)
+    const [notifOpen, setNotifOpen] = useState(false);
     return (
       <AppHeader>
         <AppHeader.Leading>
@@ -84,8 +79,18 @@ export const SlotApi: Story = {
                 />
               }
             >
-              <div style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 8, minWidth: 260 }}>
-                <div style={{ fontWeight: 600, fontSize: 12, color: 'var(--fg2)' }}>УВЕДОМЛЕНИЯ</div>
+              <div
+                style={{
+                  padding: 12,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 8,
+                  minWidth: 260,
+                }}
+              >
+                <div style={{ fontWeight: 600, fontSize: 12, color: 'var(--fg2)' }}>
+                  УВЕДОМЛЕНИЯ
+                </div>
                 <div style={{ fontSize: 12, color: 'var(--fg2)' }}>Нет новых уведомлений</div>
               </div>
             </Popover>
@@ -97,6 +102,6 @@ export const SlotApi: Story = {
           </AppHeader.Actions>
         </AppHeader.Trailing>
       </AppHeader>
-    )
+    );
   },
-}
+};

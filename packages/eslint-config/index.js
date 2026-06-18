@@ -9,12 +9,7 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 
 export const ignores = {
-  ignores: [
-    '**/dist/**',
-    '**/storybook-static/**',
-    '**/coverage/**',
-    '**/*.tsbuildinfo',
-  ],
+  ignores: ['**/dist/**', '**/storybook-static/**', '**/coverage/**', '**/*.tsbuildinfo'],
 };
 
 // Node/tooling scripts: build pipelines, config files, custom checks.

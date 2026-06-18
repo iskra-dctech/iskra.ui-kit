@@ -1,35 +1,35 @@
-import { type HTMLAttributes, type ReactNode } from 'react'
-import { Button } from '../Button/Button.js'
-import { Icon } from '../Icon/Icon.js'
-import { cx } from '../../utils/cx.js'
-import './EmptyState.css'
+import { type HTMLAttributes, type ReactNode } from 'react';
+import { Button } from '../Button/Button.js';
+import { Icon } from '../Icon/Icon.js';
+import { cx } from '../../utils/cx.js';
+import './EmptyState.css';
 
-export type EmptyStateVariant = 'default' | 'not-found'
+export type EmptyStateVariant = 'default' | 'not-found';
 
 const NOT_FOUND_DEFAULTS = {
   title: 'Страница не найдена',
   description:
     'Запрошенный адрес отсутствует в платформе Искра или был перемещён. Проверьте ссылку или вернитесь на главную.',
   code: 404,
-} as const
+} as const;
 
 export interface EmptyStateProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
-  variant?: EmptyStateVariant
+  variant?: EmptyStateVariant;
   /** HTTP status code — shown for `not-found` (default 404). */
-  code?: number
+  code?: number;
   /** Full viewport layout for route-level pages. */
-  fullPage?: boolean
-  icon?: ReactNode
-  title?: ReactNode
-  description?: ReactNode
+  fullPage?: boolean;
+  icon?: ReactNode;
+  title?: ReactNode;
+  description?: ReactNode;
   /** Primary action (usually a Button). */
-  action?: ReactNode
+  action?: ReactNode;
   /** Secondary action — e.g. «Назад». */
-  secondaryAction?: ReactNode
+  secondaryAction?: ReactNode;
   /** Default primary handler for `variant="not-found"` when `action` is omitted. */
-  onHome?: () => void
+  onHome?: () => void;
   /** Default secondary handler for `variant="not-found"` when `secondaryAction` is omitted. */
-  onBack?: () => void
+  onBack?: () => void;
 }
 
 /**
@@ -50,18 +50,15 @@ export function EmptyState({
   className,
   ...rest
 }: EmptyStateProps) {
-  const isNotFound = variant === 'not-found'
-  const resolvedCode = code ?? (isNotFound ? NOT_FOUND_DEFAULTS.code : undefined)
-  const resolvedTitle = title ?? (isNotFound ? NOT_FOUND_DEFAULTS.title : '')
+  const isNotFound = variant === 'not-found';
+  const resolvedCode = code ?? (isNotFound ? NOT_FOUND_DEFAULTS.code : undefined);
+  const resolvedTitle = title ?? (isNotFound ? NOT_FOUND_DEFAULTS.title : '');
   const resolvedDescription =
-    description ?? (isNotFound ? NOT_FOUND_DEFAULTS.description : undefined)
-  const resolvedIcon =
-    icon ??
-    (isNotFound ? <Icon name="help" size={40} /> : undefined)
+    description ?? (isNotFound ? NOT_FOUND_DEFAULTS.description : undefined);
+  const resolvedIcon = icon ?? (isNotFound ? <Icon name="help" size={40} /> : undefined);
 
   const primaryAction =
-    action ??
-    (isNotFound ? <Button onClick={onHome}>На главную</Button> : undefined)
+    action ?? (isNotFound ? <Button onClick={onHome}>На главную</Button> : undefined);
 
   const secondary =
     secondaryAction ??
@@ -69,7 +66,7 @@ export function EmptyState({
       <Button variant="ghost" onClick={onBack}>
         Назад
       </Button>
-    ) : undefined)
+    ) : undefined);
 
   return (
     <div
@@ -102,5 +99,5 @@ export function EmptyState({
         </div>
       )}
     </div>
-  )
+  );
 }

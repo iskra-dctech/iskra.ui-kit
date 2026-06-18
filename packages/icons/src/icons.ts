@@ -140,14 +140,12 @@ export const icons = {
     '<rect x="2" y="5" width="12" height="6" rx="1"/><line x1="4" y1="8" x2="6" y2="8"/><line x1="7" y1="8" x2="9" y2="8"/><line x1="10" y1="8" x2="12" y2="8"/><polyline points="5,3 8,5.5 11,3"/><polyline points="5,13 8,10.5 11,13"/>',
   hsm: '<rect x="3" y="3.5" width="10" height="9" rx="1"/><circle cx="6" cy="8" r="1.8"/><line x1="8.2" y1="8" x2="12" y2="8"/><line x1="10.5" y1="6.5" x2="10.5" y2="9.5"/>',
   pdu: '<rect x="5.5" y="2" width="5" height="12" rx="1"/><line x1="6.5" y1="4.5" x2="9.5" y2="4.5"/><line x1="6.5" y1="7" x2="9.5" y2="7"/><line x1="6.5" y1="9.5" x2="9.5" y2="9.5"/><line x1="6.5" y1="12" x2="9.5" y2="12"/>',
-  laptop:
-    '<rect x="3" y="4" width="10" height="7" rx="1"/><path d="M2 12.5h12l-1.2-1.5H3.2Z"/>',
+  laptop: '<rect x="3" y="4" width="10" height="7" rx="1"/><path d="M2 12.5h12l-1.2-1.5H3.2Z"/>',
   desktop:
     '<rect x="3" y="3" width="10" height="7" rx="1"/><line x1="8" y1="10" x2="8" y2="12"/><line x1="5.5" y1="12" x2="10.5" y2="12"/>',
 
   /* messengers (monochrome brand glyphs) */
-  telegram:
-    '<path d="M3.5 8 12.5 3.5 10.5 13 7.5 9.5 5.5 11.5 4.5 8.5 7 7.5 11 5.5"/>',
+  telegram: '<path d="M3.5 8 12.5 3.5 10.5 13 7.5 9.5 5.5 11.5 4.5 8.5 7 7.5 11 5.5"/>',
   vk: '<path d="M3 5.5h1.8c.4 2.8 1.4 4.2 2.3 4.4V5.5H8.5v2.5c1-.1 2.1-1.3 2.5-3.5H12.5c-.3 2.1-1.6 3.7-2.5 4.2 1 .4 2.5 1.6 3 4.3H11c-.7-2.2-2.5-2.2-2.8-2.2v2.2H5.5c-.1-3.5 0-7.5 0-7.5Z"/>',
   max: '<path d="M3.5 5.5h2l1.5 4.5L8.5 5.5h2l-2.5 7h-2L3.5 5.5Z"/><path d="M11 5.5h2v7h-2V5.5Z"/>',
 
