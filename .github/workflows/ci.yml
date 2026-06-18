@@ -51,7 +51,7 @@ jobs:
       - name: Build packages + Storybook
         run: pnpm build
         env:
-          STORYBOOK_BASE_PATH: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && format('/{0}/', github.event.repository.name) || '' }}
+          STORYBOOK_BASE_PATH: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && './' || '' }}
 
       - name: Upload Storybook static
         uses: actions/upload-artifact@v4

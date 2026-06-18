@@ -32,7 +32,14 @@ const config: StorybookConfig = {
 
     if (configType === 'PRODUCTION') {
       const raw = process.env.STORYBOOK_BASE_PATH?.trim();
-      config.base = raw ? (raw.endsWith('/') ? raw : `${raw}/`) : '/';
+      if (!raw) {
+        config.base = '/';
+      } else if (raw === '.' || raw === './') {
+        // Relative base for GitHub Pages project sites (works in any repo subpath).
+        config.base = './';
+      } else {
+        config.base = raw.endsWith('/') ? raw : `${raw}/`;
+      }
     }
 
     return config;
