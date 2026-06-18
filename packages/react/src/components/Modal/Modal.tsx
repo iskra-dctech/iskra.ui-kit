@@ -19,6 +19,8 @@ export interface ModalProps {
   showClose?: boolean;
   closeLabel?: string;
   className?: string;
+  /** Element to restore focus to on close. Defaults to previously focused element. */
+  returnFocusRef?: React.RefObject<HTMLElement | null>;
 }
 
 /**
@@ -39,9 +41,20 @@ export function Modal({
   showClose = true,
   closeLabel = 'Закрыть',
   className,
+  returnFocusRef,
 }: ModalProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
+  const prevFocusRef = useRef<HTMLElement | null>(null);
   useFocusTrap(dialogRef, open);
+
+  useEffect(() => {
+    if (open) {
+      prevFocusRef.current = document.activeElement as HTMLElement | null;
+      return;
+    }
+    const target = returnFocusRef?.current ?? prevFocusRef.current;
+    target?.focus();
+  }, [open, returnFocusRef]);
 
   useEffect(() => {
     if (!open || !closeOnEsc) return;

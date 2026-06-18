@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Table, type TableColumn } from './Table.js';
+import { Table, type TableColumn, type TableSort } from './Table.js';
 import { Badge } from '../Badge/Badge.js';
 import { EmptyState } from '../EmptyState/EmptyState.js';
+import { TextField } from '../TextField/TextField.js';
 
 interface Device {
   id: string;
@@ -11,8 +13,13 @@ interface Device {
 }
 
 const columns: TableColumn<Device>[] = [
-  { key: 'host', header: 'Хост' },
-  { key: 'ip', header: 'IP', align: 'left' },
+  { key: 'host', header: 'Хост', sortable: true },
+  {
+    key: 'ip',
+    header: 'IP',
+    align: 'left',
+    filter: <TextField size="s" placeholder="Фильтр IP" aria-label="Фильтр IP" />,
+  },
   {
     key: 'status',
     header: 'Статус',
@@ -48,4 +55,24 @@ export const Basic: Story = {
 export const Loading: Story = { args: { columns, data: [], loading: true } };
 export const Empty: Story = {
   args: { columns, data: [], empty: <EmptyState title="Нет устройств" /> },
+};
+
+export const Sortable: Story = {
+  render: () => {
+    const [sort, setSort] = useState<TableSort | null>(null);
+    const sorted = [...data].sort((a, b) => {
+      if (!sort) return 0;
+      const cmp = a.host.localeCompare(b.host);
+      return sort.direction === 'asc' ? cmp : -cmp;
+    });
+    return (
+      <Table
+        columns={columns}
+        data={sorted}
+        getRowId={(r) => r.id}
+        sort={sort}
+        onSortChange={setSort}
+      />
+    );
+  },
 };

@@ -18,5 +18,6 @@
   "status-warn": { "$type": "color", "$value": "#D0610A" },
   "status-err": { "$type": "color", "$value": "#D0302A" },
   "status-off": { "$type": "color", "$value": "#6E7681" },
-  "status-info": { "$type": "color", "$value": "#2E6DA4" }
+  "status-info": { "$type": "color", "$value": "#2E6DA4" },
+  "fg-on-accent": { "$type": "color", "$value": "#FFFFFF" }
 }

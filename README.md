@@ -75,7 +75,7 @@ import { Button, TextField, Badge, Icon } from '@iskra-ui/react';
 - `theme-cold` — холодная off-white
 - `theme-warm` — тёплый sand
 
-White-label: `brand-aurora` (и другие бренды в `packages/tokens/src/brands/`). Подробнее — в [MIGRATION.md](MIGRATION.md#темы-и-white-label).
+White-label: `brand-aurora` (и другие бренды в `packages/tokens/src/brands/`). Подробнее — в [docs/PACKAGES.md](docs/PACKAGES.md#темы-и-white-label).
 
 ---
 
@@ -97,7 +97,7 @@ pnpm test         # Vitest
 ```
 packages/     # @iskra-ui/* — publishable-библиотеки
 apps/         # docs-react — Storybook + visual tests
-scripts/      # lint:tokens, codemod legacy-импортов
+scripts/      # lint:tokens (token adherence)
 docs/         # FOUNDATIONS.md, PACKAGES.md
 ```
 
@@ -109,15 +109,8 @@ docs/         # FOUNDATIONS.md, PACKAGES.md
 | ------------------------------------------------------------------------------ | ------------------------------------------------ |
 | [docs/FOUNDATIONS.md](docs/FOUNDATIONS.md)                                     | Продукт, контент, визуальные основы, иконография |
 | [docs/PACKAGES.md](docs/PACKAGES.md)                                           | Пакеты, API, примеры                             |
-| [MIGRATION.md](MIGRATION.md)                                                   | Миграция с legacy `_ds_bundle.js`                |
 | [CONTRIBUTING.md](CONTRIBUTING.md)                                             | CI, changesets, добавление компонентов           |
 | [LICENCE.md](LICENCE.md)                                                       | Лицензии на код и сторонние компоненты           |
 | [packages/react/COMPONENT_CHECKLIST.md](packages/react/COMPONENT_CHECKLIST.md) | Definition of Done для React-компонентов         |
 
-**Storybook** — интерактивная документация компонентов: `pnpm storybook`.
-
----
-
-## Legacy
-
-Старый self-injecting бандл (`_ds_bundle.js`, `colors_and_type.css`, `window.DCIDesignSystem_*`) **снят с поддержки**. Миграция на npm-пакеты — в [MIGRATION.md](MIGRATION.md). Codemod: `scripts/codemod-legacy-imports.mjs`.
+**Storybook** — интерактивная документация компонентов и витрина токенов (Foundations): [iskra-dctech.github.io/iskra.ui-kit](https://iskra-dctech.github.io/iskra.ui-kit/) (публикуется при push в `master`) или локально: `pnpm storybook`.

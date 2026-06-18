@@ -7,7 +7,7 @@
 //   dist/tokens.json  resolved flat map (tooling / docs)
 //
 // Token names are emitted verbatim (e.g. --bg, --accent, --s1) to stay
-// compatible with the existing colors_and_type.css contract. We deliberately
+// compatible with the published token contract (--bg, --accent, --s1, …). We deliberately
 // avoid the `css` transformGroup so dimensions stay in px (no rem conversion).
 import StyleDictionary from 'style-dictionary';
 import { mkdirSync, readFileSync, writeFileSync, rmSync, existsSync, readdirSync } from 'node:fs';
@@ -51,7 +51,7 @@ async function run() {
   rmSync(DIST, { recursive: true, force: true });
   mkdirSync(TMP, { recursive: true });
 
-  // Base (dark / default) — palette excluded so :root matches the legacy contract.
+  // Base (dark / default) — palette excluded so :root matches the published token contract.
   await sd([PRIMITIVES, SEMANTIC], [
     cssFile('root.css', ':root', notPalette),
     flatFile('base.flat.json', notPalette),

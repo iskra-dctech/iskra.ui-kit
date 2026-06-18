@@ -40,6 +40,9 @@
 | Table              |   ✅    |  ✅   |     —     | `table`                   | —                        |
 | Toast              |   ✅    |  ✅   |     —     | `region` + `status/alert` | —                        |
 | Sidebar            |   ✅    |  ✅   |     —     | `nav`                     | Tab                      |
+| SearchField        |   ✅    |  ✅   |     —     | `input[type=search]`      | native / ⌘K              |
+| Popover            |   ✅    |  ✅   |     —     | `div[role=dialog]`        | Esc                      |
+| AppHeader          |   ✅    |  ✅   |     —     | `header`                  | —                        |
 
 Легенда: ✅ есть · — не применимо / кандидат на доработку. a11y также проверяется глобально
 в Storybook через `@storybook/addon-a11y` (`a11y.test = 'error'`) и в CI.

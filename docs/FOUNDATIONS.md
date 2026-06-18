@@ -151,7 +151,6 @@ Top bar 40px. Сетка устройств `repeat(auto-fill, minmax(280px,1fr)
 
 - [README.md](../README.md) — обзор монорепозитория и быстрый старт
 - [PACKAGES.md](./PACKAGES.md) — пакеты и API
-- [MIGRATION.md](../MIGRATION.md) — миграция с legacy-бандла
 - [CONTRIBUTING.md](../CONTRIBUTING.md) — разработка и релизы
 - [LICENCE.md](../LICENCE.md) — лицензии
-- Storybook (`pnpm storybook`) — живые примеры компонентов и тем
+- Storybook (`pnpm storybook`) — живые примеры компонентов, витрина токенов (Foundations) и переключение тем

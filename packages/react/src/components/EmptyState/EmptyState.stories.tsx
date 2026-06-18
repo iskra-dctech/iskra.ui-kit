@@ -19,3 +19,13 @@ export const NoDevices: Story = {
     action: <Button size="s">Добавить устройство</Button>,
   },
 };
+
+export const Platform404: Story = {
+  parameters: { layout: 'fullscreen' },
+  args: {
+    variant: 'not-found',
+    fullPage: true,
+    onHome: () => undefined,
+    onBack: () => undefined,
+  },
+};

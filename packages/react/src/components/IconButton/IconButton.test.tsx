@@ -10,6 +10,17 @@ describe('IconButton', () => {
     expect(screen.getByRole('button', { name: 'Обновить' })).toHaveClass('ik-btn-io');
   });
 
+  it('renders icon from children when icon prop is omitted', () => {
+    render(
+      <IconButton aria-label="Уведомления">
+        <Icon name="bell" />
+      </IconButton>,
+    );
+    expect(
+      screen.getByRole('button', { name: 'Уведомления' }).querySelector('.iskra-icon'),
+    ).toBeTruthy();
+  });
+
   it('has no a11y violations', async () => {
     const { container } = render(<IconButton icon={<Icon name="close" />} aria-label="Закрыть" />);
     expect(await axe(container)).toHaveNoViolations();

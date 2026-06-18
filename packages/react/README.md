@@ -1,6 +1,6 @@
 # @iskra-ui/react
 
-React 18+ component library for **Искра.DCI** in Hard-Shell Minimal style. `ik-*` classes preserved from the legacy bundle.
+React 18+ component library for **Искра.DCI** in Hard-Shell Minimal style. Stable `ik-*` CSS class names.
 
 ## Install
 

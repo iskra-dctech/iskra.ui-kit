@@ -9,19 +9,7 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 
 export const ignores = {
-  ignores: [
-    '**/dist/**',
-    '**/storybook-static/**',
-    '**/coverage/**',
-    '**/*.tsbuildinfo',
-    '_ds_bundle.js',
-    'design-canvas.jsx',
-    // Legacy skill artifact kept as migration/preview reference only (Phase 7 domain layer).
-    'components/**',
-    'ui_kits/**',
-    'preview/**',
-    '*.jsx',
-  ],
+  ignores: ['**/dist/**', '**/storybook-static/**', '**/coverage/**', '**/*.tsbuildinfo'],
 };
 
 // Node/tooling scripts: build pipelines, config files, custom checks.

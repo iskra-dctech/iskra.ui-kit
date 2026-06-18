@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 // Token-adherence check for the Искра.DCI design system.
-// Mirrors the intent of _adherence.oxlintrc.json: component CSS must consume
-// design tokens (CSS custom properties), not raw hex colours. Raw hex is only
+// Component CSS must consume design tokens (CSS custom properties), not raw hex colours.
 // allowed as a var() fallback (e.g. `var(--accent,#00FFC2)`), inside the tokens
 // package, or on a line tagged with `@ds-adherence-ignore`.
 import { readdirSync, readFileSync, statSync } from 'node:fs';
