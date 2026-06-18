@@ -1,6 +1,6 @@
 {
   "name": "@iskra-ui/vue",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Искра.DCI Vue 3 component library — API parity with @iskra-ui/react over a shared headless core and token layer.",
   "license": "Apache-2.0",
   "repository": {

@@ -1,5 +1,17 @@
 # @iskra-ui/vue
 
+## 0.2.0
+
+### Minor Changes
+
+- 7e62780: Add Notifier shell components: AppHeader, SearchField, Popover; composable Sidebar with NOTIFIER_NAV preset; Table column sort/filter; Avatar status ring; domain icons for devices and messengers.
+
+### Patch Changes
+
+- Updated dependencies [7e62780]
+  - @iskra-ui/icons@0.2.0
+  - @iskra-ui/core@0.2.0
+
 ## 0.1.1
 
 ### Patch Changes
