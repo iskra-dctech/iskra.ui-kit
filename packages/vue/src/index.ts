@@ -59,3 +59,21 @@ export {
   type SidebarNavItem,
   type SidebarVariant,
 } from '@iskra-ui/core';
+export { default as Drawer, type DrawerSide } from './components/Drawer.vue';
+export { default as Sheet, type SheetSnap } from './components/Sheet.vue';
+export { default as DataList, type DataListDensity } from './components/DataList.vue';
+export {
+  useMediaQuery,
+  useBreakpoint,
+  type UseMediaQueryOptions,
+} from './composables/useMediaQuery.js';
+export {
+  BP_SM,
+  BP_MD,
+  BP_LG,
+  BP_XL,
+  MEDIA_BELOW_MD,
+  MEDIA_MD_UP,
+  mediaQueryForBreakpoint,
+  type BreakpointName,
+} from './responsive/breakpoints.js';
