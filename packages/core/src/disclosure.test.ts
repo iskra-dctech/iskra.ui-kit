@@ -17,4 +17,12 @@ describe('getTriggerAria', () => {
       'aria-controls': 'panel-1',
     });
   });
+
+  it('adds aria-haspopup when requested', () => {
+    expect(getTriggerAria(false, 'menu-1', { haspopup: 'menu' })).toEqual({
+      'aria-expanded': false,
+      'aria-controls': 'menu-1',
+      'aria-haspopup': 'menu',
+    });
+  });
 });

@@ -13,7 +13,22 @@ export {
   getTriggerAria,
   type DisclosureEvent,
   type TriggerAria,
+  type TriggerAriaOptions,
 } from './disclosure.js';
+export {
+  getNextMenuItemIndex,
+  firstEnabledMenuItemIndex,
+  type MenuItemLike,
+} from './menu.js';
+export {
+  computeAnchorPosition,
+  computeCursorPosition,
+  type AnchorPosition,
+  type Point,
+  type PopoverPlacement,
+  type RectLike,
+  type ViewportSize,
+} from './positioning.js';
 export { FOCUSABLE_SELECTOR, getFocusable, createFocusTrap, type FocusTrap } from './focusTrap.js';
 export {
   DCI_OPERATOR_NAV,
