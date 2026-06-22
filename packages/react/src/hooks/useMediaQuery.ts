@@ -1,8 +1,5 @@
-import { useEffect, useState } from 'react';
-import {
-  mediaQueryForBreakpoint,
-  type BreakpointName,
-} from '../responsive/breakpoints.js';
+import { useSyncExternalStore } from 'react';
+import { mediaQueryForBreakpoint, type BreakpointName } from '../responsive/breakpoints.js';
 
 export interface UseMediaQueryOptions {
   /**
@@ -12,44 +9,35 @@ export interface UseMediaQueryOptions {
   ssrMatch?: boolean;
 }
 
-function getMatch(query: string): boolean {
+function getSnapshot(query: string, fallback: boolean): boolean {
   if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
-    return false;
+    return fallback;
   }
   return window.matchMedia(query).matches;
+}
+
+function subscribe(query: string, onStoreChange: () => void): () => void {
+  if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+    return () => undefined;
+  }
+  const mql = window.matchMedia(query);
+  mql.addEventListener('change', onStoreChange);
+  return () => mql.removeEventListener('change', onStoreChange);
 }
 
 /**
  * Subscribes to a CSS media query. Safe for SSR when `ssrMatch` is set explicitly.
  */
-export function useMediaQuery(
-  query: string,
-  options: UseMediaQueryOptions = {},
-): boolean {
+export function useMediaQuery(query: string, options: UseMediaQueryOptions = {}): boolean {
   const { ssrMatch = false } = options;
-  const [matches, setMatches] = useState(() => {
-    if (typeof window === 'undefined') return ssrMatch;
-    return getMatch(query);
-  });
-
-  useEffect(() => {
-    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
-      return;
-    }
-    const mql = window.matchMedia(query);
-    const onChange = (e: MediaQueryListEvent) => setMatches(e.matches);
-    setMatches(mql.matches);
-    mql.addEventListener('change', onChange);
-    return () => mql.removeEventListener('change', onChange);
-  }, [query]);
-
-  return matches;
+  return useSyncExternalStore(
+    (onStoreChange) => subscribe(query, onStoreChange),
+    () => getSnapshot(query, ssrMatch),
+    () => ssrMatch,
+  );
 }
 
 /** Alias for common breakpoint tokens (`below-md` | `md-up`). */
-export function useBreakpoint(
-  name: BreakpointName,
-  options?: UseMediaQueryOptions,
-): boolean {
+export function useBreakpoint(name: BreakpointName, options?: UseMediaQueryOptions): boolean {
   return useMediaQuery(mediaQueryForBreakpoint(name), options);
 }

@@ -1,9 +1,9 @@
 import { tokens } from '@iskra-ui/tokens';
 
-export const BP_SM = tokens['bp-sm'];
-export const BP_MD = tokens['bp-md'];
-export const BP_LG = tokens['bp-lg'];
-export const BP_XL = tokens['bp-xl'];
+export const BP_SM = tokens['--bp-sm'];
+export const BP_MD = tokens['--bp-md'];
+export const BP_LG = tokens['--bp-lg'];
+export const BP_XL = tokens['--bp-xl'];
 
 /** Viewports narrower than `bp-md` (767px and below). */
 export const MEDIA_BELOW_MD = `(max-width: calc(${BP_MD} - 1px))`;
