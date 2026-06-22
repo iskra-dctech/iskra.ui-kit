@@ -13,6 +13,30 @@ const preview: Preview = {
     controls: { matchers: { color: /(background|color)$/i, date: /Date$/i } },
     a11y: { test: 'error' },
     backgrounds: { disabled: true },
+    viewport: {
+      viewports: {
+        compact375: {
+          name: 'Compact (375)',
+          styles: { width: '375px', height: '667px' },
+          type: 'mobile',
+        },
+        compact428: {
+          name: 'Compact L (428)',
+          styles: { width: '428px', height: '926px' },
+          type: 'mobile',
+        },
+        tablet768: {
+          name: 'Tablet (768)',
+          styles: { width: '768px', height: '1024px' },
+          type: 'tablet',
+        },
+        desktop1280: {
+          name: 'Desktop (1280)',
+          styles: { width: '1280px', height: '800px' },
+          type: 'desktop',
+        },
+      },
+    },
   },
   globalTypes: {
     theme: {

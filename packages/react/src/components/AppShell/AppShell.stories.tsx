@@ -4,13 +4,17 @@ import { AppHeader } from '../AppHeader/AppHeader.js';
 import { Avatar } from '../Avatar/Avatar.js';
 import { Badge } from '../Badge/Badge.js';
 import { Button } from '../Button/Button.js';
+import { DataList } from '../DataList/DataList.js';
+import { Drawer } from '../Drawer/Drawer.js';
 import { Icon } from '../Icon/Icon.js';
 import { IconButton } from '../IconButton/IconButton.js';
 import { Modal } from '../Modal/Modal.js';
 import { Popover } from '../Popover/Popover.js';
 import { SearchField } from '../SearchField/SearchField.js';
+import { Sheet } from '../Sheet/Sheet.js';
 import { Sidebar, NOTIFIER_NAV } from '../Sidebar/Sidebar.js';
 import { Table, type TableColumn, type TableSort } from '../Table/Table.js';
+import { Card } from '../Card/Card.js';
 
 const meta = {
   title: 'Patterns/AppShell',
@@ -65,12 +69,13 @@ const incidents: Incident[] = [
   },
 ];
 
-export const NotifierShell: Story = {
+export const Desktop: Story = {
   parameters: {
+    viewport: { defaultViewport: 'desktop1280' },
     docs: {
       description: {
         story:
-          'Эталонная композиция для продукта «Уведомления»: навигация NOTIFIER_NAV, шапка с поиском и popover, таблица инцидентов с сортировкой, модал создания.',
+          'Desktop shell: inline Sidebar, Table, Modal. Явное представление для ширины ≥ 768px.',
       },
     },
   },
@@ -216,6 +221,135 @@ export const NotifierShell: Story = {
         >
           Укажите услугу, критичность и описание проблемы.
         </Modal>
+      </div>
+    );
+  },
+};
+
+export const Compact: Story = {
+  parameters: {
+    viewport: { defaultViewport: 'compact375' },
+    docs: {
+      description: {
+        story:
+          'Compact shell: Drawer + Sidebar, DataList вместо Table, Sheet вместо Modal. Явный выбор представления — Table не превращается в карточки автоматически.',
+      },
+    },
+  },
+  render: () => {
+    const [page, setPage] = useState('incidents');
+    const [navOpen, setNavOpen] = useState(false);
+    const [sheetOpen, setSheetOpen] = useState(false);
+    const [notifOpen, setNotifOpen] = useState(false);
+
+    return (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100vh',
+          background: 'var(--bg)',
+        }}
+      >
+        <Drawer open={navOpen} onOpenChange={setNavOpen} aria-label="Навигация Notifier">
+          <Sidebar
+            groups={NOTIFIER_NAV}
+            brand={
+              <span className="isb-wmark" style={{ fontFamily: 'var(--font-mono)', fontSize: 11 }}>
+                ISKRA // УВЕДОМЛЕНИЯ
+              </span>
+            }
+            activeItem={page}
+            onNavigate={(id) => {
+              setPage(id);
+              setNavOpen(false);
+            }}
+            ariaLabel="Навигация Notifier"
+          />
+        </Drawer>
+        <AppHeader
+          leading={
+            <>
+              <IconButton
+                icon={<Icon name="menu" size={16} />}
+                aria-label="Открыть навигацию"
+                variant="ghost"
+                onClick={() => setNavOpen(true)}
+              />
+              <span style={{ fontSize: 14, fontWeight: 600 }}>Инциденты</span>
+            </>
+          }
+          trailing={
+            <AppHeader.Actions>
+              <Popover
+                open={notifOpen}
+                onOpenChange={setNotifOpen}
+                trigger={
+                  <IconButton
+                    icon={<Icon name="bell" size={16} />}
+                    aria-label="Уведомления"
+                    variant="ghost"
+                  />
+                }
+              >
+                <div style={{ padding: 12, fontSize: 12 }}>Нет новых уведомлений</div>
+              </Popover>
+              <IconButton
+                icon={<Avatar name="Оператор UT-04" size="sm" status="online" />}
+                aria-label="Профиль"
+                variant="ghost"
+              />
+            </AppHeader.Actions>
+          }
+        />
+        <main style={{ flex: 1, padding: 16, overflow: 'auto' }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: 12,
+            }}
+          >
+            <h1 style={{ fontSize: 18, fontWeight: 600 }}>Реестр</h1>
+            <Button size="s" onClick={() => setSheetOpen(true)}>
+              + Инцидент
+            </Button>
+          </div>
+          <DataList
+            items={incidents}
+            getItemKey={(r) => r.id}
+            aria-label="Инциденты"
+            renderItem={(r) => (
+              <Card padding="s">
+                <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11 }}>{r.id}</span>
+                  <Badge variant={r.severity === 'critical' ? 'error' : 'warning'}>
+                    {r.severity === 'critical' ? 'Критический' : 'Предупреждение'}
+                  </Badge>
+                </div>
+                <div style={{ marginTop: 6, fontSize: 13 }}>{r.service}</div>
+                <div style={{ marginTop: 4, fontSize: 12, color: 'var(--fg2)' }}>{r.status}</div>
+              </Card>
+            )}
+          />
+        </main>
+        <Sheet
+          open={sheetOpen}
+          onOpenChange={setSheetOpen}
+          title="Ручной инцидент"
+          description="Создание инцидента вне автоматического конвейера."
+          footer={
+            <>
+              <Button variant="ghost" onClick={() => setSheetOpen(false)}>
+                Отмена
+              </Button>
+              <Button onClick={() => setSheetOpen(false)}>Создать</Button>
+            </>
+          }
+        >
+          Укажите услугу, критичность и описание проблемы.
+        </Sheet>
       </div>
     );
   },
