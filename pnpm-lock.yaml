@@ -287,13 +287,13 @@ importers:
       '@iskra-ui/icons':
         specifier: workspace:*
         version: link:../icons
+      '@iskra-ui/tokens':
+        specifier: workspace:*
+        version: link:../tokens
     devDependencies:
       '@iskra-ui/styles':
         specifier: workspace:*
         version: link:../styles
-      '@iskra-ui/tokens':
-        specifier: workspace:*
-        version: link:../tokens
       '@iskra-ui/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
@@ -368,6 +368,9 @@ importers:
       '@iskra-ui/icons':
         specifier: workspace:*
         version: link:../icons
+      '@iskra-ui/tokens':
+        specifier: workspace:*
+        version: link:../tokens
     devDependencies:
       '@iskra-ui/react':
         specifier: workspace:*
@@ -375,9 +378,6 @@ importers:
       '@iskra-ui/styles':
         specifier: workspace:*
         version: link:../styles
-      '@iskra-ui/tokens':
-        specifier: workspace:*
-        version: link:../tokens
       '@iskra-ui/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
