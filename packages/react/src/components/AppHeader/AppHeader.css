@@ -113,6 +113,20 @@
 .ik-app-header-status-dot.is-off {
   background: var(--status-off, #6e7681);
 }
+/* Compact viewport: below --bp-md (768px). Static value required for CSS minifiers. */
+@media (max-width: 767px) {
+  .ik-app-header {
+    padding: 0 16px;
+    gap: 8px;
+  }
+  .ik-app-header-center--hide-compact {
+    display: none;
+  }
+  .ik-app-header-trailing .ik-app-header-text,
+  .ik-app-header-end .ik-app-header-meta {
+    display: none;
+  }
+}
 .ik-app-header-text,
 .ik-app-header-meta {
   font-size: 12px;
