@@ -16,6 +16,7 @@ export * from './components/Skeleton/index.js';
 export * from './components/Spinner/index.js';
 export * from './components/SearchField/index.js';
 export * from './components/Popover/index.js';
+export * from './components/ContextMenu/index.js';
 export * from './components/AppHeader/index.js';
 // Patterns
 export * from './components/FormField/index.js';

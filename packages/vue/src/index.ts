@@ -27,6 +27,12 @@ export {
   type AvatarStatusDisplay,
 } from './components/Avatar.vue';
 export { default as Popover, type PopoverPlacement } from './components/Popover.vue';
+export { default as ContextMenu } from './components/ContextMenu.vue';
+export { default as ContextMenuTrigger } from './components/ContextMenuTrigger.vue';
+export { default as ContextMenuContent } from './components/ContextMenuContent.vue';
+export { default as ContextMenuItem } from './components/ContextMenuItem.vue';
+export { default as ContextMenuSeparator } from './components/ContextMenuSeparator.vue';
+export type { ContextMenuTriggerOn } from './composables/contextMenu.js';
 export {
   default as AppHeader,
   type AppHeaderIndicatorDot,

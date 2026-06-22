@@ -1,0 +1,80 @@
+/* ИСКРА.DCI — Context menu panel and items. */
+.ik-context-menu {
+  position: fixed;
+  z-index: var(--z-dropdown, 1000);
+  min-width: 180px;
+  max-width: min(320px, calc(100vw - 16px));
+  box-sizing: border-box;
+  padding: var(--space-1, 4px);
+  background: var(--panel, #161b22);
+  border: 1px solid var(--line, #30363d);
+  border-radius: var(--radius, 4px);
+  color: var(--fg1, #f0f6fc);
+  font-family: var(--font-ui, 'Inter', system-ui, sans-serif);
+  font-size: 13px;
+  line-height: 1.45;
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--scrim, #0d1117) 40%, transparent);
+}
+
+.ik-context-menu:focus {
+  outline: none;
+}
+
+.ik-context-menu-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  width: 100%;
+  min-height: 32px;
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  box-sizing: border-box;
+  border: none;
+  border-radius: calc(var(--radius, 4px) - 1px);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ik-context-menu-item:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--fg1, #f0f6fc) 8%, transparent);
+}
+
+.ik-context-menu-item:focus-visible {
+  outline: 2px solid var(--accent, #58a6ff);
+  outline-offset: -2px;
+}
+
+.ik-context-menu-item:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.ik-context-menu-item--destructive {
+  color: var(--danger, #f85149);
+}
+
+.ik-context-menu-item--destructive:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--danger, #f85149) 12%, transparent);
+}
+
+.ik-context-menu-item-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.ik-context-menu-item-label {
+  flex: 1;
+  min-width: 0;
+}
+
+.ik-context-menu-separator {
+  height: 1px;
+  margin: var(--space-1, 4px) var(--space-2, 8px);
+  background: var(--line, #30363d);
+}
