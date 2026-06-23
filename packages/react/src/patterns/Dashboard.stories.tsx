@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import type { ChartType, MetricDefinition, MetricSeries, WidgetConfig } from '@iskra-ui/core';
-import { createLocalStorageDashboardStore } from '@iskra-ui/core';
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import type { Meta, StoryObj } from '@storybook/react'
+import type { ChartType, MetricDefinition, MetricSeries, WidgetConfig } from '@iskra-ui/core'
+import { createLocalStorageDashboardStore } from '@iskra-ui/core'
+import { useStoryT } from '../storybook/useStoryT.js'
 import {
   Button,
   Chart,
@@ -39,6 +40,7 @@ function mockFetchSeries(metricId: string, _chartType: ChartType): Promise<Metri
 const store = createLocalStorageDashboardStore({ keyPrefix: 'iskra.story.dashboard' });
 
 function DashboardDemo() {
+  const t = useStoryT()
   const {
     dashboard,
     editable,
@@ -51,7 +53,7 @@ function DashboardDemo() {
   } = useDashboard({
     dashboardId: 'story-demo',
     store,
-    defaultName: 'Demo dashboard',
+    defaultName: t('dashboard.defaultName'),
   });
 
   const [seriesMap, setSeriesMap] = useState<Record<string, MetricSeries>>({});
@@ -85,17 +87,17 @@ function DashboardDemo() {
           setEditing(undefined);
           setEditorOpen(true);
         }}
-        actions={isSaving ? <span style={{ fontSize: 12, color: 'var(--fg3)' }}>Saving…</span> : null}
+        actions={isSaving ? <span style={{ fontSize: 12, color: 'var(--fg3)' }}>{t('dashboard.saving')}</span> : null}
       />
 
       {dashboard.widgets.length === 0 ? (
         <EmptyState
           icon={<Icon name="grid" size={32} />}
-          title="Нет виджетов"
-          description="Добавьте первый виджет на дашборд, чтобы начать мониторинг метрик."
+          title={t('dashboard.noWidgetsTitle')}
+          description={t('dashboard.noWidgetsDescription')}
           action={
             <Button size="s" onClick={() => setEditorOpen(true)}>
-              Добавить виджет
+              {t('dashboard.addWidget')}
             </Button>
           }
         />

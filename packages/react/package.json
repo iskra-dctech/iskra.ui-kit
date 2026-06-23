@@ -58,6 +58,7 @@
   },
   "dependencies": {
     "@iskra-ui/core": "workspace:*",
+    "@iskra-ui/i18n": "workspace:*",
     "@iskra-ui/icons": "workspace:*",
     "@iskra-ui/tokens": "workspace:*"
   },

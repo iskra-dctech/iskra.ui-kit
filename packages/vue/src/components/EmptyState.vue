@@ -4,16 +4,10 @@ export type EmptyStateVariant = 'default' | 'not-found';
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import { useIskraT } from '../i18n/useIskraT.js';
 import { cx } from '../utils/cx.js';
 import Button from './Button.vue';
 import Icon from './Icon.vue';
-
-const NOT_FOUND_DEFAULTS = {
-  title: 'Страница не найдена',
-  description:
-    'Запрошенный адрес отсутствует в платформе Искра или был перемещён. Проверьте ссылку или вернитесь на главную.',
-  code: 404,
-} as const;
 
 const props = withDefaults(
   defineProps<{
@@ -33,15 +27,17 @@ const emit = defineEmits<{
   back: [];
 }>();
 
+const t = useIskraT();
 const isNotFound = computed(() => props.variant === 'not-found');
-const resolvedCode = computed(
-  () => props.code ?? (isNotFound.value ? NOT_FOUND_DEFAULTS.code : undefined),
-);
+const resolvedCode = computed(() => props.code ?? (isNotFound.value ? 404 : undefined));
 const resolvedTitle = computed(
-  () => props.title ?? (isNotFound.value ? NOT_FOUND_DEFAULTS.title : ''),
+  () => props.title ?? (isNotFound.value ? t('emptyState.notFound.title') : ''),
 );
 const resolvedDescription = computed(
-  () => props.description ?? (isNotFound.value ? NOT_FOUND_DEFAULTS.description : undefined),
+  () => props.description ?? (isNotFound.value ? t('emptyState.notFound.description') : undefined),
+);
+const notFoundAriaLabel = computed(() =>
+  isNotFound.value ? t('emptyState.notFound.ariaLabel') : undefined,
 );
 </script>
 
@@ -56,7 +52,7 @@ const resolvedDescription = computed(
       )
     "
     :role="isNotFound ? 'region' : undefined"
-    :aria-label="isNotFound ? 'Страница не найдена' : undefined"
+    :aria-label="notFoundAriaLabel"
   >
     <div v-if="resolvedCode != null" class="ik-empty-code" aria-hidden="true">
       {{ resolvedCode }}
@@ -71,12 +67,14 @@ const resolvedDescription = computed(
     <div v-if="$slots.action || $slots.secondary || isNotFound" class="ik-empty-actions">
       <div v-if="$slots.action || isNotFound" class="ik-empty-action">
         <slot name="action">
-          <Button v-if="isNotFound" @click="emit('home')">На главную</Button>
+          <Button v-if="isNotFound" @click="emit('home')">{{ t('emptyState.notFound.home') }}</Button>
         </slot>
       </div>
       <div v-if="$slots.secondary || (isNotFound && showBack)" class="ik-empty-action">
         <slot name="secondary">
-          <Button v-if="isNotFound && showBack" variant="ghost" @click="emit('back')">Назад</Button>
+          <Button v-if="isNotFound && showBack" variant="ghost" @click="emit('back')">
+            {{ t('emptyState.notFound.back') }}
+          </Button>
         </slot>
       </div>
     </div>

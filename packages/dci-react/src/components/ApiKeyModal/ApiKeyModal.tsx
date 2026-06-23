@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Button, Checkbox, Modal, TextField } from '@iskra-ui/react';
+import { Button, Checkbox, Modal, TextField, useIskraT } from '@iskra-ui/react';
 import './ApiKeyModal.css';
 
 export interface ApiKeyScope {
@@ -24,11 +24,29 @@ export interface ApiKeyModalProps {
   cancelLabel?: string;
 }
 
-const DEFAULT_SCOPES: ApiKeyScope[] = [
-  { id: 'devices:read', name: 'devices:read', description: 'Чтение состояния устройств' },
-  { id: 'devices:write', name: 'devices:write', description: 'Применение конфигураций и sync' },
-  { id: 'metrics:read', name: 'metrics:read', description: 'Доступ к метрикам и спарклайнам' },
-];
+function useDefaultScopes(): ApiKeyScope[] {
+  const t = useIskraT();
+  return useMemo(
+    () => [
+      {
+        id: 'devices:read',
+        name: 'devices:read',
+        description: t('dci.apiKey.scopes.devicesRead'),
+      },
+      {
+        id: 'devices:write',
+        name: 'devices:write',
+        description: t('dci.apiKey.scopes.devicesWrite'),
+      },
+      {
+        id: 'metrics:read',
+        name: 'metrics:read',
+        description: t('dci.apiKey.scopes.metricsRead'),
+      },
+    ],
+    [t],
+  );
+}
 
 /**
  * ApiKeyModal — domain dialog for minting a scoped API key. Built on the
@@ -39,11 +57,18 @@ export function ApiKeyModal({
   open,
   onClose,
   onCreate,
-  scopes = DEFAULT_SCOPES,
-  title = 'Новый API-ключ',
-  submitLabel = 'Создать ключ',
-  cancelLabel = 'Отмена',
+  scopes: scopesProp,
+  title,
+  submitLabel,
+  cancelLabel,
 }: ApiKeyModalProps) {
+  const t = useIskraT();
+  const defaultScopes = useDefaultScopes();
+  const scopes = scopesProp ?? defaultScopes;
+  const resolvedTitle = title ?? t('dci.apiKey.title');
+  const resolvedSubmitLabel = submitLabel ?? t('dci.apiKey.submit');
+  const resolvedCancelLabel = cancelLabel ?? t('common.cancel');
+
   const [name, setName] = useState('');
   const [selected, setSelected] = useState<Record<string, boolean>>({});
 
@@ -73,30 +98,30 @@ export function ApiKeyModal({
     <Modal
       open={open}
       onClose={handleClose}
-      title={title}
-      description="Ключ будет показан один раз после создания."
+      title={resolvedTitle}
+      description={t('dci.apiKey.description')}
       size="m"
       footer={
         <>
           <Button variant="ghost" onClick={handleClose}>
-            {cancelLabel}
+            {resolvedCancelLabel}
           </Button>
           <Button variant="primary" onClick={handleSubmit} disabled={!canSubmit}>
-            {submitLabel}
+            {resolvedSubmitLabel}
           </Button>
         </>
       }
     >
       <div className="dci-apikey-form">
         <TextField
-          label="Название ключа"
-          placeholder="например, ci-deploy-bot"
+          label={t('dci.apiKey.nameLabel')}
+          placeholder={t('dci.apiKey.namePlaceholder')}
           required
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <fieldset className="dci-apikey-scopes">
-          <legend className="dci-apikey-scopes-legend">Права доступа</legend>
+          <legend className="dci-apikey-scopes-legend">{t('dci.apiKey.scopesLegend')}</legend>
           {scopes.map((scope) => (
             <div className="dci-apikey-scope" key={scope.id}>
               <Checkbox

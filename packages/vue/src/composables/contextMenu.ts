@@ -1,4 +1,4 @@
-import type { InjectionKey, Ref } from 'vue';
+import { inject, type InjectionKey, type Ref } from 'vue';
 import type { MenuItemLike, PopoverPlacement } from '@iskra-ui/core';
 
 export type ContextMenuTriggerOn = 'contextmenu' | 'click' | 'both';
@@ -28,3 +28,11 @@ export interface ContextMenuContext {
 }
 
 export const contextMenuKey: InjectionKey<ContextMenuContext> = Symbol('iskra-context-menu');
+
+export function useContextMenuContext(component: string): ContextMenuContext {
+  const ctx = inject(contextMenuKey);
+  if (!ctx) {
+    throw new Error(`${component} must be used within ContextMenu.`);
+  }
+  return ctx;
+}

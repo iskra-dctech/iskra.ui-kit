@@ -45,6 +45,30 @@ export const config = tseslint.config(
     plugins: { 'react-hooks': reactHooks },
     rules: { ...reactHooks.configs.recommended.rules },
   },
+  {
+    files: ['packages/**/src/**/*.{ts,tsx}'],
+    ignores: [
+      '**/*.stories.{ts,tsx}',
+      '**/*.test.{ts,tsx}',
+      '**/i18n/**',
+      'packages/i18n/**',
+    ],
+    rules: {
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector: 'Literal[value=/[А-Яа-яЁё]/]',
+          message:
+            'User-facing Cyrillic strings belong in @iskra-ui/i18n catalogs. Use useIskraT() or props.',
+        },
+        {
+          selector: 'TemplateElement[value.raw=/[А-Яа-яЁё]/]',
+          message:
+            'User-facing Cyrillic strings belong in @iskra-ui/i18n catalogs. Use useIskraT() or props.',
+        },
+      ],
+    },
+  },
   node,
   // Storybook `render` functions legitimately use hooks for interactive stories.
   {

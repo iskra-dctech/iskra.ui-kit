@@ -25,7 +25,7 @@ export function WidgetExpandView({
   description,
   toolbar,
   children,
-  closeLabel = 'Закрыть',
+  closeLabel,
   className,
 }: WidgetExpandViewProps) {
   return (

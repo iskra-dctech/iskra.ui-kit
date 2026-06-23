@@ -1,4 +1,5 @@
 import { type HTMLAttributes, type ReactNode } from 'react';
+import { useIskraT } from '../../i18n/useIskraT.js';
 import { cx } from '../../utils/cx.js';
 import './Badge.css';
 
@@ -42,16 +43,18 @@ export interface TagProps extends HTMLAttributes<HTMLSpanElement> {
 export function Tag({
   accent = false,
   onRemove,
-  removeLabel = 'Удалить',
+  removeLabel,
   children,
   className,
   ...rest
 }: TagProps) {
+  const t = useIskraT();
+  const resolvedRemoveLabel = removeLabel ?? t('common.remove');
   return (
     <span className={cx('ik-tag', accent && 'ik-tag-accent', className)} {...rest}>
       {children}
       {onRemove && (
-        <button type="button" className="ik-tag-x" onClick={onRemove} aria-label={removeLabel}>
+        <button type="button" className="ik-tag-x" onClick={onRemove} aria-label={resolvedRemoveLabel}>
           <svg
             width="9"
             height="9"

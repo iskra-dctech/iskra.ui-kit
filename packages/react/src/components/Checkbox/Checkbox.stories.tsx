@@ -1,19 +1,46 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Checkbox } from './Checkbox.js';
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { useStoryT } from '../../storybook/useStoryT.js'
+import { Checkbox } from './Checkbox.js'
 
 const meta = {
   title: 'Primitives/Checkbox',
   component: Checkbox,
-  args: { label: 'Включить Force Sync' },
-} satisfies Meta<typeof Checkbox>;
+} satisfies Meta<typeof Checkbox>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
-export const Default: Story = {};
-export const Checked: Story = { args: { defaultChecked: true } };
-export const Indeterminate: Story = { args: { indeterminate: true } };
+export const Default: Story = {
+  render: () => {
+    const t = useStoryT()
+    return <Checkbox label={t('demo.form.forceSync')} />
+  },
+}
+
+export const Checked: Story = {
+  render: () => {
+    const t = useStoryT()
+    return <Checkbox label={t('demo.form.forceSync')} defaultChecked />
+  },
+}
+
+export const Indeterminate: Story = {
+  render: () => {
+    const t = useStoryT()
+    return <Checkbox label={t('demo.form.forceSync')} indeterminate />
+  },
+}
+
 export const WithDescription: Story = {
-  args: { description: 'Применить желаемое состояние ко всем устройствам' },
-};
-export const Disabled: Story = { args: { disabled: true, defaultChecked: true } };
+  render: () => {
+    const t = useStoryT()
+    return <Checkbox label={t('demo.form.forceSync')} description={t('demo.form.forceSyncDescription')} />
+  },
+}
+
+export const Disabled: Story = {
+  render: () => {
+    const t = useStoryT()
+    return <Checkbox label={t('demo.form.forceSync')} disabled defaultChecked />
+  },
+}

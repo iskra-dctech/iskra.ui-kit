@@ -1,22 +1,35 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { RadioGroup } from './Radio.js';
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { useStoryT } from '../../storybook/useStoryT.js'
+import { RadioGroup } from './Radio.js'
 
 const meta = {
   title: 'Primitives/RadioGroup',
   component: RadioGroup,
-} satisfies Meta<typeof RadioGroup>;
+} satisfies Meta<typeof RadioGroup>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
-const options = [
-  { value: 'root', label: 'root', description: 'Полный доступ' },
-  { value: 'admin', label: 'admin' },
-  { value: 'operator', label: 'operator' },
-  { value: 'viewer', label: 'viewer', disabled: true },
-];
+function useRoleOptions() {
+  const t = useStoryT()
+  return [
+    { value: 'root', label: 'root', description: t('demo.labels.fullAccess') },
+    { value: 'admin', label: 'admin' },
+    { value: 'operator', label: 'operator' },
+    { value: 'viewer', label: 'viewer', disabled: true },
+  ]
+}
 
-export const Vertical: Story = { args: { options, defaultValue: 'admin' } };
+export const Vertical: Story = {
+  render: () => {
+    const options = useRoleOptions()
+    return <RadioGroup options={options} defaultValue="admin" />
+  },
+}
+
 export const Horizontal: Story = {
-  args: { options, orientation: 'horizontal', defaultValue: 'root' },
-};
+  render: () => {
+    const options = useRoleOptions()
+    return <RadioGroup options={options} orientation="horizontal" defaultValue="root" />
+  },
+}

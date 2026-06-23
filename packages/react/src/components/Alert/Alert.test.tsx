@@ -21,7 +21,7 @@ describe('Alert', () => {
         x
       </Alert>,
     );
-    await userEvent.click(screen.getByRole('button', { name: 'Закрыть' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Close' }));
     expect(onClose).toHaveBeenCalledOnce();
   });
 });

@@ -1,3 +1,6 @@
+import type { IskraLocale } from '@iskra-ui/i18n';
+import { getMessages } from '@iskra-ui/i18n';
+
 export interface SidebarNavItem {
   id: string;
   label: string;
@@ -12,66 +15,106 @@ export interface SidebarNavGroup {
   items: SidebarNavItem[];
 }
 
-export const DCI_OPERATOR_NAV: SidebarNavGroup[] = [
-  {
-    id: 'monitoring',
-    label: 'Мониторинг',
+type SidebarMessages = ReturnType<typeof getMessages>['sidebar'];
+
+function operatorNav(s: SidebarMessages): SidebarNavGroup[] {
+  return [
+    {
+      id: 'monitoring',
+      label: s.monitoring,
+      items: [
+        { id: 'overview', label: s.overview, icon: 'grid' },
+        { id: 'devices', label: s.devices, icon: 'server' },
+        { id: 'topology', label: s.topology, icon: 'layers' },
+      ],
+    },
+    {
+      id: 'management',
+      label: s.management,
+      items: [
+        { id: 'alerts', label: s.alerts, icon: 'bell' },
+        { id: 'apikeys', label: s.apikeys, icon: 'key' },
+        { id: 'log', label: s.log, icon: 'list' },
+      ],
+    },
+  ];
+}
+
+function adminExtra(s: SidebarMessages): SidebarNavGroup {
+  return {
+    id: 'admin',
+    label: s.admin,
     items: [
-      { id: 'overview', label: 'Обзор', icon: 'grid' },
-      { id: 'devices', label: 'Устройства', icon: 'server' },
-      { id: 'topology', label: 'Топология', icon: 'layers' },
+      { id: 'users', label: s.users, icon: 'users' },
+      { id: 'audit', label: s.audit, icon: 'shield-check' },
+      { id: 'system', label: s.system, icon: 'terminal' },
     ],
-  },
-  {
-    id: 'management',
-    label: 'Управление',
-    items: [
-      { id: 'alerts', label: 'Оповещения', icon: 'bell' },
-      { id: 'apikeys', label: 'API-ключи', icon: 'key' },
-      { id: 'log', label: 'Журнал', icon: 'list' },
-    ],
-  },
-];
+  };
+}
 
-export const DCI_ADMIN_EXTRA: SidebarNavGroup = {
-  id: 'admin',
-  label: 'Администрирование',
-  items: [
-    { id: 'users', label: 'Пользователи', icon: 'users' },
-    { id: 'audit', label: 'Аудит', icon: 'shield-check' },
-    { id: 'system', label: 'Система', icon: 'terminal' },
-  ],
-};
+export function getDciOperatorNav(locale: IskraLocale = 'en'): SidebarNavGroup[] {
+  return operatorNav(getMessages(locale).sidebar);
+}
 
-export const DCI_ADMIN_NAV: SidebarNavGroup[] = [...DCI_OPERATOR_NAV, DCI_ADMIN_EXTRA];
+export function getDciAdminExtra(locale: IskraLocale = 'en'): SidebarNavGroup {
+  return adminExtra(getMessages(locale).sidebar);
+}
 
-export const DCI_FOOTER_NAV: SidebarNavItem[] = [
-  { id: 'settings', label: 'Настройки', icon: 'settings' },
-  { id: 'logout', label: 'Выход', icon: 'log-out' },
-];
+export function getDciAdminNav(locale: IskraLocale = 'en'): SidebarNavGroup[] {
+  return [...getDciOperatorNav(locale), getDciAdminExtra(locale)];
+}
 
-export const NOTIFIER_NAV: SidebarNavGroup[] = [
-  {
-    id: 'notifier',
-    items: [
-      { id: 'dashboard', label: 'Панель управления', icon: 'grid' },
-      { id: 'console', label: 'Консоль инцидентов', icon: 'terminal' },
-      { id: 'incidents', label: 'Реестр инцидентов', icon: 'bell' },
-      { id: 'workspace', label: 'Рабочая область', icon: 'layers' },
-      { id: 'drafts', label: 'Черновики уведомлений', icon: 'file-text' },
-      { id: 'delivery', label: 'Журнал доставки', icon: 'mail' },
-      { id: 'duty', label: 'График дежурств', icon: 'calendar' },
-      { id: 'rules', label: 'Правила маршрутизации', icon: 'git-branch' },
-      { id: 'templates', label: 'Шаблоны', icon: 'clipboard' },
-      { id: 'integrations', label: 'Интеграции', icon: 'share' },
-      { id: 'audit', label: 'Журнал аудита', icon: 'shield-check' },
-      { id: 'admin', label: 'Администрирование', icon: 'settings' },
-    ],
-  },
-];
+export function getDciFooterNav(locale: IskraLocale = 'en'): SidebarNavItem[] {
+  const s = getMessages(locale).sidebar;
+  return [
+    { id: 'settings', label: s.settings, icon: 'settings' },
+    { id: 'logout', label: s.logout, icon: 'log-out' },
+  ];
+}
+
+export function getNotifierNav(locale: IskraLocale = 'en'): SidebarNavGroup[] {
+  const s = getMessages(locale).sidebar;
+  return [
+    {
+      id: 'notifier',
+      items: [
+        { id: 'dashboard', label: s.dashboard, icon: 'grid' },
+        { id: 'console', label: s.console, icon: 'terminal' },
+        { id: 'incidents', label: s.incidents, icon: 'bell' },
+        { id: 'workspace', label: s.workspace, icon: 'layers' },
+        { id: 'drafts', label: s.drafts, icon: 'file-text' },
+        { id: 'delivery', label: s.delivery, icon: 'mail' },
+        { id: 'duty', label: s.duty, icon: 'calendar' },
+        { id: 'rules', label: s.rules, icon: 'git-branch' },
+        { id: 'templates', label: s.templates, icon: 'clipboard' },
+        { id: 'integrations', label: s.integrations, icon: 'share' },
+        { id: 'audit', label: s.audit, icon: 'shield-check' },
+        { id: 'admin', label: s.admin, icon: 'settings' },
+      ],
+    },
+  ];
+}
+
+/** @deprecated Use `getDciOperatorNav('ru')` or `getDciOperatorNav(locale)`. */
+export const DCI_OPERATOR_NAV: SidebarNavGroup[] = getDciOperatorNav('ru');
+
+/** @deprecated Use `getDciAdminExtra('ru')` or `getDciAdminExtra(locale)`. */
+export const DCI_ADMIN_EXTRA: SidebarNavGroup = getDciAdminExtra('ru');
+
+/** @deprecated Use `getDciAdminNav('ru')` or `getDciAdminNav(locale)`. */
+export const DCI_ADMIN_NAV: SidebarNavGroup[] = getDciAdminNav('ru');
+
+/** @deprecated Use `getDciFooterNav('ru')` or `getDciFooterNav(locale)`. */
+export const DCI_FOOTER_NAV: SidebarNavItem[] = getDciFooterNav('ru');
+
+/** @deprecated Use `getNotifierNav('ru')` or `getNotifierNav(locale)`. */
+export const NOTIFIER_NAV: SidebarNavGroup[] = getNotifierNav('ru');
 
 export type SidebarVariant = 'operator' | 'admin';
 
-export function resolveSidebarGroups(variant: SidebarVariant): SidebarNavGroup[] {
-  return variant === 'admin' ? DCI_ADMIN_NAV : DCI_OPERATOR_NAV;
+export function resolveSidebarGroups(
+  variant: SidebarVariant,
+  locale: IskraLocale = 'en',
+): SidebarNavGroup[] {
+  return variant === 'admin' ? getDciAdminNav(locale) : getDciOperatorNav(locale);
 }

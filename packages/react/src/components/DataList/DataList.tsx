@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { useIskraT } from '../../i18n/useIskraT.js';
 import { cx } from '../../utils/cx.js';
 import { Spinner } from '../Spinner/Spinner.js';
 import './DataList.css';
@@ -37,6 +38,7 @@ export function DataList<T>({
   'aria-label': ariaLabel,
   className,
 }: DataListProps<T>) {
+  const t = useIskraT();
   if (error != null) {
     return (
       <div className={cx('ik-datalist-state', 'ik-datalist-state-error', className)} role="alert">
@@ -56,7 +58,7 @@ export function DataList<T>({
   if (items.length === 0) {
     return (
       <div className={cx('ik-datalist-state', className)} role="status">
-        {empty ?? 'Нет данных'}
+        {empty ?? t('common.noData')}
       </div>
     );
   }

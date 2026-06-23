@@ -1,17 +1,11 @@
 import { type HTMLAttributes, type ReactNode } from 'react';
 import { Button } from '../Button/Button.js';
 import { Icon } from '../Icon/Icon.js';
+import { useIskraT } from '../../i18n/useIskraT.js';
 import { cx } from '../../utils/cx.js';
 import './EmptyState.css';
 
 export type EmptyStateVariant = 'default' | 'not-found';
-
-const NOT_FOUND_DEFAULTS = {
-  title: 'Страница не найдена',
-  description:
-    'Запрошенный адрес отсутствует в платформе Искра или был перемещён. Проверьте ссылку или вернитесь на главную.',
-  code: 404,
-} as const;
 
 export interface EmptyStateProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
   variant?: EmptyStateVariant;
@@ -24,7 +18,7 @@ export interface EmptyStateProps extends Omit<HTMLAttributes<HTMLDivElement>, 't
   description?: ReactNode;
   /** Primary action (usually a Button). */
   action?: ReactNode;
-  /** Secondary action — e.g. «Назад». */
+  /** Secondary action — e.g. back navigation. */
   secondaryAction?: ReactNode;
   /** Default primary handler for `variant="not-found"` when `action` is omitted. */
   onHome?: () => void;
@@ -50,21 +44,23 @@ export function EmptyState({
   className,
   ...rest
 }: EmptyStateProps) {
+  const t = useIskraT();
   const isNotFound = variant === 'not-found';
-  const resolvedCode = code ?? (isNotFound ? NOT_FOUND_DEFAULTS.code : undefined);
-  const resolvedTitle = title ?? (isNotFound ? NOT_FOUND_DEFAULTS.title : '');
+  const resolvedCode = code ?? (isNotFound ? 404 : undefined);
+  const resolvedTitle = title ?? (isNotFound ? t('emptyState.notFound.title') : '');
   const resolvedDescription =
-    description ?? (isNotFound ? NOT_FOUND_DEFAULTS.description : undefined);
+    description ?? (isNotFound ? t('emptyState.notFound.description') : undefined);
   const resolvedIcon = icon ?? (isNotFound ? <Icon name="help" size={40} /> : undefined);
 
   const primaryAction =
-    action ?? (isNotFound ? <Button onClick={onHome}>На главную</Button> : undefined);
+    action ??
+    (isNotFound ? <Button onClick={onHome}>{t('emptyState.notFound.home')}</Button> : undefined);
 
   const secondary =
     secondaryAction ??
     (isNotFound && onBack ? (
       <Button variant="ghost" onClick={onBack}>
-        Назад
+        {t('emptyState.notFound.back')}
       </Button>
     ) : undefined);
 
@@ -77,7 +73,7 @@ export function EmptyState({
         className,
       )}
       role={isNotFound ? 'region' : undefined}
-      aria-label={isNotFound ? 'Страница не найдена' : undefined}
+      aria-label={isNotFound ? t('emptyState.notFound.ariaLabel') : undefined}
       {...rest}
     >
       {resolvedCode != null && (

@@ -11,6 +11,7 @@ import {
   Icon,
   Spinner,
   useDashboard,
+  useIskraT,
   WidgetEditor,
   WidgetExpandView,
 } from '@iskra-ui/react';
@@ -34,9 +35,11 @@ export function DciDashboard({
   dashboardId,
   metricSource,
   store = defaultStore,
-  defaultName = 'Панель управления',
+  defaultName,
   className,
 }: DciDashboardProps) {
+  const t = useIskraT();
+  const resolvedDefaultName = defaultName ?? t('dashboard.defaultName');
   const {
     dashboard,
     isLoading,
@@ -47,7 +50,7 @@ export function DciDashboard({
     updateWidget,
     removeWidget,
     setLayout,
-  } = useDashboard({ dashboardId, store, defaultName });
+  } = useDashboard({ dashboardId, store, defaultName: resolvedDefaultName });
 
   const [metrics, setMetrics] = useState<Awaited<ReturnType<DciMetricSource['listMetrics']>>>([]);
   const [seriesMap, setSeriesMap] = useState<Record<string, MetricSeries>>({});
@@ -95,7 +98,7 @@ export function DciDashboard({
   if (isLoading || !dashboard) {
     return (
       <div className="dci-dashboard-loading">
-        <Spinner label="Загрузка дашборда" />
+        <Spinner label={t('dashboard.loading')} />
       </div>
     );
   }
@@ -112,17 +115,17 @@ export function DciDashboard({
           setEditingWidget(undefined);
           setEditorOpen(true);
         }}
-        actions={isSaving ? <span className="dci-dashboard-saving">Сохранение…</span> : undefined}
+        actions={isSaving ? <span className="dci-dashboard-saving">{t('dashboard.saving')}</span> : undefined}
       />
 
       {dashboard.widgets.length === 0 ? (
         <EmptyState
           icon={<Icon name="grid" size={32} />}
-          title="Нет виджетов"
-          description="Добавьте первый виджет на дашборд, чтобы начать мониторинг метрик."
+          title={t('dashboard.noWidgetsTitle')}
+          description={t('dashboard.noWidgetsDescription')}
           action={
             <Button size="s" onClick={() => setEditorOpen(true)}>
-              Добавить виджет
+              {t('dashboard.addWidget')}
             </Button>
           }
         />

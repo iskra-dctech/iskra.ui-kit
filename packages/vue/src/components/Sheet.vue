@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref, watch } from 'vue';
+import { onMounted, onUnmounted, ref, watch, computed } from 'vue';
 import { createFocusTrap } from '@iskra-ui/core';
+import { useIskraT } from '../i18n/useIskraT.js';
 import { cx } from '../utils/cx.js';
 
 export type SheetSnap = 'content' | 'half' | 'full';
@@ -21,9 +22,11 @@ const props = withDefaults(
     showHandle: true,
     dismissible: true,
     showClose: true,
-    closeLabel: 'Закрыть',
   },
 );
+
+const t = useIskraT();
+const resolvedCloseLabel = computed(() => props.closeLabel ?? t('common.close'));
 
 const emit = defineEmits<{ 'update:open': [open: boolean] }>();
 
@@ -92,7 +95,7 @@ onUnmounted(() => {
             v-if="showClose"
             type="button"
             class="ik-sheet-close"
-            :aria-label="closeLabel"
+            :aria-label="resolvedCloseLabel"
             @click="handleClose"
           >
             <svg

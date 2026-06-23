@@ -30,7 +30,7 @@ describe('Toast', () => {
       </ToastProvider>,
     );
     await userEvent.click(screen.getByRole('button', { name: 'notify' }));
-    await userEvent.click(screen.getByRole('button', { name: 'Закрыть' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Close' }));
     expect(screen.queryByRole('status')).not.toBeInTheDocument();
   });
 });

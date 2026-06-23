@@ -1,4 +1,6 @@
 import type { ChartType } from '@iskra-ui/core';
+import { useMemo } from 'react';
+import { useIskraT } from '../../i18n/useIskraT.js';
 import { Icon, type IconName } from '../Icon/Icon.js';
 import { IconButton } from '../IconButton/IconButton.js';
 import { cx } from '../../utils/cx.js';
@@ -11,11 +13,11 @@ export interface ChartTypeSelectorProps {
   className?: string;
 }
 
-const OPTIONS: { type: ChartType; icon: IconName; label: string }[] = [
-  { type: 'line', icon: 'chart-line', label: 'Линейный график' },
-  { type: 'bar', icon: 'chart-bar', label: 'Столбчатая диаграмма' },
-  { type: 'area', icon: 'chart-area', label: 'Область' },
-  { type: 'scatter', icon: 'chart-scatter', label: 'Точечная диаграмма' },
+const CHART_TYPE_KEYS: { type: ChartType; icon: IconName; labelKey: 'chart.types.line' | 'chart.types.bar' | 'chart.types.area' | 'chart.types.scatter' }[] = [
+  { type: 'line', icon: 'chart-line', labelKey: 'chart.types.line' },
+  { type: 'bar', icon: 'chart-bar', labelKey: 'chart.types.bar' },
+  { type: 'area', icon: 'chart-area', labelKey: 'chart.types.area' },
+  { type: 'scatter', icon: 'chart-scatter', labelKey: 'chart.types.scatter' },
 ];
 
 /**
@@ -27,13 +29,19 @@ export function ChartTypeSelector({
   disabled = false,
   className,
 }: ChartTypeSelectorProps) {
+  const t = useIskraT();
+  const options = useMemo(
+    () => CHART_TYPE_KEYS.map((opt) => ({ ...opt, label: t(opt.labelKey) })),
+    [t],
+  );
+
   return (
     <div
       className={cx('ik-chart-type', className)}
       role="radiogroup"
-      aria-label="Тип графика"
+      aria-label={t('a11y.chartType')}
     >
-      {OPTIONS.map((opt) => (
+      {options.map((opt) => (
         <IconButton
           key={opt.type}
           type="button"

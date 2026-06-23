@@ -14,7 +14,7 @@ describe('DashboardToolbar', () => {
         onAddWidget={vi.fn()}
       />,
     );
-    await userEvent.click(screen.getByRole('button', { name: 'Редактировать' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Edit' }));
     expect(onEditableChange).toHaveBeenCalledWith(true);
   });
 });

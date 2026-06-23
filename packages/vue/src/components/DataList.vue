@@ -1,4 +1,6 @@
 <script setup lang="ts" generic="T">
+import { computed } from 'vue';
+import { useIskraT } from '../i18n/useIskraT.js';
 import { cx } from '../utils/cx.js';
 import Spinner from './Spinner.vue';
 
@@ -25,6 +27,9 @@ defineSlots<{
   empty?(): unknown;
   error?(): unknown;
 }>();
+
+const t = useIskraT();
+const emptyLabel = computed(() => t('common.noData'));
 </script>
 
 <template>
@@ -35,7 +40,7 @@ defineSlots<{
     <Spinner size="m" />
   </div>
   <div v-else-if="items.length === 0" class="ik-datalist-state" role="status">
-    <slot name="empty">Нет данных</slot>
+    <slot name="empty">{{ emptyLabel }}</slot>
   </div>
   <ul
     v-else

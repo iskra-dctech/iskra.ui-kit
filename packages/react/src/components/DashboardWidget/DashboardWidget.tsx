@@ -1,4 +1,5 @@
 import { type ReactNode } from 'react';
+import { useIskraT } from '../../i18n/useIskraT.js';
 import { Card } from '../Card/Card.js';
 import { Icon } from '../Icon/Icon.js';
 import { IconButton } from '../IconButton/IconButton.js';
@@ -27,11 +28,14 @@ export function DashboardWidget({
   onEdit,
   onRemove,
   expandLabel,
-  editLabel = 'Редактировать виджет',
-  removeLabel = 'Удалить виджет',
+  editLabel,
+  removeLabel,
   className,
 }: DashboardWidgetProps) {
-  const resolvedExpandLabel = expandLabel ?? `Развернуть график ${title}`;
+  const t = useIskraT();
+  const resolvedExpandLabel = expandLabel ?? t('widget.expandLabel', { title });
+  const resolvedEditLabel = editLabel ?? t('widget.editLabel');
+  const resolvedRemoveLabel = removeLabel ?? t('widget.removeLabel');
 
   return (
     <div className={cx('ik-dash-widget', className)}>
@@ -55,7 +59,7 @@ export function DashboardWidget({
                 variant="ghost"
                 size="s"
                 icon={<Icon name="edit" size={14} />}
-                aria-label={editLabel}
+                aria-label={resolvedEditLabel}
                 onClick={onEdit}
               />
             )}
@@ -64,7 +68,7 @@ export function DashboardWidget({
                 variant="ghost"
                 size="s"
                 icon={<Icon name="trash" size={14} />}
-                aria-label={removeLabel}
+                aria-label={resolvedRemoveLabel}
                 onClick={onRemove}
               />
             )}

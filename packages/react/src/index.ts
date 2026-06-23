@@ -52,5 +52,14 @@ export {
   mediaQueryForBreakpoint,
   type BreakpointName,
 } from './responsive/breakpoints.js';
+// i18n
+export {
+  IskraProvider,
+  useIskraLocale,
+  useIskraT,
+  renderWithIskra,
+  type IskraProviderProps,
+  type IskraLocaleContextValue,
+} from './i18n/index.js';
 // Utilities
 export { cx } from './utils/cx.js';

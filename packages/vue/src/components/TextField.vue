@@ -5,6 +5,7 @@ export type TextFieldSize = 's' | 'm' | 'l';
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { createId } from '@iskra-ui/core';
+import { useIskraT } from '../i18n/useIskraT.js';
 import { cx } from '../utils/cx.js';
 
 const props = withDefaults(
@@ -31,9 +32,11 @@ const props = withDefaults(
     clearable: false,
     disabled: false,
     type: 'text',
-    clearLabel: 'Очистить',
   },
 );
+
+const t = useIskraT();
+const resolvedClearLabel = computed(() => props.clearLabel ?? t('common.clear'));
 
 const emit = defineEmits<{ 'update:modelValue': [value: string]; clear: [] }>();
 
@@ -91,7 +94,7 @@ function onClear() {
         v-if="showClear"
         type="button"
         class="ik-tf-clear"
-        :aria-label="clearLabel"
+        :aria-label="resolvedClearLabel"
         @click="onClear"
       >
         <svg

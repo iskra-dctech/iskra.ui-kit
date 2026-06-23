@@ -1,20 +1,28 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Tabs } from './Tabs.js';
-
-const items = [
-  { value: 'overview', label: 'Обзор', content: 'Сводка состояния устройства.' },
-  { value: 'config', label: 'Конфигурация', content: 'Текущий и desired state.' },
-  { value: 'history', label: 'История', content: 'Журнал изменений и дрейфов.' },
-  { value: 'raw', label: 'Raw', content: 'Сырой вывод CLI.', disabled: true },
-];
+import { useMemo } from 'react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { useStoryT } from '../../storybook/useStoryT.js'
+import { Tabs } from './Tabs.js'
 
 const meta = {
   title: 'Patterns/Tabs',
   component: Tabs,
-  args: { items, 'aria-label': 'Разделы устройства' },
-} satisfies Meta<typeof Tabs>;
+} satisfies Meta<typeof Tabs>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => {
+    const t = useStoryT()
+    const items = useMemo(
+      () => [
+        { value: 'overview', label: t('demo.tabs.overview'), content: t('demo.tabs.overviewContent') },
+        { value: 'config', label: t('demo.tabs.config'), content: t('demo.tabs.configContent') },
+        { value: 'history', label: t('demo.tabs.history'), content: t('demo.tabs.historyContent') },
+        { value: 'raw', label: t('demo.tabs.raw'), content: t('demo.tabs.rawContent'), disabled: true },
+      ],
+      [t],
+    )
+    return <Tabs items={items} aria-label={t('demo.labels.deviceSections')} />
+  },
+}

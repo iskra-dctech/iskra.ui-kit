@@ -27,6 +27,7 @@ const config: StorybookConfig = {
       '@iskra-ui/react': pkg('react/src/index.ts'),
       '@iskra-ui/dci-react': pkg('dci-react/src/index.ts'),
       '@iskra-ui/core': pkg('core/src/index.ts'),
+      '@iskra-ui/i18n': pkg('i18n/src/index.ts'),
       '@iskra-ui/icons': pkg('icons/src/index.ts'),
     };
 

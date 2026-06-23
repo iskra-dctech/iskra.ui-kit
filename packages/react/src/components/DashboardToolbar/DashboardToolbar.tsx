@@ -1,4 +1,5 @@
 import { type ReactNode } from 'react';
+import { useIskraT } from '../../i18n/useIskraT.js';
 import { Button } from '../Button/Button.js';
 import { Icon } from '../Icon/Icon.js';
 import { cx } from '../../utils/cx.js';
@@ -24,6 +25,8 @@ export function DashboardToolbar({
   actions,
   className,
 }: DashboardToolbarProps) {
+  const t = useIskraT();
+
   return (
     <div className={cx('ik-dashboard-toolbar', className)}>
       <div className="ik-dashboard-toolbar-start">
@@ -37,12 +40,12 @@ export function DashboardToolbar({
             size="s"
             onClick={() => onEditableChange(!editable)}
           >
-            {editable ? 'Готово' : 'Редактировать'}
+            {editable ? t('dashboard.done') : t('dashboard.edit')}
           </Button>
         )}
         {onAddWidget && (
           <Button size="s" iconBefore={<Icon name="plus" size={14} />} onClick={onAddWidget}>
-            Виджет
+            {t('dashboard.widget')}
           </Button>
         )}
       </div>

@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import { computed, inject, onMounted, onUnmounted, ref } from 'vue';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { getTriggerAria } from '@iskra-ui/core';
-import { contextMenuKey } from '../composables/contextMenu.js';
+import { useContextMenuContext } from '../composables/contextMenu.js';
 
 const props = defineProps<{
   class?: string;
 }>();
 
-const ctx = inject(contextMenuKey);
-if (!ctx) throw new Error('ContextMenuTrigger must be used within ContextMenu.');
+const ctx = useContextMenuContext('ContextMenuTrigger');
 
 const rootRef = ref<HTMLElement | null>(null);
 

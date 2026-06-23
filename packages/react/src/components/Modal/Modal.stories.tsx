@@ -1,43 +1,45 @@
-import { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Modal } from './Modal.js';
-import { Button } from '../Button/Button.js';
+import { useState } from 'react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { useStoryT } from '../../storybook/useStoryT.js'
+import { Modal } from './Modal.js'
+import { Button } from '../Button/Button.js'
 
 const meta = {
   title: 'Patterns/Modal',
   component: Modal,
   parameters: { layout: 'centered' },
-} satisfies Meta<typeof Modal>;
+} satisfies Meta<typeof Modal>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Confirm: Story = {
   args: { open: false, onClose: () => {} },
   render: () => {
-    const [open, setOpen] = useState(false);
+    const t = useStoryT()
+    const [open, setOpen] = useState(false)
     return (
       <>
-        <Button onClick={() => setOpen(true)}>Удалить устройство</Button>
+        <Button onClick={() => setOpen(true)}>{t('demo.labels.deleteDevice')}</Button>
         <Modal
           open={open}
           onClose={() => setOpen(false)}
-          title="Удалить leaf-07.msk?"
-          description="Действие необратимо. Устройство будет снято с мониторинга."
+          title={t('demo.titles.deleteDevice')}
+          description={t('demo.descriptions.deleteDevice')}
           footer={
             <>
               <Button variant="ghost" onClick={() => setOpen(false)}>
-                Отмена
+                {t('common.cancel')}
               </Button>
               <Button variant="destructive" onClick={() => setOpen(false)}>
-                Удалить
+                {t('demo.labels.delete')}
               </Button>
             </>
           }
         >
-          Все исторические метрики устройства будут удалены через 30 дней.
+          {t('demo.descriptions.deleteDeviceBody')}
         </Modal>
       </>
-    );
+    )
   },
-};
+}

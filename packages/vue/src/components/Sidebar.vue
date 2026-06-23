@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, useAttrs, watch } from 'vue';
+import { useIskraLocale, useIskraT } from '../i18n/useIskraT.js';
 import Icon from './Icon.vue';
 import { cx } from '../utils/cx.js';
 import type { IconName } from '@iskra-ui/icons';
@@ -31,8 +32,14 @@ const props = withDefaults(
     variant: 'operator',
     theme: '',
     badges: () => ({}),
-    ariaLabel: 'Навигация',
   },
+);
+
+const t = useIskraT();
+const { locale } = useIskraLocale();
+const resolvedAriaLabel = computed(() => props.ariaLabel ?? t('a11y.navigation'));
+const collapseLabel = computed(() =>
+  props.collapsed ? t('a11y.sidebarExpand') : t('a11y.sidebarCollapse'),
 );
 
 const emit = defineEmits<{
@@ -47,7 +54,7 @@ const tipRdy = ref(false);
 
 const attrs = useAttrs();
 
-const groups = computed(() => props.groups ?? resolveSidebarGroups(props.variant));
+const groups = computed(() => props.groups ?? resolveSidebarGroups(props.variant, locale));
 const showCollapser = computed(() => props.collapsible && typeof attrs.onToggle !== 'undefined');
 
 const sbCls = computed(() =>
@@ -104,7 +111,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <aside ref="sbRef" :class="sbCls" role="navigation" :aria-label="ariaLabel">
+  <aside ref="sbRef" :class="sbCls" role="navigation" :aria-label="resolvedAriaLabel">
     <div v-if="$slots.brand || showCollapser" class="isb-logo">
       <div v-if="$slots.brand" class="isb-brand">
         <slot name="brand" />
@@ -114,7 +121,7 @@ onMounted(() => {
         class="isb-collapser"
         type="button"
         :aria-expanded="!collapsed"
-        :aria-label="collapsed ? 'Развернуть боковую панель' : 'Свернуть боковую панель'"
+        :aria-label="collapseLabel"
         @click="emit('toggle')"
       >
         <svg

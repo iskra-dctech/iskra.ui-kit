@@ -1,5 +1,6 @@
 import { useEffect, useRef, type MouseEvent, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
+import { useIskraT } from '../../i18n/useIskraT.js';
 import { useFocusTrap } from '../../utils/useFocusTrap.js';
 import { cx } from '../../utils/cx.js';
 import './Sheet.css';
@@ -37,10 +38,12 @@ export function Sheet({
   showHandle = true,
   dismissible = true,
   showClose = true,
-  closeLabel = 'Закрыть',
+  closeLabel,
   className,
   returnFocusRef,
 }: SheetProps) {
+  const t = useIskraT();
+  const resolvedCloseLabel = closeLabel ?? t('common.close');
   const sheetRef = useRef<HTMLDivElement>(null);
   const prevFocusRef = useRef<HTMLElement | null>(null);
   useFocusTrap(sheetRef, open);
@@ -118,7 +121,7 @@ export function Sheet({
                 type="button"
                 className="ik-sheet-close"
                 onClick={handleClose}
-                aria-label={closeLabel}
+                aria-label={resolvedCloseLabel}
               >
                 <svg
                   width="13"

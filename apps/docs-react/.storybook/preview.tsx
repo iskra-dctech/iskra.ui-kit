@@ -1,4 +1,6 @@
 import type { Preview } from '@storybook/react-vite';
+import { IskraProvider } from '@iskra-ui/react';
+import type { IskraLocale } from '@iskra-ui/i18n';
 // Full token + reset + font stylesheet; component CSS is bundled per-story by Vite.
 import '@iskra-ui/styles/index.css';
 
@@ -40,7 +42,7 @@ const preview: Preview = {
   },
   globalTypes: {
     theme: {
-      description: 'Тема Искра.DCI',
+      description: 'Iskra.DCI theme',
       defaultValue: 'dark',
       toolbar: {
         title: 'Theme',
@@ -53,17 +55,36 @@ const preview: Preview = {
         dynamicTitle: true,
       },
     },
+    locale: {
+      description: 'Component locale',
+      defaultValue: 'en',
+      toolbar: {
+        title: 'Locale',
+        icon: 'globe',
+        items: [
+          { value: 'en', title: 'English' },
+          { value: 'ru', title: 'Russian' },
+        ],
+        dynamicTitle: true,
+      },
+    },
   },
   decorators: [
     (Story, context) => {
       const theme = THEMES[context.globals.theme as string] ?? '';
+      const locale = (context.globals.locale as IskraLocale) ?? 'en';
       if (typeof document !== 'undefined') {
         document.body.classList.remove('theme-cold', 'theme-warm');
         if (theme) document.body.classList.add(theme);
         document.body.style.background = 'var(--bg)';
         document.body.style.color = 'var(--fg1)';
+        document.documentElement.lang = locale;
       }
-      return Story();
+      return (
+        <IskraProvider locale={locale}>
+          <Story />
+        </IskraProvider>
+      );
     },
   ],
 };

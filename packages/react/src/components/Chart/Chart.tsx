@@ -16,6 +16,7 @@ import {
 } from 'recharts';
 import type { ChartDensity, ChartType, MetricSeries } from '@iskra-ui/core';
 import { Spinner } from '../Spinner/Spinner.js';
+import { useIskraT } from '../../i18n/useIskraT.js';
 import { cx } from '../../utils/cx.js';
 import './Chart.css';
 
@@ -104,6 +105,7 @@ export function Chart({
   error,
   className,
 }: ChartProps) {
+  const t = useIskraT();
   const compact = density === 'compact';
   const resolvedHeight = height ?? (compact ? 72 : 280);
   const axes = showAxes ?? !compact;
@@ -116,7 +118,7 @@ export function Chart({
     return (
       <div className={cx('ik-chart', compact && 'ik-chart-compact', className)}>
         <div className="ik-chart-state" style={{ minHeight: resolvedHeight }}>
-          <Spinner size="s" label="Загрузка графика" />
+          <Spinner size="s" label={t('chart.loading')} />
         </div>
       </div>
     );
@@ -136,7 +138,7 @@ export function Chart({
     return (
       <div className={cx('ik-chart', compact && 'ik-chart-compact', className)}>
         <div className="ik-chart-state" style={{ minHeight: resolvedHeight }}>
-          Нет данных
+          {t('chart.noData')}
         </div>
       </div>
     );

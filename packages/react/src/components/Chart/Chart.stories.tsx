@@ -36,7 +36,7 @@ export const Area: Story = {
   args: { type: 'area', series: demoSeries() },
 };
 
-/** Точечная диаграмма (`scatter`) — четвёртый тип в ChartTypeSelector модалки WidgetEditor. */
+/** Scatter chart (`scatter`) — fourth type in the WidgetEditor ChartTypeSelector. */
 export const DotChart: Story = {
   name: 'Dot chart',
   args: { type: 'scatter', series: demoSeries(), density: 'comfortable' },

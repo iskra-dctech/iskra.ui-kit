@@ -1,26 +1,16 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { DataList } from './DataList.js';
-import { Badge } from '../Badge/Badge.js';
-import { Card } from '../Card/Card.js';
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { useStoryT } from '../../storybook/useStoryT.js'
+import { useDemoIncidents } from '../../storybook/useDemoIncidents.js'
+import { DataList } from './DataList.js'
+import { Card } from '../Card/Card.js'
 
 const meta = {
   title: 'Patterns/DataList',
   parameters: { layout: 'padded' },
-} satisfies Meta;
+} satisfies Meta
 
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-interface Incident {
-  id: string;
-  severity: string;
-  service: string;
-}
-
-const incidents: Incident[] = [
-  { id: 'INC-001', severity: 'critical', service: 'Сбой резервного хранилища' },
-  { id: 'INC-002', severity: 'warning', service: 'Рост задержки API-шлюза' },
-];
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const EntityCards: Story = {
   parameters: {
@@ -28,38 +18,43 @@ export const EntityCards: Story = {
     docs: {
       description: {
         story:
-          'Явное compact-представление. На desktop используйте Table с теми же данными — без auto-switch внутри Table.',
+          'Explicit compact view. On desktop use Table with the same data — no auto-switch inside Table.',
       },
     },
   },
-  render: () => (
-    <DataList
-      items={incidents}
-      getItemKey={(r) => r.id}
-      aria-label="Инциденты"
-      renderItem={(r) => (
-        <Card padding="s">
-          <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12 }}>{r.id}</span>
-            <Badge variant={r.severity === 'critical' ? 'error' : 'warning'}>
-              {r.severity === 'critical' ? 'Критический' : 'Предупреждение'}
-            </Badge>
-          </div>
-          <div style={{ marginTop: 6, fontSize: 13 }}>{r.service}</div>
-        </Card>
-      )}
-    />
-  ),
-};
+  render: () => {
+    const t = useStoryT()
+    const { shortIncidents, renderSeverityBadge } = useDemoIncidents()
+    return (
+      <DataList
+        items={shortIncidents}
+        getItemKey={(r) => r.id}
+        aria-label={t('demo.labels.incidents')}
+        renderItem={(r) => (
+          <Card padding="s">
+            <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12 }}>{r.id}</span>
+              {renderSeverityBadge(r.severity)}
+            </div>
+            <div style={{ marginTop: 6, fontSize: 13 }}>{r.service}</div>
+          </Card>
+        )}
+      />
+    )
+  },
+}
 
 export const Empty: Story = {
-  render: () => (
-    <DataList
-      items={[]}
-      getItemKey={(r: Incident) => r.id}
-      renderItem={() => null}
-      empty="Ни одного инцидента"
-      aria-label="Инциденты"
-    />
-  ),
-};
+  render: () => {
+    const t = useStoryT()
+    return (
+      <DataList
+        items={[]}
+        getItemKey={(r: { id: string }) => r.id}
+        renderItem={() => null}
+        empty={t('demo.labels.noIncidentsEmpty')}
+        aria-label={t('demo.labels.incidents')}
+      />
+    )
+  },
+}

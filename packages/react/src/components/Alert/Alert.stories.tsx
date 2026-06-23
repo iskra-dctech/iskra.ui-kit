@@ -1,30 +1,40 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Alert } from './Alert.js';
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { useStoryT } from '../../storybook/useStoryT.js'
+import { Alert } from './Alert.js'
 
 const meta = {
   title: 'Patterns/Alert',
   component: Alert,
-  args: { variant: 'warning', title: 'Обнаружен дрейф конфигурации' },
-} satisfies Meta<typeof Alert>;
+} satisfies Meta<typeof Alert>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+  render: () => {
+    const t = useStoryT()
+    return <Alert variant="warning" title={t('demo.descriptions.driftDetected')} />
+  },
+}
 
 export const Variants: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, maxWidth: 480 }}>
-      <Alert variant="info" title="Info">
-        Плановое обслуживание в 02:00.
-      </Alert>
-      <Alert variant="success" title="Готово">
-        Конфигурация применена на 42 устройства.
-      </Alert>
-      <Alert variant="warning" title="Дрейф">
-        3 устройства разошлись с desired state.
-      </Alert>
-      <Alert variant="error" title="Ошибка" closable>
-        Не удалось подключиться к leaf-07.
-      </Alert>
-    </div>
-  ),
-};
+  render: () => {
+    const t = useStoryT()
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12, maxWidth: 480 }}>
+        <Alert variant="info" title={t('demo.titles.info')}>
+          {t('demo.descriptions.scheduledMaintenance')}
+        </Alert>
+        <Alert variant="success" title={t('demo.titles.done')}>
+          {t('demo.descriptions.configApplied')}
+        </Alert>
+        <Alert variant="warning" title={t('demo.titles.drift')}>
+          {t('demo.descriptions.driftDevices')}
+        </Alert>
+        <Alert variant="error" title={t('demo.titles.error')} closable>
+          {t('demo.descriptions.connectionFailed')}
+        </Alert>
+      </div>
+    )
+  },
+}

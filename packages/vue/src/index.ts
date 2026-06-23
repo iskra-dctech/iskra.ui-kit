@@ -52,13 +52,27 @@ export {
 export {
   DCI_OPERATOR_NAV,
   DCI_ADMIN_NAV,
+  DCI_ADMIN_EXTRA,
   DCI_FOOTER_NAV,
   NOTIFIER_NAV,
+  getDciOperatorNav,
+  getDciAdminNav,
+  getDciAdminExtra,
+  getDciFooterNav,
+  getNotifierNav,
   resolveSidebarGroups,
   type SidebarNavGroup,
   type SidebarNavItem,
   type SidebarVariant,
 } from '@iskra-ui/core';
+export {
+  IskraProvider,
+  IskraLocalePlugin,
+  useIskraLocale,
+  useIskraT,
+  type IskraLocaleContextValue,
+  type IskraLocalePluginOptions,
+} from './i18n/index.js';
 export { default as Drawer, type DrawerSide } from './components/Drawer.vue';
 export { default as Sheet, type SheetSnap } from './components/Sheet.vue';
 export { default as DataList, type DataListDensity } from './components/DataList.vue';

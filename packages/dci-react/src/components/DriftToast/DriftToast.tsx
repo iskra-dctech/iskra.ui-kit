@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import { IconButton, Icon, type IconName } from '@iskra-ui/react';
+import { IconButton, Icon, type IconName, useIskraT } from '@iskra-ui/react';
 import './DriftToast.css';
 
 export type DriftToastVariant = 'drift' | 'ok' | 'error' | 'info';
@@ -37,9 +37,12 @@ export function DriftToast({
   title,
   description,
   onClose,
-  closeLabel = 'Закрыть',
+  closeLabel,
   className,
 }: DriftToastProps) {
+  const t = useIskraT();
+  const resolvedCloseLabel = closeLabel ?? t('common.close');
+
   return (
     <div
       className={['dci-toast', `v-${variant}`, className].filter(Boolean).join(' ')}
@@ -57,7 +60,7 @@ export function DriftToast({
           className="dci-toast-close"
           variant="ghost"
           size="s"
-          aria-label={closeLabel}
+          aria-label={resolvedCloseLabel}
           onClick={onClose}
           icon={<Icon name="close" size={13} />}
         />

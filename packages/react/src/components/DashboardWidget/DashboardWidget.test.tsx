@@ -22,7 +22,7 @@ describe('DashboardWidget', () => {
         <div>chart</div>
       </DashboardWidget>,
     );
-    await userEvent.click(screen.getByRole('button', { name: /Развернуть график CPU/ }));
+    await userEvent.click(screen.getByRole('button', { name: /Expand chart CPU/ }));
     expect(onExpand).toHaveBeenCalled();
   });
 

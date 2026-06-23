@@ -30,6 +30,24 @@ export function Example() {
 }
 ```
 
+## Internationalization
+
+Default locale is **English**. Wrap your app with `IskraProvider` to set locale or override messages:
+
+```tsx
+import { IskraProvider, Button } from '@iskra-ui/react';
+
+export function App() {
+  return (
+    <IskraProvider locale="ru">
+      <Button>My action</Button>
+    </IskraProvider>
+  );
+}
+```
+
+**Migration (breaking):** built-in component strings previously defaulted to Russian. To keep Russian UI after upgrading, add `<IskraProvider locale="ru">`. Sidebar presets: use `getDciOperatorNav(locale)` instead of deprecated `DCI_OPERATOR_NAV`.
+
 ## Docs
 
 https://github.com/iskra-dctech/iskra.ui-kit/blob/master/docs/PACKAGES.md#iskra-uireact

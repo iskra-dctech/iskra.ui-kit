@@ -16,6 +16,6 @@ describe('WidgetEditor', () => {
         fetchPreview={async () => ({ id: 'cpu', label: 'CPU', points: [] })}
       />,
     );
-    expect(screen.getByText('Добавить виджет')).toBeInTheDocument();
+    expect(screen.getByText('Add widget')).toBeInTheDocument();
   });
 });

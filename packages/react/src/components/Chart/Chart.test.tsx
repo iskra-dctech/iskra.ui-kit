@@ -17,7 +17,7 @@ const series: MetricSeries = {
 describe('Chart', () => {
   it('renders empty state without data', () => {
     render(<Chart type="line" series={{ ...series, points: [] }} />);
-    expect(screen.getByText('Нет данных')).toBeInTheDocument();
+    expect(screen.getByText('No data')).toBeInTheDocument();
   });
 
   it('renders loading state', () => {

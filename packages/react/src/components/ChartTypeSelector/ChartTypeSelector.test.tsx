@@ -7,7 +7,7 @@ describe('ChartTypeSelector', () => {
   it('changes chart type', async () => {
     const onChange = vi.fn();
     render(<ChartTypeSelector value="line" onChange={onChange} />);
-    await userEvent.click(screen.getByRole('radio', { name: 'Столбчатая диаграмма' }));
+    await userEvent.click(screen.getByRole('radio', { name: 'Bar chart' }));
     expect(onChange).toHaveBeenCalledWith('bar');
   });
 });

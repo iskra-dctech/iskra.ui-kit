@@ -1,5 +1,6 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import type { MetricDefinition } from '@iskra-ui/core';
+import { useIskraT } from '../../i18n/useIskraT.js';
 import { Popover } from '../Popover/Popover.js';
 import { SearchField } from '../SearchField/SearchField.js';
 import { cx } from '../../utils/cx.js';
@@ -19,10 +20,10 @@ interface GroupedMetric {
   items: MetricDefinition[];
 }
 
-function groupMetrics(metrics: MetricDefinition[]): GroupedMetric[] {
+function groupMetrics(metrics: MetricDefinition[], defaultGroup: string): GroupedMetric[] {
   const map = new Map<string, MetricDefinition[]>();
   for (const m of metrics) {
-    const g = m.group ?? 'Другие';
+    const g = m.group ?? defaultGroup;
     const list = map.get(g) ?? [];
     list.push(m);
     map.set(g, list);
@@ -37,10 +38,12 @@ export function MetricPicker({
   metrics,
   value,
   onChange,
-  placeholder = 'Выберите метрику…',
+  placeholder,
   disabled = false,
   className,
 }: MetricPickerProps) {
+  const t = useIskraT();
+  const resolvedPlaceholder = placeholder ?? t('metricPicker.placeholder');
   const listId = useId();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
@@ -60,7 +63,10 @@ export function MetricPicker({
     );
   }, [metrics, query]);
 
-  const grouped = useMemo(() => groupMetrics(filtered), [filtered]);
+  const grouped = useMemo(
+    () => groupMetrics(filtered, t('metricPicker.otherGroup')),
+    [filtered, t],
+  );
 
   const flat = useMemo(() => grouped.flatMap((g) => g.items), [grouped]);
 
@@ -128,7 +134,7 @@ export function MetricPicker({
             }}
             onFocus={() => setOpen(true)}
             onKeyDown={handleKeyDown}
-            placeholder={placeholder}
+            placeholder={resolvedPlaceholder}
             disabled={disabled}
             clearable={false}
             aria-autocomplete="list"
@@ -140,44 +146,44 @@ export function MetricPicker({
         panelClassName="ik-metric-picker-panel"
       >
         <ul id={listId} className="ik-metric-picker-list" role="listbox">
-            {flat.length === 0 ? (
-              <li className="ik-metric-picker-empty">Метрики не найдены</li>
-            ) : (
-              grouped.map((g) => (
-                <li key={g.group}>
-                  <div className="ik-metric-picker-group">{g.group}</div>
-                  <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-                    {g.items.map((m) => {
-                      flatIndex += 1;
-                      const idx = flatIndex;
-                      return (
-                        <li key={m.id}>
-                          <button
-                            ref={(el) => {
-                              itemRefs.current[idx] = el;
-                            }}
-                            type="button"
-                            role="option"
-                            aria-selected={value === m.id}
-                            className={cx(
-                              'ik-metric-picker-item',
-                              idx === activeIndex && 'is-active',
-                            )}
-                            onClick={() => selectMetric(m.id)}
-                          >
-                            <span className="ik-metric-picker-label">{m.label}</span>
-                            {m.description && (
-                              <span className="ik-metric-picker-desc">{m.description}</span>
-                            )}
-                          </button>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </li>
-              ))
-            )}
-          </ul>
+          {flat.length === 0 ? (
+            <li className="ik-metric-picker-empty">{t('metricPicker.empty')}</li>
+          ) : (
+            grouped.map((g) => (
+              <li key={g.group}>
+                <div className="ik-metric-picker-group">{g.group}</div>
+                <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+                  {g.items.map((m) => {
+                    flatIndex += 1;
+                    const idx = flatIndex;
+                    return (
+                      <li key={m.id}>
+                        <button
+                          ref={(el) => {
+                            itemRefs.current[idx] = el;
+                          }}
+                          type="button"
+                          role="option"
+                          aria-selected={value === m.id}
+                          className={cx(
+                            'ik-metric-picker-item',
+                            idx === activeIndex && 'is-active',
+                          )}
+                          onClick={() => selectMetric(m.id)}
+                        >
+                          <span className="ik-metric-picker-label">{m.label}</span>
+                          {m.description && (
+                            <span className="ik-metric-picker-desc">{m.description}</span>
+                          )}
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </li>
+            ))
+          )}
+        </ul>
       </Popover>
     </div>
   );

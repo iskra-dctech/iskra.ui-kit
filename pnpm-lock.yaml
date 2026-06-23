@@ -198,6 +198,10 @@ importers:
         version: 8.0.16(@types/node@22.19.21)(esbuild@0.28.1)
 
   packages/core:
+    dependencies:
+      '@iskra-ui/i18n':
+        specifier: workspace:*
+        version: link:../i18n
     devDependencies:
       '@iskra-ui/tsconfig':
         specifier: workspace:*
@@ -214,6 +218,9 @@ importers:
       '@iskra-ui/core':
         specifier: workspace:*
         version: link:../core
+      '@iskra-ui/i18n':
+        specifier: workspace:*
+        version: link:../i18n
       '@iskra-ui/icons':
         specifier: workspace:*
         version: link:../icons
@@ -294,6 +301,18 @@ importers:
         specifier: 'catalog:'
         version: 8.61.1(eslint@10.5.0)(typescript@6.0.3)
 
+  packages/i18n:
+    devDependencies:
+      '@iskra-ui/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+      vitest:
+        specifier: 'catalog:'
+        version: 4.1.9(@types/node@22.19.21)(jsdom@29.1.1)(vite@8.0.16(@types/node@22.19.21)(esbuild@0.28.1))
+
   packages/icons:
     devDependencies:
       '@iskra-ui/tsconfig':
@@ -308,6 +327,9 @@ importers:
       '@iskra-ui/core':
         specifier: workspace:*
         version: link:../core
+      '@iskra-ui/i18n':
+        specifier: workspace:*
+        version: link:../i18n
       '@iskra-ui/icons':
         specifier: workspace:*
         version: link:../icons
@@ -398,6 +420,9 @@ importers:
       '@iskra-ui/core':
         specifier: workspace:*
         version: link:../core
+      '@iskra-ui/i18n':
+        specifier: workspace:*
+        version: link:../i18n
       '@iskra-ui/icons':
         specifier: workspace:*
         version: link:../icons

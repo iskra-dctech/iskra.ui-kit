@@ -1,16 +1,17 @@
-import { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import type { ChartType, MetricDefinition, MetricSeries } from '@iskra-ui/core';
-import { WidgetEditor } from './WidgetEditor.js';
-import { Button } from '../Button/Button.js';
+import { useState } from 'react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import type { ChartType, MetricDefinition, MetricSeries } from '@iskra-ui/core'
+import { useStoryT } from '../../storybook/useStoryT.js'
+import { WidgetEditor } from './WidgetEditor.js'
+import { Button } from '../Button/Button.js'
 
 const metrics: MetricDefinition[] = [
   { id: 'cpu', label: 'CPU', unit: '%', group: 'Host' },
   { id: 'memory', label: 'Memory', unit: '%', group: 'Host' },
-];
+]
 
 async function fetchPreview(metricId: string, _chartType: ChartType): Promise<MetricSeries> {
-  const now = Date.now();
+  const now = Date.now()
   return {
     id: metricId,
     label: metrics.find((m) => m.id === metricId)?.label ?? metricId,
@@ -19,24 +20,25 @@ async function fetchPreview(metricId: string, _chartType: ChartType): Promise<Me
       timestamp: now - (19 - i) * 3600000,
       value: 30 + Math.sin(i / 2) * 25,
     })),
-  };
+  }
 }
 
 const meta = {
   title: 'Patterns/WidgetEditor',
   component: WidgetEditor,
   parameters: { layout: 'centered' },
-} satisfies Meta<typeof WidgetEditor>;
+} satisfies Meta<typeof WidgetEditor>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const AddWidget: Story = {
   render: () => {
-    const [open, setOpen] = useState(false);
+    const t = useStoryT()
+    const [open, setOpen] = useState(false)
     return (
       <>
-        <Button onClick={() => setOpen(true)}>Добавить виджет</Button>
+        <Button onClick={() => setOpen(true)}>{t('dashboard.addWidget')}</Button>
         <WidgetEditor
           open={open}
           onClose={() => setOpen(false)}
@@ -45,15 +47,14 @@ export const AddWidget: Story = {
           fetchPreview={fetchPreview}
         />
       </>
-    );
+    )
   },
-};
+}
 
-/** Открывает редактор с превью точечной диаграммы (4-й тип в селекторе). */
 export const DotChartPreview: Story = {
   name: 'Dot chart preview',
   render: () => {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(true)
     return (
       <WidgetEditor
         open={open}
@@ -69,6 +70,6 @@ export const DotChartPreview: Story = {
           timeRange: '24h',
         }}
       />
-    );
+    )
   },
-};
+}

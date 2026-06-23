@@ -1,4 +1,5 @@
 import type { ChartType, MetricDefinition, MetricSeries } from '@iskra-ui/core';
+import { getMessages, type IskraLocale } from '@iskra-ui/i18n';
 
 /** DCI metric source — integrate with the platform metrics API. */
 export interface DciMetricSource {
@@ -6,55 +7,62 @@ export interface DciMetricSource {
   fetchSeries(metricId: string, range?: string, chartType?: ChartType): Promise<MetricSeries>;
 }
 
-export const DCI_MOCK_METRICS: MetricDefinition[] = [
-  {
-    id: 'cpu',
-    label: 'CPU',
-    unit: '%',
-    group: 'Host',
-    description: 'Средняя загрузка CPU за период',
-  },
-  {
-    id: 'memory',
-    label: 'Memory',
-    unit: '%',
-    group: 'Host',
-    description: 'Использование оперативной памяти',
-  },
-  {
-    id: 'traffic',
-    label: 'Traffic',
-    unit: 'Gbps',
-    group: 'Network',
-    description: 'Суммарный трафик интерфейсов',
-  },
-  {
-    id: 'sync',
-    label: 'Fleet Sync',
-    unit: '%',
-    group: 'Fleet',
-    description: 'Доля устройств в состоянии Sync',
-  },
-  {
-    id: 'drift',
-    label: 'Drift count',
-    unit: '',
-    group: 'Fleet',
-    description: 'Количество устройств с drift',
-  },
-];
+export function getDciMockMetrics(locale: IskraLocale = 'en'): MetricDefinition[] {
+  const descriptions = getMessages(locale).dci.metrics;
+  return [
+    {
+      id: 'cpu',
+      label: 'CPU',
+      unit: '%',
+      group: 'Host',
+      description: descriptions.cpu,
+    },
+    {
+      id: 'memory',
+      label: 'Memory',
+      unit: '%',
+      group: 'Host',
+      description: descriptions.memory,
+    },
+    {
+      id: 'traffic',
+      label: 'Traffic',
+      unit: 'Gbps',
+      group: 'Network',
+      description: descriptions.traffic,
+    },
+    {
+      id: 'sync',
+      label: 'Fleet Sync',
+      unit: '%',
+      group: 'Fleet',
+      description: descriptions.sync,
+    },
+    {
+      id: 'drift',
+      label: 'Drift count',
+      unit: '',
+      group: 'Fleet',
+      description: descriptions.drift,
+    },
+  ];
+}
+
+/** @deprecated Use `getDciMockMetrics(locale)` for locale-aware descriptions. */
+export const DCI_MOCK_METRICS: MetricDefinition[] = getDciMockMetrics('en');
 
 function seededValue(seed: number, i: number) {
   return 30 + ((seed * 17 + i * 13) % 50);
 }
 
-export function createMockDciMetricSource(): DciMetricSource {
+export function createMockDciMetricSource(locale: IskraLocale = 'en'): DciMetricSource {
+  const metrics = getDciMockMetrics(locale);
   return {
     async listMetrics() {
-      return DCI_MOCK_METRICS;
+      return metrics;
     },
     async fetchSeries(metricId, range = '24h', _chartType) {
-      const metric = DCI_MOCK_METRICS.find((m) => m.id === metricId);
+      const metric = metrics.find((m) => m.id === metricId);
       const now = Date.now();
       const hours = range === '24h' ? 24 : 12;
       const seed = metricId.split('').reduce((a, c) => a + c.charCodeAt(0), 0);

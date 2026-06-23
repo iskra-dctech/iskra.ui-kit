@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, onMounted, onUnmounted, ref, watch } from 'vue';
+import { onMounted, onUnmounted, ref, watch } from 'vue';
 import {
   computeAnchorPosition,
   computeCursorPosition,
@@ -8,14 +8,13 @@ import {
   Keys,
 } from '@iskra-ui/core';
 import { cx } from '../utils/cx.js';
-import { contextMenuKey } from '../composables/contextMenu.js';
+import { useContextMenuContext } from '../composables/contextMenu.js';
 
 const props = defineProps<{
   class?: string;
 }>();
 
-const ctx = inject(contextMenuKey);
-if (!ctx) throw new Error('ContextMenuContent must be used within ContextMenu.');
+const ctx = useContextMenuContext('ContextMenuContent');
 
 const panelRef = ref<HTMLDivElement | null>(null);
 const opened = ref(false);

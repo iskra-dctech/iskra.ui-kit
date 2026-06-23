@@ -41,6 +41,9 @@
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "test": "vitest run"
   },
+  "dependencies": {
+    "@iskra-ui/i18n": "workspace:*"
+  },
   "devDependencies": {
     "@iskra-ui/tsconfig": "workspace:*",
     "typescript": "catalog:",

@@ -12,7 +12,7 @@ describe('SearchField', () => {
   it('clears value when clear button clicked', async () => {
     const onClear = vi.fn();
     render(<SearchField defaultValue="test" onClear={onClear} />);
-    await userEvent.click(screen.getByRole('button', { name: 'Очистить' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Clear' }));
     expect(onClear).toHaveBeenCalled();
   });
 });

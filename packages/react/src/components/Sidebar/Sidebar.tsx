@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react';
+import { useIskraLocale } from '../../i18n/useIskraLocale.js';
+import { useIskraT } from '../../i18n/useIskraT.js';
 import { Icon } from '../Icon/Icon.js';
 import { cx } from '../../utils/cx.js';
 import type { IconName } from '@iskra-ui/icons';
@@ -16,8 +18,14 @@ export type { SidebarNavGroup, SidebarNavItem, SidebarVariant };
 export {
   DCI_OPERATOR_NAV,
   DCI_ADMIN_NAV,
+  DCI_ADMIN_EXTRA,
   DCI_FOOTER_NAV,
   NOTIFIER_NAV,
+  getDciOperatorNav,
+  getDciAdminNav,
+  getDciAdminExtra,
+  getDciFooterNav,
+  getNotifierNav,
   resolveSidebarGroups,
 } from './presets.js';
 
@@ -185,16 +193,19 @@ export function Sidebar({
   variant = 'operator',
   theme = '',
   badges = {},
-  ariaLabel = 'Навигация',
+  ariaLabel,
   renderItem,
   className = '',
 }: SidebarProps) {
+  const t = useIskraT();
+  const { locale } = useIskraLocale();
+  const resolvedAriaLabel = ariaLabel ?? t('a11y.navigation');
   const [tip, setTip] = useState<{ lbl: string; top: number } | null>(null);
   const [tipRdy, setTipRdy] = useState(false);
   const [prevCollapsed, setPrevCollapsed] = useState(collapsed);
   const sbRef = useRef<HTMLElement>(null);
 
-  const groups = groupsProp ?? (children ? [] : resolveSidebarGroups(variant));
+  const groups = groupsProp ?? (children ? [] : resolveSidebarGroups(variant, locale));
   const showCollapser = collapsible && typeof onToggle === 'function';
 
   if (collapsed !== prevCollapsed) {
@@ -239,7 +250,7 @@ export function Sidebar({
       )}
       ref={sbRef}
       role="navigation"
-      aria-label={ariaLabel}
+      aria-label={resolvedAriaLabel}
     >
       {(brand != null || showCollapser) && (
         <div className="isb-logo">
@@ -250,7 +261,7 @@ export function Sidebar({
               type="button"
               onClick={onToggle}
               aria-expanded={!collapsed}
-              aria-label={collapsed ? 'Развернуть боковую панель' : 'Свернуть боковую панель'}
+              aria-label={collapsed ? t('a11y.sidebarExpand') : t('a11y.sidebarCollapse')}
             >
               <svg
                 viewBox="0 0 10 10"

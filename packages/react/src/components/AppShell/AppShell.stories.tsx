@@ -1,20 +1,23 @@
-import { useMemo, useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { AppHeader } from '../AppHeader/AppHeader.js';
-import { Avatar } from '../Avatar/Avatar.js';
-import { Badge } from '../Badge/Badge.js';
-import { Button } from '../Button/Button.js';
-import { DataList } from '../DataList/DataList.js';
-import { Drawer } from '../Drawer/Drawer.js';
-import { Icon } from '../Icon/Icon.js';
-import { IconButton } from '../IconButton/IconButton.js';
-import { Modal } from '../Modal/Modal.js';
-import { Popover } from '../Popover/Popover.js';
-import { SearchField } from '../SearchField/SearchField.js';
-import { Sheet } from '../Sheet/Sheet.js';
-import { Sidebar, NOTIFIER_NAV } from '../Sidebar/Sidebar.js';
-import { Table, type TableColumn, type TableSort } from '../Table/Table.js';
-import { Card } from '../Card/Card.js';
+import { useMemo, useState } from 'react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { getNotifierNav } from '@iskra-ui/core'
+import { useIskraLocale } from '../../i18n/useIskraLocale.js'
+import { useStoryT } from '../../storybook/useStoryT.js'
+import { useDemoIncidents } from '../../storybook/useDemoIncidents.js'
+import { AppHeader } from '../AppHeader/AppHeader.js'
+import { Avatar } from '../Avatar/Avatar.js'
+import { Button } from '../Button/Button.js'
+import { DataList } from '../DataList/DataList.js'
+import { Drawer } from '../Drawer/Drawer.js'
+import { Icon } from '../Icon/Icon.js'
+import { IconButton } from '../IconButton/IconButton.js'
+import { Modal } from '../Modal/Modal.js'
+import { Popover } from '../Popover/Popover.js'
+import { SearchField } from '../SearchField/SearchField.js'
+import { Sheet } from '../Sheet/Sheet.js'
+import { Sidebar } from '../Sidebar/Sidebar.js'
+import { Table, type TableSort } from '../Table/Table.js'
+import { Card } from '../Card/Card.js'
 
 const meta = {
   title: 'Patterns/AppShell',
@@ -23,92 +26,75 @@ const meta = {
     docs: {
       description: {
         component:
-          'Reference composition — пример сборки продуктового экрана Notifier из примитивов (Sidebar, AppHeader, Table, Modal). Не отдельный компонент и не API по умолчанию: копируйте паттерн в своё приложение с нужными пресетами и контентом.',
+          'Reference composition — example Notifier product screen built from primitives (Sidebar, AppHeader, Table, Modal). Not a standalone component or default API: copy the pattern into your app with the presets and content you need.',
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
-interface Incident {
-  id: string;
-  severity: string;
-  service: string;
-  status: string;
+function ManualIncidentForm({
+  onClose,
+  t,
+}: {
+  onClose: () => void
+  t: ReturnType<typeof useStoryT>
+}) {
+  return (
+    <>
+      <Button variant="ghost" onClick={onClose}>
+        {t('common.cancel')}
+      </Button>
+      <Button onClick={onClose}>{t('demo.labels.create')}</Button>
+    </>
+  )
 }
-
-const incidentColumns: TableColumn<Incident>[] = [
-  {
-    key: 'severity',
-    header: 'Критичность',
-    render: (r) => (
-      <Badge variant={r.severity === 'critical' ? 'error' : 'warning'}>
-        {r.severity === 'critical' ? 'Критический' : 'Предупреждение'}
-      </Badge>
-    ),
-  },
-  { key: 'id', header: 'ID инцидента', sortable: true },
-  { key: 'service', header: 'Услуга / система', sortable: true },
-  { key: 'status', header: 'Статус' },
-];
-
-const incidents: Incident[] = [
-  {
-    id: 'INC-2026-001245',
-    severity: 'critical',
-    service: 'Сбой резервного хранилища',
-    status: 'Ожидает ACK',
-  },
-  {
-    id: 'INC-2026-001242',
-    severity: 'warning',
-    service: 'Рост задержки API-шлюза',
-    status: 'Отправлено',
-  },
-];
 
 export const Desktop: Story = {
   parameters: {
     viewport: { defaultViewport: 'desktop1280' },
     docs: {
       description: {
-        story:
-          'Desktop shell: inline Sidebar, Table, Modal. Явное представление для ширины ≥ 768px.',
+        story: 'Desktop shell: inline Sidebar, Table, Modal. Explicit layout for width ≥ 768px.',
       },
     },
   },
   render: () => {
-    const [page, setPage] = useState('incidents');
-    const [modalOpen, setModalOpen] = useState(false);
-    const [sort, setSort] = useState<TableSort | null>(null);
-    const [notifOpen, setNotifOpen] = useState(false);
+    const t = useStoryT()
+    const { locale } = useIskraLocale()
+    const { incidents, columns, renderSeverityBadge } = useDemoIncidents()
+    const notifierNav = useMemo(() => getNotifierNav(locale), [locale])
+    const [page, setPage] = useState('incidents')
+    const [modalOpen, setModalOpen] = useState(false)
+    const [sort, setSort] = useState<TableSort | null>(null)
+    const [notifOpen, setNotifOpen] = useState(false)
 
     const sorted = useMemo(() => {
-      if (!sort) return incidents;
+      if (!sort) return incidents
       return [...incidents].sort((a, b) => {
-        const av = String(a[sort.key as keyof Incident] ?? '');
-        const bv = String(b[sort.key as keyof Incident] ?? '');
-        const cmp = av.localeCompare(bv);
-        return sort.direction === 'asc' ? cmp : -cmp;
-      });
-    }, [sort]);
+        const av = String(a[sort.key as keyof typeof a] ?? '')
+        const bv = String(b[sort.key as keyof typeof b] ?? '')
+        const cmp = av.localeCompare(bv)
+        return sort.direction === 'asc' ? cmp : -cmp
+      })
+    }, [incidents, sort])
 
     return (
       <div style={{ display: 'flex', height: '100vh', background: 'var(--bg)' }}>
         <Sidebar
-          groups={NOTIFIER_NAV}
+          groups={notifierNav}
           brand={
             <span className="isb-wmark" style={{ fontFamily: 'var(--font-mono)', fontSize: 11 }}>
-              ISKRA // УВЕДОМЛЕНИЯ
+              {t('demo.labels.iskraNotifications')}
             </span>
           }
           collapsed={false}
           onToggle={() => undefined}
           activeItem={page}
           onNavigate={setPage}
-          ariaLabel="Навигация Notifier"
+          ariaLabel={t('demo.labels.notifierNav')}
         />
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
           <AppHeader
@@ -116,20 +102,20 @@ export const Desktop: Story = {
               <>
                 <AppHeader.Nav
                   items={[
-                    { id: 'platform', label: 'Искра' },
-                    { id: 'notifier', label: 'Уведомления', current: true },
-                    { id: 'incidents', label: 'Инциденты', current: page === 'incidents' },
+                    { id: 'platform', label: t('demo.labels.platform') },
+                    { id: 'notifier', label: t('demo.labels.notifier'), current: true },
+                    { id: 'incidents', label: t('demo.labels.incidents'), current: page === 'incidents' },
                   ]}
                   onNavigate={setPage}
                 />
                 <AppHeader.Indicator dot="ok" mono>
-                  ЯДРО СИНХРОНИЗИРОВАНО [v1.4.2]
+                  {t('demo.labels.coreSynced')}
                 </AppHeader.Indicator>
               </>
             }
             center={
               <SearchField
-                placeholder="Поиск по всем пространствам…"
+                placeholder={t('demo.labels.searchAllSpaces')}
                 shortcut="⌘K"
                 enableShortcut
                 style={{ width: '100%', maxWidth: 320 }}
@@ -144,7 +130,7 @@ export const Desktop: Story = {
                     trigger={
                       <IconButton
                         icon={<Icon name="bell" size={16} />}
-                        aria-label="Уведомления"
+                        aria-label={t('a11y.notifications')}
                         variant="ghost"
                       />
                     }
@@ -166,21 +152,21 @@ export const Desktop: Story = {
                           letterSpacing: '0.08em',
                         }}
                       >
-                        УВЕДОМЛЕНИЯ
+                        {t('demo.labels.notificationsHeader')}
                       </div>
                       <div style={{ fontSize: 12 }}>
-                        <span style={{ color: 'var(--status-err)' }}>[Ошибка]</span> Ошибка доставки
-                        в Telegram
+                        <span style={{ color: 'var(--status-err)' }}>{t('demo.labels.errorTag')}</span>{' '}
+                        {t('demo.labels.deliveryError')}
                       </div>
                     </div>
                   </Popover>
                   <IconButton
-                    icon={<Avatar name="Оператор UT-04" size="sm" status="online" />}
-                    aria-label="Профиль"
+                    icon={<Avatar name={t('demo.labels.operatorAvatar')} size="sm" status="online" />}
+                    aria-label={t('demo.labels.profile')}
                     variant="ghost"
                   />
                 </AppHeader.Actions>
-                <AppHeader.Text mono>РОЛЬ: ОПЕРАТОР (UT-04)</AppHeader.Text>
+                <AppHeader.Text mono>{t('demo.labels.roleOperator')}</AppHeader.Text>
               </>
             }
           />
@@ -193,11 +179,13 @@ export const Desktop: Story = {
                 marginBottom: 16,
               }}
             >
-              <h1 style={{ fontSize: 24, fontWeight: 600 }}>Реестр инцидентов</h1>
-              <Button onClick={() => setModalOpen(true)}>+ Ручной инцидент</Button>
+              <h1 style={{ fontSize: 24, fontWeight: 600 }}>{t('demo.labels.incidentRegistry')}</h1>
+              <Button onClick={() => setModalOpen(true)}>
+                {t('demo.labels.createPrefix')} {t('demo.labels.manualIncident')}
+              </Button>
             </div>
             <Table
-              columns={incidentColumns}
+              columns={columns}
               data={sorted}
               getRowId={(r) => r.id}
               sort={sort}
@@ -208,23 +196,16 @@ export const Desktop: Story = {
         <Modal
           open={modalOpen}
           onClose={() => setModalOpen(false)}
-          title="Ручной инцидент"
-          description="Создание инцидента вне автоматического конвейера."
-          footer={
-            <>
-              <Button variant="ghost" onClick={() => setModalOpen(false)}>
-                Отмена
-              </Button>
-              <Button onClick={() => setModalOpen(false)}>Создать</Button>
-            </>
-          }
+          title={t('demo.titles.manualIncident')}
+          description={t('demo.descriptions.manualIncident')}
+          footer={<ManualIncidentForm onClose={() => setModalOpen(false)} t={t} />}
         >
-          Укажите услугу, критичность и описание проблемы.
+          {t('demo.descriptions.manualIncidentBody')}
         </Modal>
       </div>
-    );
+    )
   },
-};
+}
 
 export const Compact: Story = {
   parameters: {
@@ -232,15 +213,19 @@ export const Compact: Story = {
     docs: {
       description: {
         story:
-          'Compact shell: Drawer + Sidebar, DataList вместо Table, Sheet вместо Modal. Явный выбор представления — Table не превращается в карточки автоматически.',
+          'Compact shell: Drawer + Sidebar, DataList instead of Table, Sheet instead of Modal. Explicit presentation choice — Table does not auto-transform into cards.',
       },
     },
   },
   render: () => {
-    const [page, setPage] = useState('incidents');
-    const [navOpen, setNavOpen] = useState(false);
-    const [sheetOpen, setSheetOpen] = useState(false);
-    const [notifOpen, setNotifOpen] = useState(false);
+    const t = useStoryT()
+    const { locale } = useIskraLocale()
+    const { incidents, renderSeverityBadge } = useDemoIncidents()
+    const notifierNav = useMemo(() => getNotifierNav(locale), [locale])
+    const [page, setPage] = useState('incidents')
+    const [navOpen, setNavOpen] = useState(false)
+    const [sheetOpen, setSheetOpen] = useState(false)
+    const [notifOpen, setNotifOpen] = useState(false)
 
     return (
       <div
@@ -251,20 +236,20 @@ export const Compact: Story = {
           background: 'var(--bg)',
         }}
       >
-        <Drawer open={navOpen} onOpenChange={setNavOpen} aria-label="Навигация Notifier">
+        <Drawer open={navOpen} onOpenChange={setNavOpen} aria-label={t('demo.labels.notifierNav')}>
           <Sidebar
-            groups={NOTIFIER_NAV}
+            groups={notifierNav}
             brand={
               <span className="isb-wmark" style={{ fontFamily: 'var(--font-mono)', fontSize: 11 }}>
-                ISKRA // УВЕДОМЛЕНИЯ
+                {t('demo.labels.iskraNotifications')}
               </span>
             }
             activeItem={page}
             onNavigate={(id) => {
-              setPage(id);
-              setNavOpen(false);
+              setPage(id)
+              setNavOpen(false)
             }}
-            ariaLabel="Навигация Notifier"
+            ariaLabel={t('demo.labels.notifierNav')}
           />
         </Drawer>
         <AppHeader
@@ -272,11 +257,11 @@ export const Compact: Story = {
             <>
               <IconButton
                 icon={<Icon name="menu" size={16} />}
-                aria-label="Открыть навигацию"
+                aria-label={t('demo.labels.openNavigation')}
                 variant="ghost"
                 onClick={() => setNavOpen(true)}
               />
-              <span style={{ fontSize: 14, fontWeight: 600 }}>Инциденты</span>
+              <span style={{ fontSize: 14, fontWeight: 600 }}>{t('demo.labels.incidents')}</span>
             </>
           }
           trailing={
@@ -287,16 +272,16 @@ export const Compact: Story = {
                 trigger={
                   <IconButton
                     icon={<Icon name="bell" size={16} />}
-                    aria-label="Уведомления"
+                    aria-label={t('a11y.notifications')}
                     variant="ghost"
                   />
                 }
               >
-                <div style={{ padding: 12, fontSize: 12 }}>Нет новых уведомлений</div>
+                <div style={{ padding: 12, fontSize: 12 }}>{t('demo.labels.noNewNotifications')}</div>
               </Popover>
               <IconButton
-                icon={<Avatar name="Оператор UT-04" size="sm" status="online" />}
-                aria-label="Профиль"
+                icon={<Avatar name={t('demo.labels.operatorAvatar')} size="sm" status="online" />}
+                aria-label={t('demo.labels.profile')}
                 variant="ghost"
               />
             </AppHeader.Actions>
@@ -311,22 +296,20 @@ export const Compact: Story = {
               marginBottom: 12,
             }}
           >
-            <h1 style={{ fontSize: 18, fontWeight: 600 }}>Реестр</h1>
+            <h1 style={{ fontSize: 18, fontWeight: 600 }}>{t('demo.labels.registry')}</h1>
             <Button size="s" onClick={() => setSheetOpen(true)}>
-              + Инцидент
+              {t('demo.labels.createPrefix')} {t('demo.labels.incident')}
             </Button>
           </div>
           <DataList
             items={incidents}
             getItemKey={(r) => r.id}
-            aria-label="Инциденты"
+            aria-label={t('demo.labels.incidents')}
             renderItem={(r) => (
               <Card padding="s">
                 <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
                   <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11 }}>{r.id}</span>
-                  <Badge variant={r.severity === 'critical' ? 'error' : 'warning'}>
-                    {r.severity === 'critical' ? 'Критический' : 'Предупреждение'}
-                  </Badge>
+                  {renderSeverityBadge(r.severity)}
                 </div>
                 <div style={{ marginTop: 6, fontSize: 13 }}>{r.service}</div>
                 <div style={{ marginTop: 4, fontSize: 12, color: 'var(--fg2)' }}>{r.status}</div>
@@ -337,20 +320,13 @@ export const Compact: Story = {
         <Sheet
           open={sheetOpen}
           onOpenChange={setSheetOpen}
-          title="Ручной инцидент"
-          description="Создание инцидента вне автоматического конвейера."
-          footer={
-            <>
-              <Button variant="ghost" onClick={() => setSheetOpen(false)}>
-                Отмена
-              </Button>
-              <Button onClick={() => setSheetOpen(false)}>Создать</Button>
-            </>
-          }
+          title={t('demo.titles.manualIncident')}
+          description={t('demo.descriptions.manualIncident')}
+          footer={<ManualIncidentForm onClose={() => setSheetOpen(false)} t={t} />}
         >
-          Укажите услугу, критичность и описание проблемы.
+          {t('demo.descriptions.manualIncidentBody')}
         </Sheet>
       </div>
-    );
+    )
   },
-};
+}

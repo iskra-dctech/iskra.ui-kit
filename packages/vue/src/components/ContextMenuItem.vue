@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed, inject, onMounted, onUnmounted, ref, watch } from 'vue';
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import { createId, isActivationKey } from '@iskra-ui/core';
 import { cx } from '../utils/cx.js';
-import { contextMenuKey } from '../composables/contextMenu.js';
+import { useContextMenuContext } from '../composables/contextMenu.js';
 
 const props = withDefaults(
   defineProps<{
@@ -18,8 +18,7 @@ const props = withDefaults(
 
 const emit = defineEmits<{ select: [] }>();
 
-const ctx = inject(contextMenuKey);
-if (!ctx) throw new Error('ContextMenuItem must be used within ContextMenu.');
+const ctx = useContextMenuContext('ContextMenuItem');
 
 const itemId = createId('ik-context-menu-item');
 const buttonRef = ref<HTMLButtonElement | null>(null);

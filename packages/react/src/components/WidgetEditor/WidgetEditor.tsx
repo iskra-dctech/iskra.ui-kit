@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { ChartType, MetricDefinition, MetricSeries, WidgetConfig } from '@iskra-ui/core';
+import { useIskraT } from '../../i18n/useIskraT.js';
 import { Button } from '../Button/Button.js';
 import { Chart } from '../Chart/Chart.js';
 import { ChartTypeSelector } from '../ChartTypeSelector/ChartTypeSelector.js';
@@ -28,6 +29,7 @@ function WidgetEditorForm({
   onClose,
   onSave,
 }: WidgetEditorProps) {
+  const t = useIskraT();
   const [metricId, setMetricId] = useState(initialWidget?.metricId ?? '');
   const [chartType, setChartType] = useState<ChartType>(initialWidget?.chartType ?? 'line');
   const [title, setTitle] = useState(initialWidget?.title ?? '');
@@ -63,7 +65,7 @@ function WidgetEditorForm({
         if (!cancelled) setPreview(series);
       })
       .catch(() => {
-        if (!cancelled) setError('Не удалось загрузить превью');
+        if (!cancelled) setError(t('widget.previewLoadError'));
       })
       .finally(() => {
         if (!cancelled) setLoading(false);
@@ -71,7 +73,7 @@ function WidgetEditorForm({
     return () => {
       cancelled = true;
     };
-  }, [metricId, chartType, fetchPreview]);
+  }, [metricId, chartType, fetchPreview, t]);
 
   useEffect(() => {
     if (!title && selectedMetric) setTitle(selectedMetric.label);
@@ -95,24 +97,24 @@ function WidgetEditorForm({
   return (
     <form className="ik-widget-editor-form" onSubmit={handleSubmit}>
       <div className="ik-widget-editor-field">
-        <label htmlFor="widget-metric">Метрика</label>
+        <label htmlFor="widget-metric">{t('widget.metric')}</label>
         <MetricPicker metrics={metrics} value={metricId} onChange={setMetricId} />
       </div>
       <div className="ik-widget-editor-field">
-        <span id="widget-chart-type-label">Тип графика</span>
+        <span id="widget-chart-type-label">{t('widget.chartType')}</span>
         <ChartTypeSelector value={chartType} onChange={setChartType} />
       </div>
       <div className="ik-widget-editor-field">
-        <label htmlFor="widget-title">Заголовок</label>
+        <label htmlFor="widget-title">{t('widget.title')}</label>
         <TextField
           id="widget-title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Название виджета"
+          placeholder={t('widget.titlePlaceholder')}
         />
       </div>
       <div className="ik-widget-editor-field">
-        <span id="widget-preview-label">Превью</span>
+        <span id="widget-preview-label">{t('widget.preview')}</span>
         <div className="ik-widget-editor-preview" aria-labelledby="widget-preview-label">
           {metricId ? (
             <Chart
@@ -124,16 +126,16 @@ function WidgetEditorForm({
               height={200}
             />
           ) : (
-            <div className="ik-chart-state">Выберите метрику для превью</div>
+            <div className="ik-chart-state">{t('chart.selectMetricForPreview')}</div>
           )}
         </div>
       </div>
       <div className="ik-modal-footer" style={{ marginTop: 8, padding: 0 }}>
         <Button type="button" variant="ghost" onClick={onClose}>
-          Отмена
+          {t('common.cancel')}
         </Button>
         <Button type="submit" disabled={!canSave}>
-          Сохранить
+          {t('common.save')}
         </Button>
       </div>
     </form>
@@ -151,8 +153,9 @@ export function WidgetEditor({
   fetchPreview,
   initialWidget,
 }: WidgetEditorProps) {
+  const t = useIskraT();
   const isMobile = useMediaQuery(MEDIA_BELOW_MD);
-  const title = initialWidget ? 'Редактировать виджет' : 'Добавить виджет';
+  const title = initialWidget ? t('widget.edit') : t('widget.add');
 
   const form = (
     <WidgetEditorForm
