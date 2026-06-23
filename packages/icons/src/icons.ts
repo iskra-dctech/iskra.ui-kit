@@ -93,6 +93,15 @@ export const icons = {
   key: '<circle cx="5.5" cy="10.5" r="2.6"/><line x1="7.4" y1="8.6" x2="13" y2="3"/><line x1="11" y1="5" x2="12.6" y2="6.6"/><line x1="9.4" y1="6.6" x2="11" y2="8.2"/>',
   zap: '<polygon points="8.5,1.8 3.5,9 7.5,9 7,14.2 12.5,7 8.5,7"/>',
   activity: '<polyline points="1.5,8 5,8 7,3 9.5,13 11.5,8 14.5,8"/>',
+  'chart-line': '<polyline points="1.5,11 4.5,7 7,9 10,4 14.5,6"/>',
+  'chart-bar':
+    '<rect x="2" y="8" width="2.5" height="5.5" rx="0.5"/><rect x="5.8" y="5" width="2.5" height="8.5" rx="0.5"/><rect x="9.6" y="3" width="2.5" height="10.5" rx="0.5"/><rect x="13.4" y="6.5" width="2.5" height="7" rx="0.5"/>',
+  'chart-area':
+    '<polyline points="1.5,11 4.5,7 7,9 10,4 14.5,6"/><path d="M1.5 11 4.5 7 7 9 10 4 14.5 6 14.5 13.5 1.5 13.5Z"/>',
+  'chart-scatter':
+    '<circle cx="3.5" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="6.5" cy="6" r="1.2" fill="currentColor" stroke="none"/><circle cx="9.5" cy="8.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="12.5" cy="4.5" r="1.2" fill="currentColor" stroke="none"/>',
+  maximize:
+    '<polyline points="5.5,2.5 13.5,2.5 13.5,10.5"/><polyline points="10.5,5.5 2.5,5.5 2.5,13.5"/><line x1="13.5" y1="2.5" x2="9" y2="7"/><line x1="2.5" y1="13.5" x2="7" y2="9"/>',
 
   /* domain */
   settings:

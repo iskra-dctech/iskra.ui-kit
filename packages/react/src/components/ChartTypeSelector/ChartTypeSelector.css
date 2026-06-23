@@ -1,0 +1,15 @@
+/* ИСКРА.DCI — Chart type selector. */
+.ik-chart-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px;
+  border: 1px solid var(--line, #30363d);
+  border-radius: var(--radius, 4px);
+  background: var(--bg, #0d1117);
+}
+.ik-chart-type-btn.is-selected {
+  background: color-mix(in srgb, var(--accent, #00ffc2) 14%, transparent);
+  border-color: var(--accent, #00ffc2);
+  color: var(--accent, #00ffc2);
+}

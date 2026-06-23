@@ -49,7 +49,9 @@
   },
   "peerDependencies": {
     "react": ">=18",
-    "react-dom": ">=18"
+    "react-dom": ">=18",
+    "recharts": ">=2.12.0",
+    "react-grid-layout": ">=1.4.0"
   },
   "dependencies": {
     "@iskra-ui/core": "workspace:*",
@@ -68,6 +70,9 @@
     "jsdom": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
+    "recharts": "catalog:",
+    "react-grid-layout": "catalog:",
+    "@types/react-grid-layout": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",
     "vitest": "catalog:"

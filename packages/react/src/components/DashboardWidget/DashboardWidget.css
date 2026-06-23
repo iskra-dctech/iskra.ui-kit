@@ -1,0 +1,44 @@
+/* ИСКРА.DCI — Dashboard widget shell. */
+.ik-dash-widget {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+}
+.ik-dash-widget .ik-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+.ik-dash-widget-hd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px 0;
+  min-height: 36px;
+}
+.ik-dash-widget-title {
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fg1, #f0f6fc);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ik-dash-widget-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.ik-dash-widget-body {
+  flex: 1;
+  min-height: 0;
+  padding: 8px 12px 12px;
+  display: flex;
+  flex-direction: column;
+}

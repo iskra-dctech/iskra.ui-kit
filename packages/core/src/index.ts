@@ -41,3 +41,29 @@ export {
   type SidebarNavItem,
   type SidebarVariant,
 } from './sidebar.js';
+export {
+  DASHBOARD_SCHEMA_VERSION,
+  DEFAULT_WIDGET_SIZE,
+  createEmptyDashboard,
+  dashboardReducer,
+  findNextLayoutPosition,
+  migrateDashboardConfig,
+  type ChartDensity,
+  type ChartType,
+  type DashboardConfig,
+  type DashboardEvent,
+  type DashboardSummary,
+  type DataPoint,
+  type LayoutItem,
+  type MetricDefinition,
+  type MetricSeries,
+  type WidgetConfig,
+} from './dashboard.js';
+export {
+  createApiDashboardStore,
+  createLocalStorageDashboardStore,
+  type ApiDashboardStoreOptions,
+  type DashboardStore,
+  type LocalStorageDashboardStoreOptions,
+  type StorageLike,
+} from './dashboardStore.js';

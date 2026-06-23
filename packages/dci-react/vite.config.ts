@@ -20,6 +20,8 @@ export default defineConfig({
         '@iskra-ui/react',
         '@iskra-ui/icons',
         '@iskra-ui/core',
+        'recharts',
+        'react-grid-layout',
       ],
       output: {
         globals: { react: 'React', 'react-dom': 'ReactDOM' },

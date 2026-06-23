@@ -1,0 +1,55 @@
+/* ИСКРА.DCI — Metric picker. */
+.ik-metric-picker {
+  position: relative;
+  width: 100%;
+}
+.ik-metric-picker-list {
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  max-height: 240px;
+  overflow-y: auto;
+}
+.ik-metric-picker-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  border-radius: var(--radius, 4px);
+  background: transparent;
+  color: var(--fg1, #f0f6fc);
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+.ik-metric-picker-item:hover,
+.ik-metric-picker-item.is-active {
+  background: color-mix(in srgb, var(--accent, #00ffc2) 10%, transparent);
+}
+.ik-metric-picker-item:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 1px var(--accent, #00ffc2);
+}
+.ik-metric-picker-label {
+  font-weight: 500;
+}
+.ik-metric-picker-desc {
+  font-size: 11px;
+  color: var(--fg3, #6e7681);
+}
+.ik-metric-picker-group {
+  padding: 6px 10px 4px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg3, #6e7681);
+}
+.ik-metric-picker-empty {
+  padding: 12px;
+  font-size: 12px;
+  color: var(--fg3, #6e7681);
+  text-align: center;
+}

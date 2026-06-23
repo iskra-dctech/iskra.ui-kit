@@ -17,7 +17,9 @@
     "@iskra-ui/react": "workspace:*",
     "@iskra-ui/styles": "workspace:*",
     "react": "catalog:",
-    "react-dom": "catalog:"
+    "react-dom": "catalog:",
+    "recharts": "catalog:",
+    "react-grid-layout": "catalog:"
   },
   "devDependencies": {
     "@playwright/test": "catalog:",

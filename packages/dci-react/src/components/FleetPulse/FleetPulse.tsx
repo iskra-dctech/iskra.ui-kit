@@ -88,7 +88,12 @@ export function FleetPulse({
         </svg>
         <span>
           <span className="dci-pulse-pct">{pct}%</span>
-          <span className="dci-pulse-label">{label}</span>
+          <span className="dci-pulse-label"> <p className="dci-pulse-label-text">{label}</p></span>
+          {!hasIssues && (
+            <span className="dci-pulse-sub">
+              Все устройства синхронизированы
+            </span>
+          )}
           {hasIssues && (
             <span className="dci-pulse-sub">
               <b>{issues.length}</b> устройств требуют внимания — нажмите, чтобы развернуть

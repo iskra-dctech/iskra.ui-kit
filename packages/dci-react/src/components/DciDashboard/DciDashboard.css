@@ -1,0 +1,13 @@
+.dci-dashboard {
+  width: 100%;
+}
+.dci-dashboard-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 240px;
+}
+.dci-dashboard-saving {
+  font-size: 12px;
+  color: var(--fg3, #6e7681);
+}

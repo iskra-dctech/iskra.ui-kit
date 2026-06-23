@@ -30,8 +30,18 @@ export * from './components/Sidebar/index.js';
 export * from './components/Drawer/index.js';
 export * from './components/Sheet/index.js';
 export * from './components/DataList/index.js';
+// Dashboard
+export * from './components/Chart/index.js';
+export * from './components/DashboardWidget/index.js';
+export * from './components/WidgetExpandView/index.js';
+export * from './components/DashboardGrid/index.js';
+export * from './components/MetricPicker/index.js';
+export * from './components/ChartTypeSelector/index.js';
+export * from './components/WidgetEditor/index.js';
+export * from './components/DashboardToolbar/index.js';
 // Responsive utilities
 export { useMediaQuery, useBreakpoint, type UseMediaQueryOptions } from './hooks/useMediaQuery.js';
+export { useDashboard, type UseDashboardOptions, type UseDashboardResult } from './hooks/useDashboard.js';
 export {
   BP_SM,
   BP_MD,
