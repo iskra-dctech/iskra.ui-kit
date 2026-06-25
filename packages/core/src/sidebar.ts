@@ -118,3 +118,35 @@ export function resolveSidebarGroups(
 ): SidebarNavGroup[] {
   return variant === 'admin' ? getDciAdminNav(locale) : getDciOperatorNav(locale);
 }
+
+/** Flat list of all items from navigation groups (order preserved). */
+export function flattenSidebarItems(groups: SidebarNavGroup[]): SidebarNavItem[] {
+  return groups.flatMap((group) => group.items);
+}
+
+/**
+ * Resolves primary mobile-nav items by id from `groups`.
+ * Unknown ids are skipped; at most `max` items are returned.
+ */
+export function resolvePrimaryNavItems(
+  groups: SidebarNavGroup[],
+  primaryIds: string[],
+  max = 4,
+): SidebarNavItem[] {
+  const byId = new Map(flattenSidebarItems(groups).map((item) => [item.id, item]));
+  const resolved: SidebarNavItem[] = [];
+
+  for (const id of primaryIds) {
+    if (resolved.length >= max) break;
+    const item = byId.get(id);
+    if (item) {
+      resolved.push(item);
+      continue;
+    }
+    if (typeof console !== 'undefined' && console.warn) {
+      console.warn(`[iskra] resolvePrimaryNavItems: unknown nav id "${id}"`);
+    }
+  }
+
+  return resolved;
+}

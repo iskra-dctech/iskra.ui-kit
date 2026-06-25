@@ -8,14 +8,13 @@ import { AppHeader } from '../AppHeader/AppHeader.js'
 import { Avatar } from '../Avatar/Avatar.js'
 import { Button } from '../Button/Button.js'
 import { DataList } from '../DataList/DataList.js'
-import { Drawer } from '../Drawer/Drawer.js'
 import { Icon } from '../Icon/Icon.js'
 import { IconButton } from '../IconButton/IconButton.js'
 import { Modal } from '../Modal/Modal.js'
 import { Popover } from '../Popover/Popover.js'
 import { SearchField } from '../SearchField/SearchField.js'
 import { Sheet } from '../Sheet/Sheet.js'
-import { Sidebar } from '../Sidebar/Sidebar.js'
+import { AppNavigation } from '../AppNavigation/AppNavigation.js'
 import { Table, type TableSort } from '../Table/Table.js'
 import { Card } from '../Card/Card.js'
 
@@ -83,13 +82,14 @@ export const Desktop: Story = {
 
     return (
       <div style={{ display: 'flex', height: '100vh', background: 'var(--bg)' }}>
-        <Sidebar
+        <AppNavigation
           groups={notifierNav}
           brand={
             <span className="isb-wmark" style={{ fontFamily: 'var(--font-mono)', fontSize: 11 }}>
               {t('demo.labels.iskraNotifications')}
             </span>
           }
+          primaryItems={['dashboard', 'incidents', 'console', 'workspace']}
           collapsed={false}
           onToggle={() => undefined}
           activeItem={page}
@@ -213,7 +213,7 @@ export const Compact: Story = {
     docs: {
       description: {
         story:
-          'Compact shell: Drawer + Sidebar, DataList instead of Table, Sheet instead of Modal. Explicit presentation choice — Table does not auto-transform into cards.',
+          'Compact shell: MobileNav bottom bar via AppNavigation, DataList instead of Table, Sheet instead of Modal.',
       },
     },
   },
@@ -223,7 +223,6 @@ export const Compact: Story = {
     const { incidents, renderSeverityBadge } = useDemoIncidents()
     const notifierNav = useMemo(() => getNotifierNav(locale), [locale])
     const [page, setPage] = useState('incidents')
-    const [navOpen, setNavOpen] = useState(false)
     const [sheetOpen, setSheetOpen] = useState(false)
     const [notifOpen, setNotifOpen] = useState(false)
 
@@ -236,33 +235,9 @@ export const Compact: Story = {
           background: 'var(--bg)',
         }}
       >
-        <Drawer open={navOpen} onOpenChange={setNavOpen} aria-label={t('demo.labels.notifierNav')}>
-          <Sidebar
-            groups={notifierNav}
-            brand={
-              <span className="isb-wmark" style={{ fontFamily: 'var(--font-mono)', fontSize: 11 }}>
-                {t('demo.labels.iskraNotifications')}
-              </span>
-            }
-            activeItem={page}
-            onNavigate={(id) => {
-              setPage(id)
-              setNavOpen(false)
-            }}
-            ariaLabel={t('demo.labels.notifierNav')}
-          />
-        </Drawer>
         <AppHeader
           leading={
-            <>
-              <IconButton
-                icon={<Icon name="menu" size={16} />}
-                aria-label={t('demo.labels.openNavigation')}
-                variant="ghost"
-                onClick={() => setNavOpen(true)}
-              />
-              <span style={{ fontSize: 14, fontWeight: 600 }}>{t('demo.labels.incidents')}</span>
-            </>
+            <span style={{ fontSize: 14, fontWeight: 600 }}>{t('demo.labels.incidents')}</span>
           }
           trailing={
             <AppHeader.Actions>
@@ -287,7 +262,7 @@ export const Compact: Story = {
             </AppHeader.Actions>
           }
         />
-        <main style={{ flex: 1, padding: 16, overflow: 'auto' }}>
+        <main className="ik-has-mobile-nav" style={{ flex: 1, padding: 16, overflow: 'auto' }}>
           <div
             style={{
               display: 'flex',
@@ -326,6 +301,13 @@ export const Compact: Story = {
         >
           {t('demo.descriptions.manualIncidentBody')}
         </Sheet>
+        <AppNavigation
+          groups={notifierNav}
+          primaryItems={['dashboard', 'incidents', 'console', 'workspace']}
+          activeItem={page}
+          onNavigate={setPage}
+          ariaLabel={t('demo.labels.notifierNav')}
+        />
       </div>
     )
   },

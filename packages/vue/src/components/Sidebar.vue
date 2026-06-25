@@ -1,17 +1,24 @@
+<script lang="ts">
+export type SidebarTheme = '' | 'theme-cold' | 'theme-warm';
+</script>
+
 <script setup lang="ts">
-import { computed, onMounted, ref, useAttrs, watch } from 'vue';
+import { computed, onMounted, provide, ref, useAttrs, useSlots, watch } from 'vue';
 import { useIskraLocale, useIskraT } from '../i18n/useIskraT.js';
-import Icon from './Icon.vue';
+import SidebarItem from './SidebarItem.vue';
+import SidebarGroup from './SidebarGroup.vue';
+import SidebarSection from './SidebarSection.vue';
+import SidebarFooter from './SidebarFooter.vue';
+import SidebarBrand from './SidebarBrand.vue';
+import SidebarBody from './SidebarBody.vue';
 import { cx } from '../utils/cx.js';
-import type { IconName } from '@iskra-ui/icons';
 import {
   resolveSidebarGroups,
   type SidebarNavGroup,
   type SidebarNavItem,
   type SidebarVariant,
 } from '@iskra-ui/core';
-
-export type SidebarTheme = '' | 'theme-cold' | 'theme-warm';
+import { sidebarContextKey } from './sidebar/context.js';
 
 const props = withDefaults(
   defineProps<{
@@ -24,6 +31,8 @@ const props = withDefaults(
     theme?: SidebarTheme;
     badges?: Record<string, number>;
     ariaLabel?: string;
+    desktopOnly?: boolean;
+    class?: string;
   }>(),
   {
     footerItems: () => [],
@@ -32,6 +41,7 @@ const props = withDefaults(
     variant: 'operator',
     theme: '',
     badges: () => ({}),
+    desktopOnly: false,
   },
 );
 
@@ -53,22 +63,30 @@ const tip = ref<{ lbl: string; top: number } | null>(null);
 const tipRdy = ref(false);
 
 const attrs = useAttrs();
+const slots = useSlots();
 
 const groups = computed(() => props.groups ?? resolveSidebarGroups(props.variant, locale));
 const showCollapser = computed(() => props.collapsible && typeof attrs.onToggle !== 'undefined');
+const useLegacyLayout = computed(
+  () =>
+    !slots.default ||
+    props.groups != null ||
+    !!slots.brand ||
+    !!slots.header ||
+    !!slots.footer ||
+    props.footerItems.length > 0,
+);
 
 const sbCls = computed(() =>
   cx(
     'iskra-sb',
     props.collapsed && 'isb-c',
     props.collapsed && tipRdy.value && 'isb-tip-rdy',
+    props.desktopOnly && 'iskra-sb--desktop-only',
     props.theme,
+    props.class,
   ),
 );
-
-function iconName(item: SidebarNavItem): IconName | undefined {
-  return item.icon as IconName | undefined;
-}
 
 function badgeFor(item: SidebarNavItem) {
   return props.badges[item.id] ?? item.badge;
@@ -89,6 +107,13 @@ function showTip(e: MouseEvent, lbl: string) {
 function hideTip() {
   tip.value = null;
 }
+
+provide(sidebarContextKey, {
+  collapsed: computed(() => props.collapsed),
+  tipRdy,
+  showTip,
+  hideTip,
+});
 
 watch(
   () => props.collapsed,
@@ -112,87 +137,65 @@ onMounted(() => {
 
 <template>
   <aside ref="sbRef" :class="sbCls" role="navigation" :aria-label="resolvedAriaLabel">
-    <div v-if="$slots.brand || showCollapser" class="isb-logo">
-      <div v-if="$slots.brand" class="isb-brand">
-        <slot name="brand" />
-      </div>
-      <button
-        v-if="showCollapser"
-        class="isb-collapser"
-        type="button"
-        :aria-expanded="!collapsed"
-        :aria-label="collapseLabel"
-        @click="emit('toggle')"
-      >
-        <svg
-          viewBox="0 0 10 10"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.5"
-          aria-hidden="true"
+    <template v-if="useLegacyLayout">
+      <div v-if="$slots.brand || showCollapser" class="isb-logo">
+        <SidebarBrand v-if="$slots.brand">
+          <slot name="brand" />
+        </SidebarBrand>
+        <button
+          v-if="showCollapser"
+          class="isb-collapser"
+          type="button"
+          :aria-expanded="!collapsed"
+          :aria-label="collapseLabel"
+          @click="emit('toggle')"
         >
-          <polyline points="7,2 4,5 7,8" />
-        </svg>
-      </button>
-    </div>
+          <svg
+            viewBox="0 0 10 10"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            aria-hidden="true"
+          >
+            <polyline points="7,2 4,5 7,8" />
+          </svg>
+        </button>
+      </div>
 
-    <div v-if="$slots.header" class="isb-head">
-      <slot name="header" />
-    </div>
+      <div v-if="$slots.header" class="isb-head">
+        <slot name="header" />
+      </div>
 
-    <div class="isb-scroll">
-      <slot>
-        <div v-for="grp in groups" :key="grp.id" class="isb-grp">
-          <div v-if="grp.label" class="isb-sec" aria-hidden="true">{{ grp.label }}</div>
-          <button
+      <SidebarBody>
+        <SidebarGroup v-for="grp in groups" :key="grp.id">
+          <SidebarSection v-if="grp.label">{{ grp.label }}</SidebarSection>
+          <SidebarItem
             v-for="item in grp.items"
             :key="item.id"
-            type="button"
-            :class="cx('isb-item', activeItem === item.id && 'isb-on')"
-            :title="item.label"
-            :disabled="item.disabled"
-            :aria-current="activeItem === item.id ? 'page' : undefined"
+            :item="item"
+            :active="activeItem === item.id"
+            :badge="badgeFor(item)"
             @click="onItemClick(item)"
-            @mouseenter="collapsed ? showTip($event, item.label) : undefined"
-            @mouseleave="collapsed ? hideTip() : undefined"
-          >
-            <span class="isb-ico">
-              <Icon v-if="iconName(item)" :name="iconName(item)!" :size="16" />
-            </span>
-            <span class="isb-lbl">{{ item.label }}</span>
-            <span
-              v-if="badgeFor(item) != null && badgeFor(item)! > 0"
-              class="isb-bdg"
-              :aria-label="`${item.label}: ${badgeFor(item)}`"
-            >
-              {{ badgeFor(item) }}
-            </span>
-          </button>
-        </div>
-      </slot>
-    </div>
+          />
+        </SidebarGroup>
+      </SidebarBody>
 
-    <div v-if="$slots.footer" class="isb-foot">
-      <slot name="footer" />
-    </div>
-    <div v-else-if="footerItems.length" class="isb-foot">
-      <button
-        v-for="item in footerItems"
-        :key="item.id"
-        type="button"
-        :class="cx('isb-item', activeItem === item.id && 'isb-on')"
-        :title="item.label"
-        :aria-current="activeItem === item.id ? 'page' : undefined"
-        @click="onItemClick(item)"
-        @mouseenter="collapsed ? showTip($event, item.label) : undefined"
-        @mouseleave="collapsed ? hideTip() : undefined"
-      >
-        <span class="isb-ico">
-          <Icon v-if="iconName(item)" :name="iconName(item)!" :size="16" />
-        </span>
-        <span class="isb-lbl">{{ item.label }}</span>
-      </button>
-    </div>
+      <SidebarFooter v-if="$slots.footer">
+        <slot name="footer" />
+      </SidebarFooter>
+      <SidebarFooter v-else-if="footerItems.length">
+        <SidebarItem
+          v-for="item in footerItems"
+          :key="item.id"
+          :item="item"
+          :active="activeItem === item.id"
+          :badge="badgeFor(item)"
+          @click="onItemClick(item)"
+        />
+      </SidebarFooter>
+    </template>
+
+    <slot v-else />
 
     <div v-if="tip" class="isb-floatip" :style="{ top: `${tip.top}px` }">
       {{ tip.lbl }}

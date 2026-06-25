@@ -42,6 +42,8 @@ export {
   getDciFooterNav,
   getNotifierNav,
   resolveSidebarGroups,
+  flattenSidebarItems,
+  resolvePrimaryNavItems,
   type SidebarNavGroup,
   type SidebarNavItem,
   type SidebarVariant,

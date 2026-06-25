@@ -15,6 +15,9 @@ export const enMessages = {
     chartType: 'Chart type',
     sidebarExpand: 'Expand sidebar',
     sidebarCollapse: 'Collapse sidebar',
+    openMenu: 'Open menu',
+    mobileNavigation: 'Mobile navigation',
+    moreNavigation: 'All sections',
   },
   emptyState: {
     notFound: {

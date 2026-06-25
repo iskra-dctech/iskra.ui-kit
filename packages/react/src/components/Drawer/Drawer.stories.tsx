@@ -16,6 +16,14 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const WithSidebar: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Legacy pattern: Drawer + Sidebar. For mobile products prefer AppNavigation with the bottom MobileNav bar.',
+      },
+    },
+  },
   render: () => {
     const t = useStoryT()
     const { locale } = useIskraLocale()

@@ -17,6 +17,9 @@ export const ruMessages: IskraMessages = {
     chartType: 'Тип графика',
     sidebarExpand: 'Развернуть боковую панель',
     sidebarCollapse: 'Свернуть боковую панель',
+    openMenu: 'Открыть меню',
+    mobileNavigation: 'Мобильная навигация',
+    moreNavigation: 'Все разделы',
   },
   emptyState: {
     notFound: {

@@ -39,6 +39,15 @@ export {
   type AppHeaderStatusDot,
 } from './components/AppHeader.vue';
 export { default as Sidebar, type SidebarTheme } from './components/Sidebar.vue';
+export { default as SidebarItem } from './components/SidebarItem.vue';
+export { default as SidebarGroup } from './components/SidebarGroup.vue';
+export { default as SidebarSection } from './components/SidebarSection.vue';
+export { default as SidebarDivider } from './components/SidebarDivider.vue';
+export { default as SidebarFooter } from './components/SidebarFooter.vue';
+export { default as SidebarBrand } from './components/SidebarBrand.vue';
+export { default as SidebarBody } from './components/SidebarBody.vue';
+export { default as MobileNav } from './components/MobileNav.vue';
+export { default as AppNavigation } from './components/AppNavigation.vue';
 export { default as EmptyState, type EmptyStateVariant } from './components/EmptyState.vue';
 export { default as Modal, type ModalSize } from './components/Modal.vue';
 export {
@@ -61,6 +70,8 @@ export {
   getDciFooterNav,
   getNotifierNav,
   resolveSidebarGroups,
+  flattenSidebarItems,
+  resolvePrimaryNavItems,
   type SidebarNavGroup,
   type SidebarNavItem,
   type SidebarVariant,

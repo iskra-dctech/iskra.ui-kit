@@ -11,4 +11,6 @@ export {
   getDciFooterNav,
   getNotifierNav,
   resolveSidebarGroups,
+  flattenSidebarItems,
+  resolvePrimaryNavItems,
 } from '@iskra-ui/core';

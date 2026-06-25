@@ -178,3 +178,52 @@ export const CustomBody: Story = {
     )
   },
 }
+
+export const CompoundApi: Story = {
+  render: () => {
+    const t = useStoryT()
+    const [page, setPage] = useState('overview')
+    const footerItems = useDciFooter()
+    return (
+      <div style={{ height: 520, display: 'flex', background: 'var(--bg)' }}>
+        <Sidebar collapsed={false} onToggle={() => undefined}>
+          <div className="isb-logo">
+            <Sidebar.Brand>
+              <DciBrand />
+            </Sidebar.Brand>
+          </div>
+          <Sidebar.Body>
+            <Sidebar.Group>
+              <Sidebar.Section>{t('sidebar.monitoring')}</Sidebar.Section>
+              <Sidebar.Item
+                id="overview"
+                label={t('sidebar.overview')}
+                icon="grid"
+                active={page === 'overview'}
+                onClick={() => setPage('overview')}
+              />
+              <Sidebar.Item
+                id="devices"
+                label={t('sidebar.devices')}
+                icon="server"
+                active={page === 'devices'}
+                onClick={() => setPage('devices')}
+              />
+            </Sidebar.Group>
+            <Sidebar.Divider />
+          </Sidebar.Body>
+          <Sidebar.Footer>
+            {footerItems.map((item) => (
+              <Sidebar.Item
+                key={item.id}
+                item={item}
+                active={page === item.id}
+                onClick={() => setPage(item.id)}
+              />
+            ))}
+          </Sidebar.Footer>
+        </Sidebar>
+      </div>
+    )
+  },
+}
