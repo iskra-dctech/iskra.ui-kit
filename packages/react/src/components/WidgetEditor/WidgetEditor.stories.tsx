@@ -27,6 +27,13 @@ const meta = {
   title: 'Patterns/WidgetEditor',
   component: WidgetEditor,
   parameters: { layout: 'centered' },
+  args: {
+    open: false,
+    onClose: () => undefined,
+    onSave: () => undefined,
+    metrics: [],
+    fetchPreview: async () => ({ id: '', label: '', points: [] }),
+  },
 } satisfies Meta<typeof WidgetEditor>;
 
 export default meta;

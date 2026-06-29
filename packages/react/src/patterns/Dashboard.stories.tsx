@@ -43,6 +43,7 @@ function DashboardDemo() {
   const t = useStoryT();
   const {
     dashboard,
+    isLoading,
     editable,
     setEditable,
     addWidget,
@@ -64,6 +65,7 @@ function DashboardDemo() {
   const loadedSeriesRef = useRef<Set<string>>(new Set());
 
   useEffect(() => {
+    if (!dashboard) return;
     let cancelled = false;
 
     for (const widget of dashboard.widgets) {
@@ -80,12 +82,20 @@ function DashboardDemo() {
     return () => {
       cancelled = true;
     };
-  }, [dashboard.widgets]);
+  }, [dashboard]);
 
   const fetchPreview = useMemo(
     () => (metricId: string, chartType: ChartType) => mockFetchSeries(metricId, chartType),
     [],
   );
+
+  if (isLoading || !dashboard) {
+    return (
+      <div style={{ padding: 24, minHeight: '100vh', background: 'var(--bg, #0d1117)' }}>
+        Loading…
+      </div>
+    );
+  }
 
   return (
     <div style={{ padding: 24, minHeight: '100vh', background: 'var(--bg, #0d1117)' }}>

@@ -6,6 +6,7 @@ import { Tabs } from './Tabs.js';
 const meta = {
   title: 'Patterns/Tabs',
   component: Tabs,
+  args: { items: [] },
 } satisfies Meta<typeof Tabs>;
 
 export default meta;

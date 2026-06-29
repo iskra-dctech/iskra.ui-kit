@@ -36,6 +36,10 @@ const meta = {
   title: 'Patterns/Popover',
   component: Popover,
   parameters: { layout: 'centered' },
+  args: {
+    trigger: createElement('button', { type: 'button' }),
+    children: null,
+  },
 } satisfies Meta<typeof Popover>;
 
 export default meta;

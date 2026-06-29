@@ -57,6 +57,7 @@ const meta = {
   title: 'Patterns/Table',
   component: Table<Device>,
   parameters: { layout: 'padded' },
+  args: { columns: [], data: [] },
 } satisfies Meta<typeof Table<Device>>;
 
 export default meta;

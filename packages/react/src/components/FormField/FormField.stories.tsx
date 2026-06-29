@@ -1,12 +1,17 @@
 import { createElement } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useStoryT } from '../../storybook/useStoryT.js';
-import { FormField } from './FormField.js';
+import { FormField, type FormFieldProps } from './FormField.js';
 
 const meta = {
   title: 'Patterns/FormField',
   component: FormField,
-  args: { children: createElement('input') },
+  args: {
+    children: createElement('input', {
+      id: 'story-field',
+      'aria-invalid': false,
+    }) as FormFieldProps['children'],
+  },
 } satisfies Meta<typeof FormField>;
 
 export default meta;
