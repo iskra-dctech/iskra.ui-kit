@@ -1,5 +1,27 @@
 # @iskra-ui/react
 
+## 0.2.0
+
+### Minor Changes
+
+- c5a8fad: Add `useMediaQuery` and `useBreakpoint` responsive hooks with SSR-safe defaults and shared breakpoint constants from tokens.
+- e6ebb29: Add `ContextMenu` compound primitive with right-click and click triggers, WAI-ARIA Menu pattern, and Storybook coverage.
+- afa23e3: Add mobile V1 primitives `Drawer`, `Sheet`, and `DataList` with component tests and Vue parity.
+- 4935d93: Integrate `@iskra-ui/i18n` — components use `useIskraT` for localized strings; sidebar navigation is locale-aware.
+- 58f189b: Enhance `Sidebar` with `flattenSidebarItems` / `resolvePrimaryNavItems`, improved mobile navigation, and accessibility.
+- 967cecb: Enhance dashboard components and exports; add `recharts` / `react-grid-layout` integration support.
+- bc9a0a9: Apply compact mobile CSS (touch-min targets, tighter spacing) to `AppHeader`, `Button`, `Table`, and `Toast`.
+- 83fcb0c: Delegate anchor positioning to `@iskra-ui/core` instead of duplicating placement logic in React.
+
+### Patch Changes
+
+- d7728b6: Switch `useMediaQuery` to `useSyncExternalStore` for tear-free reads and align breakpoint constants with CSS custom property token names.
+- Updated dependencies
+  - @iskra-ui/core@0.2.0
+  - @iskra-ui/i18n@0.2.0
+  - @iskra-ui/icons@0.2.0
+  - @iskra-ui/tokens@0.2.0
+
 ## 0.1.2
 
 ### Patch Changes

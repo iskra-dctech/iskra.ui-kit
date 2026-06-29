@@ -1,5 +1,21 @@
 # @iskra-ui/vue
 
+## 0.2.0
+
+### Minor Changes
+
+- c5a8fad: Add `useMediaQuery` and `useBreakpoint` responsive composables with SSR-safe defaults.
+- e6ebb29: Add `ContextMenu` compound primitive with Vue parity to React.
+- afa23e3: Add mobile V1 primitives `Drawer`, `Sheet`, and `DataList` with Vue parity.
+
+### Patch Changes
+
+- Updated dependencies
+  - @iskra-ui/core@0.2.0
+  - @iskra-ui/i18n@0.2.0
+  - @iskra-ui/icons@0.2.0
+  - @iskra-ui/tokens@0.2.0
+
 ## 0.1.2
 
 ### Patch Changes

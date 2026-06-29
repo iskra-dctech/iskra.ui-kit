@@ -1,6 +1,6 @@
 {
   "name": "@iskra-ui/i18n",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Iskra UIKit internationalization — locale catalogs and message resolution for React and Vue packages.",
   "license": "Apache-2.0",
   "repository": {
