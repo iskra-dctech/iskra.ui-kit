@@ -5,7 +5,11 @@ export type {
   SidebarNavGroup,
   SidebarNavItem,
   SidebarVariant,
-} from './Sidebar.js';
+  SidebarItemRenderContext,
+  SidebarItemProps,
+  SidebarGroupProps,
+  SidebarSectionProps,
+} from './types.js';
 export {
   DCI_OPERATOR_NAV,
   DCI_ADMIN_NAV,

@@ -4,6 +4,25 @@
   overflow: auto;
   border: 1px solid var(--line, #30363d);
   border-radius: var(--radius, 4px);
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+}
+/* Compact viewport: below --bp-md (768px). Static value required for CSS minifiers. */
+@media (max-width: 767px) {
+  .ik-table-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 20px;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--accent, #00ffc2) 12%, transparent)
+    );
+  }
 }
 .ik-table {
   width: 100%;

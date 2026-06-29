@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, useState, type InputHTMLAttributes } from 'react';
+import { useIskraT } from '../../i18n/useIskraT.js';
 import { Icon } from '../Icon/Icon.js';
 import { cx } from '../../utils/cx.js';
 import './SearchField.css';
@@ -33,7 +34,7 @@ export function SearchField({
   variant = 'default',
   clearable = true,
   onClear,
-  clearLabel = 'Очистить',
+  clearLabel,
   shortcut,
   enableShortcut = false,
   onShortcut,
@@ -45,9 +46,12 @@ export function SearchField({
   id,
   className,
   wrapClassName,
-  placeholder = 'Поиск…',
+  placeholder,
   ...rest
 }: SearchFieldProps) {
+  const t = useIskraT();
+  const resolvedClearLabel = clearLabel ?? t('common.clear');
+  const resolvedPlaceholder = placeholder ?? t('common.search');
   const autoId = useId();
   const inputId = id ?? `ik-sf-${autoId}`;
   const inputRef = useRef<HTMLInputElement>(null);
@@ -115,8 +119,8 @@ export function SearchField({
           defaultValue={defaultValue}
           onChange={handleChange}
           onFocus={onFocus}
-          placeholder={placeholder}
-          aria-label={rest['aria-label'] ?? placeholder}
+          placeholder={resolvedPlaceholder}
+          aria-label={rest['aria-label'] ?? resolvedPlaceholder}
           {...rest}
         />
         {showClear && (
@@ -124,7 +128,7 @@ export function SearchField({
             type="button"
             className="ik-sf-clear"
             onClick={handleClear}
-            aria-label={clearLabel}
+            aria-label={resolvedClearLabel}
           >
             <Icon name="close" size={13} />
           </button>

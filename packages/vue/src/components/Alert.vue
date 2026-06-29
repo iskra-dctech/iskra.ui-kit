@@ -12,6 +12,7 @@ const DEFAULT_ICON: Record<AlertVariant, string> = {
 <script setup lang="ts">
 import { computed } from 'vue';
 import { type IconName } from '@iskra-ui/icons';
+import { useIskraT } from '../i18n/useIskraT.js';
 import { cx } from '../utils/cx.js';
 import Icon from './Icon.vue';
 
@@ -22,8 +23,11 @@ const props = withDefaults(
     closable?: boolean;
     closeLabel?: string;
   }>(),
-  { variant: 'info', closable: false, closeLabel: 'Закрыть' },
+  { variant: 'info', closable: false },
 );
+
+const t = useIskraT();
+const resolvedCloseLabel = computed(() => props.closeLabel ?? t('common.close'));
 
 const emit = defineEmits<{ close: [] }>();
 
@@ -47,7 +51,7 @@ const iconName = computed(() => DEFAULT_ICON[props.variant] as IconName);
       v-if="closable"
       type="button"
       class="ik-alert-close"
-      :aria-label="closeLabel"
+      :aria-label="resolvedCloseLabel"
       @click="emit('close')"
     >
       <Icon name="close" :size="14" />

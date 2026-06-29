@@ -42,7 +42,12 @@
 | Sidebar            |   ✅    |  ✅   |     —     | `nav`                     | Tab                      |
 | SearchField        |   ✅    |  ✅   |     —     | `input[type=search]`      | native / ⌘K              |
 | Popover            |   ✅    |  ✅   |     —     | `div[role=dialog]`        | Esc                      |
+| ContextMenu        |   ✅    |  ✅   |    ✅     | `div[role=menu]`          | Arrows/Home/End / Esc    |
 | AppHeader          |   ✅    |  ✅   |     —     | `header`                  | —                        |
+| Drawer             |   ✅    |  ✅   |     —     | `div[role=dialog]`        | Tab trap / Esc           |
+| Sheet              |   ✅    |  ✅   |     —     | `div[role=dialog]`        | Tab trap / Esc           |
+| DataList           |   ✅    |  ✅   |     —     | `ul[role=list]`           | —                        |
+| useMediaQuery      |    —    |  ✅   |     —     | hook                      | —                        |
 
 Легенда: ✅ есть · — не применимо / кандидат на доработку. a11y также проверяется глобально
 в Storybook через `@storybook/addon-a11y` (`a11y.test = 'error'`) и в CI.

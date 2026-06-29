@@ -1,5 +1,5 @@
 import { useId, useState } from 'react';
-import { Badge, Button, Icon } from '@iskra-ui/react';
+import { Badge, Button, Icon, useIskraT } from '@iskra-ui/react';
 import './FleetPulse.css';
 
 export type IssueSeverity = 'error' | 'drift';
@@ -35,12 +35,14 @@ const CIRC = 2 * Math.PI * RADIUS;
 export function FleetPulse({
   percent,
   issues = [],
-  label = 'Fleet in Sync',
+  label,
   defaultOpen = false,
   open,
   onOpenChange,
   className,
 }: FleetPulseProps) {
+  const t = useIskraT();
+  const resolvedLabel = label ?? t('dci.fleetPulse.label');
   const controlled = open != null;
   const [internalOpen, setInternalOpen] = useState(defaultOpen);
   const isOpen = controlled ? open : internalOpen;
@@ -88,10 +90,13 @@ export function FleetPulse({
         </svg>
         <span>
           <span className="dci-pulse-pct">{pct}%</span>
-          <span className="dci-pulse-label">{label}</span>
+          <span className="dci-pulse-label">
+            <p className="dci-pulse-label-text">{resolvedLabel}</p>
+          </span>
+          {!hasIssues && <span className="dci-pulse-sub">{t('dci.fleetPulse.allSynced')}</span>}
           {hasIssues && (
             <span className="dci-pulse-sub">
-              <b>{issues.length}</b> устройств требуют внимания — нажмите, чтобы развернуть
+              {t('dci.fleetPulse.devicesNeedAttention', { count: issues.length })}
             </span>
           )}
         </span>
@@ -101,14 +106,16 @@ export function FleetPulse({
       </button>
       {hasIssues && isOpen && (
         <div className="dci-pulse-issues" id={issuesId}>
-          <div className="dci-pulse-issues-hd">Проблемные устройства · {issues.length}</div>
+          <div className="dci-pulse-issues-hd">
+            {t('dci.fleetPulse.problematicDevices', { count: issues.length })}
+          </div>
           {issues.map((issue) => (
             <div className="dci-pulse-row" key={issue.id}>
               <span className={`dci-pulse-row-dot sev-${issue.severity}`} aria-hidden="true" />
               <span className="dci-pulse-row-name">{issue.name}</span>
               <span className="dci-pulse-row-reason">{issue.reason}</span>
               <Badge variant={issue.severity === 'error' ? 'error' : 'warning'} size="s">
-                {issue.severity === 'error' ? 'Error' : 'Drift'}
+                {issue.severity === 'error' ? t('dci.fleetPulse.error') : t('dci.fleetPulse.drift')}
               </Badge>
               {issue.actionLabel && (
                 <Button

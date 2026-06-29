@@ -1,4 +1,5 @@
 import { type HTMLAttributes, type ReactNode } from 'react';
+import { useIskraT } from '../../i18n/useIskraT.js';
 import { cx } from '../../utils/cx.js';
 import './AppHeader.css';
 
@@ -93,8 +94,9 @@ export interface AppHeaderNavProps extends HTMLAttributes<HTMLElement> {
 }
 
 function Nav({ items, separator = '/', onNavigate, className, ...rest }: AppHeaderNavProps) {
+  const t = useIskraT();
   return (
-    <nav className={cx('ik-app-header-nav', className)} aria-label="Навигация" {...rest}>
+    <nav className={cx('ik-app-header-nav', className)} aria-label={t('a11y.navigation')} {...rest}>
       {items.map((item, i) => (
         <span key={item.id} style={{ display: 'contents' }}>
           {i > 0 && (

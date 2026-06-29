@@ -1,5 +1,6 @@
 import { type HTMLAttributes, type ReactNode } from 'react';
 import { Icon, type IconName } from '../Icon/Icon.js';
+import { useIskraT } from '../../i18n/useIskraT.js';
 import { cx } from '../../utils/cx.js';
 import './Alert.css';
 
@@ -32,11 +33,13 @@ export function Alert({
   icon,
   closable = false,
   onClose,
-  closeLabel = 'Закрыть',
+  closeLabel,
   children,
   className,
   ...rest
 }: AlertProps) {
+  const t = useIskraT();
+  const resolvedCloseLabel = closeLabel ?? t('common.close');
   const role = variant === 'error' || variant === 'warning' ? 'alert' : 'status';
   const showIcon = icon !== null;
   return (
@@ -51,7 +54,12 @@ export function Alert({
         {children}
       </div>
       {closable && (
-        <button type="button" className="ik-alert-close" onClick={onClose} aria-label={closeLabel}>
+        <button
+          type="button"
+          className="ik-alert-close"
+          onClick={onClose}
+          aria-label={resolvedCloseLabel}
+        >
           <Icon name="close" size={14} />
         </button>
       )}

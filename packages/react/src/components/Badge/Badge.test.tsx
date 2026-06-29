@@ -12,7 +12,7 @@ describe('Badge / Tag', () => {
   it('fires onRemove for removable tags', async () => {
     const onRemove = vi.fn();
     render(<Tag onRemove={onRemove}>x</Tag>);
-    await userEvent.click(screen.getByRole('button', { name: 'Удалить' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Remove' }));
     expect(onRemove).toHaveBeenCalledOnce();
   });
 });

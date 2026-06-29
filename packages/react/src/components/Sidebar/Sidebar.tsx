@@ -1,175 +1,81 @@
-import { useCallback, useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react';
-import { Icon } from '../Icon/Icon.js';
+import { useCallback, useEffect, useRef, useState, type MouseEvent } from 'react';
+import { useIskraLocale } from '../../i18n/useIskraLocale.js';
+import { useIskraT } from '../../i18n/useIskraT.js';
 import { cx } from '../../utils/cx.js';
-import type { IconName } from '@iskra-ui/icons';
+import { resolveSidebarGroups, type SidebarNavGroup, type SidebarNavItem } from '@iskra-ui/core';
+import { SidebarProvider } from './SidebarContext.js';
+import { SidebarItem } from './SidebarItem.js';
 import {
-  resolveSidebarGroups,
-  type SidebarNavGroup,
-  type SidebarNavItem,
-  type SidebarVariant,
-} from '@iskra-ui/core';
+  SidebarBody,
+  SidebarBrand,
+  SidebarCollapser,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarHeader,
+  SidebarSection,
+  SidebarDivider,
+} from './SidebarParts.js';
+import type { SidebarProps } from './types.js';
 import './Sidebar.css';
 
-export type SidebarTheme = '' | 'theme-cold' | 'theme-warm';
+export type {
+  SidebarTheme,
+  SidebarNavGroup,
+  SidebarNavItem,
+  SidebarVariant,
+  SidebarItemRenderContext,
+  SidebarProps,
+  SidebarItemProps,
+  SidebarGroupProps,
+  SidebarSectionProps,
+} from './types.js';
 
-export type { SidebarNavGroup, SidebarNavItem, SidebarVariant };
 export {
   DCI_OPERATOR_NAV,
   DCI_ADMIN_NAV,
+  DCI_ADMIN_EXTRA,
   DCI_FOOTER_NAV,
   NOTIFIER_NAV,
+  getDciOperatorNav,
+  getDciAdminNav,
+  getDciAdminExtra,
+  getDciFooterNav,
+  getNotifierNav,
   resolveSidebarGroups,
 } from './presets.js';
-
-export interface SidebarItemRenderContext {
-  active: boolean;
-  collapsed: boolean;
-  badge?: number;
-}
-
-export interface SidebarProps {
-  /** Navigation tree. Omit when using `children` for a fully custom body. */
-  groups?: SidebarNavGroup[];
-  /** Declarative footer items (rendered as nav buttons). */
-  footerItems?: SidebarNavItem[];
-  /** Brand block in the top bar (logo, product name). No default — pass explicitly. */
-  brand?: ReactNode;
-  /** Optional content below the brand bar, above scrollable nav. */
-  header?: ReactNode;
-  /** Custom footer slot — overrides `footerItems` when set. */
-  footer?: ReactNode;
-  /** Replaces the default groups renderer in the scroll area. */
-  children?: ReactNode;
-  collapsed?: boolean;
-  /** Show collapse control when `onToggle` is provided. Default: true. */
-  collapsible?: boolean;
-  onToggle?: () => void;
-  activeItem?: string;
-  onNavigate?: (id: string) => void;
-  onItemClick?: (item: SidebarNavItem) => void;
-  /** Convenience preset when `groups` is omitted. Prefer explicit `groups` in products. */
-  variant?: SidebarVariant;
-  theme?: SidebarTheme;
-  badges?: Record<string, number>;
-  ariaLabel?: string;
-  renderItem?: (item: SidebarNavItem, ctx: SidebarItemRenderContext) => ReactNode;
-  className?: string;
-}
-
-interface ItemProps {
-  item: SidebarNavItem;
-  active: boolean;
-  collapsed: boolean;
-  badge?: number;
-  onHover?: (e: MouseEvent<HTMLButtonElement>, lbl: string) => void;
-  onLeave?: () => void;
-  onClick?: () => void;
-  renderItem?: SidebarProps['renderItem'];
-}
-
-function DefaultItemButton({
-  item,
-  active,
-  badge,
-  onHover,
-  onLeave,
-  onClick,
-}: Omit<ItemProps, 'collapsed' | 'renderItem'>) {
-  return (
-    <button
-      className={cx('isb-item', active && 'isb-on')}
-      title={item.label}
-      onMouseEnter={onHover ? (e) => onHover(e, item.label) : undefined}
-      onMouseLeave={onLeave}
-      onClick={onClick}
-      type="button"
-      disabled={item.disabled}
-      aria-current={active ? 'page' : undefined}
-    >
-      <span className="isb-ico">
-        {item.icon ? <Icon name={item.icon as IconName} size={16} /> : null}
-      </span>
-      <span className="isb-lbl">{item.label}</span>
-      {badge != null && badge > 0 && (
-        <span className="isb-bdg" aria-label={`${item.label}: ${badge}`}>
-          {badge}
-        </span>
-      )}
-    </button>
-  );
-}
-
-function Item(props: ItemProps) {
-  const { renderItem, item, active, collapsed, badge, onClick, onHover, onLeave } = props;
-  if (renderItem) {
-    return (
-      <div className="isb-item-wrap" onClick={onClick}>
-        {renderItem(item, { active, collapsed, badge })}
-      </div>
-    );
-  }
-  return (
-    <DefaultItemButton
-      item={item}
-      active={active}
-      badge={badge}
-      onClick={onClick}
-      onHover={onHover}
-      onLeave={onLeave}
-    />
-  );
-}
 
 function NavGroups({
   groups,
   activeItem,
-  collapsed,
   badges,
   onItemActivate,
-  hover,
-  renderItem,
 }: {
   groups: SidebarNavGroup[];
   activeItem?: string;
-  collapsed: boolean;
   badges: Record<string, number>;
   onItemActivate: (item: SidebarNavItem) => void;
-  hover: { onHover?: ItemProps['onHover']; onLeave?: ItemProps['onLeave'] };
-  renderItem?: SidebarProps['renderItem'];
 }) {
   return (
     <>
       {groups.map(({ id, label, items }) => (
-        <div key={id} className="isb-grp">
-          {label && (
-            <div className="isb-sec" aria-hidden="true">
-              {label}
-            </div>
-          )}
+        <SidebarGroup key={id}>
+          {label ? <SidebarSection>{label}</SidebarSection> : null}
           {items.map((item) => (
-            <Item
+            <SidebarItem
               key={item.id}
               item={item}
               active={activeItem === item.id}
-              collapsed={collapsed}
               badge={badges[item.id] ?? item.badge}
               onClick={() => onItemActivate(item)}
-              renderItem={renderItem}
-              {...hover}
             />
           ))}
-        </div>
+        </SidebarGroup>
       ))}
     </>
   );
 }
 
-/**
- * Sidebar — universal app navigation shell. Supply `groups` + `brand` per product,
- * or pass `children` for a fully custom body. Presets (`NOTIFIER_NAV`, …) live in
- * `@iskra-ui/core` for convenience only.
- */
-export function Sidebar({
+function SidebarRoot({
   groups: groupsProp,
   footerItems = [],
   brand,
@@ -185,17 +91,29 @@ export function Sidebar({
   variant = 'operator',
   theme = '',
   badges = {},
-  ariaLabel = 'Навигация',
+  ariaLabel,
   renderItem,
+  desktopOnly = false,
   className = '',
 }: SidebarProps) {
+  const t = useIskraT();
+  const { locale } = useIskraLocale();
+  const resolvedAriaLabel = ariaLabel ?? t('a11y.navigation');
   const [tip, setTip] = useState<{ lbl: string; top: number } | null>(null);
   const [tipRdy, setTipRdy] = useState(false);
   const [prevCollapsed, setPrevCollapsed] = useState(collapsed);
   const sbRef = useRef<HTMLElement>(null);
 
-  const groups = groupsProp ?? (children ? [] : resolveSidebarGroups(variant));
+  const groups = groupsProp ?? (children ? [] : resolveSidebarGroups(variant, locale));
   const showCollapser = collapsible && typeof onToggle === 'function';
+  const hasBrandBar = brand != null || showCollapser;
+  const isCompoundMode =
+    children != null &&
+    groupsProp == null &&
+    brand == null &&
+    header == null &&
+    footer == null &&
+    footerItems.length === 0;
 
   if (collapsed !== prevCollapsed) {
     setPrevCollapsed(collapsed);
@@ -205,8 +123,8 @@ export function Sidebar({
 
   useEffect(() => {
     if (!collapsed) return;
-    const t = setTimeout(() => setTipRdy(true), 210);
-    return () => clearTimeout(t);
+    const timer = setTimeout(() => setTipRdy(true), 210);
+    return () => clearTimeout(timer);
   }, [collapsed]);
 
   const showTip = useCallback(
@@ -221,93 +139,100 @@ export function Sidebar({
 
   const hideTip = useCallback(() => setTip(null), []);
 
-  const hover = collapsed ? { onHover: showTip, onLeave: hideTip } : {};
-
   const handleItem = (item: SidebarNavItem) => {
     onItemClick?.(item);
     onNavigate?.(item.id);
   };
 
-  return (
-    <aside
-      className={cx(
-        'iskra-sb',
-        collapsed && 'isb-c',
-        collapsed && tipRdy && 'isb-tip-rdy',
-        theme,
-        className,
-      )}
-      ref={sbRef}
-      role="navigation"
-      aria-label={ariaLabel}
-    >
-      {(brand != null || showCollapser) && (
+  const contextValue = {
+    collapsed,
+    tipRdy,
+    sbRef,
+    showTip,
+    hideTip,
+    renderItem,
+  };
+
+  const collapseLabel = collapsed ? t('a11y.sidebarExpand') : t('a11y.sidebarCollapse');
+
+  const legacyBody = (
+    <>
+      {hasBrandBar && (
         <div className="isb-logo">
-          {brand != null && <div className="isb-brand">{brand}</div>}
+          {brand != null && <SidebarBrand>{brand}</SidebarBrand>}
           {showCollapser && (
-            <button
-              className="isb-collapser"
-              type="button"
-              onClick={onToggle}
-              aria-expanded={!collapsed}
-              aria-label={collapsed ? 'Развернуть боковую панель' : 'Свернуть боковую панель'}
-            >
-              <svg
-                viewBox="0 0 10 10"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <polyline points="7,2 4,5 7,8" />
-              </svg>
-            </button>
+            <SidebarCollapser collapsed={collapsed} label={collapseLabel} onClick={onToggle} />
           )}
         </div>
       )}
-
-      {header != null && <div className="isb-head">{header}</div>}
-
-      <div className="isb-scroll">
-        {children ?? (
-          <NavGroups
-            groups={groups}
-            activeItem={activeItem}
-            collapsed={collapsed}
-            badges={badges}
-            onItemActivate={handleItem}
-            hover={hover}
-            renderItem={renderItem}
-          />
-        )}
-      </div>
-
+      {header != null && <SidebarHeader>{header}</SidebarHeader>}
+      <SidebarBody>
+        {children ??
+          (groups.length > 0 ? (
+            <NavGroups
+              groups={groups}
+              activeItem={activeItem}
+              badges={badges}
+              onItemActivate={handleItem}
+            />
+          ) : null)}
+      </SidebarBody>
       {footer != null ? (
-        <div className="isb-foot">{footer}</div>
+        <SidebarFooter>{footer}</SidebarFooter>
       ) : footerItems.length > 0 ? (
-        <div className="isb-foot">
+        <SidebarFooter>
           {footerItems.map((item) => (
-            <Item
+            <SidebarItem
               key={item.id}
               item={item}
               active={activeItem === item.id}
-              collapsed={collapsed}
               badge={badges[item.id] ?? item.badge}
               onClick={() => handleItem(item)}
-              renderItem={renderItem}
-              {...hover}
             />
           ))}
-        </div>
+        </SidebarFooter>
       ) : null}
+    </>
+  );
 
-      {tip && (
-        <div className="isb-floatip" style={{ top: tip.top }}>
-          {tip.lbl}
-        </div>
-      )}
-    </aside>
+  return (
+    <SidebarProvider value={contextValue}>
+      <aside
+        className={cx(
+          'iskra-sb',
+          collapsed && 'isb-c',
+          collapsed && tipRdy && 'isb-tip-rdy',
+          desktopOnly && 'iskra-sb--desktop-only',
+          theme,
+          className,
+        )}
+        ref={sbRef}
+        role="navigation"
+        aria-label={resolvedAriaLabel}
+      >
+        {isCompoundMode ? children : legacyBody}
+        {tip && (
+          <div className="isb-floatip" style={{ top: tip.top }}>
+            {tip.lbl}
+          </div>
+        )}
+      </aside>
+    </SidebarProvider>
   );
 }
+
+/**
+ * Sidebar — universal app navigation shell. Supply `groups` + `brand` per product,
+ * or compose with `Sidebar.Item`, `Sidebar.Group`, etc. Presets live in `@iskra-ui/core`.
+ */
+export const Sidebar = Object.assign(SidebarRoot, {
+  Brand: SidebarBrand,
+  Header: SidebarHeader,
+  Body: SidebarBody,
+  Group: SidebarGroup,
+  Section: SidebarSection,
+  Item: SidebarItem,
+  Divider: SidebarDivider,
+  Footer: SidebarFooter,
+  Collapser: SidebarCollapser,
+});

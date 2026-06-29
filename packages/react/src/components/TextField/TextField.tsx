@@ -1,4 +1,5 @@
 import { useId, useRef, useState, type InputHTMLAttributes, type ReactNode } from 'react';
+import { useIskraT } from '../../i18n/useIskraT.js';
 import { cx } from '../../utils/cx.js';
 import './TextField.css';
 
@@ -42,9 +43,11 @@ export function TextField({
   id,
   className,
   wrapClassName,
-  clearLabel = 'Очистить',
+  clearLabel,
   ...rest
 }: TextFieldProps) {
+  const t = useIskraT();
+  const resolvedClearLabel = clearLabel ?? t('common.clear');
   const autoId = useId();
   const inputId = id ?? `ik-tf-${autoId}`;
   const inputRef = useRef<HTMLInputElement>(null);
@@ -117,7 +120,7 @@ export function TextField({
             type="button"
             className="ik-tf-clear"
             onClick={handleClear}
-            aria-label={clearLabel}
+            aria-label={resolvedClearLabel}
           >
             <svg
               width="13"

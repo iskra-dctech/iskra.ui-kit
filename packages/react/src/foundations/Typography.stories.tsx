@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useStoryT } from '../storybook/useStoryT.js';
 import { DocsNote, TypeRow } from './_docs.js';
 
 const meta = {
@@ -54,46 +55,49 @@ export const Display: Story = {
 };
 
 export const Body: Story = {
-  render: () => (
-    <div style={{ maxWidth: 700, fontSize: 14 }}>
-      <TypeRow
-        spec="UI · 14/400"
-        style={{
-          fontSize: 'var(--text-ui)',
-          fontWeight: 'var(--wt-ui)',
-          lineHeight: 'var(--lh-ui)',
-          color: 'var(--fg1)',
-          fontFamily: 'var(--font-ui)',
-        }}
-      >
-        Платформа сопоставляет ожидаемое и наблюдаемое состояние.
-      </TypeRow>
-      <TypeRow
-        spec="UI · 14/500"
-        style={{
-          fontSize: 'var(--text-ui-med)',
-          fontWeight: 'var(--wt-ui-med)',
-          lineHeight: 'var(--lh-ui)',
-          color: 'var(--fg1)',
-          fontFamily: 'var(--font-ui)',
-        }}
-      >
-        Force Sync · Детали · Power Reset
-      </TypeRow>
-      <TypeRow
-        spec="SMALL · 12/400"
-        style={{
-          fontSize: 'var(--text-small)',
-          lineHeight: 'var(--lh-sm)',
-          color: 'var(--fg2)',
-          fontFamily: 'var(--font-ui)',
-          borderBottom: 'none',
-        }}
-      >
-        Вспомогательная информация, метаданные, подписи к полям ввода.
-      </TypeRow>
-    </div>
-  ),
+  render: () => {
+    const t = useStoryT();
+    return (
+      <div style={{ maxWidth: 700, fontSize: 14 }}>
+        <TypeRow
+          spec="UI · 14/400"
+          style={{
+            fontSize: 'var(--text-ui)',
+            fontWeight: 'var(--wt-ui)',
+            lineHeight: 'var(--lh-ui)',
+            color: 'var(--fg1)',
+            fontFamily: 'var(--font-ui)',
+          }}
+        >
+          {t('demo.typography.body')}
+        </TypeRow>
+        <TypeRow
+          spec="UI · 14/500"
+          style={{
+            fontSize: 'var(--text-ui-med)',
+            fontWeight: 'var(--wt-ui-med)',
+            lineHeight: 'var(--lh-ui)',
+            color: 'var(--fg1)',
+            fontFamily: 'var(--font-ui)',
+          }}
+        >
+          {t('demo.typography.actionLabels')}
+        </TypeRow>
+        <TypeRow
+          spec="SMALL · 12/400"
+          style={{
+            fontSize: 'var(--text-small)',
+            lineHeight: 'var(--lh-sm)',
+            color: 'var(--fg2)',
+            fontFamily: 'var(--font-ui)',
+            borderBottom: 'none',
+          }}
+        >
+          {t('demo.typography.meta')}
+        </TypeRow>
+      </div>
+    );
+  },
 };
 
 const MONO_LABELS = ['Fleet in Sync', 'Inventory', 'Reconciler', 'Control & Monitoring'] as const;

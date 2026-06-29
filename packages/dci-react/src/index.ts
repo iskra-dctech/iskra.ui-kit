@@ -22,3 +22,10 @@ export {
   type ApiKeyScope,
   type ApiKeyDraft,
 } from './components/ApiKeyModal/ApiKeyModal.js';
+export { DciDashboard, type DciDashboardProps } from './components/DciDashboard/index.js';
+export {
+  createMockDciMetricSource,
+  getDciMockMetrics,
+  DCI_MOCK_METRICS,
+  type DciMetricSource,
+} from './metrics/catalog.js';

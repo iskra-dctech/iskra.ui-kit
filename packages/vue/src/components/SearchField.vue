@@ -6,6 +6,7 @@ export type SearchFieldVariant = 'default' | 'inline';
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { createId } from '@iskra-ui/core';
+import { useIskraT } from '../i18n/useIskraT.js';
 import Icon from './Icon.vue';
 import { cx } from '../utils/cx.js';
 
@@ -27,11 +28,13 @@ const props = withDefaults(
     variant: 'default',
     clearable: true,
     disabled: false,
-    placeholder: 'Поиск…',
-    clearLabel: 'Очистить',
     enableShortcut: false,
   },
 );
+
+const t = useIskraT();
+const resolvedPlaceholder = computed(() => props.placeholder ?? t('common.search'));
+const resolvedClearLabel = computed(() => props.clearLabel ?? t('common.clear'));
 
 const emit = defineEmits<{
   'update:modelValue': [value: string];
@@ -91,15 +94,15 @@ onUnmounted(() => document.removeEventListener('keydown', onKey));
         class="ik-sf-input"
         :value="modelValue"
         :disabled="disabled"
-        :placeholder="placeholder"
-        :aria-label="placeholder"
+        :placeholder="resolvedPlaceholder"
+        :aria-label="resolvedPlaceholder"
         @input="onInput"
       />
       <button
         v-if="showClear"
         type="button"
         class="ik-sf-clear"
-        :aria-label="clearLabel"
+        :aria-label="resolvedClearLabel"
         @click="onClear"
       >
         <Icon name="close" :size="13" />

@@ -1,0 +1,59 @@
+{
+  "name": "@iskra-ui/i18n",
+  "version": "0.2.0",
+  "description": "Iskra UIKit internationalization — locale catalogs and message resolution for React and Vue packages.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iskra-dctech/iskra.ui-kit.git",
+    "directory": "packages/i18n"
+  },
+  "homepage": "https://github.com/iskra-dctech/iskra.ui-kit#readme",
+  "bugs": {
+    "url": "https://github.com/iskra-dctech/iskra.ui-kit/issues"
+  },
+  "keywords": [
+    "iskra",
+    "design-system",
+    "i18n",
+    "localization",
+    "ui-kit"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./locales/en": {
+      "types": "./dist/catalogs/en.d.ts",
+      "import": "./dist/catalogs/en.js"
+    },
+    "./locales/ru": {
+      "types": "./dist/catalogs/ru.d.ts",
+      "import": "./dist/catalogs/ru.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b tsconfig.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@iskra-ui/tsconfig": "workspace:*",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}

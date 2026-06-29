@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useStoryT } from '../../storybook/useStoryT.js';
 import { Button } from './Button.js';
 
 const meta = {
@@ -21,7 +22,14 @@ export const Primary: Story = {};
 export const Outline: Story = { args: { variant: 'outline' } };
 export const Secondary: Story = { args: { variant: 'secondary' } };
 export const Ghost: Story = { args: { variant: 'ghost' } };
-export const Destructive: Story = { args: { variant: 'destructive', children: 'Удалить' } };
+
+export const Destructive: Story = {
+  render: () => {
+    const t = useStoryT();
+    return <Button variant="destructive">{t('demo.labels.delete')}</Button>;
+  },
+};
+
 export const Loading: Story = { args: { loading: true } };
 export const Disabled: Story = { args: { disabled: true } };
 

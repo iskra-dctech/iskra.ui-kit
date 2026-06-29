@@ -1,5 +1,12 @@
 # @iskra-ui/tokens
 
+## 0.2.0
+
+### Minor Changes
+
+- c5a8fad: Add `touch-min` sizing token and shared breakpoint constants for mobile V1 responsive hooks.
+- d7728b6: Align breakpoint constant keys with CSS custom property token names.
+
 ## 0.1.2
 
 ### Patch Changes

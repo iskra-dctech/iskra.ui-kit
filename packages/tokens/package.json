@@ -1,6 +1,6 @@
 {
   "name": "@iskra-ui/tokens",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Искра.DCI design tokens (DTCG) → CSS variables + typed TS map via Style Dictionary.",
   "license": "Apache-2.0",
   "repository": {

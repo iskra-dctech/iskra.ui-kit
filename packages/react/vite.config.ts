@@ -13,7 +13,7 @@ export default defineConfig({
     },
     sourcemap: true,
     rollupOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
+      external: ['react', 'react-dom', 'react/jsx-runtime', 'recharts', 'react-grid-layout'],
       output: {
         globals: { react: 'React', 'react-dom': 'ReactDOM' },
         assetFileNames: 'styles.css',

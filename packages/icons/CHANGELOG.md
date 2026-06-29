@@ -1,5 +1,11 @@
 # @iskra-ui/icons
 
+## 0.2.0
+
+### Minor Changes
+
+- 967cecb: Add charting icons for dashboard components.
+
 ## 0.1.2
 
 ### Patch Changes

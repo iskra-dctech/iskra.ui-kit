@@ -1,5 +1,12 @@
 # @iskra-ui/core
 
+## 0.2.0
+
+### Minor Changes
+
+- e95b86c: Add shared anchor/cursor positioning helpers and menu keyboard navigation primitives so React and Vue reuse the same headless logic.
+- 967cecb: Expand dashboard-related exports for chart and grid layout integration.
+
 ## 0.1.2
 
 ### Patch Changes

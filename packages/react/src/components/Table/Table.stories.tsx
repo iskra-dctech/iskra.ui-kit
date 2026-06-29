@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useStoryT } from '../../storybook/useStoryT.js';
 import { Table, type TableColumn, type TableSort } from './Table.js';
 import { Badge } from '../Badge/Badge.js';
 import { EmptyState } from '../EmptyState/EmptyState.js';
@@ -12,60 +13,109 @@ interface Device {
   status: 'ok' | 'drift' | 'off';
 }
 
-const columns: TableColumn<Device>[] = [
-  { key: 'host', header: 'Хост', sortable: true },
-  {
-    key: 'ip',
-    header: 'IP',
-    align: 'left',
-    filter: <TextField size="s" placeholder="Фильтр IP" aria-label="Фильтр IP" />,
-  },
-  {
-    key: 'status',
-    header: 'Статус',
-    render: (r) => (
-      <Badge
-        variant={r.status === 'ok' ? 'success' : r.status === 'drift' ? 'warning' : 'neutral'}
-        dot
-      >
-        {r.status}
-      </Badge>
-    ),
-  },
-];
-
 const data: Device[] = [
   { id: '1', host: 'leaf-07.msk', ip: '10.0.2.7', status: 'ok' },
   { id: '2', host: 'leaf-08.msk', ip: '10.0.2.8', status: 'drift' },
   { id: '3', host: 'spine-01.msk', ip: '10.0.1.1', status: 'off' },
 ];
 
+function useDeviceColumns() {
+  const t = useStoryT();
+  return useMemo<TableColumn<Device>[]>(
+    () => [
+      { key: 'host', header: t('demo.labels.host'), sortable: true },
+      {
+        key: 'ip',
+        header: 'IP',
+        align: 'left',
+        filter: (
+          <TextField
+            size="s"
+            placeholder={t('demo.labels.ipFilter')}
+            aria-label={t('demo.labels.ipFilter')}
+          />
+        ),
+      },
+      {
+        key: 'status',
+        header: t('demo.labels.status'),
+        render: (r) => (
+          <Badge
+            variant={r.status === 'ok' ? 'success' : r.status === 'drift' ? 'warning' : 'neutral'}
+            dot
+          >
+            {r.status}
+          </Badge>
+        ),
+      },
+    ],
+    [t],
+  );
+}
+
 const meta = {
   title: 'Patterns/Table',
   component: Table<Device>,
   parameters: { layout: 'padded' },
+  args: { columns: [], data: [] },
 } satisfies Meta<typeof Table<Device>>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
-  args: { columns, data, getRowId: (r) => r.id, caption: 'Устройства' },
+  render: () => {
+    const t = useStoryT();
+    const columns = useDeviceColumns();
+    return (
+      <Table
+        columns={columns}
+        data={data}
+        getRowId={(r) => r.id}
+        caption={t('demo.labels.devices')}
+      />
+    );
+  },
 };
-export const Loading: Story = { args: { columns, data: [], loading: true } };
+
+export const Loading: Story = {
+  render: () => {
+    const columns = useDeviceColumns();
+    return <Table columns={columns} data={[]} loading />;
+  },
+};
+
 export const Empty: Story = {
-  args: { columns, data: [], empty: <EmptyState title="Нет устройств" /> },
+  render: () => {
+    const t = useStoryT();
+    const columns = useDeviceColumns();
+    return (
+      <Table
+        columns={columns}
+        data={[]}
+        empty={<EmptyState title={t('demo.titles.noDevices')} />}
+      />
+    );
+  },
 };
 
 export const Sortable: Story = {
-  args: { columns, data, getRowId: (r) => r.id },
-  render: (args) => {
+  render: () => {
+    const columns = useDeviceColumns();
     const [sort, setSort] = useState<TableSort | null>(null);
-    const sorted = [...args.data].sort((a, b) => {
+    const sorted = [...data].sort((a, b) => {
       if (!sort) return 0;
       const cmp = a.host.localeCompare(b.host);
       return sort.direction === 'asc' ? cmp : -cmp;
     });
-    return <Table {...args} data={sorted} sort={sort} onSortChange={setSort} />;
+    return (
+      <Table
+        columns={columns}
+        data={sorted}
+        getRowId={(r) => r.id}
+        sort={sort}
+        onSortChange={setSort}
+      />
+    );
   },
 };

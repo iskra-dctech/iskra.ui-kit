@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref, watch } from 'vue';
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import { createFocusTrap } from '@iskra-ui/core';
+import { useIskraT } from '../i18n/useIskraT.js';
 import { cx } from '../utils/cx.js';
 
 export type ModalSize = 's' | 'm' | 'l';
@@ -21,9 +22,11 @@ const props = withDefaults(
     closeOnEsc: true,
     closeOnClickOutside: true,
     showClose: true,
-    closeLabel: 'Закрыть',
   },
 );
+
+const t = useIskraT();
+const resolvedCloseLabel = computed(() => props.closeLabel ?? t('common.close'));
 
 const emit = defineEmits<{ close: [] }>();
 
@@ -87,7 +90,7 @@ onUnmounted(() => {
             v-if="showClose"
             type="button"
             class="ik-modal-close"
-            :aria-label="closeLabel"
+            :aria-label="resolvedCloseLabel"
             @click="emit('close')"
           >
             <svg

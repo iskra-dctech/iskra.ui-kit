@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useStoryT } from '../storybook/useStoryT.js';
 import { TokenSwatch } from './_docs.js';
 
 const meta = {
@@ -66,46 +67,64 @@ export const Accent: Story = {
   ),
 };
 
-const STATUS_ROWS = [
-  { token: '--status-ok', name: 'Sync / Online', use: 'синхронизация, успех' },
-  { token: '--status-warn', name: 'Drift / Warning', use: 'расхождение состояния' },
-  { token: '--status-err', name: 'Error / Critical', use: 'ошибка, потеря связи' },
-  { token: '--status-off', name: 'Maintenance', use: 'обслуживание, отключено' },
-  { token: '--status-info', name: 'Info / Neutral', use: 'инфо (минимально)' },
+const STATUS_TOKEN_KEYS = [
+  '--status-ok',
+  '--status-warn',
+  '--status-err',
+  '--status-off',
+  '--status-info',
+] as const;
+
+const STATUS_NAMES = [
+  'Sync / Online',
+  'Drift / Warning',
+  'Error / Critical',
+  'Maintenance',
+  'Info / Neutral',
 ] as const;
 
 export const Status: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 9, maxWidth: 700 }}>
-      {STATUS_ROWS.map((row) => (
-        <div key={row.token} style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-          <span
-            style={{
-              width: 14,
-              height: 14,
-              borderRadius: '50%',
-              flexShrink: 0,
-              background: `var(${row.token})`,
-            }}
-          />
-          <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--fg1)', width: 150 }}>
-            {row.name}
-          </span>
-          <span
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: 11,
-              color: 'var(--fg2)',
-              width: 100,
-            }}
-          >
-            {row.token}
-          </span>
-          <span style={{ fontSize: 12, color: 'var(--fg2)' }}>{row.use}</span>
-        </div>
-      ))}
-    </div>
-  ),
+  render: () => {
+    const t = useStoryT();
+    const uses = [
+      t('demo.colors.syncUse'),
+      t('demo.colors.driftUse'),
+      t('demo.colors.errorUse'),
+      t('demo.colors.maintenanceUse'),
+      t('demo.colors.infoUse'),
+    ];
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 9, maxWidth: 700 }}>
+        {STATUS_TOKEN_KEYS.map((token, index) => (
+          <div key={token} style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+            <span
+              style={{
+                width: 14,
+                height: 14,
+                borderRadius: '50%',
+                flexShrink: 0,
+                background: `var(${token})`,
+              }}
+            />
+            <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--fg1)', width: 150 }}>
+              {STATUS_NAMES[index]}
+            </span>
+            <span
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: 11,
+                color: 'var(--fg2)',
+                width: 100,
+              }}
+            >
+              {token}
+            </span>
+            <span style={{ fontSize: 12, color: 'var(--fg2)' }}>{uses[index]}</span>
+          </div>
+        ))}
+      </div>
+    );
+  },
 };
 
 const THEME_SWATCHES = ['--bg', '--panel', '--line', '--fg1', '--fg2', '--accent-safe'] as const;
@@ -159,20 +178,23 @@ const LightThemePanel = ({
 );
 
 export const LightThemes: Story = {
-  render: () => (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: 14,
-        maxWidth: 700,
-        padding: 18,
-        background: 'var(--panel-muted)',
-        borderRadius: 'var(--radius)',
-      }}
-    >
-      <LightThemePanel themeClass="theme-cold" label="Холодный офф-вайт" />
-      <LightThemePanel themeClass="theme-warm" label="Тёплый песочный" />
-    </div>
-  ),
+  render: () => {
+    const t = useStoryT();
+    return (
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: 14,
+          maxWidth: 700,
+          padding: 18,
+          background: 'var(--panel-muted)',
+          borderRadius: 'var(--radius)',
+        }}
+      >
+        <LightThemePanel themeClass="theme-cold" label={t('demo.colors.coldLabel')} />
+        <LightThemePanel themeClass="theme-warm" label={t('demo.colors.warmLabel')} />
+      </div>
+    );
+  },
 };

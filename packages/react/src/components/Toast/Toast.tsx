@@ -9,6 +9,7 @@ import {
   type ReactNode,
 } from 'react';
 import { createPortal } from 'react-dom';
+import { useIskraT } from '../../i18n/useIskraT.js';
 import { cx } from '../../utils/cx.js';
 import './Toast.css';
 
@@ -39,6 +40,7 @@ let counter = 0;
 
 /** ToastProvider — owns the toast queue and renders the viewport. Wrap your app once. */
 export function ToastProvider({ children }: { children: ReactNode }) {
+  const t = useIskraT();
   const [toasts, setToasts] = useState<ToastRecord[]>([]);
   const timers = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
 
@@ -78,7 +80,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
       {children}
       {typeof document !== 'undefined' &&
         createPortal(
-          <div className="ik-toast-viewport" role="region" aria-label="Уведомления">
+          <div className="ik-toast-viewport" role="region" aria-label={t('a11y.notifications')}>
             {toasts.map((t) => (
               <ToastItem key={t.id} toast={t} onClose={() => dismiss(t.id)} />
             ))}
@@ -97,7 +99,9 @@ export function useToast(): ToastContextValue {
 }
 
 function ToastItem({ toast, onClose }: { toast: ToastRecord; onClose: () => void }) {
-  const { title, description, variant = 'info', action, closeLabel = 'Закрыть' } = toast;
+  const t = useIskraT();
+  const { title, description, variant = 'info', action, closeLabel } = toast;
+  const resolvedCloseLabel = closeLabel ?? t('common.close');
   const role = variant === 'error' || variant === 'warning' ? 'alert' : 'status';
   return (
     <div className={cx('ik-toast', `ik-toast-${variant}`)} role={role}>
@@ -106,7 +110,12 @@ function ToastItem({ toast, onClose }: { toast: ToastRecord; onClose: () => void
         {description && <div className="ik-toast-desc">{description}</div>}
         {action && <div className="ik-toast-action">{action}</div>}
       </div>
-      <button type="button" className="ik-toast-close" onClick={onClose} aria-label={closeLabel}>
+      <button
+        type="button"
+        className="ik-toast-close"
+        onClick={onClose}
+        aria-label={resolvedCloseLabel}
+      >
         <svg
           width="12"
           height="12"

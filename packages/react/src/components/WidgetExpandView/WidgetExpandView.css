@@ -1,0 +1,17 @@
+/* ИСКРА.DCI — Widget expand (near-fullscreen modal). */
+.ik-modal.ik-widget-expand {
+  max-width: min(1200px, calc(100vw - 48px));
+  width: 100%;
+  min-height: min(720px, calc(100vh - 48px));
+}
+.ik-widget-expand-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.ik-widget-expand-chart {
+  flex: 1;
+  min-height: 400px;
+}

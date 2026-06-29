@@ -1,6 +1,6 @@
 {
   "name": "@iskra-ui/react",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Искра.DCI React component library (Hard-Shell Minimal).",
   "license": "Apache-2.0",
   "repository": {
@@ -48,11 +48,23 @@
   },
   "peerDependencies": {
     "react": ">=18",
-    "react-dom": ">=18"
+    "react-dom": ">=18",
+    "recharts": ">=2.12.0",
+    "react-grid-layout": ">=1.4.0"
+  },
+  "peerDependenciesMeta": {
+    "recharts": {
+      "optional": false
+    },
+    "react-grid-layout": {
+      "optional": false
+    }
   },
   "dependencies": {
     "@iskra-ui/core": "workspace:*",
-    "@iskra-ui/icons": "workspace:*"
+    "@iskra-ui/i18n": "workspace:*",
+    "@iskra-ui/icons": "workspace:*",
+    "@iskra-ui/tokens": "workspace:*"
   },
   "devDependencies": {
     "@iskra-ui/styles": "workspace:*",
@@ -68,6 +80,9 @@
     "jsdom": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
+    "recharts": "catalog:",
+    "react-grid-layout": "catalog:",
+    "@types/react-grid-layout": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",
     "vitest": "catalog:",

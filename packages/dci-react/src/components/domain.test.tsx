@@ -64,10 +64,10 @@ describe('ApiKeyModal', () => {
   it('enables submit only with a name and a scope', async () => {
     const onCreate = vi.fn();
     render(<ApiKeyModal open onClose={() => {}} onCreate={onCreate} />);
-    const submit = screen.getByRole('button', { name: 'Создать ключ' });
+    const submit = screen.getByRole('button', { name: 'Create key' });
     expect(submit).toBeDisabled();
 
-    await userEvent.type(screen.getByLabelText(/Название ключа/i), 'ci-bot');
+    await userEvent.type(screen.getByLabelText(/Key name/i), 'ci-bot');
     await userEvent.click(screen.getAllByRole('checkbox')[0]!);
     expect(submit).toBeEnabled();
 

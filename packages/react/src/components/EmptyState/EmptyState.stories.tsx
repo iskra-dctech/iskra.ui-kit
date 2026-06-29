@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useStoryT } from '../../storybook/useStoryT.js';
 import { EmptyState } from './EmptyState.js';
 import { Icon } from '../Icon/Icon.js';
 import { Button } from '../Button/Button.js';
@@ -12,11 +13,16 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const NoDevices: Story = {
-  args: {
-    icon: <Icon name="server" size={32} />,
-    title: 'Нет устройств',
-    description: 'Добавьте первое устройство в инвентарь, чтобы начать мониторинг.',
-    action: <Button size="s">Добавить устройство</Button>,
+  render: () => {
+    const t = useStoryT();
+    return (
+      <EmptyState
+        icon={<Icon name="server" size={32} />}
+        title={t('demo.titles.noDevices')}
+        description={t('demo.descriptions.noDevices')}
+        action={<Button size="s">{t('demo.labels.addDevice')}</Button>}
+      />
+    );
   },
 };
 

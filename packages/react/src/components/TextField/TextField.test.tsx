@@ -19,7 +19,7 @@ describe('TextField', () => {
 
   it('clears an uncontrolled value', async () => {
     render(<TextField label="Хост" clearable defaultValue="leaf-07" />);
-    await userEvent.click(screen.getByRole('button', { name: 'Очистить' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Clear' }));
     expect(screen.getByLabelText('Хост')).toHaveValue('');
   });
 

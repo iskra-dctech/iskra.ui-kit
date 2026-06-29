@@ -1,5 +1,6 @@
 import { useEffect, useRef, type MouseEvent, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
+import { useIskraT } from '../../i18n/useIskraT.js';
 import { useFocusTrap } from '../../utils/useFocusTrap.js';
 import { cx } from '../../utils/cx.js';
 import './Modal.css';
@@ -39,10 +40,12 @@ export function Modal({
   closeOnEsc = true,
   closeOnOverlayClick = true,
   showClose = true,
-  closeLabel = 'Закрыть',
+  closeLabel,
   className,
   returnFocusRef,
 }: ModalProps) {
+  const t = useIskraT();
+  const resolvedCloseLabel = closeLabel ?? t('common.close');
   const dialogRef = useRef<HTMLDivElement>(null);
   const prevFocusRef = useRef<HTMLElement | null>(null);
   useFocusTrap(dialogRef, open);
@@ -113,7 +116,7 @@ export function Modal({
                 type="button"
                 className="ik-modal-close"
                 onClick={onClose}
-                aria-label={closeLabel}
+                aria-label={resolvedCloseLabel}
               >
                 <svg
                   width="13"

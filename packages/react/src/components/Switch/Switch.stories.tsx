@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useStoryT } from '../../storybook/useStoryT.js';
 import { Switch } from './Switch.js';
 
 const meta = {
@@ -12,7 +13,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 export const On: Story = { args: { defaultChecked: true } };
+
 export const WithDescription: Story = {
-  args: { description: 'Анимация дыхания на странице устройства' },
+  render: () => {
+    const t = useStoryT();
+    return <Switch label="Live-Pulse" description={t('demo.descriptions.enablePulse')} />;
+  },
 };
+
 export const Disabled: Story = { args: { disabled: true, defaultChecked: true } };

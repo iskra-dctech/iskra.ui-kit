@@ -24,6 +24,24 @@ import { Button, TextField, Badge } from '@iskra-ui/vue';
 </template>
 ```
 
+## Internationalization
+
+Default locale is **English**. Use `IskraProvider` or `IskraLocalePlugin`:
+
+```vue
+<script setup lang="ts">
+import { IskraProvider } from '@iskra-ui/vue';
+</script>
+
+<template>
+  <IskraProvider locale="ru">
+    <App />
+  </IskraProvider>
+</template>
+```
+
+**Migration:** wrap the app in `<IskraProvider locale="ru">` to keep Russian built-in strings after upgrading.
+
 ## Docs
 
 https://github.com/iskra-dctech/iskra.ui-kit/blob/master/docs/PACKAGES.md#iskra-uivue

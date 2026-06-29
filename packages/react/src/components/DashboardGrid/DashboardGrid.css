@@ -1,0 +1,45 @@
+@import 'react-grid-layout/css/styles.css';
+
+/* ИСКРА.DCI — Dashboard grid (react-grid-layout). */
+.ik-dashboard-grid {
+  position: relative;
+  width: 100%;
+}
+.ik-dashboard-grid .react-grid-item {
+  transition: box-shadow 0.15s ease;
+}
+.ik-dashboard-grid.is-editable .react-grid-item {
+  cursor: grab;
+}
+.ik-dashboard-grid.is-editable .react-grid-item.react-draggable-dragging {
+  cursor: grabbing;
+  z-index: 2;
+  box-shadow: 0 0 0 1px var(--accent, #00ffc2);
+}
+.ik-dashboard-grid .react-resizable-handle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  bottom: 4px;
+  right: 4px;
+  background: transparent;
+  cursor: se-resize;
+}
+.ik-dashboard-grid .react-resizable-handle::after {
+  content: '';
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--fg3, #6e7681);
+  border-bottom: 2px solid var(--fg3, #6e7681);
+}
+.ik-dashboard-grid.is-editable .react-resizable-handle::after {
+  border-color: var(--accent, #00ffc2);
+}
+.ik-dashboard-grid-placeholder {
+  background: color-mix(in srgb, var(--accent, #00ffc2) 12%, transparent);
+  border: 1px dashed var(--accent, #00ffc2);
+  border-radius: var(--radius, 4px);
+}
