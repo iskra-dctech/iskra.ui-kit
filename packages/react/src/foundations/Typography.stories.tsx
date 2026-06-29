@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { useStoryT } from '../storybook/useStoryT.js'
-import { DocsNote, TypeRow } from './_docs.js'
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useStoryT } from '../storybook/useStoryT.js';
+import { DocsNote, TypeRow } from './_docs.js';
 
 const meta = {
   title: 'Foundations/Typography',
@@ -56,7 +56,7 @@ export const Display: Story = {
 
 export const Body: Story = {
   render: () => {
-    const t = useStoryT()
+    const t = useStoryT();
     return (
       <div style={{ maxWidth: 700, fontSize: 14 }}>
         <TypeRow
@@ -96,9 +96,9 @@ export const Body: Story = {
           {t('demo.typography.meta')}
         </TypeRow>
       </div>
-    )
+    );
   },
-}
+};
 
 const MONO_LABELS = ['Fleet in Sync', 'Inventory', 'Reconciler', 'Control & Monitoring'] as const;
 

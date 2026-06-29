@@ -1,25 +1,25 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { useState } from 'react'
-import { useStoryT } from '../../storybook/useStoryT.js'
-import { AppHeader } from './AppHeader.js'
-import { Avatar } from '../Avatar/Avatar.js'
-import { Icon } from '../Icon/Icon.js'
-import { IconButton } from '../IconButton/IconButton.js'
-import { Popover } from '../Popover/Popover.js'
-import { SearchField } from '../SearchField/SearchField.js'
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useState } from 'react';
+import { useStoryT } from '../../storybook/useStoryT.js';
+import { AppHeader } from './AppHeader.js';
+import { Avatar } from '../Avatar/Avatar.js';
+import { Icon } from '../Icon/Icon.js';
+import { IconButton } from '../IconButton/IconButton.js';
+import { Popover } from '../Popover/Popover.js';
+import { SearchField } from '../SearchField/SearchField.js';
 
 const meta = {
   title: 'Patterns/AppHeader',
   component: AppHeader,
   parameters: { layout: 'fullscreen' },
-} satisfies Meta<typeof AppHeader>
+} satisfies Meta<typeof AppHeader>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Composable: Story = {
   render: () => {
-    const t = useStoryT()
+    const t = useStoryT();
     return (
       <AppHeader
         leading={
@@ -32,7 +32,12 @@ export const Composable: Story = {
         }
         trailing={
           <>
-            <SearchField placeholder={t('common.search')} shortcut="⌘K" enableShortcut style={{ width: 240 }} />
+            <SearchField
+              placeholder={t('common.search')}
+              shortcut="⌘K"
+              enableShortcut
+              style={{ width: 240 }}
+            />
             <AppHeader.Actions>
               <Popover
                 trigger={
@@ -43,7 +48,9 @@ export const Composable: Story = {
                   />
                 }
               >
-                <div style={{ padding: 12, fontSize: 12 }}>{t('demo.labels.noNewNotifications')}</div>
+                <div style={{ padding: 12, fontSize: 12 }}>
+                  {t('demo.labels.noNewNotifications')}
+                </div>
               </Popover>
               <IconButton
                 icon={<Avatar name={t('demo.labels.sampleUser1')} size="sm" status="online" />}
@@ -55,14 +62,14 @@ export const Composable: Story = {
           </>
         }
       />
-    )
+    );
   },
-}
+};
 
 export const SlotApi: Story = {
   render: () => {
-    const t = useStoryT()
-    const [notifOpen, setNotifOpen] = useState(false)
+    const t = useStoryT();
+    const [notifOpen, setNotifOpen] = useState(false);
     return (
       <AppHeader>
         <AppHeader.Leading>
@@ -71,7 +78,11 @@ export const SlotApi: Story = {
           </AppHeader.Indicator>
         </AppHeader.Leading>
         <AppHeader.Trailing>
-          <SearchField placeholder={t('demo.labels.globalSearch')} variant="inline" style={{ width: 220 }} />
+          <SearchField
+            placeholder={t('demo.labels.globalSearch')}
+            variant="inline"
+            style={{ width: 220 }}
+          />
           <AppHeader.Actions>
             <Popover
               open={notifOpen}
@@ -96,7 +107,9 @@ export const SlotApi: Story = {
                 <div style={{ fontWeight: 600, fontSize: 12, color: 'var(--fg2)' }}>
                   {t('demo.labels.notificationsHeader')}
                 </div>
-                <div style={{ fontSize: 12, color: 'var(--fg2)' }}>{t('demo.labels.noNewNotifications')}</div>
+                <div style={{ fontSize: 12, color: 'var(--fg2)' }}>
+                  {t('demo.labels.noNewNotifications')}
+                </div>
               </div>
             </Popover>
             <IconButton
@@ -107,6 +120,6 @@ export const SlotApi: Story = {
           </AppHeader.Actions>
         </AppHeader.Trailing>
       </AppHeader>
-    )
+    );
   },
-}
+};

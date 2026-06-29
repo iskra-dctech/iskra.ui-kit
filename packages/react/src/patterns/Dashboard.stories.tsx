@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
-import type { ChartType, MetricDefinition, MetricSeries, WidgetConfig } from '@iskra-ui/core'
-import { createLocalStorageDashboardStore } from '@iskra-ui/core'
-import { useStoryT } from '../storybook/useStoryT.js'
+import { useEffect, useMemo, useRef, useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { ChartType, MetricDefinition, MetricSeries, WidgetConfig } from '@iskra-ui/core';
+import { createLocalStorageDashboardStore } from '@iskra-ui/core';
+import { useStoryT } from '../storybook/useStoryT.js';
 import {
   Button,
   Chart,
@@ -27,7 +27,7 @@ function mockFetchSeries(metricId: string, _chartType: ChartType): Promise<Metri
   const now = Date.now();
   const points = Array.from({ length: 24 }, (_, i) => ({
     timestamp: now - (23 - i) * 3600000,
-    value: 40 + Math.sin(i / 3) * 25 + (metricId.length * 3),
+    value: 40 + Math.sin(i / 3) * 25 + metricId.length * 3,
   }));
   return Promise.resolve({
     id: metricId,
@@ -40,7 +40,7 @@ function mockFetchSeries(metricId: string, _chartType: ChartType): Promise<Metri
 const store = createLocalStorageDashboardStore({ keyPrefix: 'iskra.story.dashboard' });
 
 function DashboardDemo() {
-  const t = useStoryT()
+  const t = useStoryT();
   const {
     dashboard,
     editable,
@@ -61,16 +61,26 @@ function DashboardDemo() {
   const [editing, setEditing] = useState<WidgetConfig | undefined>();
   const [expanded, setExpanded] = useState<WidgetConfig | null>(null);
 
-  const loadAll = useCallback(async () => {
-    for (const w of dashboard.widgets) {
-      const series = await mockFetchSeries(w.metricId, w.chartType);
-      setSeriesMap((prev) => ({ ...prev, [w.id]: series }));
-    }
-  }, [dashboard.widgets]);
+  const loadedSeriesRef = useRef<Set<string>>(new Set());
 
   useEffect(() => {
-    void loadAll();
-  }, [loadAll]);
+    let cancelled = false;
+
+    for (const widget of dashboard.widgets) {
+      if (loadedSeriesRef.current.has(widget.id)) continue;
+      loadedSeriesRef.current.add(widget.id);
+
+      void mockFetchSeries(widget.metricId, widget.chartType).then((series) => {
+        if (!cancelled) {
+          setSeriesMap((prev) => ({ ...prev, [widget.id]: series }));
+        }
+      });
+    }
+
+    return () => {
+      cancelled = true;
+    };
+  }, [dashboard.widgets]);
 
   const fetchPreview = useMemo(
     () => (metricId: string, chartType: ChartType) => mockFetchSeries(metricId, chartType),
@@ -87,7 +97,11 @@ function DashboardDemo() {
           setEditing(undefined);
           setEditorOpen(true);
         }}
-        actions={isSaving ? <span style={{ fontSize: 12, color: 'var(--fg3)' }}>{t('dashboard.saving')}</span> : null}
+        actions={
+          isSaving ? (
+            <span style={{ fontSize: 12, color: 'var(--fg3)' }}>{t('dashboard.saving')}</span>
+          ) : null
+        }
       />
 
       {dashboard.widgets.length === 0 ? (
@@ -152,11 +166,7 @@ function DashboardDemo() {
       />
 
       {expanded && (
-        <WidgetExpandView
-          open
-          onClose={() => setExpanded(null)}
-          title={expanded.title}
-        >
+        <WidgetExpandView open onClose={() => setExpanded(null)} title={expanded.title}>
           <Chart
             type={expanded.chartType}
             series={

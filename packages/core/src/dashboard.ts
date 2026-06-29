@@ -92,10 +92,7 @@ export function createEmptyDashboard(id: string, name: string): DashboardConfig 
   };
 }
 
-export function dashboardReducer(
-  state: DashboardConfig,
-  event: DashboardEvent,
-): DashboardConfig {
+export function dashboardReducer(state: DashboardConfig, event: DashboardEvent): DashboardConfig {
   const now = new Date().toISOString();
 
   switch (event.type) {
@@ -113,9 +110,7 @@ export function dashboardReducer(
     case 'UPDATE_WIDGET':
       return {
         ...state,
-        widgets: state.widgets.map((w) =>
-          w.id === event.widget.id ? event.widget : w,
-        ),
+        widgets: state.widgets.map((w) => (w.id === event.widget.id ? event.widget : w)),
         updatedAt: now,
       };
 

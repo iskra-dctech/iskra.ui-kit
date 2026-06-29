@@ -72,7 +72,11 @@ export function ContextMenuItem({
         if (idx >= 0) setActiveIndex(idx);
       }}
     >
-      {icon ? <span className="ik-context-menu-item-icon" aria-hidden="true">{icon}</span> : null}
+      {icon ? (
+        <span className="ik-context-menu-item-icon" aria-hidden="true">
+          {icon}
+        </span>
+      ) : null}
       <span className="ik-context-menu-item-label">{children}</span>
     </button>
   );

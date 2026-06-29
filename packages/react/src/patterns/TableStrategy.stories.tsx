@@ -1,10 +1,10 @@
-import { useMemo } from 'react'
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { useStoryT } from '../storybook/useStoryT.js'
-import { Badge } from '../components/Badge/Badge.js'
-import { Card } from '../components/Card/Card.js'
-import { DataList } from '../components/DataList/DataList.js'
-import { Table, type TableColumn } from '../components/Table/Table.js'
+import { useMemo } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useStoryT } from '../storybook/useStoryT.js';
+import { Badge } from '../components/Badge/Badge.js';
+import { Card } from '../components/Card/Card.js';
+import { DataList } from '../components/DataList/DataList.js';
+import { Table, type TableColumn } from '../components/Table/Table.js';
 
 const meta = {
   title: 'Patterns/TableStrategy',
@@ -17,17 +17,17 @@ const meta = {
       },
     },
   },
-} satisfies Meta
+} satisfies Meta;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 interface AuditRow {
-  id: string
-  actor: string
-  action: string
-  resource: string
-  ts: string
+  id: string;
+  actor: string;
+  action: string;
+  resource: string;
+  ts: string;
 }
 
 const auditRows: AuditRow[] = [
@@ -52,35 +52,35 @@ const auditRows: AuditRow[] = [
     resource: 'spine-01.msk',
     ts: '2026-06-18T08:01:00Z',
   },
-]
+];
 
 interface PermissionRow {
-  role: string
-  read: boolean
-  write: boolean
-  admin: boolean
-  audit: boolean
+  role: string;
+  read: boolean;
+  write: boolean;
+  admin: boolean;
+  audit: boolean;
 }
 
 const permissions: PermissionRow[] = [
   { role: 'viewer', read: true, write: false, admin: false, audit: false },
   { role: 'operator', read: true, write: true, admin: false, audit: true },
   { role: 'admin', read: true, write: true, admin: true, audit: true },
-]
+];
 
 interface SelectRow {
-  id: string
-  name: string
-  status: string
+  id: string;
+  name: string;
+  status: string;
 }
 
 const selectRows: SelectRow[] = [
   { id: 'd1', name: 'leaf-07.msk', status: 'sync' },
   { id: 'd2', name: 'spine-01.msk', status: 'drift' },
-]
+];
 
 function useAuditColumns() {
-  const t = useStoryT()
+  const t = useStoryT();
   return useMemo<TableColumn<AuditRow>[]>(
     () => [
       { key: 'ts', header: t('demo.labels.timeUtc'), sortable: true },
@@ -90,11 +90,11 @@ function useAuditColumns() {
       { key: 'id', header: t('demo.labels.eventId') },
     ],
     [t],
-  )
+  );
 }
 
 function usePermissionColumns() {
-  const t = useStoryT()
+  const t = useStoryT();
   return useMemo<TableColumn<PermissionRow>[]>(
     () => [
       { key: 'role', header: t('demo.labels.role') },
@@ -104,7 +104,7 @@ function usePermissionColumns() {
       { key: 'audit', header: 'Audit', render: (r) => (r.audit ? '✓' : '—') },
     ],
     [t],
-  )
+  );
 }
 
 export const HorizontalScroll: Story = {
@@ -112,21 +112,21 @@ export const HorizontalScroll: Story = {
     viewport: { defaultViewport: 'compact375' },
   },
   render: () => {
-    const auditColumns = useAuditColumns()
+    const auditColumns = useAuditColumns();
     return (
       <div style={{ maxWidth: 360 }}>
         <Table columns={auditColumns} data={auditRows} getRowId={(r) => r.id} />
       </div>
-    )
+    );
   },
-}
+};
 
 export const EntityCards: Story = {
   parameters: {
     viewport: { defaultViewport: 'compact375' },
   },
   render: () => {
-    const t = useStoryT()
+    const t = useStoryT();
     return (
       <DataList
         items={auditRows}
@@ -145,20 +145,20 @@ export const EntityCards: Story = {
           </Card>
         )}
       />
-    )
+    );
   },
-}
+};
 
 export const PermissionMatrix: Story = {
   render: () => {
-    const permColumns = usePermissionColumns()
-    return <Table columns={permColumns} data={permissions} getRowId={(r) => r.role} />
+    const permColumns = usePermissionColumns();
+    return <Table columns={permColumns} data={permissions} getRowId={(r) => r.role} />;
   },
-}
+};
 
 export const BulkSelectTable: Story = {
   render: () => {
-    const t = useStoryT()
+    const t = useStoryT();
     return (
       <Table
         columns={[
@@ -175,6 +175,6 @@ export const BulkSelectTable: Story = {
         getRowId={(r) => r.id}
         selectedRowId="d2"
       />
-    )
+    );
   },
-}
+};

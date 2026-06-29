@@ -42,7 +42,7 @@
 | Sidebar            |   ✅    |  ✅   |     —     | `nav`                     | Tab                      |
 | SearchField        |   ✅    |  ✅   |     —     | `input[type=search]`      | native / ⌘K              |
 | Popover            |   ✅    |  ✅   |     —     | `div[role=dialog]`        | Esc                      |
-| ContextMenu        |   ✅    |  ✅   |    ✅     | `div[role=menu]`          | Arrows/Home/End / Esc      |
+| ContextMenu        |   ✅    |  ✅   |    ✅     | `div[role=menu]`          | Arrows/Home/End / Esc    |
 | AppHeader          |   ✅    |  ✅   |     —     | `header`                  | —                        |
 | Drawer             |   ✅    |  ✅   |     —     | `div[role=dialog]`        | Tab trap / Esc           |
 | Sheet              |   ✅    |  ✅   |     —     | `div[role=dialog]`        | Tab trap / Esc           |

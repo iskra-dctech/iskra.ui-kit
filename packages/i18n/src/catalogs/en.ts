@@ -301,13 +301,16 @@ export const enMessages = {
     },
     inventory: {
       docs: 'Explicit compact view. On desktop use Table with the same data — no auto-switch inside Table.',
-      tableDocs: 'Data density strategies. Table stays a table; compact entity view is a separate DataList.',
+      tableDocs:
+        'Data density strategies. Table stays a table; compact entity view is a separate DataList.',
       productHint: 'In production use DeviceCard from @iskra-ui/dci-react for device cards.',
     },
     appShell: {
       docs: 'Reference composition — example Notifier product screen built from primitives. Not a standalone component or default API: copy the pattern into your app with the presets and content you need.',
-      desktopDocs: 'Desktop shell: inline Sidebar, Table, Modal. Explicit layout for width ≥ 768px.',
-      compactDocs: 'Compact shell: Drawer + Sidebar, DataList instead of Table, Sheet instead of Modal. Explicit presentation choice — Table does not auto-transform into cards.',
+      desktopDocs:
+        'Desktop shell: inline Sidebar, Table, Modal. Explicit layout for width ≥ 768px.',
+      compactDocs:
+        'Compact shell: Drawer + Sidebar, DataList instead of Table, Sheet instead of Modal. Explicit presentation choice — Table does not auto-transform into cards.',
     },
     card: {
       syncState: 'State: in sync. Last drift 4 minutes ago.',
@@ -322,4 +325,4 @@ export const enMessages = {
       forceSyncDescription: 'Apply desired state to all devices',
     },
   },
-} as const
+} as const;

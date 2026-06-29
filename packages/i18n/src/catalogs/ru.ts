@@ -1,4 +1,4 @@
-import type { IskraMessages } from '../types.js'
+import type { IskraMessages } from '../types.js';
 
 export const ruMessages: IskraMessages = {
   common: {
@@ -303,13 +303,17 @@ export const ruMessages: IskraMessages = {
     },
     inventory: {
       docs: 'Явный компактный вид. На десктопе используйте Table с теми же данными — авто-переключения внутри Table нет.',
-      tableDocs: 'Стратегии плотности данных. Table остаётся таблицей; компактный вид сущности — отдельный DataList.',
-      productHint: 'В продукте используйте DeviceCard из @iskra-ui/dci-react для карточек устройств.',
+      tableDocs:
+        'Стратегии плотности данных. Table остаётся таблицей; компактный вид сущности — отдельный DataList.',
+      productHint:
+        'В продукте используйте DeviceCard из @iskra-ui/dci-react для карточек устройств.',
     },
     appShell: {
       docs: 'Эталонная композиция — пример экрана продукта Notifier из примитивов. Не отдельный компонент и не дефолтный API: скопируйте паттерн в своё приложение с нужными пресетами и контентом.',
-      desktopDocs: 'Десктопная оболочка: inline Sidebar, Table, Modal. Явная вёрстка для ширины ≥ 768px.',
-      compactDocs: 'Компактная оболочка: Drawer + Sidebar, DataList вместо Table, Sheet вместо Modal. Явный выбор представления — Table не превращается в карточки автоматически.',
+      desktopDocs:
+        'Десктопная оболочка: inline Sidebar, Table, Modal. Явная вёрстка для ширины ≥ 768px.',
+      compactDocs:
+        'Компактная оболочка: Drawer + Sidebar, DataList вместо Table, Sheet вместо Modal. Явный выбор представления — Table не превращается в карточки автоматически.',
     },
     card: {
       syncState: 'Состояние: в синхронизации. Последний дрейф 4 минуты назад.',
@@ -324,4 +328,4 @@ export const ruMessages: IskraMessages = {
       forceSyncDescription: 'Применить желаемое состояние ко всем устройствам',
     },
   },
-}
+};

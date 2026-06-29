@@ -5,12 +5,7 @@ import { createMockDciMetricSource } from '../../metrics/catalog.js';
 
 describe('DciDashboard', () => {
   it('renders loading then dashboard', async () => {
-    render(
-      <DciDashboard
-        dashboardId="test-dash"
-        metricSource={createMockDciMetricSource()}
-      />,
-    );
+    render(<DciDashboard dashboardId="test-dash" metricSource={createMockDciMetricSource()} />);
     expect(screen.getByRole('status')).toBeInTheDocument();
   });
 });

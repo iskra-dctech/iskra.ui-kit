@@ -1,18 +1,20 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { useStoryT } from '../../storybook/useStoryT.js'
-import { FormField } from './FormField.js'
+import { createElement } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useStoryT } from '../../storybook/useStoryT.js';
+import { FormField } from './FormField.js';
 
 const meta = {
   title: 'Patterns/FormField',
   component: FormField,
-} satisfies Meta<typeof FormField>
+  args: { children: createElement('input') },
+} satisfies Meta<typeof FormField>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const WithNativeInput: Story = {
   render: () => {
-    const t = useStoryT()
+    const t = useStoryT();
     return (
       <FormField label={t('demo.form.hostname')} required hint={t('demo.descriptions.hostHint')}>
         <input
@@ -26,13 +28,13 @@ export const WithNativeInput: Story = {
           }}
         />
       </FormField>
-    )
+    );
   },
-}
+};
 
 export const Error: Story = {
   render: () => {
-    const t = useStoryT()
+    const t = useStoryT();
     return (
       <FormField label={t('demo.form.hostname')} required error={t('demo.form.requiredField')}>
         <input
@@ -45,6 +47,6 @@ export const Error: Story = {
           }}
         />
       </FormField>
-    )
+    );
   },
-}
+};

@@ -1,18 +1,18 @@
-import { render, type RenderOptions, type RenderResult } from '@testing-library/react'
-import type { ReactElement } from 'react'
-import type { DeepPartial, IskraLocale, IskraMessages } from '@iskra-ui/i18n'
-import { IskraProvider } from './IskraProvider.js'
+import { render, type RenderOptions, type RenderResult } from '@testing-library/react';
+import type { ReactElement } from 'react';
+import type { DeepPartial, IskraLocale, IskraMessages } from '@iskra-ui/i18n';
+import { IskraProvider } from './IskraProvider.js';
 
 export interface RenderWithIskraOptions extends Omit<RenderOptions, 'wrapper'> {
-  locale?: IskraLocale
-  messages?: DeepPartial<IskraMessages>
+  locale?: IskraLocale;
+  messages?: DeepPartial<IskraMessages>;
 }
 
 export function renderWithIskra(
   ui: ReactElement,
   options: RenderWithIskraOptions = {},
 ): RenderResult {
-  const { locale = 'en', messages, ...renderOptions } = options
+  const { locale = 'en', messages, ...renderOptions } = options;
 
   return render(ui, {
     ...renderOptions,
@@ -21,5 +21,5 @@ export function renderWithIskra(
         {children}
       </IskraProvider>
     ),
-  })
+  });
 }

@@ -70,7 +70,9 @@ onUnmounted(() => {
     role="menuitem"
     :disabled="disabled"
     :tabindex="tabIndex"
-    :class="cx('ik-context-menu-item', destructive && 'ik-context-menu-item--destructive', props.class)"
+    :class="
+      cx('ik-context-menu-item', destructive && 'ik-context-menu-item--destructive', props.class)
+    "
     @click="handleSelect"
     @keydown="handleKeyDown"
     @focus="

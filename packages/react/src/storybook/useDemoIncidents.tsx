@@ -1,18 +1,18 @@
-import { useMemo } from 'react'
-import type { ReactNode } from 'react'
-import { Badge } from '../components/Badge/Badge.js'
-import type { TableColumn } from '../components/Table/Table.js'
-import { useStoryT } from './useStoryT.js'
+import { useMemo, useCallback } from 'react';
+import type { ReactNode } from 'react';
+import { Badge } from '../components/Badge/Badge.js';
+import type { TableColumn } from '../components/Table/Table.js';
+import { useStoryT } from './useStoryT.js';
 
 export interface DemoIncident {
-  id: string
-  severity: 'critical' | 'warning'
-  service: string
-  status: string
+  id: string;
+  severity: 'critical' | 'warning';
+  service: string;
+  status: string;
 }
 
 export function useDemoIncidents() {
-  const t = useStoryT()
+  const t = useStoryT();
 
   const incidents = useMemo<DemoIncident[]>(
     () => [
@@ -30,7 +30,7 @@ export function useDemoIncidents() {
       },
     ],
     [t],
-  )
+  );
 
   const shortIncidents = useMemo(
     () =>
@@ -40,14 +40,19 @@ export function useDemoIncidents() {
         service,
       })),
     [incidents],
-  )
+  );
 
   const severityLabel = (severity: DemoIncident['severity']) =>
-    severity === 'critical' ? t('demo.labels.critical') : t('demo.labels.warning')
+    severity === 'critical' ? t('demo.labels.critical') : t('demo.labels.warning');
 
-  const renderSeverityBadge = (severity: DemoIncident['severity']): ReactNode => (
-    <Badge variant={severity === 'critical' ? 'error' : 'warning'}>{severityLabel(severity)}</Badge>
-  )
+  const renderSeverityBadge = useCallback(
+    (severity: DemoIncident['severity']): ReactNode => (
+      <Badge variant={severity === 'critical' ? 'error' : 'warning'}>
+        {severity === 'critical' ? t('demo.labels.critical') : t('demo.labels.warning')}
+      </Badge>
+    ),
+    [t],
+  );
 
   const columns = useMemo<TableColumn<DemoIncident>[]>(
     () => [
@@ -60,8 +65,8 @@ export function useDemoIncidents() {
       { key: 'service', header: t('demo.labels.service'), sortable: true },
       { key: 'status', header: t('demo.labels.status') },
     ],
-    [t],
-  )
+    [t, renderSeverityBadge],
+  );
 
-  return { incidents, shortIncidents, columns, severityLabel, renderSeverityBadge }
+  return { incidents, shortIncidents, columns, severityLabel, renderSeverityBadge };
 }

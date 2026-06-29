@@ -1,17 +1,17 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { useIskraT } from '@iskra-ui/react'
-import { DriftToast } from './DriftToast.js'
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useIskraT } from '@iskra-ui/react';
+import { DriftToast } from './DriftToast.js';
 
 const meta: Meta<typeof DriftToast> = {
   title: 'Domain/DriftToast',
   component: DriftToast,
-}
-export default meta
-type Story = StoryObj<typeof DriftToast>
+};
+export default meta;
+type Story = StoryObj<typeof DriftToast>;
 
 export const Drift: Story = {
   render: () => {
-    const t = useIskraT()
+    const t = useIskraT();
     return (
       <DriftToast
         variant="drift"
@@ -19,13 +19,13 @@ export const Drift: Story = {
         description={t('demo.driftToast.driftDescription')}
         onClose={() => {}}
       />
-    )
+    );
   },
-}
+};
 
 export const Stack: Story = {
   render: () => {
-    const t = useIskraT()
+    const t = useIskraT();
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 9, width: 420 }}>
         <DriftToast
@@ -49,6 +49,6 @@ export const Stack: Story = {
           description={t('demo.driftToast.firmwareDescription')}
         />
       </div>
-    )
+    );
   },
-}
+};

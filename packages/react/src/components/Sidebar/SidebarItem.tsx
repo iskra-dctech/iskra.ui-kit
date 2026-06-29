@@ -75,9 +75,8 @@ export function SidebarItem({
     );
   }
 
-  const hover =
-    collapsed ?
-      {
+  const hover = collapsed
+    ? {
         onHover: showTip,
         onLeave: hideTip,
       }

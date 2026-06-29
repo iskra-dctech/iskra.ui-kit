@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import {
-  resolvePrimaryNavItems,
-  type SidebarNavGroup,
-  type SidebarNavItem,
-} from '@iskra-ui/core';
+import { resolvePrimaryNavItems, type SidebarNavGroup, type SidebarNavItem } from '@iskra-ui/core';
 import { useIskraT } from '../i18n/useIskraT.js';
 import Icon from './Icon.vue';
 import Sheet from './Sheet.vue';
@@ -43,9 +39,7 @@ const resolvedSheetTitle = computed(() => props.sheetTitle ?? t('a11y.moreNaviga
 const primary = computed(() => resolvePrimaryNavItems(props.groups, props.primaryItems, 4));
 
 const isMenuActive = computed(
-  () =>
-    props.activeItem != null &&
-    !primary.value.some((item) => item.id === props.activeItem),
+  () => props.activeItem != null && !primary.value.some((item) => item.id === props.activeItem),
 );
 
 function badgeFor(item: SidebarNavItem) {
@@ -60,7 +54,11 @@ function handleSelect(item: SidebarNavItem) {
 </script>
 
 <template>
-  <nav :class="cx('iskra-mobile-nav', $props.class)" role="navigation" :aria-label="resolvedAriaLabel">
+  <nav
+    :class="cx('iskra-mobile-nav', $props.class)"
+    role="navigation"
+    :aria-label="resolvedAriaLabel"
+  >
     <button
       v-for="item in primary"
       :key="item.id"

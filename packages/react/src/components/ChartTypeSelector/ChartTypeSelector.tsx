@@ -13,7 +13,11 @@ export interface ChartTypeSelectorProps {
   className?: string;
 }
 
-const CHART_TYPE_KEYS: { type: ChartType; icon: IconName; labelKey: 'chart.types.line' | 'chart.types.bar' | 'chart.types.area' | 'chart.types.scatter' }[] = [
+const CHART_TYPE_KEYS: {
+  type: ChartType;
+  icon: IconName;
+  labelKey: 'chart.types.line' | 'chart.types.bar' | 'chart.types.area' | 'chart.types.scatter';
+}[] = [
   { type: 'line', icon: 'chart-line', labelKey: 'chart.types.line' },
   { type: 'bar', icon: 'chart-bar', labelKey: 'chart.types.bar' },
   { type: 'area', icon: 'chart-area', labelKey: 'chart.types.area' },

@@ -1,9 +1,5 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import {
-  flattenSidebarItems,
-  resolvePrimaryNavItems,
-  type SidebarNavGroup,
-} from './sidebar.js';
+import { flattenSidebarItems, resolvePrimaryNavItems, type SidebarNavGroup } from './sidebar.js';
 
 const groups: SidebarNavGroup[] = [
   {

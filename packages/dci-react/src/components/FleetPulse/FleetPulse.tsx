@@ -93,9 +93,7 @@ export function FleetPulse({
           <span className="dci-pulse-label">
             <p className="dci-pulse-label-text">{resolvedLabel}</p>
           </span>
-          {!hasIssues && (
-            <span className="dci-pulse-sub">{t('dci.fleetPulse.allSynced')}</span>
-          )}
+          {!hasIssues && <span className="dci-pulse-sub">{t('dci.fleetPulse.allSynced')}</span>}
           {hasIssues && (
             <span className="dci-pulse-sub">
               {t('dci.fleetPulse.devicesNeedAttention', { count: issues.length })}
@@ -117,9 +115,7 @@ export function FleetPulse({
               <span className="dci-pulse-row-name">{issue.name}</span>
               <span className="dci-pulse-row-reason">{issue.reason}</span>
               <Badge variant={issue.severity === 'error' ? 'error' : 'warning'} size="s">
-                {issue.severity === 'error'
-                  ? t('dci.fleetPulse.error')
-                  : t('dci.fleetPulse.drift')}
+                {issue.severity === 'error' ? t('dci.fleetPulse.error') : t('dci.fleetPulse.drift')}
               </Badge>
               {issue.actionLabel && (
                 <Button

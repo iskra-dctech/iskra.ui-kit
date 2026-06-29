@@ -1,9 +1,5 @@
 import { useState, type ReactNode } from 'react';
-import {
-  resolvePrimaryNavItems,
-  type SidebarNavGroup,
-  type SidebarNavItem,
-} from '@iskra-ui/core';
+import { resolvePrimaryNavItems, type SidebarNavGroup, type SidebarNavItem } from '@iskra-ui/core';
 import { useIskraT } from '../../i18n/useIskraT.js';
 import { cx } from '../../utils/cx.js';
 import { Icon } from '../Icon/Icon.js';
@@ -139,11 +135,11 @@ export function MobileNav({
           {groups.map((group, index) => (
             <div key={group.id} className="imn-sheet-grp">
               {index > 0 ? <div className="imn-sheet-divider" role="separator" /> : null}
-              {group.label ?
+              {group.label ? (
                 <div className="imn-sheet-sec" aria-hidden="true">
                   {group.label}
                 </div>
-              : null}
+              ) : null}
               {group.items.map((item) => (
                 <NavListItem
                   key={item.id}
@@ -155,7 +151,7 @@ export function MobileNav({
               ))}
             </div>
           ))}
-          {footerItems.length > 0 ?
+          {footerItems.length > 0 ? (
             <div className="imn-sheet-grp">
               <div className="imn-sheet-divider" role="separator" />
               {footerItems.map((item) => (
@@ -168,7 +164,7 @@ export function MobileNav({
                 />
               ))}
             </div>
-          : null}
+          ) : null}
         </div>
       </Sheet>
     </>

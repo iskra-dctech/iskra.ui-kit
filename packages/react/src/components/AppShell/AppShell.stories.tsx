@@ -1,22 +1,22 @@
-import { useMemo, useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { getNotifierNav } from '@iskra-ui/core'
-import { useIskraLocale } from '../../i18n/useIskraLocale.js'
-import { useStoryT } from '../../storybook/useStoryT.js'
-import { useDemoIncidents } from '../../storybook/useDemoIncidents.js'
-import { AppHeader } from '../AppHeader/AppHeader.js'
-import { Avatar } from '../Avatar/Avatar.js'
-import { Button } from '../Button/Button.js'
-import { DataList } from '../DataList/DataList.js'
-import { Icon } from '../Icon/Icon.js'
-import { IconButton } from '../IconButton/IconButton.js'
-import { Modal } from '../Modal/Modal.js'
-import { Popover } from '../Popover/Popover.js'
-import { SearchField } from '../SearchField/SearchField.js'
-import { Sheet } from '../Sheet/Sheet.js'
-import { AppNavigation } from '../AppNavigation/AppNavigation.js'
-import { Table, type TableSort } from '../Table/Table.js'
-import { Card } from '../Card/Card.js'
+import { useMemo, useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { getNotifierNav } from '@iskra-ui/core';
+import { useIskraLocale } from '../../i18n/useIskraLocale.js';
+import { useStoryT } from '../../storybook/useStoryT.js';
+import { useDemoIncidents } from '../../storybook/useDemoIncidents.js';
+import { AppHeader } from '../AppHeader/AppHeader.js';
+import { Avatar } from '../Avatar/Avatar.js';
+import { Button } from '../Button/Button.js';
+import { DataList } from '../DataList/DataList.js';
+import { Icon } from '../Icon/Icon.js';
+import { IconButton } from '../IconButton/IconButton.js';
+import { Modal } from '../Modal/Modal.js';
+import { Popover } from '../Popover/Popover.js';
+import { SearchField } from '../SearchField/SearchField.js';
+import { Sheet } from '../Sheet/Sheet.js';
+import { AppNavigation } from '../AppNavigation/AppNavigation.js';
+import { Table, type TableSort } from '../Table/Table.js';
+import { Card } from '../Card/Card.js';
 
 const meta = {
   title: 'Patterns/AppShell',
@@ -29,17 +29,17 @@ const meta = {
       },
     },
   },
-} satisfies Meta
+} satisfies Meta;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 function ManualIncidentForm({
   onClose,
   t,
 }: {
-  onClose: () => void
-  t: ReturnType<typeof useStoryT>
+  onClose: () => void;
+  t: ReturnType<typeof useStoryT>;
 }) {
   return (
     <>
@@ -48,7 +48,7 @@ function ManualIncidentForm({
       </Button>
       <Button onClick={onClose}>{t('demo.labels.create')}</Button>
     </>
-  )
+  );
 }
 
 export const Desktop: Story = {
@@ -61,24 +61,24 @@ export const Desktop: Story = {
     },
   },
   render: () => {
-    const t = useStoryT()
-    const { locale } = useIskraLocale()
-    const { incidents, columns, renderSeverityBadge } = useDemoIncidents()
-    const notifierNav = useMemo(() => getNotifierNav(locale), [locale])
-    const [page, setPage] = useState('incidents')
-    const [modalOpen, setModalOpen] = useState(false)
-    const [sort, setSort] = useState<TableSort | null>(null)
-    const [notifOpen, setNotifOpen] = useState(false)
+    const t = useStoryT();
+    const { locale } = useIskraLocale();
+    const { incidents, columns } = useDemoIncidents();
+    const notifierNav = useMemo(() => getNotifierNav(locale), [locale]);
+    const [page, setPage] = useState('incidents');
+    const [modalOpen, setModalOpen] = useState(false);
+    const [sort, setSort] = useState<TableSort | null>(null);
+    const [notifOpen, setNotifOpen] = useState(false);
 
     const sorted = useMemo(() => {
-      if (!sort) return incidents
+      if (!sort) return incidents;
       return [...incidents].sort((a, b) => {
-        const av = String(a[sort.key as keyof typeof a] ?? '')
-        const bv = String(b[sort.key as keyof typeof b] ?? '')
-        const cmp = av.localeCompare(bv)
-        return sort.direction === 'asc' ? cmp : -cmp
-      })
-    }, [incidents, sort])
+        const av = String(a[sort.key as keyof typeof a] ?? '');
+        const bv = String(b[sort.key as keyof typeof b] ?? '');
+        const cmp = av.localeCompare(bv);
+        return sort.direction === 'asc' ? cmp : -cmp;
+      });
+    }, [incidents, sort]);
 
     return (
       <div style={{ display: 'flex', height: '100vh', background: 'var(--bg)' }}>
@@ -104,7 +104,11 @@ export const Desktop: Story = {
                   items={[
                     { id: 'platform', label: t('demo.labels.platform') },
                     { id: 'notifier', label: t('demo.labels.notifier'), current: true },
-                    { id: 'incidents', label: t('demo.labels.incidents'), current: page === 'incidents' },
+                    {
+                      id: 'incidents',
+                      label: t('demo.labels.incidents'),
+                      current: page === 'incidents',
+                    },
                   ]}
                   onNavigate={setPage}
                 />
@@ -155,13 +159,17 @@ export const Desktop: Story = {
                         {t('demo.labels.notificationsHeader')}
                       </div>
                       <div style={{ fontSize: 12 }}>
-                        <span style={{ color: 'var(--status-err)' }}>{t('demo.labels.errorTag')}</span>{' '}
+                        <span style={{ color: 'var(--status-err)' }}>
+                          {t('demo.labels.errorTag')}
+                        </span>{' '}
                         {t('demo.labels.deliveryError')}
                       </div>
                     </div>
                   </Popover>
                   <IconButton
-                    icon={<Avatar name={t('demo.labels.operatorAvatar')} size="sm" status="online" />}
+                    icon={
+                      <Avatar name={t('demo.labels.operatorAvatar')} size="sm" status="online" />
+                    }
                     aria-label={t('demo.labels.profile')}
                     variant="ghost"
                   />
@@ -203,9 +211,9 @@ export const Desktop: Story = {
           {t('demo.descriptions.manualIncidentBody')}
         </Modal>
       </div>
-    )
+    );
   },
-}
+};
 
 export const Compact: Story = {
   parameters: {
@@ -218,13 +226,13 @@ export const Compact: Story = {
     },
   },
   render: () => {
-    const t = useStoryT()
-    const { locale } = useIskraLocale()
-    const { incidents, renderSeverityBadge } = useDemoIncidents()
-    const notifierNav = useMemo(() => getNotifierNav(locale), [locale])
-    const [page, setPage] = useState('incidents')
-    const [sheetOpen, setSheetOpen] = useState(false)
-    const [notifOpen, setNotifOpen] = useState(false)
+    const t = useStoryT();
+    const { locale } = useIskraLocale();
+    const { incidents, renderSeverityBadge } = useDemoIncidents();
+    const notifierNav = useMemo(() => getNotifierNav(locale), [locale]);
+    const [page, setPage] = useState('incidents');
+    const [sheetOpen, setSheetOpen] = useState(false);
+    const [notifOpen, setNotifOpen] = useState(false);
 
     return (
       <div
@@ -252,7 +260,9 @@ export const Compact: Story = {
                   />
                 }
               >
-                <div style={{ padding: 12, fontSize: 12 }}>{t('demo.labels.noNewNotifications')}</div>
+                <div style={{ padding: 12, fontSize: 12 }}>
+                  {t('demo.labels.noNewNotifications')}
+                </div>
               </Popover>
               <IconButton
                 icon={<Avatar name={t('demo.labels.operatorAvatar')} size="sm" status="online" />}
@@ -309,6 +319,6 @@ export const Compact: Story = {
           ariaLabel={t('demo.labels.notifierNav')}
         />
       </div>
-    )
+    );
   },
-}
+};

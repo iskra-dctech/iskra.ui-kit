@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { useStoryT } from '../../storybook/useStoryT.js'
-import { Chart } from '../Chart/Chart.js'
-import { DashboardWidget } from './DashboardWidget.js'
-import type { MetricSeries } from '@iskra-ui/core'
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useStoryT } from '../../storybook/useStoryT.js';
+import { Chart } from '../Chart/Chart.js';
+import { DashboardWidget } from './DashboardWidget.js';
+import type { MetricSeries } from '@iskra-ui/core';
 
 const series: MetricSeries = {
   id: 'cpu',
@@ -12,20 +12,20 @@ const series: MetricSeries = {
     timestamp: Date.now() - (11 - i) * 3600000,
     value: 50 + Math.sin(i) * 20,
   })),
-}
+};
 
 const meta: Meta<typeof DashboardWidget> = {
   title: 'Patterns/DashboardWidget',
   component: DashboardWidget,
   parameters: { layout: 'padded' },
-}
+};
 
-export default meta
-type Story = StoryObj<typeof DashboardWidget>
+export default meta;
+type Story = StoryObj<typeof DashboardWidget>;
 
 export const Default: Story = {
   render: () => {
-    const t = useStoryT()
+    const t = useStoryT();
     return (
       <div style={{ width: 320, height: 200 }}>
         <DashboardWidget
@@ -37,6 +37,6 @@ export const Default: Story = {
           <Chart type="line" series={series} density="compact" />
         </DashboardWidget>
       </div>
-    )
+    );
   },
-}
+};

@@ -54,7 +54,12 @@ export function Tag({
     <span className={cx('ik-tag', accent && 'ik-tag-accent', className)} {...rest}>
       {children}
       {onRemove && (
-        <button type="button" className="ik-tag-x" onClick={onRemove} aria-label={resolvedRemoveLabel}>
+        <button
+          type="button"
+          className="ik-tag-x"
+          onClick={onRemove}
+          aria-label={resolvedRemoveLabel}
+        >
           <svg
             width="9"
             height="9"

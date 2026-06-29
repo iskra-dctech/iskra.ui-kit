@@ -1,5 +1,5 @@
-import { useIskraLocale } from './useIskraLocale.js'
+import { useIskraLocale } from './useIskraLocale.js';
 
 export function useIskraT() {
-  return useIskraLocale().t
+  return useIskraLocale().t;
 }

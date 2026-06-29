@@ -168,18 +168,18 @@ function SidebarRoot({
       {header != null && <SidebarHeader>{header}</SidebarHeader>}
       <SidebarBody>
         {children ??
-          (groups.length > 0 ?
+          (groups.length > 0 ? (
             <NavGroups
               groups={groups}
               activeItem={activeItem}
               badges={badges}
               onItemActivate={handleItem}
             />
-          : null)}
+          ) : null)}
       </SidebarBody>
-      {footer != null ?
+      {footer != null ? (
         <SidebarFooter>{footer}</SidebarFooter>
-      : footerItems.length > 0 ?
+      ) : footerItems.length > 0 ? (
         <SidebarFooter>
           {footerItems.map((item) => (
             <SidebarItem
@@ -191,7 +191,7 @@ function SidebarRoot({
             />
           ))}
         </SidebarFooter>
-      : null}
+      ) : null}
     </>
   );
 

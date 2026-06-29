@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { useStoryT } from '../../storybook/useStoryT.js'
-import { Button } from './Button.js'
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useStoryT } from '../../storybook/useStoryT.js';
+import { Button } from './Button.js';
 
 const meta = {
   title: 'Primitives/Button',
@@ -13,25 +13,25 @@ const meta = {
     },
     size: { control: 'inline-radio', options: ['s', 'm', 'l'] },
   },
-} satisfies Meta<typeof Button>
+} satisfies Meta<typeof Button>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {}
-export const Outline: Story = { args: { variant: 'outline' } }
-export const Secondary: Story = { args: { variant: 'secondary' } }
-export const Ghost: Story = { args: { variant: 'ghost' } }
+export const Primary: Story = {};
+export const Outline: Story = { args: { variant: 'outline' } };
+export const Secondary: Story = { args: { variant: 'secondary' } };
+export const Ghost: Story = { args: { variant: 'ghost' } };
 
 export const Destructive: Story = {
   render: () => {
-    const t = useStoryT()
-    return <Button variant="destructive">{t('demo.labels.delete')}</Button>
+    const t = useStoryT();
+    return <Button variant="destructive">{t('demo.labels.delete')}</Button>;
   },
-}
+};
 
-export const Loading: Story = { args: { loading: true } }
-export const Disabled: Story = { args: { disabled: true } }
+export const Loading: Story = { args: { loading: true } };
+export const Disabled: Story = { args: { disabled: true } };
 
 export const Sizes: Story = {
   render: (args) => (
@@ -47,4 +47,4 @@ export const Sizes: Story = {
       </Button>
     </div>
   ),
-}
+};

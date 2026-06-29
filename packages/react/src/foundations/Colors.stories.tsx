@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { useStoryT } from '../storybook/useStoryT.js'
-import { TokenSwatch } from './_docs.js'
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useStoryT } from '../storybook/useStoryT.js';
+import { TokenSwatch } from './_docs.js';
 
 const meta = {
   title: 'Foundations/Colors',
@@ -73,7 +73,7 @@ const STATUS_TOKEN_KEYS = [
   '--status-err',
   '--status-off',
   '--status-info',
-] as const
+] as const;
 
 const STATUS_NAMES = [
   'Sync / Online',
@@ -81,18 +81,18 @@ const STATUS_NAMES = [
   'Error / Critical',
   'Maintenance',
   'Info / Neutral',
-] as const
+] as const;
 
 export const Status: Story = {
   render: () => {
-    const t = useStoryT()
+    const t = useStoryT();
     const uses = [
       t('demo.colors.syncUse'),
       t('demo.colors.driftUse'),
       t('demo.colors.errorUse'),
       t('demo.colors.maintenanceUse'),
       t('demo.colors.infoUse'),
-    ]
+    ];
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 9, maxWidth: 700 }}>
         {STATUS_TOKEN_KEYS.map((token, index) => (
@@ -123,9 +123,9 @@ export const Status: Story = {
           </div>
         ))}
       </div>
-    )
+    );
   },
-}
+};
 
 const THEME_SWATCHES = ['--bg', '--panel', '--line', '--fg1', '--fg2', '--accent-safe'] as const;
 
@@ -179,7 +179,7 @@ const LightThemePanel = ({
 
 export const LightThemes: Story = {
   render: () => {
-    const t = useStoryT()
+    const t = useStoryT();
     return (
       <div
         style={{
@@ -195,6 +195,6 @@ export const LightThemes: Story = {
         <LightThemePanel themeClass="theme-cold" label={t('demo.colors.coldLabel')} />
         <LightThemePanel themeClass="theme-warm" label={t('demo.colors.warmLabel')} />
       </div>
-    )
+    );
   },
-}
+};

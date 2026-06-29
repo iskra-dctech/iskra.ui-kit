@@ -47,7 +47,6 @@ export function MetricPicker({
   const listId = useId();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
-  const [activeIndex, setActiveIndex] = useState(0);
   const itemRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
   const selected = metrics.find((m) => m.id === value);
@@ -70,9 +69,14 @@ export function MetricPicker({
 
   const flat = useMemo(() => grouped.flatMap((g) => g.items), [grouped]);
 
-  useEffect(() => {
+  const listEpoch = `${query}:${open}`;
+  const [activeEpoch, setActiveEpoch] = useState(listEpoch);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  if (listEpoch !== activeEpoch) {
+    setActiveEpoch(listEpoch);
     setActiveIndex(0);
-  }, [query, open]);
+  }
 
   const selectMetric = (id: string) => {
     onChange(id);

@@ -47,12 +47,7 @@ export const config = tseslint.config(
   },
   {
     files: ['packages/**/src/**/*.{ts,tsx}'],
-    ignores: [
-      '**/*.stories.{ts,tsx}',
-      '**/*.test.{ts,tsx}',
-      '**/i18n/**',
-      'packages/i18n/**',
-    ],
+    ignores: ['**/*.stories.{ts,tsx}', '**/*.test.{ts,tsx}', '**/i18n/**', 'packages/i18n/**'],
     rules: {
       'no-restricted-syntax': [
         'error',

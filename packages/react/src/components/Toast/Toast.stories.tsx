@@ -1,19 +1,19 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { useStoryT } from '../../storybook/useStoryT.js'
-import { ToastProvider, useToast } from './Toast.js'
-import { Button } from '../Button/Button.js'
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useStoryT } from '../../storybook/useStoryT.js';
+import { ToastProvider, useToast } from './Toast.js';
+import { Button } from '../Button/Button.js';
 
 const meta = {
   title: 'Patterns/Toast',
   component: ToastProvider,
-} satisfies Meta<typeof ToastProvider>
+} satisfies Meta<typeof ToastProvider>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 function Demo() {
-  const t = useStoryT()
-  const { toast } = useToast()
+  const t = useStoryT();
+  const { toast } = useToast();
   return (
     <div style={{ display: 'flex', gap: 8 }}>
       <Button
@@ -40,7 +40,7 @@ function Demo() {
         Error
       </Button>
     </div>
-  )
+  );
 }
 
 export const Imperative: Story = {
@@ -50,4 +50,4 @@ export const Imperative: Story = {
       <Demo />
     </ToastProvider>
   ),
-}
+};

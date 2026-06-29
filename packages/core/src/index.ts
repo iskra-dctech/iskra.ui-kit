@@ -15,11 +15,7 @@ export {
   type TriggerAria,
   type TriggerAriaOptions,
 } from './disclosure.js';
-export {
-  getNextMenuItemIndex,
-  firstEnabledMenuItemIndex,
-  type MenuItemLike,
-} from './menu.js';
+export { getNextMenuItemIndex, firstEnabledMenuItemIndex, type MenuItemLike } from './menu.js';
 export {
   computeAnchorPosition,
   computeCursorPosition,

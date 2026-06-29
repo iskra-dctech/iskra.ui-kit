@@ -48,16 +48,20 @@ export function useDashboard({
     dashboardReducer,
     createEmptyDashboard(dashboardId, defaultName),
   );
-  const [isLoading, setIsLoading] = useState(true);
+  const [hydration, setHydration] = useState<{
+    dashboardId: string;
+    loaded: boolean;
+    error: string | null;
+  }>({ dashboardId, loaded: false, error: null });
+  const isLoading = hydration.dashboardId !== dashboardId || !hydration.loaded;
+  const error = hydration.dashboardId === dashboardId ? hydration.error : null;
   const [isSaving, setIsSaving] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [editable, setEditable] = useState(false);
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hydrated = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
-    setIsLoading(true);
     store
       .load(dashboardId)
       .then((loaded) => {
@@ -71,14 +75,16 @@ export function useDashboard({
           });
         }
         hydrated.current = true;
+        setHydration({ dashboardId, loaded: true, error: null });
       })
       .catch((err: unknown) => {
         if (!cancelled) {
-          setError(err instanceof Error ? err.message : 'Failed to load dashboard');
+          setHydration({
+            dashboardId,
+            loaded: true,
+            error: err instanceof Error ? err.message : 'Failed to load dashboard',
+          });
         }
-      })
-      .finally(() => {
-        if (!cancelled) setIsLoading(false);
       });
     return () => {
       cancelled = true;
@@ -94,7 +100,10 @@ export function useDashboard({
         store
           .save(config)
           .catch((err: unknown) => {
-            setError(err instanceof Error ? err.message : 'Failed to save dashboard');
+            setHydration((prev) => ({
+              ...prev,
+              error: err instanceof Error ? err.message : 'Failed to save dashboard',
+            }));
           })
           .finally(() => setIsSaving(false));
       }, debounceMs);
@@ -109,13 +118,16 @@ export function useDashboard({
     };
   }, [dashboard, scheduleSave]);
 
-  const addWidget = useCallback((widget: Omit<WidgetConfig, 'id'> & { id?: string }) => {
-    const id = widget.id ?? createWidgetId();
-    const full: WidgetConfig = { ...widget, id };
-    const position = findNextLayoutPosition(dashboard.layout, DEFAULT_WIDGET_SIZE);
-    const layout: LayoutItem = { i: id, ...position };
-    dispatch({ type: 'ADD_WIDGET', widget: full, layout });
-  }, [dashboard.layout]);
+  const addWidget = useCallback(
+    (widget: Omit<WidgetConfig, 'id'> & { id?: string }) => {
+      const id = widget.id ?? createWidgetId();
+      const full: WidgetConfig = { ...widget, id };
+      const position = findNextLayoutPosition(dashboard.layout, DEFAULT_WIDGET_SIZE);
+      const layout: LayoutItem = { i: id, ...position };
+      dispatch({ type: 'ADD_WIDGET', widget: full, layout });
+    },
+    [dashboard.layout],
+  );
 
   const updateWidget = useCallback((widget: WidgetConfig) => {
     dispatch({ type: 'UPDATE_WIDGET', widget });

@@ -135,9 +135,7 @@ describe('ContextMenu (vue)', () => {
       slots: {
         default: () => [
           h(ContextMenuTrigger, () => [h('button', { type: 'button' }, 'Область')]),
-          h(ContextMenuContent, () => [
-            h(ContextMenuItem, { onSelect }, () => 'Копировать'),
-          ]),
+          h(ContextMenuContent, () => [h(ContextMenuItem, { onSelect }, () => 'Копировать')]),
         ],
       },
     });

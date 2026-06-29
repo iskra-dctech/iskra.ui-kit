@@ -23,15 +23,8 @@ export function ContextMenuTrigger({
   asChild = false,
   className,
 }: ContextMenuTriggerProps) {
-  const {
-    open,
-    setOpen,
-    triggerOn,
-    triggerRef,
-    contentId,
-    setPositionMode,
-    setCursorPoint,
-  } = useContextMenu();
+  const { open, setOpen, triggerOn, triggerRef, contentId, setPositionMode, setCursorPoint } =
+    useContextMenu();
 
   const triggerAria = getTriggerAria(open, contentId, { haspopup: 'menu' });
 
@@ -54,41 +47,47 @@ export function ContextMenuTrigger({
     setOpen(!open);
   };
 
-  const mergeProps = (child: ReactElement) =>
-    cloneElement(child, {
-      ref: (node: HTMLElement | null) => {
-        triggerRef.current = node;
-        const childRef = (child as ReactElement & { ref?: React.Ref<HTMLElement> }).ref;
-        if (typeof childRef === 'function') childRef(node);
-        else if (childRef && typeof childRef === 'object') {
-          (childRef as React.MutableRefObject<HTMLElement | null>).current = node;
-        }
-      },
-      onContextMenu: (e: ReactMouseEvent) => {
-        (child.props as { onContextMenu?: (ev: ReactMouseEvent) => void }).onContextMenu?.(e);
-        handleContextMenu(e);
-      },
-      onClick: (e: ReactMouseEvent) => {
-        handleClick(e);
-      },
-      'aria-expanded': triggerAria['aria-expanded'],
-      'aria-controls': open ? contentId : undefined,
-      'aria-haspopup': triggerAria['aria-haspopup'],
-    } as Record<string, unknown>);
+  const triggerProps = {
+    onContextMenu: handleContextMenu,
+    onClick: handleClick,
+    'aria-expanded': triggerAria['aria-expanded'],
+    'aria-controls': open ? contentId : undefined,
+    'aria-haspopup': triggerAria['aria-haspopup'],
+  };
 
   if (asChild && isValidElement(children)) {
-    return mergeProps(children);
+    const child = children as ReactElement<{
+      onContextMenu?: (ev: ReactMouseEvent) => void;
+      onClick?: (ev: ReactMouseEvent) => void;
+    }>;
+
+    return (
+      <span
+        ref={triggerRef as React.RefObject<HTMLSpanElement>}
+        className="ik-context-menu-trigger-anchor"
+        style={{ display: 'inline-flex' }}
+      >
+        {cloneElement(child, {
+          onContextMenu: (e: ReactMouseEvent) => {
+            child.props.onContextMenu?.(e);
+            handleContextMenu(e);
+          },
+          onClick: (e: ReactMouseEvent) => {
+            handleClick(e);
+          },
+          'aria-expanded': triggerProps['aria-expanded'],
+          'aria-controls': triggerProps['aria-controls'],
+          'aria-haspopup': triggerProps['aria-haspopup'],
+        } as Record<string, unknown>)}
+      </span>
+    );
   }
 
   return (
     <span
       ref={triggerRef as React.RefObject<HTMLSpanElement>}
       className={className}
-      onContextMenu={handleContextMenu}
-      onClick={handleClick}
-      aria-expanded={triggerAria['aria-expanded']}
-      aria-controls={open ? contentId : undefined}
-      aria-haspopup={triggerAria['aria-haspopup']}
+      {...triggerProps}
     >
       {children}
     </span>

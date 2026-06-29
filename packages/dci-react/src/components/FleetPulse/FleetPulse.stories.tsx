@@ -1,18 +1,18 @@
-import { useMemo } from 'react'
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { useIskraT } from '@iskra-ui/react'
-import { FleetPulse } from './FleetPulse.js'
+import { useMemo } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useIskraT } from '@iskra-ui/react';
+import { FleetPulse } from './FleetPulse.js';
 
 const meta: Meta<typeof FleetPulse> = {
   title: 'Domain/FleetPulse',
   component: FleetPulse,
-}
-export default meta
-type Story = StoryObj<typeof FleetPulse>
+};
+export default meta;
+type Story = StoryObj<typeof FleetPulse>;
 
 export const WithIssues: Story = {
   render: () => {
-    const t = useIskraT()
+    const t = useIskraT();
     const issues = useMemo(
       () => [
         {
@@ -38,11 +38,11 @@ export const WithIssues: Story = {
         },
       ],
       [t],
-    )
-    return <FleetPulse percent={81} defaultOpen issues={issues} />
+    );
+    return <FleetPulse percent={81} defaultOpen issues={issues} />;
   },
-}
+};
 
 export const AllHealthy: Story = {
   args: { percent: 100, issues: [] },
-}
+};

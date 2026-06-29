@@ -1,17 +1,17 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { useIskraT } from '@iskra-ui/react'
-import { DeviceCard } from './DeviceCard.js'
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useIskraT } from '@iskra-ui/react';
+import { DeviceCard } from './DeviceCard.js';
 
 const meta: Meta<typeof DeviceCard> = {
   title: 'Domain/DeviceCard',
   component: DeviceCard,
-}
-export default meta
-type Story = StoryObj<typeof DeviceCard>
+};
+export default meta;
+type Story = StoryObj<typeof DeviceCard>;
 
 export const InSync: Story = {
   render: () => {
-    const t = useIskraT()
+    const t = useIskraT();
     return (
       <DeviceCard
         name="spine-01.msk"
@@ -22,13 +22,13 @@ export const InSync: Story = {
         sparkline={[0.4, 0.55, 0.35, 0.7, 0.6, 0.45, 0.75, 0.58]}
         tags={['spine', 'prod']}
       />
-    )
+    );
   },
-}
+};
 
 export const Drift: Story = {
   render: () => {
-    const t = useIskraT()
+    const t = useIskraT();
     return (
       <DeviceCard
         name="leaf-07.msk"
@@ -41,6 +41,6 @@ export const Drift: Story = {
         tags={['leaf', 'drift']}
         onSelect={() => {}}
       />
-    )
+    );
   },
-}
+};

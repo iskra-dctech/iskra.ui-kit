@@ -110,7 +110,12 @@ function ToastItem({ toast, onClose }: { toast: ToastRecord; onClose: () => void
         {description && <div className="ik-toast-desc">{description}</div>}
         {action && <div className="ik-toast-action">{action}</div>}
       </div>
-      <button type="button" className="ik-toast-close" onClick={onClose} aria-label={resolvedCloseLabel}>
+      <button
+        type="button"
+        className="ik-toast-close"
+        onClick={onClose}
+        aria-label={resolvedCloseLabel}
+      >
         <svg
           width="12"
           height="12"

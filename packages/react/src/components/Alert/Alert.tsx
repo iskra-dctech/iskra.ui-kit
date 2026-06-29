@@ -54,7 +54,12 @@ export function Alert({
         {children}
       </div>
       {closable && (
-        <button type="button" className="ik-alert-close" onClick={onClose} aria-label={resolvedCloseLabel}>
+        <button
+          type="button"
+          className="ik-alert-close"
+          onClick={onClose}
+          aria-label={resolvedCloseLabel}
+        >
           <Icon name="close" size={14} />
         </button>
       )}

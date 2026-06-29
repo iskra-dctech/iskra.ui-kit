@@ -43,7 +43,11 @@ export * from './components/WidgetEditor/index.js';
 export * from './components/DashboardToolbar/index.js';
 // Responsive utilities
 export { useMediaQuery, useBreakpoint, type UseMediaQueryOptions } from './hooks/useMediaQuery.js';
-export { useDashboard, type UseDashboardOptions, type UseDashboardResult } from './hooks/useDashboard.js';
+export {
+  useDashboard,
+  type UseDashboardOptions,
+  type UseDashboardResult,
+} from './hooks/useDashboard.js';
 export {
   BP_SM,
   BP_MD,

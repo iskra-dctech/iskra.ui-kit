@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { ChartType, MetricSeries, WidgetConfig } from '@iskra-ui/core';
 import { createLocalStorageDashboardStore } from '@iskra-ui/core';
 import {
@@ -62,24 +62,29 @@ export function DciDashboard({
     metricSource.listMetrics().then(setMetrics);
   }, [metricSource]);
 
-  const loadSeries = useCallback(
-    async (widget: WidgetConfig) => {
-      const series = await metricSource.fetchSeries(
-        widget.metricId,
-        widget.timeRange,
-        widget.chartType,
-      );
-      setSeriesMap((prev) => ({ ...prev, [widget.id]: series }));
-    },
-    [metricSource],
-  );
+  const loadedSeriesRef = useRef<Set<string>>(new Set());
 
   useEffect(() => {
     if (!dashboard) return;
+    let cancelled = false;
+
     for (const widget of dashboard.widgets) {
-      if (!seriesMap[widget.id]) void loadSeries(widget);
+      if (loadedSeriesRef.current.has(widget.id)) continue;
+      loadedSeriesRef.current.add(widget.id);
+
+      void metricSource
+        .fetchSeries(widget.metricId, widget.timeRange, widget.chartType)
+        .then((series) => {
+          if (!cancelled) {
+            setSeriesMap((prev) => ({ ...prev, [widget.id]: series }));
+          }
+        });
     }
-  }, [dashboard, loadSeries, seriesMap]);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [dashboard, metricSource]);
 
   const fetchPreview = useCallback(
     (metricId: string, chartType: ChartType) =>
@@ -115,7 +120,11 @@ export function DciDashboard({
           setEditingWidget(undefined);
           setEditorOpen(true);
         }}
-        actions={isSaving ? <span className="dci-dashboard-saving">{t('dashboard.saving')}</span> : undefined}
+        actions={
+          isSaving ? (
+            <span className="dci-dashboard-saving">{t('dashboard.saving')}</span>
+          ) : undefined
+        }
       />
 
       {dashboard.widgets.length === 0 ? (
@@ -130,11 +139,7 @@ export function DciDashboard({
           }
         />
       ) : (
-        <DashboardGrid
-          layout={dashboard.layout}
-          onLayoutChange={setLayout}
-          editable={editable}
-        >
+        <DashboardGrid layout={dashboard.layout} onLayoutChange={setLayout} editable={editable}>
           {dashboard.widgets.map((widget) => (
             <div key={widget.id}>
               <DashboardWidget

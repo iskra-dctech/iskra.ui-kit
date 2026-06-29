@@ -1,9 +1,9 @@
-import { useMemo, useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { getNotifierNav } from '@iskra-ui/core'
-import { useIskraLocale } from '../../i18n/useIskraLocale.js'
-import { useStoryT } from '../../storybook/useStoryT.js'
-import { AppNavigation } from './AppNavigation.js'
+import { useMemo, useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { getNotifierNav } from '@iskra-ui/core';
+import { useIskraLocale } from '../../i18n/useIskraLocale.js';
+import { useStoryT } from '../../storybook/useStoryT.js';
+import { AppNavigation } from './AppNavigation.js';
 
 const meta = {
   title: 'Patterns/AppNavigation',
@@ -17,20 +17,21 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof AppNavigation>
+  args: { primaryItems: [] },
+} satisfies Meta<typeof AppNavigation>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Desktop: Story = {
   parameters: {
     viewport: { defaultViewport: 'desktop1280' },
   },
   render: () => {
-    const t = useStoryT()
-    const { locale } = useIskraLocale()
-    const groups = useMemo(() => getNotifierNav(locale), [locale])
-    const [page, setPage] = useState('incidents')
+    const t = useStoryT();
+    const { locale } = useIskraLocale();
+    const groups = useMemo(() => getNotifierNav(locale), [locale]);
+    const [page, setPage] = useState('incidents');
     return (
       <div style={{ display: 'flex', height: '100vh', background: 'var(--bg)' }}>
         <AppNavigation
@@ -45,25 +46,30 @@ export const Desktop: Story = {
           onNavigate={setPage}
           ariaLabel={t('demo.labels.notifierNav')}
         />
-        <main style={{ flex: 1, padding: 24, color: 'var(--fg1)' }}>
-          Active: {page}
-        </main>
+        <main style={{ flex: 1, padding: 24, color: 'var(--fg1)' }}>Active: {page}</main>
       </div>
-    )
+    );
   },
-}
+};
 
 export const Mobile: Story = {
   parameters: {
     viewport: { defaultViewport: 'compact375' },
   },
   render: () => {
-    const t = useStoryT()
-    const { locale } = useIskraLocale()
-    const groups = useMemo(() => getNotifierNav(locale), [locale])
-    const [page, setPage] = useState('incidents')
+    const t = useStoryT();
+    const { locale } = useIskraLocale();
+    const groups = useMemo(() => getNotifierNav(locale), [locale]);
+    const [page, setPage] = useState('incidents');
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', background: 'var(--bg)' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100vh',
+          background: 'var(--bg)',
+        }}
+      >
         <main className="ik-has-mobile-nav" style={{ flex: 1, padding: 16, color: 'var(--fg1)' }}>
           Active: {page}
         </main>
@@ -75,6 +81,6 @@ export const Mobile: Story = {
           ariaLabel={t('demo.labels.notifierNav')}
         />
       </div>
-    )
+    );
   },
-}
+};

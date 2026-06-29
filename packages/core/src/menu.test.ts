@@ -2,12 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { firstEnabledMenuItemIndex, getNextMenuItemIndex } from './menu.js';
 import { Keys } from './keyboard.js';
 
-const items = [
-  { id: 'a' },
-  { id: 'b', disabled: true },
-  { id: 'c' },
-  { id: 'd' },
-];
+const items = [{ id: 'a' }, { id: 'b', disabled: true }, { id: 'c' }, { id: 'd' }];
 
 describe('getNextMenuItemIndex', () => {
   it('moves down skipping disabled items', () => {
@@ -35,8 +30,6 @@ describe('getNextMenuItemIndex', () => {
 describe('firstEnabledMenuItemIndex', () => {
   it('returns first non-disabled index', () => {
     expect(firstEnabledMenuItemIndex(items)).toBe(0);
-    expect(
-      firstEnabledMenuItemIndex([{ id: 'x', disabled: true }, { id: 'y' }]),
-    ).toBe(1);
+    expect(firstEnabledMenuItemIndex([{ id: 'x', disabled: true }, { id: 'y' }])).toBe(1);
   });
 });

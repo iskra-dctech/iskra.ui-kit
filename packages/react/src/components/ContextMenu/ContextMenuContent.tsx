@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import {
   computeAnchorPosition,
@@ -37,7 +37,7 @@ export function ContextMenuContent({ children, className }: ContextMenuContentPr
   const openedRef = useRef(false);
   const prevFocusRef = useRef<HTMLElement | null>(null);
 
-  const updatePosition = () => {
+  const updatePosition = useCallback(() => {
     const panel = panelRef.current;
     if (!panel) return;
     const pr = panel.getBoundingClientRect();
@@ -55,7 +55,7 @@ export function ContextMenuContent({ children, className }: ContextMenuContentPr
       panel.style.left = `${nextPos.left}px`;
     }
     panel.style.visibility = 'visible';
-  };
+  }, [cursorPoint, placement, positionMode, triggerRef]);
 
   useLayoutEffect(() => {
     if (!open) return;
@@ -66,7 +66,7 @@ export function ContextMenuContent({ children, className }: ContextMenuContentPr
       window.removeEventListener('resize', updatePosition);
       window.removeEventListener('scroll', updatePosition, true);
     };
-  }, [open, positionMode, cursorPoint, placement]);
+  }, [open, updatePosition]);
 
   useLayoutEffect(() => {
     if (!open) {

@@ -21,63 +21,55 @@ export interface WidgetEditorProps {
   initialWidget?: WidgetConfig;
 }
 
+interface PreviewState {
+  key: string;
+  data: MetricSeries | null;
+  error?: string;
+}
+
 function WidgetEditorForm({
-  open,
   metrics,
   fetchPreview,
   initialWidget,
   onClose,
   onSave,
-}: WidgetEditorProps) {
+}: Omit<WidgetEditorProps, 'open'>) {
   const t = useIskraT();
   const [metricId, setMetricId] = useState(initialWidget?.metricId ?? '');
   const [chartType, setChartType] = useState<ChartType>(initialWidget?.chartType ?? 'line');
   const [title, setTitle] = useState(initialWidget?.title ?? '');
-  const [preview, setPreview] = useState<MetricSeries | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | undefined>();
+  const [previewState, setPreviewState] = useState<PreviewState>({ key: '', data: null });
 
-  const selectedMetric = metrics.find((m) => m.id === metricId);
+  const previewKey = metricId ? `${metricId}:${chartType}` : '';
+  const preview = previewState.key === previewKey ? previewState.data : null;
+  const loading = Boolean(metricId) && previewState.key !== previewKey;
+  const error = previewState.key === previewKey ? previewState.error : undefined;
+
+  const handleMetricChange = (id: string) => {
+    setMetricId(id);
+    const metric = metrics.find((m) => m.id === id);
+    if (metric && !title.trim()) {
+      setTitle(metric.label);
+    }
+  };
 
   useEffect(() => {
-    if (!open) return;
-    if (initialWidget) {
-      setMetricId(initialWidget.metricId);
-      setChartType(initialWidget.chartType);
-      setTitle(initialWidget.title);
-    } else {
-      setMetricId('');
-      setChartType('line');
-      setTitle('');
-    }
-  }, [initialWidget, open]);
-
-  useEffect(() => {
-    if (!metricId) {
-      setPreview(null);
-      return;
-    }
+    if (!metricId) return;
+    const key = `${metricId}:${chartType}`;
     let cancelled = false;
-    setLoading(true);
-    setError(undefined);
     fetchPreview(metricId, chartType)
       .then((series) => {
-        if (!cancelled) setPreview(series);
+        if (!cancelled) setPreviewState({ key, data: series });
       })
       .catch(() => {
-        if (!cancelled) setError(t('widget.previewLoadError'));
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false);
+        if (!cancelled) {
+          setPreviewState({ key, data: null, error: t('widget.previewLoadError') });
+        }
       });
     return () => {
       cancelled = true;
     };
   }, [metricId, chartType, fetchPreview, t]);
-
-  useEffect(() => {
-    if (!title && selectedMetric) setTitle(selectedMetric.label);
-  }, [selectedMetric, title]);
 
   const canSave = Boolean(metricId && title.trim());
 
@@ -98,7 +90,7 @@ function WidgetEditorForm({
     <form className="ik-widget-editor-form" onSubmit={handleSubmit}>
       <div className="ik-widget-editor-field">
         <label htmlFor="widget-metric">{t('widget.metric')}</label>
-        <MetricPicker metrics={metrics} value={metricId} onChange={setMetricId} />
+        <MetricPicker metrics={metrics} value={metricId} onChange={handleMetricChange} />
       </div>
       <div className="ik-widget-editor-field">
         <span id="widget-chart-type-label">{t('widget.chartType')}</span>
@@ -156,17 +148,18 @@ export function WidgetEditor({
   const t = useIskraT();
   const isMobile = useMediaQuery(MEDIA_BELOW_MD);
   const title = initialWidget ? t('widget.edit') : t('widget.add');
+  const formKey = open ? (initialWidget?.id ?? 'new') : 'closed';
 
-  const form = (
+  const form = open ? (
     <WidgetEditorForm
-      open={open}
+      key={formKey}
       onClose={onClose}
       onSave={onSave}
       metrics={metrics}
       fetchPreview={fetchPreview}
       initialWidget={initialWidget}
     />
-  );
+  ) : null;
 
   if (isMobile) {
     return (

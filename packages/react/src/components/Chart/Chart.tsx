@@ -167,9 +167,7 @@ export function Chart({
     </>
   ) : null;
 
-  const tooltipEl = tooltip ? (
-    <Tooltip content={<ChartTooltip unit={series.unit} />} />
-  ) : null;
+  const tooltipEl = tooltip ? <Tooltip content={<ChartTooltip unit={series.unit} />} /> : null;
 
   const thresholdEl =
     alertThreshold != null && axes ? (
@@ -251,11 +249,7 @@ export function Chart({
 
   return (
     <div
-      className={cx(
-        'ik-chart',
-        compact ? 'ik-chart-compact' : 'ik-chart-comfortable',
-        className,
-      )}
+      className={cx('ik-chart', compact ? 'ik-chart-compact' : 'ik-chart-comfortable', className)}
       role="img"
       aria-label={`${series.label}${series.unit ? `, ${series.unit}` : ''}`}
     >

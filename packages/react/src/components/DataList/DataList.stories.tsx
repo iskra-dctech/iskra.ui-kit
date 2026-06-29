@@ -1,16 +1,16 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { useStoryT } from '../../storybook/useStoryT.js'
-import { useDemoIncidents } from '../../storybook/useDemoIncidents.js'
-import { DataList } from './DataList.js'
-import { Card } from '../Card/Card.js'
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useStoryT } from '../../storybook/useStoryT.js';
+import { useDemoIncidents } from '../../storybook/useDemoIncidents.js';
+import { DataList } from './DataList.js';
+import { Card } from '../Card/Card.js';
 
 const meta = {
   title: 'Patterns/DataList',
   parameters: { layout: 'padded' },
-} satisfies Meta
+} satisfies Meta;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const EntityCards: Story = {
   parameters: {
@@ -23,8 +23,8 @@ export const EntityCards: Story = {
     },
   },
   render: () => {
-    const t = useStoryT()
-    const { shortIncidents, renderSeverityBadge } = useDemoIncidents()
+    const t = useStoryT();
+    const { shortIncidents, renderSeverityBadge } = useDemoIncidents();
     return (
       <DataList
         items={shortIncidents}
@@ -40,13 +40,13 @@ export const EntityCards: Story = {
           </Card>
         )}
       />
-    )
+    );
   },
-}
+};
 
 export const Empty: Story = {
   render: () => {
-    const t = useStoryT()
+    const t = useStoryT();
     return (
       <DataList
         items={[]}
@@ -55,6 +55,6 @@ export const Empty: Story = {
         empty={t('demo.labels.noIncidentsEmpty')}
         aria-label={t('demo.labels.incidents')}
       />
-    )
+    );
   },
-}
+};

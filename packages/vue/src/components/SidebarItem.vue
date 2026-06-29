@@ -31,8 +31,8 @@ const resolvedItem = (): SidebarNavItem => {
   };
 };
 
-const item = resolvedItem();
-const badge = props.badge ?? item.badge;
+const navItem = resolvedItem();
+const badge = props.badge ?? navItem.badge;
 
 function handleClick() {
   emit('click');
@@ -40,7 +40,7 @@ function handleClick() {
 
 function handleMouseEnter(e: MouseEvent) {
   if (ctx?.collapsed.value && ctx.tipRdy.value) {
-    ctx.showTip(e, item.label);
+    ctx.showTip(e, navItem.label);
   }
 }
 
@@ -53,21 +53,21 @@ function handleMouseLeave() {
   <button
     type="button"
     :class="cx('isb-item', active && 'isb-on')"
-    :title="item.label"
-    :disabled="item.disabled"
+    :title="navItem.label"
+    :disabled="navItem.disabled"
     :aria-current="active ? 'page' : undefined"
     @click="handleClick"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
   >
     <span class="isb-ico">
-      <Icon v-if="item.icon" :name="item.icon as IconName" :size="16" />
+      <Icon v-if="navItem.icon" :name="navItem.icon as IconName" :size="16" />
     </span>
-    <span class="isb-lbl">{{ item.label }}</span>
+    <span class="isb-lbl">{{ navItem.label }}</span>
     <span
       v-if="badge != null && badge > 0"
       class="isb-bdg"
-      :aria-label="`${item.label}: ${badge}`"
+      :aria-label="`${navItem.label}: ${badge}`"
     >
       {{ badge }}
     </span>

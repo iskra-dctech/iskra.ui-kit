@@ -1,16 +1,16 @@
-import { useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { useStoryT } from '../../storybook/useStoryT.js'
+import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useStoryT } from '../../storybook/useStoryT.js';
 import {
   ContextMenu,
   ContextMenuTrigger,
   ContextMenuContent,
   ContextMenuItem,
   ContextMenuSeparator,
-} from './index.js'
-import { Card } from '../Card/Card.js'
-import { Button } from '../Button/Button.js'
-import { Icon } from '../Icon/Icon.js'
+} from './index.js';
+import { Card } from '../Card/Card.js';
+import { Button } from '../Button/Button.js';
+import { Icon } from '../Icon/Icon.js';
 
 const meta = {
   title: 'Primitives/ContextMenu',
@@ -24,14 +24,15 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof ContextMenu>
+  args: { children: null },
+} satisfies Meta<typeof ContextMenu>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => {
-    const t = useStoryT()
+    const t = useStoryT();
     return (
       <ContextMenu>
         <ContextMenuTrigger asChild>
@@ -43,16 +44,18 @@ export const Default: Story = {
           <ContextMenuItem onSelect={() => undefined}>{t('demo.labels.copy')}</ContextMenuItem>
           <ContextMenuItem onSelect={() => undefined}>{t('demo.labels.paste')}</ContextMenuItem>
           <ContextMenuSeparator />
-          <ContextMenuItem onSelect={() => undefined}>{t('demo.labels.properties')}</ContextMenuItem>
+          <ContextMenuItem onSelect={() => undefined}>
+            {t('demo.labels.properties')}
+          </ContextMenuItem>
         </ContextMenuContent>
       </ContextMenu>
-    )
+    );
   },
-}
+};
 
 export const WithIcons: Story = {
   render: () => {
-    const t = useStoryT()
+    const t = useStoryT();
     return (
       <ContextMenu>
         <ContextMenuTrigger asChild>
@@ -69,13 +72,13 @@ export const WithIcons: Story = {
           </ContextMenuItem>
         </ContextMenuContent>
       </ContextMenu>
-    )
+    );
   },
-}
+};
 
 export const DestructiveAndDisabled: Story = {
   render: () => {
-    const t = useStoryT()
+    const t = useStoryT();
     return (
       <ContextMenu>
         <ContextMenuTrigger>
@@ -92,13 +95,13 @@ export const DestructiveAndDisabled: Story = {
           </ContextMenuItem>
         </ContextMenuContent>
       </ContextMenu>
-    )
+    );
   },
-}
+};
 
 export const TableRow: Story = {
   render: () => {
-    const t = useStoryT()
+    const t = useStoryT();
     return (
       <div style={{ width: 480, border: '1px solid var(--line)', borderRadius: 'var(--radius)' }}>
         <ContextMenu>
@@ -128,14 +131,14 @@ export const TableRow: Story = {
           </ContextMenuContent>
         </ContextMenu>
       </div>
-    )
+    );
   },
-}
+};
 
 export const Controlled: Story = {
   render: () => {
-    const t = useStoryT()
-    const [open, setOpen] = useState(false)
+    const t = useStoryT();
+    const [open, setOpen] = useState(false);
     return (
       <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
         <Button type="button" variant="outline" onClick={() => setOpen(true)}>
@@ -150,13 +153,13 @@ export const Controlled: Story = {
           </ContextMenuContent>
         </ContextMenu>
       </div>
-    )
+    );
   },
-}
+};
 
 export const ClickOnly: Story = {
   render: () => {
-    const t = useStoryT()
+    const t = useStoryT();
     return (
       <ContextMenu triggerOn="click">
         <ContextMenuTrigger asChild>
@@ -167,13 +170,13 @@ export const ClickOnly: Story = {
           <ContextMenuItem onSelect={() => undefined}>{t('demo.labels.import')}</ContextMenuItem>
         </ContextMenuContent>
       </ContextMenu>
-    )
+    );
   },
-}
+};
 
 export const ContextMenuOnly: Story = {
   render: () => {
-    const t = useStoryT()
+    const t = useStoryT();
     return (
       <ContextMenu triggerOn="contextmenu">
         <ContextMenuTrigger asChild>
@@ -185,6 +188,6 @@ export const ContextMenuOnly: Story = {
           <ContextMenuItem onSelect={() => undefined}>{t('demo.labels.copy')}</ContextMenuItem>
         </ContextMenuContent>
       </ContextMenu>
-    )
+    );
   },
-}
+};

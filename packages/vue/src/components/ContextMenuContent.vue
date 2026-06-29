@@ -51,18 +51,15 @@ watch(
   },
 );
 
-watch(
-  [() => ctx.open.value, () => ctx.items.value.length],
-  ([open]) => {
-    if (!open || opened.value || ctx.items.value.length === 0) return;
-    opened.value = true;
-    prevFocus.value = document.activeElement as HTMLElement | null;
-    const first = firstEnabledMenuItemIndex(ctx.items.value);
-    if (first === undefined) return;
-    ctx.setActiveIndex(first);
-    requestAnimationFrame(() => ctx.items.value[first]?.focus());
-  },
-);
+watch([() => ctx.open.value, () => ctx.items.value.length], ([open]) => {
+  if (!open || opened.value || ctx.items.value.length === 0) return;
+  opened.value = true;
+  prevFocus.value = document.activeElement as HTMLElement | null;
+  const first = firstEnabledMenuItemIndex(ctx.items.value);
+  if (first === undefined) return;
+  ctx.setActiveIndex(first);
+  requestAnimationFrame(() => ctx.items.value[first]?.focus());
+});
 
 function onKey(e: KeyboardEvent) {
   if (!ctx.open.value) return;

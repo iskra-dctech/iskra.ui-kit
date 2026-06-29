@@ -22,13 +22,7 @@ export function SidebarHeader({
   return <div className={cx('isb-head', className)}>{children}</div>;
 }
 
-export function SidebarBody({
-  children,
-  className,
-}: {
-  children?: ReactNode;
-  className?: string;
-}) {
+export function SidebarBody({ children, className }: { children?: ReactNode; className?: string }) {
   return <div className={cx('isb-scroll', className)}>{children}</div>;
 }
 

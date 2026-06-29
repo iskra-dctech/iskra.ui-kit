@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { resolveSidebarGroups, type SidebarNavGroup, type SidebarNavItem, type SidebarVariant } from '@iskra-ui/core';
+import {
+  resolveSidebarGroups,
+  type SidebarNavGroup,
+  type SidebarNavItem,
+  type SidebarVariant,
+} from '@iskra-ui/core';
 import { useIskraLocale } from '../i18n/useIskraT.js';
 import { useBreakpoint } from '../composables/useMediaQuery.js';
 import Sidebar, { type SidebarTheme } from './Sidebar.vue';
@@ -42,9 +47,7 @@ const emit = defineEmits<{
 const { locale } = useIskraLocale();
 const isMobile = useBreakpoint('below-md', { ssrMatch: false });
 
-const resolvedGroups = computed(
-  () => props.groups ?? resolveSidebarGroups(props.variant, locale),
-);
+const resolvedGroups = computed(() => props.groups ?? resolveSidebarGroups(props.variant, locale));
 </script>
 
 <template>

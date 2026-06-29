@@ -7,15 +7,14 @@ import { Sidebar } from './Sidebar.js';
 describe('Sidebar', () => {
   it('marks the active item with aria-current', () => {
     renderWithIskra(<Sidebar activeItem="devices" variant="operator" brand={<span>App</span>} />);
-    expect(screen.getByRole('button', { name: 'Devices' })).toHaveAttribute(
-      'aria-current',
-      'page',
-    );
+    expect(screen.getByRole('button', { name: 'Devices' })).toHaveAttribute('aria-current', 'page');
   });
 
   it('fires onNavigate with the item id', async () => {
     const onNavigate = vi.fn();
-    renderWithIskra(<Sidebar onNavigate={onNavigate} variant="operator" brand={<span>App</span>} />);
+    renderWithIskra(
+      <Sidebar onNavigate={onNavigate} variant="operator" brand={<span>App</span>} />,
+    );
     await userEvent.click(screen.getByRole('button', { name: 'Topology' }));
     expect(onNavigate).toHaveBeenCalledWith('topology');
   });

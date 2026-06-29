@@ -67,7 +67,9 @@ const notFoundAriaLabel = computed(() =>
     <div v-if="$slots.action || $slots.secondary || isNotFound" class="ik-empty-actions">
       <div v-if="$slots.action || isNotFound" class="ik-empty-action">
         <slot name="action">
-          <Button v-if="isNotFound" @click="emit('home')">{{ t('emptyState.notFound.home') }}</Button>
+          <Button v-if="isNotFound" @click="emit('home')">{{
+            t('emptyState.notFound.home')
+          }}</Button>
         </slot>
       </div>
       <div v-if="$slots.secondary || (isNotFound && showBack)" class="ik-empty-action">

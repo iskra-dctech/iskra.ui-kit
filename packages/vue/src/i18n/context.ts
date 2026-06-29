@@ -1,4 +1,4 @@
-import type { InjectionKey } from 'vue'
+import type { InjectionKey } from 'vue';
 import {
   createTranslator,
   DEFAULT_LOCALE,
@@ -8,32 +8,32 @@ import {
   type IskraLocale,
   type IskraMessages,
   type TranslateFn,
-} from '@iskra-ui/i18n'
+} from '@iskra-ui/i18n';
 
 export interface IskraLocaleContextValue {
-  locale: IskraLocale
-  messages: IskraMessages
-  t: TranslateFn
+  locale: IskraLocale;
+  messages: IskraMessages;
+  t: TranslateFn;
 }
 
-export const IskraLocaleKey: InjectionKey<IskraLocaleContextValue> = Symbol('iskra-locale')
+export const IskraLocaleKey: InjectionKey<IskraLocaleContextValue> = Symbol('iskra-locale');
 
-const defaultMessages = getMessages(DEFAULT_LOCALE)
+const defaultMessages = getMessages(DEFAULT_LOCALE);
 
 export const defaultIskraLocaleContext: IskraLocaleContextValue = {
   locale: DEFAULT_LOCALE,
   messages: defaultMessages,
   t: createTranslator(defaultMessages),
-}
+};
 
 export function createIskraLocaleContext(
   locale: IskraLocale = DEFAULT_LOCALE,
   overrides?: DeepPartial<IskraMessages>,
 ): IskraLocaleContextValue {
-  const messages = mergeMessages(getMessages(locale), overrides)
+  const messages = mergeMessages(getMessages(locale), overrides);
   return {
     locale,
     messages,
     t: createTranslator(messages),
-  }
+  };
 }

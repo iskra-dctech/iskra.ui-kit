@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, afterEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithIskra } from '../../i18n/test-utils.js';
@@ -28,7 +28,10 @@ describe('MobileNav', () => {
         onNavigate={() => undefined}
       />,
     );
-    expect(screen.getByRole('button', { name: 'Dashboard' })).toHaveAttribute('aria-current', 'page');
+    expect(screen.getByRole('button', { name: 'Dashboard' })).toHaveAttribute(
+      'aria-current',
+      'page',
+    );
     expect(screen.getByRole('button', { name: 'Open menu' })).toBeInTheDocument();
   });
 

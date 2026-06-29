@@ -19,6 +19,7 @@ const meta = {
   title: 'Primitives/ChartTypeSelector',
   component: ChartTypeSelector,
   parameters: { layout: 'padded' },
+  args: { value: 'line' as ChartType, onChange: () => undefined },
 } satisfies Meta<typeof ChartTypeSelector>;
 
 export default meta;

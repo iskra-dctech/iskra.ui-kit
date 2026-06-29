@@ -53,8 +53,12 @@
     "react-grid-layout": ">=1.4.0"
   },
   "peerDependenciesMeta": {
-    "recharts": { "optional": false },
-    "react-grid-layout": { "optional": false }
+    "recharts": {
+      "optional": false
+    },
+    "react-grid-layout": {
+      "optional": false
+    }
   },
   "dependencies": {
     "@iskra-ui/core": "workspace:*",
